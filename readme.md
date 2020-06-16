@@ -14,7 +14,7 @@ Prérequis : vous avez besoin de Java 11.
 
 1. Télécharger le projet.
     - (préféré) soit via git: `git clone https://gaufre.informatique.univ-paris-diderot.fr/adegorre/cpoo5-session2-2020.git`
-    - soit en téléchargeant l'archive zip au lien qui sera donné ultérieurement et en la décompressant dans le répertoire de votre choix. 
+    - soit en téléchargeant l'archive zip [au lien suivant](https://gaufre.informatique.univ-paris-diderot.fr/adegorre/cpoo5-session2-2020/-/archive/master/cpoo5-session2-2020-master.zip) (vous pouvez aussi utiliser l'icône "télécharger" de l'interface de GitLab) et en la décompressant dans le répertoire de votre choix. 
 
 2. Compiler avec gradle. La commande est, dans le répertoire du projet, exécutez `./gradlew build`. Au besoin, cela téléchargera la bonne version de gradle.
 
@@ -22,7 +22,7 @@ Prérequis : vous avez besoin de Java 11.
 
 ## Le rendu
 
-Le rendu se fera sur moodle le 28 juin à minuit au plus tard (le lien sera ajouté ici quand il sera créé). Vous pouvez
+Votre travail est à rendre sur [sur moodle](https://moodlesupd.script.univ-paris-diderot.fr/mod/assign/view.php?id=248135) avant le 28 juin à minuit. Vous pouvez :
  
  - soit rendre votre projet dans une archive zip, 
  - soit soumettre un fichier texte donnant l'adresse d'un dépôt git que vous aurez créé en clonant le mien.
