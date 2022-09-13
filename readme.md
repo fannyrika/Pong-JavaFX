@@ -1,4 +1,4 @@
-# Mini-projet/DM de session 2 : jeu de raquettes
+# Jeu de Pong
 
 ## Présentation
 
