@@ -13,6 +13,11 @@ Pour l'instant, seules les fonctionnalités basiques sont implémentées : 2 raq
 Prérequis : vous avez besoin de Java 11.
 
 1. Télécharger le projet en le clonant via git: `git clone https://gaufre.informatique.univ-paris-diderot.fr/cproj2022/pong.git`.
-2. Compiler avec gradle. La commande est, dans le répertoire du projet, exécutez `./gradlew build`. Au besoin, cela téléchargera la bonne version de gradle.
-3. Exécuter avec `./gradlew run` (cela inclut `./gradlew build` si le projet n'est pas déjà compilé).
-4. Jouer ! La raquette de gauche est contrôlée par les touches CONTROL et ALT, alors que celle de droite est contrôlée par les flèches HAUT et BAS.
+2. Entrer dans le nouveau dossier `pong` ainsi créé (`cd pong`).
+3. Compiler avec gradle. La commande est, dans le répertoire du projet, exécutez `./gradlew build`. Au besoin, cela téléchargera la bonne version de gradle.
+4. Exécuter avec `./gradlew run` (cela inclut `./gradlew build` si le projet n'est pas déjà compilé).
+5. Jouer ! La raquette de gauche est contrôlée par les touches CONTROL et ALT, alors que celle de droite est contrôlée par les flèches HAUT et BAS.
+
+Si vous travaillez depuis une machine des salles de TP de la Halle aux Farines, vous devez d'abord passer certains paramètres à gradle via une variable d'environnement. Cela peut être fait en exécutant `source SCRIPT/envsetup` avant de lancer toute commande gradle.
+
+Pour être tranquille, vous pouvez insérer cette commande dans votre fichier `~/.bashrc`, cela vous évitera de devoir la taper à la main à chaque nouvelle session. Pensez à adapter la commande en donnant le chemin absolu vers `envsetup`.
