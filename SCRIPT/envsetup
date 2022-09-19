@@ -1,0 +1,1 @@
+export GRADLE_OPTS="-Djavax.net.ssl.trustStore=\"$PWD/SCRIPT/cacerts\" -Dhttp.proxyHost=www-cache -Dhttp.proxyPort=3128 -Dhttps.proxyHost=www-cache -Dhttps.proxyPort=3128  -Dorg.gradle.java.home=/snap/eclipse/61/plugins/org.eclipse.justj.openjdk.hotspot.jre.full.linux.x86_64_17.0.3.v20220515-1416/jre"
