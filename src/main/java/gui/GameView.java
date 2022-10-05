@@ -2,10 +2,19 @@ package gui;
 
 import javafx.animation.AnimationTimer;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import model.Court;
+import javafx.application.Application;
+import javafx.scene.Group;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+
 
 public class GameView {
     // class parameters
@@ -17,6 +26,10 @@ public class GameView {
     // children of the game main node
     private final Rectangle racketA, racketB;
     private final Circle ball;
+    
+    private Text textScoreA, textScoreB;
+    //private final Text textScoreB;
+    
 
     /**
      * @param court le "modèle" de cette vue (le terrain de jeu de raquettes et tout ce qu'il y a dessus)
@@ -54,7 +67,32 @@ public class GameView {
         ball.setCenterX(court.getBallX() * scale + xMargin);
         ball.setCenterY(court.getBallY() * scale);
 
-        gameRoot.getChildren().addAll(racketA, racketB, ball);
+        //textScoreA = new Text(String.valueOf(court.getScoreA()));
+        textScoreA = new Text("Joueur A");
+        //textScoreA = new Text(court.getTextScoreA());
+        textScoreA.setX(50);
+        textScoreA.setY(50);
+        textScoreA.setFont(Font.font("Verdana",50));
+        textScoreA.setFill(Color.BLACK);
+
+        //textScoreB = new Text(String.valueOf(court.getScoreB()) );
+        textScoreB = new Text("Joueur B");
+        //textScoreB = new Text(court.getTextScoreB());
+        textScoreB.setX(court.getWidth()-200);
+        textScoreB.setY(50);
+        textScoreB.setFont(Font.font("Verdana",50));
+        textScoreB.setFill(Color.BLACK);
+        /*
+         * StackPane stp= new StackPane();
+            Rectangle date = new Rectangle();
+            Text h = new Text(LocalDate.now().toString());
+            date.setHeight(40);
+            date.setWidth(120);
+            h.setTextFill(Color.WHITE);
+            stp.getChildren().addAll(date,h);
+         */
+
+        gameRoot.getChildren().addAll(racketA, racketB, ball, textScoreA, textScoreB);
 
 
     }
