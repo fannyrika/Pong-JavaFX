@@ -12,6 +12,8 @@ public class Court {
     private double racketB; // m
     private double ballX, ballY; // m
     private double ballSpeedX, ballSpeedY; // m
+    private int scoreA=0;
+    private int scoreB=0;
 
     public Court(RacketController playerA, RacketController playerB, double width, double height) {
         this.playerA = playerA;
@@ -48,6 +50,26 @@ public class Court {
     public double getBallY() {
         return ballY;
     }
+
+    public int getScoreA(){
+        return scoreA;
+    }
+
+    public int getScoreB(){
+        return scoreB;
+    }
+    /*
+     *  
+
+        public String getTextScoreA(){
+            return String.valueOf(scoreA);
+            }
+
+        public String getTextScoreB(){
+            return String.valueOf(scoreB);
+        }
+     */
+
 
     public void update(double deltaT) {
 
@@ -96,8 +118,10 @@ public class Court {
             ballSpeedX = -ballSpeedX;
             nextBallX = ballX + deltaT * ballSpeedX;
         } else if (nextBallX < 0) {
+            scoreB++; //A lost
             return true;
         } else if (nextBallX > width) {
+            scoreA++;//B lost
             return true;
         }
         ballX = nextBallX;
