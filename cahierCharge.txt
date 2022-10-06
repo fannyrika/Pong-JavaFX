@@ -1,0 +1,40 @@
+Liste des objéctifs:
+
+
+
+ERGONOMIE
+-Menu: permet de choisir entre différent mode de jeu
+
+-Changmement atribution touche du j1 (CTRL/ALT -> ???/???)
+
+-Mode pleine écran
+
+-Représenter les fin de partie et demande de relance de jeu
+
+
+
+GAMEPLAY
+-Boost sur la carte: si l'on touche avec balle: gagne le boost
+
+-Le jeu s'accélère en fonction de l'évolution de la partie
+
+-Rotation des raquette
+
+-Mode de jeu
+	* 1vbot
+	* 2v2
+	* Partie personnalisée
+	* Casse brique???
+
+-(Objectif Bonus) Jouer en ligne
+
+
+
+Esthétique:
+-Ajouter des couleurs
+
+-Thème (claire & somnbre)
+
+
+
+
