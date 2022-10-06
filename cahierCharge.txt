@@ -1,11 +1,11 @@
 Liste des objectifs:
 
-fghjbknl,m
+
 
 ERGONOMIE
 -Menu: permet de choisir entre différent mode de jeu
 
--Changmement atribution touche du j1 (CTRL/ALT -> ???/???)
+-Changement atribution touche du j1 (CTRL/ALT -> ???/???)
 
 -Mode pleine écran
 
