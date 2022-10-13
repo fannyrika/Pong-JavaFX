@@ -5,7 +5,7 @@ Liste des objectifs:
 ERGONOMIE
 -Menu: permet de choisir entre différent mode de jeu
 
--Changement atribution touche du j1 (CTRL/ALT -> ???/???)
+-Changement atribution touche du j1 (CTRL/ALT -> ???/???)   //FAIT//
 
 -Mode pleine écran
 
