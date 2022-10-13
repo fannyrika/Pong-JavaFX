@@ -25,10 +25,10 @@ public class App extends Application {
         var playerB = new Player();
         gameScene.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
-                case CONTROL:
+                case Z:
                     playerA.state = RacketController.State.GOING_UP;
                     break;
-                case ALT:
+                case S:
                     playerA.state = RacketController.State.GOING_DOWN;
                     break;
                 case UP:
@@ -41,10 +41,10 @@ public class App extends Application {
         });
         gameScene.setOnKeyReleased(ev -> {
             switch (ev.getCode()) {
-                case CONTROL:
+                case Z:
                     if (playerA.state == RacketController.State.GOING_UP) playerA.state = RacketController.State.IDLE;
                     break;
-                case ALT:
+                case S:
                     if (playerA.state == RacketController.State.GOING_DOWN) playerA.state = RacketController.State.IDLE;
                     break;
                 case UP:
