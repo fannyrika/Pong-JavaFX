@@ -55,7 +55,7 @@ public class App extends Application {
                     break;
             }
         });
-        var court = new Court(playerA, playerB, 1000, 600);
+        var court = new Court(playerA, playerB, 1000, 600, 1.000001);
         var gameView = new GameView(court, root, 1.0);
         primaryStage.setScene(gameScene);
         primaryStage.show();
