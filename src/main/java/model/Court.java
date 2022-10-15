@@ -58,13 +58,7 @@ public class Court {
         return ballY;
     }
 
-    public int getScoreA(){
-        return scoreA;
-    }
 
-    public int getScoreB(){
-        return scoreB;
-    }
     /*
      *
 
