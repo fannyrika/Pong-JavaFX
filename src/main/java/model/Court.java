@@ -58,24 +58,6 @@ public class Court {
         return ballY;
     }
 
-    public int getScoreA(){
-        return scoreA;
-    }
-
-    public int getScoreB(){
-        return scoreB;
-    }
-    /*
-     *
-
-        public String getTextScoreA(){
-            return String.valueOf(scoreA);
-            }
-
-        public String getTextScoreB(){
-            return String.valueOf(scoreB);
-        }
-     */
      public double getBallSpeedX(){
        return ballSpeedX;
      }
