@@ -60,6 +60,7 @@ public class App extends Application {
         //var gameView = new GameView(court, root, 1.0);
         var gameView2 = new GameView(bot, root, 1.0);//test Bot;
         primaryStage.setScene(gameScene);
+        primaryStage.setFullScreen(true);
         primaryStage.show();
         //gameView.animate();
         gameView2.animateBot();//test Bot;
