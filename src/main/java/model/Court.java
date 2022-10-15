@@ -20,7 +20,9 @@ public class Court {
         this.acceleration= acceleration;
         reset();
     }
-
+    public double getRacketSpeed(){
+      return this.racketSpeed;
+    }
     public double getWidth() {
         return width;
     }
@@ -33,8 +35,15 @@ public class Court {
         return racketSize;
     }
 
+    public RacketController getPlayerA(){
+      return playerA;
+    }
     public double getRacketA() {
         return racketA;
+    }
+    public void setRacketA(double racketA){
+
+      this.racketA=racketA;
     }
 
     public double getRacketB() {
@@ -48,6 +57,42 @@ public class Court {
     public double getBallY() {
         return ballY;
     }
+
+    public int getScoreA(){
+        return scoreA;
+    }
+
+    public int getScoreB(){
+        return scoreB;
+    }
+    /*
+     *
+
+        public String getTextScoreA(){
+            return String.valueOf(scoreA);
+            }
+
+        public String getTextScoreB(){
+            return String.valueOf(scoreB);
+        }
+     */
+     public double getBallSpeedX(){
+       return ballSpeedX;
+     }
+     public void setBallx(double x){
+       ballX=x;
+     } public void setBallY(double x){
+         ballY=x;
+       }
+     public double getBallSpeedY(){
+       return ballSpeedY;
+     }
+     public void setBallSpeedX(double x){
+       ballSpeedX=x;
+     }
+     public void setBallSpeedY(double x){
+       ballSpeedY=x;
+     }
 
     public void update(double deltaT) {
 
