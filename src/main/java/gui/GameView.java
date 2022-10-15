@@ -24,6 +24,7 @@ public class GameView {
     // children of the game main node
     private final Rectangle racketA, racketB ,bot;
     private final Circle ball;
+    private Text textScoreP1, textScoreP2;
 
     /**
      * @param court le "modèle" de cette vue (le terrain de jeu de raquettes et tout ce qu'il y a dessus)
@@ -32,7 +33,7 @@ public class GameView {
      */
     public GameView(Court court, Pane root, double scale) {
         this.court = court;
-		this.ModeBot = null;
+	this.ModeBot = null;
         this.gameRoot = root;
         this.scale = scale;
         
@@ -64,13 +65,25 @@ public class GameView {
         ball.setCenterX(court.getBallX() * scale + xMargin);
         ball.setCenterY(court.getBallY() * scale);
 
-        gameRoot.getChildren().addAll(racketA, racketB, ball);
+        textScoreP1 = new Text("0");
+        textScoreP2 = new Text("0");
+        textScoreP1.setFont(Font.font(25));
+        textScoreP2.setFont(Font.font(25));
+
+        textScoreP1.setX(xMargin - racketThickness + 10);
+        textScoreP1.setY(court.getRacketA() * scale -200);
+
+        textScoreP2.setX(court.getWidth() * scale + xMargin -10) ;
+        textScoreP2.setY(court.getRacketB() * scale -200);
+
+
+        gameRoot.getChildren().addAll(racketA, racketB, ball, textScoreP1, textScoreP2);
 
 
     }
     public GameView(Bot bot, Pane root, double scale) {
         this.court = null;
-		this.ModeBot = bot;
+	this.ModeBot = bot;
         this.gameRoot = root;
         this.scale = scale;
 
@@ -80,11 +93,11 @@ public class GameView {
         racketA = new Rectangle();
         racketA.setHeight(bot.getRacketSize() * scale);
         racketA.setWidth(racketThickness);
-        racketA.setFill(Color.BLACK);
+        racketA.setFill(Color.GREEN);
 
         racketA.setX(xMargin - racketThickness);
         racketA.setY(bot.getRacketA() * scale);
-		this.racketB = null;
+	this.racketB = null;
         
         this.bot = new Rectangle();
         this.bot.setHeight(bot.getRacketSize() * scale);
@@ -101,7 +114,9 @@ public class GameView {
         ball.setCenterX(bot.getBallX() * scale + xMargin);
         ball.setCenterY(bot.getBallY() * scale);
 
-
+       
+       
+        gameRoot.getChildren().addAll(racketA, this.bot, ball);
 
 
     }
@@ -122,7 +137,8 @@ public class GameView {
                 racketB.setY(court.getRacketB() * scale);
                 ball.setCenterX(court.getBallX() * scale + xMargin);
                 ball.setCenterY(court.getBallY() * scale);
-
+                textScoreP1.setText(Integer.toString(court.getScoreP1()));
+                textScoreP2.setText(Integer.toString(court.getScoreP2()));
             }
         }.start();
     }
