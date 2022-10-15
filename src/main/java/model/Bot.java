@@ -4,8 +4,8 @@ public class Bot extends Court{
 
     double bot;
     private int difficulty;
-    public Bot(RacketController playerA,double width,double height,int difficulty,double acceleration){
-      super(playerA,null,width,height,acceleration);
+    public Bot(RacketController playerA,double width,double height,int difficulty){
+      super(playerA,null,width,height,1.000001);
       this.difficulty=difficulty;
     }
 
@@ -153,6 +153,7 @@ public class Bot extends Court{
     void reset() {
         this.setRacketA(this.getHeight()/2);
         this.bot=this.getHeight()/2;
+        this.setRacketSpeed(300.00);
         this.setBallSpeedX(400.0);
         this.setBallSpeedY(400.0);
         this.setBallx(this.getWidth()/2);

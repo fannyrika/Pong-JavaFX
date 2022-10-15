@@ -75,6 +75,9 @@ public class Court {
      public void setBallSpeedY(double x){
        ballSpeedY=x;
      }
+     public void setRacketSpeed(double v){
+     	racketSpeed=v;
+     }
 
     public void update(double deltaT) {
 
