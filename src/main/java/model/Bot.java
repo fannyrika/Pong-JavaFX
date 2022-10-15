@@ -18,7 +18,7 @@ public class Bot extends Court{
       bot=x;
     }
 
-    public void updateWithBot(double deltaT,int difficulty) {
+    public void updateWithBot(double deltaT) {
 
         switch (this.getPlayerA().getState()) {
             case GOING_UP:
@@ -33,74 +33,100 @@ public class Bot extends Court{
                 if (this.getRacketA() + this.getRacketSize() > this.getHeight())   this.setRacketA(this.getHeight()-this.getRacketSize());
                 break;
         }
-        if(difficulty==0){
-            if(this.getBallSpeedX()>0){
-              Random x= new Random();
-              int alea=x.nextInt(20);
-
-
-              if(alea>=4&&this.getBallSpeedY()<0){
-                  bot += this.getBallSpeedY() * deltaT;
-                  if (bot< 0.0) bot = 0.0;
-                }
-              if(this.getBallSpeedY()>0&&alea>=4){
-                    bot+= this.getBallSpeedY() * deltaT;
-                  if (bot + this.getRacketSize() > this.getHeight()) bot = this.getHeight() - this.getRacketSize();
-                }
-              }
-
-        }
-        if(difficulty==1){
-            if(this.getBallSpeedX()>0){
-              Random x= new Random();
-              int alea=x.nextInt(20);
-
-
-              if(alea>=3&&this.getBallSpeedY()<0){
-                bot += this.getBallSpeedY() * deltaT;
-                if (bot< 0.0) bot = 0.0;
-                }
-              if(this.getBallSpeedY()>0&&alea>=4){
-                bot+= this.getBallSpeedY() * deltaT;
-              if (bot + this.getRacketSize() > this.getHeight()) bot = this.getHeight() - this.getRacketSize();
-                }
-              }
-
-        }
-        if(difficulty==2){
-            if(this.getBallSpeedX()>0){
-              Random x= new Random();
-              int alea=x.nextInt(30);
-
-
-              if(alea>=2&&this.getBallSpeedY()<0){
-                bot += this.getBallSpeedY() * deltaT;
-                if (bot< 0.0) bot = 0.0;
-                }
-              if(this.getBallSpeedY()>0&&alea>=4){
-                bot+= this.getBallSpeedY() * deltaT;
-              if (bot + this.getRacketSize() > this.getHeight()) bot = this.getHeight() - this.getRacketSize();
-                }
-              }
-              
-
-        }
-        if(this.difficulty==3){
-            if(this.getBallSpeedX()>0){
-              if(this.getBallSpeedY()<0){
-                bot += this.getBallSpeedY() * deltaT;
-                if (bot< 0.0) bot = 0.0;
-                }
-              if(this.getBallSpeedY()>0){
-                bot+= this.getBallSpeedY() * deltaT;
-              if (bot + this.getRacketSize() > this.getHeight()) bot = this.getHeight() - this.getRacketSize();
-                }
-              }
-
-        }
+        deplacementBot(deltaT);
+       
         if (updateBallWithBot(deltaT)) reset();
     }
-
+    /**
+     * Fonction qui gére le déplacement du bot 
+     * En fonction de la difficultée le bot rate ou non plus facilement des balles;
+     * @param deltaT
+     */
+    public void deplacementBot(double deltaT) {
+    	//le bot rate une balle sur 10;
+    	 if(difficulty==0){
+             if(this.getBallSpeedX()>0&&this.getBallX()>getWidth()/3){
+               Random x= new Random();
+               int alea=x.nextInt(10);
+               if(alea>=1){
+                   bot += this.getBallSpeedY() * deltaT;
+                   if(getBallSpeedY()<0) bot -= Math.abs(getBallSpeedY())*deltaT-getRacketSize()/2*deltaT;
+          	 	   if(getBallSpeedY()>0)bot+=Math.abs(getBallSpeedY())*deltaT-getRacketSize()/2*deltaT;
+                   if (bot< 0.0) bot = 0.0;               
+                   if (bot + this.getRacketSize() > this.getHeight()) bot = this.getHeight() - this.getRacketSize(); 
+               }
+             }
+             //deplace le bot de maniére aleatoire lorsque la vitesse de la balle est negatif ou bien lorque la balle depasse les 1/3 du terrain; 
+             else{
+  		       deplacementAleatoire(deltaT);
+  		     }
+    	 }
+    	//le bot rate une balle sur 15;
+         if(difficulty==1){
+         	Random x= new Random();
+             int alea=x.nextInt(15);
+             if(this.getBallSpeedX()>0&&this.getBallX()>getWidth()/3){
+               if(alea>=1){
+            	 if(getBallSpeedY()<0) bot -= Math.abs(getBallSpeedY())*deltaT-getRacketSize()/2*deltaT;
+        	 	 if(getBallSpeedY()>0)bot+=Math.abs(getBallSpeedY())*deltaT-getRacketSize()/2*deltaT;
+                 if (bot< 0.0) bot = 0.0;               
+                 if (bot + this.getRacketSize() > this.getHeight()) bot = this.getHeight() - this.getRacketSize();                
+               }	         
+             }
+             else {
+	        	   deplacementAleatoire(deltaT);
+	           }
+         }
+       //le bot rate une balle sur 20;
+         if(this.difficulty==2){
+     	 	if(this.getBallSpeedX()>0) {
+     	 		Random x= new Random();
+                int alea=x.nextInt(20);
+                if(alea>=1) {
+	              if(getBallSpeedY()<0) bot -= Math.abs(getBallSpeedY())*deltaT-getRacketSize()/2*deltaT;
+	   	 		  if(getBallSpeedY()>0)bot+=Math.abs(getBallSpeedY())*deltaT-getRacketSize()/2*deltaT;
+	              if (bot< 0.0) bot = 0.0;
+	              if (bot + this.getRacketSize() > this.getHeight()) bot = this.getHeight() - this.getRacketSize();
+                }
+     	 	}    
+     	 	else{
+		       deplacementAleatoire(deltaT);
+		    }
+        	
+         }
+         //le bot ne rate aucune balle;
+         if(this.difficulty==3){
+ 	 	if(this.getBallSpeedX()>0&&this.getBallX()>getWidth()/3) {
+ 	 		if(getBallSpeedY()<0) bot -= Math.abs(getBallSpeedY())*deltaT-getRacketSize()/2*deltaT;
+ 	 		if(getBallSpeedY()>0)bot+=Math.abs(getBallSpeedY())*deltaT-getRacketSize()/2*deltaT;
+          if (bot< 0.0) bot = 0.0;
+          if (bot + this.getRacketSize() > this.getHeight()) bot = this.getHeight() - this.getRacketSize();
+ 	 	}
+        
+	       else {		       
+	    	   deplacementAleatoire(deltaT);
+	        }
+    	
+  	}
+    }
+    public void deplacementAleatoire(double deltaT) {
+    	
+    	if(getBallSpeedY()>0&&getRacketA()>getHeight()/2) {
+    		bot-=getRacketA()*deltaT;
+    		if (bot< 0.0) bot = 0.0;
+    	}
+    	if(getBallSpeedY()<0&&getRacketA()<getHeight()/2) {
+    		bot+=getRacketA()*deltaT;
+    		if (bot + this.getRacketSize() > this.getHeight()) bot = this.getHeight() - this.getRacketSize();
+    	}
+    	else {
+    		bot+=getRacketSize()*deltaT;    	
+    		if (bot< 0.0) bot = 0.0;
+    		if (bot + this.getRacketSize() > this.getHeight()) bot = this.getHeight() - this.getRacketSize();
+    	}
+    }
+    	
+    
     private boolean updateBallWithBot(double deltaT){
       double nextBallX = this.getBallX() + deltaT * this.getBallSpeedX();
       double nextBallY = this.getBallY() + deltaT * this.getBallSpeedY();
@@ -122,9 +148,12 @@ public class Bot extends Court{
       this.setBallY(nextBallY);
       return false;
     }
+    
+    
     void reset() {
         this.setRacketA(this.getHeight()/2);
-        this.setBallSpeedX(200.0);
+        this.bot=this.getHeight()/2;
+        this.setBallSpeedX(400.0);
         this.setBallSpeedY(400.0);
         this.setBallx(this.getWidth()/2);
         this.setBallY(this.getHeight()/2);

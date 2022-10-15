@@ -5,7 +5,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import model.Court;
+import model.*;
 import model.RacketController;
 
 public class App extends Application {
@@ -55,10 +55,13 @@ public class App extends Application {
                     break;
             }
         });
-        var court = new Court(playerA, playerB, 1000, 600);
-        var gameView = new GameView(court, root, 1.0);
+        var bot = new Bot(playerA, 1000, 600,1);//test bot;
+        var court = new Court(playerA,playerB, 1000, 600);
+        //var gameView = new GameView(court, root, 1.0);
+        var gameView2 = new GameView(bot, root, 1.0);//test Bot;
         primaryStage.setScene(gameScene);
         primaryStage.show();
-        gameView.animate();
+        //gameView.animate();
+        gameView2.animateBot();//test Bot;
     }
 }
