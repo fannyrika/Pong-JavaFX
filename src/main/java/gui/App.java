@@ -7,6 +7,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.*;
 import model.RacketController;
+import javafx.stage.StageStyle;
 
 public class App extends Application {
     @Override
@@ -55,14 +56,15 @@ public class App extends Application {
                     break;
             }
         });
-        var bot = new Bot(playerA, 1000, 600,1);//test bot;
-        var court = new Court(playerA,playerB, 1000, 600);
-        //var gameView = new GameView(court, root, 1.0);
-        var gameView2 = new GameView(bot, root, 1.0);//test Bot;
+        //var bot = new Bot(playerA, 1000, 600,1.000001,1);//test bot;
+        var court = new Court(playerA,playerB, 1000, 600,1.000001);
+        var gameView = new GameView(court, root, 1.0);
+        //var gameView2 = new GameView(bot, root, 1.0);//test Bot;
+        primaryStage.setTitle("Pong");
+        primaryStage.initStyle(StageStyle.UTILITY);
         primaryStage.setScene(gameScene);
-        primaryStage.setFullScreen(true);
         primaryStage.show();
-        //gameView.animate();
-        gameView2.animateBot();//test Bot;
+        gameView.animate();
+        //gameView2.animateBot();//test Bot;
     }
 }
