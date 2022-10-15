@@ -60,8 +60,8 @@ public class App extends Application {
         var court = new Court(playerA,playerB, 1000, 600,1.000001);
         var gameView = new GameView(court, root, 1.0);
         //var gameView2 = new GameView(bot, root, 1.0);//test Bot;
-        primaryStage.setTitle("Pong");
-        primaryStage.initStyle(StageStyle.UTILITY);
+        primaryStage.setTitle("Pong");//page's title
+        primaryStage.initStyle(StageStyle.UTILITY);//only the possibily to close the window
         primaryStage.setScene(gameScene);
         primaryStage.show();
         gameView.animate();
