@@ -4,22 +4,20 @@ public class Court {
     // instance parameters
     private final RacketController playerA, playerB;
     private final double width, height; // m
-    private final double racketSpeed = 300.0; // m/s
     private final double racketSize = 100.0; // m
     private final double ballRadius = 10.0; // m
     // instance state
     private double racketA; // m
     private double racketB; // m
     private double ballX, ballY; // m
-    private double ballSpeedX, ballSpeedY; // m
-    private int scoreA=0;
-    private int scoreB=0;
+    private double ballSpeedX, ballSpeedY, racketSpeed, acceleration; // m
 
-    public Court(RacketController playerA, RacketController playerB, double width, double height) {
+    public Court(RacketController playerA, RacketController playerB, double width, double height, double acceleration) {
         this.playerA = playerA;
         this.playerB = playerB;
         this.width = width;
         this.height = height;
+        this.acceleration= acceleration;
         reset();
     }
     public double getRacketSpeed(){
@@ -143,24 +141,32 @@ public class Court {
             ballSpeedX = -ballSpeedX;
             nextBallX = ballX + deltaT * ballSpeedX;
         } else if (nextBallX < 0) {
-            scoreB++; //A lost
             return true;
         } else if (nextBallX > width) {
-            scoreA++;//B lost
             return true;
         }
         ballX = nextBallX;
         ballY = nextBallY;
+        this.updateSpeed();
         return false;
     }
 
     public double getBallRadius() {
         return ballRadius;
     }
+    
+   
+    public void updateSpeed() {
+    	racketSpeed= racketSpeed * acceleration;
+    	ballSpeedX= ballSpeedX * acceleration;
+    	ballSpeedY= ballSpeedY * acceleration;
+    }
+    
 
     void reset() {
         this.racketA = height / 2;
         this.racketB = height / 2;
+        this.racketSpeed = 300.0;
         this.ballSpeedX = 200.0;
         this.ballSpeedY = 200.0;
         this.ballX = width / 2;
