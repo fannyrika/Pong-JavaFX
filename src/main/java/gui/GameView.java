@@ -101,22 +101,7 @@ public class GameView {
         ball.setCenterX(bot.getBallX() * scale + xMargin);
         ball.setCenterY(bot.getBallY() * scale);
 
-        //textScoreA = new Text(String.valueOf(court.getScoreA()));
-        textScoreA = new Text("Joueur A");
-        //textScoreA = new Text(court.getTextScoreA());
-        textScoreA.setX(50);
-        textScoreA.setY(50);
-        textScoreA.setFont(Font.font("Verdana",50));
-        textScoreA.setFill(Color.BLACK);
 
-        //textScoreB = new Text(String.valueOf(court.getScoreB()) );
-        textScoreB = new Text("Joueur B");
-        //textScoreB = new Text(court.getTextScoreB());
-        textScoreB.setX(bot.getWidth()-200);
-        textScoreB.setY(50);
-        textScoreB.setFont(Font.font("Verdana",50));
-        textScoreB.setFill(Color.BLACK);
-        gameRoot.getChildren().addAll(racketA, this.bot, ball, textScoreA, textScoreB);
 
 
     }
