@@ -32,7 +32,7 @@ public class GameView {
      */
     public GameView(Court court, Pane root, double scale) {
         this.court = court;
-		this.ModeBot = null;
+	this.ModeBot = null;
         this.gameRoot = root;
         this.scale = scale;
         
@@ -70,7 +70,7 @@ public class GameView {
     }
     public GameView(Bot bot, Pane root, double scale) {
         this.court = null;
-		this.ModeBot = bot;
+	this.ModeBot = bot;
         this.gameRoot = root;
         this.scale = scale;
 
@@ -80,11 +80,11 @@ public class GameView {
         racketA = new Rectangle();
         racketA.setHeight(bot.getRacketSize() * scale);
         racketA.setWidth(racketThickness);
-        racketA.setFill(Color.BLACK);
+        racketA.setFill(Color.GREEN);
 
         racketA.setX(xMargin - racketThickness);
         racketA.setY(bot.getRacketA() * scale);
-		this.racketB = null;
+	this.racketB = null;
         
         this.bot = new Rectangle();
         this.bot.setHeight(bot.getRacketSize() * scale);
@@ -101,22 +101,9 @@ public class GameView {
         ball.setCenterX(bot.getBallX() * scale + xMargin);
         ball.setCenterY(bot.getBallY() * scale);
 
-        //textScoreA = new Text(String.valueOf(court.getScoreA()));
-        textScoreA = new Text("Joueur A");
-        //textScoreA = new Text(court.getTextScoreA());
-        textScoreA.setX(50);
-        textScoreA.setY(50);
-        textScoreA.setFont(Font.font("Verdana",50));
-        textScoreA.setFill(Color.BLACK);
-
-        //textScoreB = new Text(String.valueOf(court.getScoreB()) );
-        textScoreB = new Text("Joueur B");
-        //textScoreB = new Text(court.getTextScoreB());
-        textScoreB.setX(bot.getWidth()-200);
-        textScoreB.setY(50);
-        textScoreB.setFont(Font.font("Verdana",50));
-        textScoreB.setFill(Color.BLACK);
-        gameRoot.getChildren().addAll(racketA, this.bot, ball, textScoreA, textScoreB);
+       
+       
+        gameRoot.getChildren().addAll(racketA, this.bot, ball);
 
 
     }
