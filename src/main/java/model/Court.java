@@ -1,5 +1,7 @@
 package model;
 
+import javafx.geometry.Rectangle2D;
+import javafx.stage.Screen;
 public class Court {
     // instance parameters
     private final RacketController playerA, playerB;
@@ -14,11 +16,12 @@ public class Court {
     private int scoreP1 = 0;
     private int scoreP2 = 0;
     
+    Rectangle2D screen = Screen.getPrimary().getVisualBounds();
     public Court(RacketController playerA, RacketController playerB, double acceleration) {
         this.playerA = playerA;
         this.playerB = playerB;
-        this.width = 1830;//visual bounds
-        this.height = 950;//visual bounds
+        this.width = screen.getWidth()-racketSize;//visual bounds
+        this.height = screen.getHeight()-(racketSize/2);//visual bounds
         this.acceleration= acceleration;
         reset();
     }
