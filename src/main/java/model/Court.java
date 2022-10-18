@@ -92,7 +92,13 @@ public class Court {
      public int getScoreP2(){
         return scoreP2;
      }
-
+	
+	
+     public void setRacketSpeed(double s){
+     	racketSpeed=s;
+     }
+    
+    
     public void update(double deltaT) {
 
         switch (playerA.getState()) {
