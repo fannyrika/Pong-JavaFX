@@ -1,5 +1,7 @@
 package model;
 
+import javafx.geometry.Rectangle2D;
+import javafx.stage.Screen;
 public class Court {
     // instance parameters
     private final RacketController playerA, playerB;
@@ -11,12 +13,15 @@ public class Court {
     private double racketB; // m
     private double ballX, ballY; // m
     private double ballSpeedX, ballSpeedY, racketSpeed, acceleration; // m
-
-    public Court(RacketController playerA, RacketController playerB, double width, double height, double acceleration) {
+    private int scoreP1 = 0;
+    private int scoreP2 = 0;
+    
+    Rectangle2D screen = Screen.getPrimary().getVisualBounds();
+    public Court(RacketController playerA, RacketController playerB, double acceleration) {
         this.playerA = playerA;
         this.playerB = playerB;
-        this.width = width;
-        this.height = height;
+        this.width = screen.getWidth()-racketSize;//visual bounds
+        this.height = screen.getHeight()-(racketSize/2);//visual bounds
         this.acceleration= acceleration;
         reset();
     }
@@ -75,8 +80,17 @@ public class Court {
      public void setBallSpeedY(double x){
        ballSpeedY=x;
      }
-     public void setRacketSpeed(double v){
-     	racketSpeed=v;
+     public void setScoreP1(int s){
+        scoreP1=s;
+     }
+     public void setScoreP2(int s){
+        scoreP2=s;
+     }
+     public int getScoreP1(){
+        return scoreP1;
+     }
+     public int getScoreP2(){
+        return scoreP2;
      }
 
     public void update(double deltaT) {
@@ -126,8 +140,10 @@ public class Court {
             ballSpeedX = -ballSpeedX;
             nextBallX = ballX + deltaT * ballSpeedX;
         } else if (nextBallX < 0) {
+            scoreP2++;
             return true;
         } else if (nextBallX > width) {
+            scoreP1++;
             return true;
         }
         ballX = nextBallX;

@@ -4,8 +4,8 @@ public class Bot extends Court{
 
     double bot;
     private int difficulty;
-    public Bot(RacketController playerA,double width,double height,int difficulty){
-      super(playerA,null,width,height,1.000001);
+    public Bot(RacketController playerA,int difficulty,double acceleration){
+      super(playerA,null,acceleration);
       this.difficulty=difficulty;
     }
 
