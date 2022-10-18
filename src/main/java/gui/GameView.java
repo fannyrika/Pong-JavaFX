@@ -8,6 +8,8 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import model.*;
+import javafx.scene.control.Label;
+import javafx.beans.binding.Bindings;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -22,6 +24,8 @@ public class GameView {
     private final double xMargin = 50.0, racketThickness = 10.0; // pixels
 
     // children of the game main node
+    private Label timer;
+    Chrono chronometer;
     private final Rectangle racketA, racketB ,bot;
     private final Circle ball;
     private Text textScoreP1, textScoreP2;
@@ -33,12 +37,15 @@ public class GameView {
      */
     public GameView(Court court, Pane root, double scale) {
         this.court = court;
-	this.ModeBot = null;
+	      this.ModeBot = null;
         this.gameRoot = root;
         this.scale = scale;
-        
+
         root.setMinWidth(court.getWidth() * scale + 2 * xMargin);
         root.setMinHeight(court.getHeight() * scale);
+
+        timer();
+        timer.setLayoutX(court.getWidth()/2-50);
 
         racketA = new Rectangle();
         racketA.setHeight(court.getRacketSize() * scale);
@@ -47,7 +54,7 @@ public class GameView {
 
         racketA.setX(xMargin - racketThickness);
         racketA.setY(court.getRacketA() * scale);
-        
+
         racketB = new Rectangle();
         racketB.setHeight(court.getRacketSize() * scale);
         racketB.setWidth(racketThickness);
@@ -55,8 +62,8 @@ public class GameView {
 
         racketB.setX(court.getWidth() * scale + xMargin);
         racketB.setY(court.getRacketB() * scale);
-		this.bot = null;
-		
+		    this.bot = null;
+
 
         ball = new Circle();
         ball.setRadius(court.getBallRadius());
@@ -77,18 +84,21 @@ public class GameView {
         textScoreP2.setY(court.getRacketB() * scale -200);
 
 
-        gameRoot.getChildren().addAll(racketA, racketB, ball, textScoreP1, textScoreP2);
+        gameRoot.getChildren().addAll(racketA, racketB, ball, textScoreP1, textScoreP2,timer);
 
 
     }
     public GameView(Bot bot, Pane root, double scale) {
         this.court = null;
-	this.ModeBot = bot;
+	      this.ModeBot = bot;
         this.gameRoot = root;
         this.scale = scale;
 
         root.setMinWidth(bot.getWidth() * scale + 2 * xMargin);
         root.setMinHeight(bot.getHeight() * scale);
+
+        timer();
+        timer.setLayoutX(bot.getWidth()/2-50);
 
         racketA = new Rectangle();
         racketA.setHeight(bot.getRacketSize() * scale);
@@ -97,8 +107,8 @@ public class GameView {
 
         racketA.setX(xMargin - racketThickness);
         racketA.setY(bot.getRacketA() * scale);
-	this.racketB = null;
-        
+	      this.racketB = null;
+
         this.bot = new Rectangle();
         this.bot.setHeight(bot.getRacketSize() * scale);
         this.bot.setWidth(racketThickness);
@@ -114,13 +124,21 @@ public class GameView {
         ball.setCenterX(bot.getBallX() * scale + xMargin);
         ball.setCenterY(bot.getBallY() * scale);
 
-       
-       
-        gameRoot.getChildren().addAll(racketA, this.bot, ball);
+
+
+        gameRoot.getChildren().addAll(racketA, this.bot, ball,timer);
 
 
     }
+    //fonction qui gère l'implementation du timer
+    public void timer() {
+    	 chronometer =new Chrono();
+        timer=new Label();
+        timer.setFont(new Font("Arial",40));
+        timer.setMinSize(100.00, 100.00);
+        timer.setMinHeight(200);
 
+    }
     public void animate() {
         new AnimationTimer() {
             long last = 0;
@@ -131,6 +149,10 @@ public class GameView {
                     last = now;
                     return;
                 }
+                if((now - last)%50==0) {
+                    chronometer.update();
+                    timer.textProperty().bind(Bindings.format("%02d:%02d:%d%d",  chronometer.mm, chronometer.ss, chronometer.th, chronometer.hd));;
+                    }
                 court.update((now - last) * 1.0e-9); // convert nanoseconds to seconds
                 last = now;
                 racketA.setY(court.getRacketA() * scale);
@@ -152,6 +174,10 @@ public class GameView {
                     last = now;
                     return;
                 }
+                if((now - last)%20==0) {
+                    chronometer.update();
+                    timer.textProperty().bind(Bindings.format("%02d:%02d:%d%d",  chronometer.mm, chronometer.ss, chronometer.th, chronometer.hd));;
+                  }
                 ModeBot.updateWithBot((now - last) * 1.0e-9); // convert nanoseconds to seconds
                 last = now;
                 racketA.setY(ModeBot.getRacketA() * scale);
