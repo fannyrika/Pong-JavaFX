@@ -4,6 +4,8 @@ public class Bot extends Court{
 
     double bot;
     private int difficulty;
+    private int scoreP1 = 0;
+    private int scoreP2 = 0;
     public Bot(RacketController playerA,int difficulty,double acceleration){
       super(playerA,null,acceleration);
       this.difficulty=difficulty;
@@ -17,6 +19,19 @@ public class Bot extends Court{
     public void setBot(double x){
       bot=x;
     }
+    public void setScoreP1(int s){
+        scoreP1=s;
+     }
+     public void setScoreP2(int s){
+        scoreP2=s;
+     }
+     public int getScoreP1(){
+        return scoreP1;
+     }
+     public int getScoreP2(){
+        return scoreP2;
+     }
+     
 	
     public void updateWithBot(double deltaT) {
 
@@ -140,8 +155,10 @@ public class Bot extends Court{
           this.setBallSpeedX(this.getBallSpeedX()-2*this.getBallSpeedX());
           nextBallX = this.getBallX() + deltaT * this.getBallSpeedX();
       } else if (nextBallX < 0) {
+      	  this.scoreP2++;
           return true;
       } else if (nextBallX > this.getWidth()) {
+      	  this.scoreP1++;
           return true;
       }
       this.setBallx(nextBallX);
