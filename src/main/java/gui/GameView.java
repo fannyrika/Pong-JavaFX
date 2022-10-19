@@ -37,7 +37,7 @@ public class GameView {
      */
     public GameView(Court court, Pane root, double scale) {
         this.court = court;
-	      this.ModeBot = null;
+	this.ModeBot = null;
         this.gameRoot = root;
         this.scale = scale;
 
@@ -90,7 +90,7 @@ public class GameView {
     }
     public GameView(Bot bot, Pane root, double scale) {
         this.court = null;
-	      this.ModeBot = bot;
+	this.ModeBot = bot;
         this.gameRoot = root;
         this.scale = scale;
 
@@ -123,10 +123,21 @@ public class GameView {
 
         ball.setCenterX(bot.getBallX() * scale + xMargin);
         ball.setCenterY(bot.getBallY() * scale);
+        
+        textScoreP1 = new Text("0");
+        textScoreP2 = new Text("0");
+        textScoreP1.setFont(Font.font(25));
+        textScoreP2.setFont(Font.font(25));
+        
+        textScoreP1.setX(xMargin - racketThickness + 10);
+        textScoreP1.setY(bot.getRacketA() * scale -200);
+
+        textScoreP2.setX(bot.getWidth() * scale + xMargin -10) ;
+        textScoreP2.setY(bot.getBot() * scale -200);
 
 
 
-        gameRoot.getChildren().addAll(racketA, this.bot, ball,timer);
+        gameRoot.getChildren().addAll(racketA, this.bot, ball, textScoreP1, textScoreP2,timer);
 
 
     }
@@ -184,6 +195,8 @@ public class GameView {
                 bot.setY(ModeBot.getBot() * scale);
                 ball.setCenterX(ModeBot.getBallX() * scale + xMargin);
                 ball.setCenterY(ModeBot.getBallY() * scale);
+                textScoreP1.setText(Integer.toString(ModeBot.getScoreP1()));
+                textScoreP2.setText(Integer.toString(ModeBot.getScoreP2()));
             }
         }.start();
     }
