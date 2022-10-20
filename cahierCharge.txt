@@ -11,6 +11,8 @@ ERGONOMIE
 
 4.Représenter les fin de partie et demande de relance de jeu
 
+12. Demander le choix d'une couleur en début de partie, différente pour chaque joueur. Cette couleur sera celle de leur raquette, permettant leur identification.
+
 
 
 GAMEPLAY
@@ -24,13 +26,20 @@ GAMEPLAY
 	1. 1vbot
 	2. 2v2
 	3. Partie personnalisée
+	    Possibilité de choisir différents paramètres (vitesse de la balle, condition(s) de victoire, présence de boost, thème, ?v? (OPTION A CONTROLER), si bot: difficulté du bot
 	4. Casse brique???
 	
 9.Musique de jeu
 	1. Musique de fond
 	2. Bruitage (son quand la balle touche une raquette)
+	
+	
+10.Stopper une partie
+    1. Mettre fin à une partie une fois le score atteint (score à définir en fonction de la partie choisie)
+    2. Afficher les scores et le gagnant
+    3. Possibilité de rejouer ou de quitter la partie
 
-10.(Objectif Bonus) Jouer en ligne
+11.(Objectif Bonus) Jouer en ligne
 
 
 
@@ -38,3 +47,5 @@ Esthétique:
 10.Ajouter des couleurs
 
 11.Thème (clair & sombre)
+
+13.Ajouter une apparence au fond
