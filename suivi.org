@@ -1,0 +1,25 @@
+* 6/10/2022
+
+NICO;Julien 
+HOUARD;Romain
+PINTO;Lilia
+BOULOUFA;Melissa
+TANG;Li Wa
+COTREZ;Jules
+
+* 20/10/2022
+
+surname; name; opened issues; closed issues; workin on issues
+NICO;Julien; 15, 19; 20, 34; --
+HOUARD;Romain; 17, 22; 17, 22; --
+PINTO;Lilia; 18, 30, 32, 1, 9, 33, 28, 24, 23; 29, 32, 30, 18; --
+BOULOUFA;Melissa; 31; --; 24
+TANG;Li Wa; 12, 25, 26, 27; 12, 25, 27; 26
+COTREZ;Jules; --; --; 33, 26, 23
+
+* 10/10/2022
+** TODO
+** 1) Replace items with enumerations in cachierCharge.txt
+** 2) Continue with the work, and prepare a prototype in master branch
+
+
