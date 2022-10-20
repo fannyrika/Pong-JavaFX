@@ -3,34 +3,34 @@ Liste des objectifs:
 
 
 ERGONOMIE
--Menu: permet de choisir entre différent mode de jeu
+1.Menu: permet de choisir entre différent mode de jeu
 
--Changement atribution touche du j1 (CTRL/ALT -> ???/???)   //FAIT//
+2.Changement atribution touche du j1 (CTRL/ALT -> ???/???)   //FAIT//
 
--Mode pleine écran
+3.Mode pleine écran
 
--Représenter les fin de partie et demande de relance de jeu
+4.Représenter les fin de partie et demande de relance de jeu
 
 
 
 GAMEPLAY
--Boost sur la carte: si l'on touche avec balle: gagne le boost
+5.Boost sur la carte: si l'on touche avec balle: gagne le boost
 
--Le jeu s'accélère en fonction de l'évolution de la partie
+6.Le jeu s'accélère en fonction de l'évolution de la partie
 
--Rotation des raquette
+7.Rotation des raquette
 
--Mode de jeu
-	* 1vbot
-	* 2v2
-	* Partie personnalisée
-	* Casse brique???
+8.Mode de jeu
+	1. 1vbot
+	2. 2v2
+	3. Partie personnalisée
+	4. Casse brique???
 
--(Objectif Bonus) Jouer en ligne
+9.(Objectif Bonus) Jouer en ligne
 
 
 
 Esthétique:
--Ajouter des couleurs
+10.Ajouter des couleurs
 
--Thème (clair & sombre)
+11.Thème (clair & sombre)
