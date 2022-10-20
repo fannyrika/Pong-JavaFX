@@ -8,12 +8,25 @@ import javafx.stage.Stage;
 import model.*;
 import model.RacketController;
 import javafx.stage.StageStyle;
+import java.io.File;
+import java.net.MalformedURLException;
+import javafx.scene.image.Image;
+
 
 public class App extends Application {
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws MalformedURLException {
         var root = new Pane();
         var gameScene = new Scene(root);
+        
+        
+        //add an icon for the window
+        /*File file = new File("pong/pong.png");
+        String localUrl = file.toURI().toURL().toString();
+        Image image = new Image(localUrl);*/
+        
+        
+        
         class Player implements RacketController {
             State state = State.IDLE;
 
@@ -61,8 +74,7 @@ public class App extends Application {
         var gameView = new GameView(court, root, 1.0);
         //var gameView2 = new GameView(bot, root, 1.0);//test Bot;
         primaryStage.setTitle("Pong");
-        primaryStage.setFullScreen(true);
-        primaryStage.setFullScreenExitHint("");
+        //primaryStage.getIcons().add(image);
         primaryStage.setScene(gameScene);
         primaryStage.show();
         gameView.animate();
