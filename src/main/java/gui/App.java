@@ -11,6 +11,11 @@ import javafx.stage.StageStyle;
 import java.io.File;
 import java.net.MalformedURLException;
 import javafx.scene.image.Image;
+import java.io.File;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+
 
 
 public class App extends Application {
@@ -24,6 +29,16 @@ public class App extends Application {
         /*File file = new File("pong/pong.png");
         String localUrl = file.toURI().toURL().toString();
         Image image = new Image(localUrl);*/
+        
+        
+        Media media = new Media(new File("pongmusic.mp3").toURI().toString());
+        MediaPlayer mP = new MediaPlayer(media);
+        mP.setCycleCount(mP.INDEFINITE);
+        mP.setAutoPlay(true);
+        
+        MediaView mV = new MediaView(mP);
+        root.getChildren().add(mV);
+
         
         
         
