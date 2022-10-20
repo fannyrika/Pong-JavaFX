@@ -21,10 +21,10 @@ GAMEPLAY
 7.Rotation des raquette
 
 8.Mode de jeu
-	* 1vbot
-	* 2v2
-	* Partie personnalisée
-	* Casse brique???
+	1. 1vbot
+	2. 2v2
+	3. Partie personnalisée
+	4. Casse brique???
 
 9.(Objectif Bonus) Jouer en ligne
 
