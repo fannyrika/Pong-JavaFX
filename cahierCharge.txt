@@ -25,8 +25,12 @@ GAMEPLAY
 	2. 2v2
 	3. Partie personnalisée
 	4. Casse brique???
+	
+9.Musique de jeu
+	1. Musique de fond
+	2. Bruitage (son quand la balle touche une raquette)
 
-9.(Objectif Bonus) Jouer en ligne
+10.(Objectif Bonus) Jouer en ligne
 
 
 
