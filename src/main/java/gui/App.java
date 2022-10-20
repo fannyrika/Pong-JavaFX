@@ -31,13 +31,13 @@ public class App extends Application {
         Image image = new Image(localUrl);
         
         
-        Media media = new Media(new File("pongmusic.mp3").toURI().toString());
+       /* Media media = new Media(new File("pongmusic.mp3").toURI().toString());
         MediaPlayer mP = new MediaPlayer(media);
         mP.setCycleCount(mP.INDEFINITE);
         mP.setAutoPlay(true);
         
         MediaView mV = new MediaView(mP);
-        root.getChildren().add(mV);
+        root.getChildren().add(mV);*/
 
         
         
