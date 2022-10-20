@@ -21,7 +21,7 @@ public class Court {
         this.playerA = playerA;
         this.playerB = playerB;
         this.width = screen.getWidth()-racketSize;//visual bounds
-        this.height = screen.getHeight()+racketSize;//visual bounds
+        this.height = screen.getHeight()-racketSize/2;//visual bounds
         this.acceleration= acceleration;
         reset();
     }
