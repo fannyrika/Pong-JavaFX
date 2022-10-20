@@ -26,9 +26,9 @@ public class App extends Application {
         
         
         //add an icon for the window
-        /*File file = new File("pong/pong.png");
+        File file = new File("pongicon.png");
         String localUrl = file.toURI().toURL().toString();
-        Image image = new Image(localUrl);*/
+        Image image = new Image(localUrl);
         
         
         Media media = new Media(new File("pongmusic.mp3").toURI().toString());
@@ -89,7 +89,7 @@ public class App extends Application {
         var gameView = new GameView(court, root, 1.0);
         //var gameView2 = new GameView(bot, root, 1.0);//test Bot;
         primaryStage.setTitle("Pong");
-        //primaryStage.getIcons().add(image);
+        primaryStage.getIcons().add(image);
         primaryStage.setScene(gameScene);
         primaryStage.show();
         gameView.animate();
