@@ -24,7 +24,7 @@ import javax.swing.*;
 
 public class App extends Application {
 
-  public static void f(){
+  /*public static void f(){
 
   			  // On crée la fenêtre
   			    JFrame fenetre = new JFrame("Menu PONG");
@@ -73,11 +73,6 @@ public class App extends Application {
   				    a.setBounds(200, 100, 100, 60);
   				    p.add(a);
 
-  				 /*  a.addActionListener(new ActionListener()
-
-  				    {
-  				      public void actionPerformed(ActionEvent e)
-  				 */
   				    a.addActionListener(e -> {
   				    	JFrame maNewFrame = new JFrame(); // fenêtre du jeu
   				    	  maNewFrame.setBounds( 0, 0, 200, 200 );
@@ -166,6 +161,7 @@ public class App extends Application {
   			      fenetre.setContentPane(p);
   			    fenetre.setVisible(true); // Rend la fenêtre et tout son contenu visibles
   			  }
+          */
 
     @Override
     public void start(Stage primaryStage) throws MalformedURLException {
@@ -178,6 +174,10 @@ public class App extends Application {
         String localUrl = file.toURI().toURL().toString();
         Image image = new Image(localUrl);
 
+
+        // ajout d'une image de fond
+        root.setId("terrain");
+        gameScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
 
       /*  Media media = new Media(new File("pongmusic.mp3").toURI().toString());
         MediaPlayer mP = new MediaPlayer(media);
@@ -243,4 +243,5 @@ public class App extends Application {
         gameView.animate();
         //gameView2.animateBot();//test Bot;
     }
+
 }
