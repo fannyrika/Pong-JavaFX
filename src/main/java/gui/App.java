@@ -232,8 +232,8 @@ public class App extends Application {
                     break;
             }
         });
-        var bot = new Bot(playerA,1,1.000001);//test bot;
-        var court = new Court(playerA,playerB,1.000001);
+        var bot = new Bot(playerA,1,1.0011);//test bot;
+        var court = new Court(playerA,playerB,1.0011);
         var gameView = new GameView(court, root, 1.0);
         //var gameView2 = new GameView(bot, root, 1.0);//test Bot;
         primaryStage.setTitle("Pong");

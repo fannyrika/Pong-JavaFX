@@ -21,7 +21,7 @@ public class GameView {
     private final Court court;
     private final Pane gameRoot; // main node of the game
     private final double scale;
-    private final double xMargin = 50.0, racketThickness = 10.0; // pixels
+    private final double xMargin = 50.0, racketThickness = 20.0; // pixels
 
     // children of the game main node
     private Label timer;
@@ -37,7 +37,7 @@ public class GameView {
      */
     public GameView(Court court, Pane root, double scale) {
         this.court = court;
-	this.ModeBot = null;
+	      this.ModeBot = null;
         this.gameRoot = root;
         this.scale = scale;
 
@@ -90,7 +90,7 @@ public class GameView {
     }
     public GameView(Bot bot, Pane root, double scale) {
         this.court = null;
-	this.ModeBot = bot;
+	      this.ModeBot = bot;
         this.gameRoot = root;
         this.scale = scale;
 
@@ -123,12 +123,12 @@ public class GameView {
 
         ball.setCenterX(bot.getBallX() * scale + xMargin);
         ball.setCenterY(bot.getBallY() * scale);
-        
+
         textScoreP1 = new Text("0");
         textScoreP2 = new Text("0");
         textScoreP1.setFont(Font.font(25));
         textScoreP2.setFont(Font.font(25));
-        
+
         textScoreP1.setX(xMargin - racketThickness + 10);
         textScoreP1.setY(bot.getRacketA() * scale -200);
 

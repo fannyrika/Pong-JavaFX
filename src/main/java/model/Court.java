@@ -6,8 +6,8 @@ public class Court {
     // instance parameters
     private final RacketController playerA, playerB;
     private final double width, height; // m
-    private final double racketSize = 100.0; // m
-    private final double ballRadius = 10.0; // m
+    private final double racketSize = 200.0; // m
+    private final double ballRadius = 20.0; // m
     // instance state
     private double racketA; // m
     private double racketB; // m
@@ -15,12 +15,12 @@ public class Court {
     private double ballSpeedX, ballSpeedY, racketSpeed, acceleration; // m
     private int scoreP1 = 0;
     private int scoreP2 = 0;
-    
+
     Rectangle2D screen = Screen.getPrimary().getVisualBounds();
     public Court(RacketController playerA, RacketController playerB, double acceleration) {
         this.playerA = playerA;
         this.playerB = playerB;
-        this.width = screen.getWidth()-racketSize;//visual bounds
+        this.width = screen.getWidth()-racketSize/2;//visual bounds
         this.height = screen.getHeight()-racketSize/2;//visual bounds
         this.acceleration= acceleration;
         reset();
@@ -157,14 +157,14 @@ public class Court {
     public double getBallRadius() {
         return ballRadius;
     }
-    
-   
+
+
     public void updateSpeed() {
     	racketSpeed= racketSpeed * acceleration;
     	ballSpeedX= ballSpeedX * acceleration;
     	ballSpeedY= ballSpeedY * acceleration;
     }
-    
+
 
     void reset() {
         this.racketA = height / 2;

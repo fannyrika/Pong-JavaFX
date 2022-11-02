@@ -9,7 +9,7 @@ public class Chrono {
   public int cpt = 0;
 
 
-  
+
 
 
   public Chrono() {
@@ -17,7 +17,6 @@ public class Chrono {
   }
 
   public void reset() {
-
     mm=0;
     ss=0;
     th=0;
@@ -26,13 +25,11 @@ public class Chrono {
   }
 
   public void update() {
-    cpt=cpt + 2;
+    cpt=cpt + 1;
     hd=cpt % 10;
     th=(cpt / 10) % 10;
     ss=(((cpt/ 100) % 60));
     mm=((cpt / 6000) % 60);
-
-
-
   }
+
 }

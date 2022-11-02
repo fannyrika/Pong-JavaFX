@@ -2,7 +2,6 @@
   -fx-background-image: url("imgfond.jpg");
   -fx-background-color: #842e1b;
   -fx-background-repeat: no-repeat;
-  /*-fx-background-size: cover;*/
   -fx-background-position: 50% 50%;
   -fx-background-size: 100%;
 }
