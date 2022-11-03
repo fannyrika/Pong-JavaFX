@@ -15,6 +15,11 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import javafx.scene.image.Image;
+import java.io.File;
+import java.net.MalformedURLException;
+import javafx.scene.paint.ImagePattern;
+
 public class GameView {
     // class parameters
     private final Bot ModeBot;
@@ -35,7 +40,8 @@ public class GameView {
      * @param root  le nœud racine dans la scène JavaFX dans lequel le jeu sera affiché
      * @param scale le facteur d'échelle entre les distances du modèle et le nombre de pixels correspondants dans la vue
      */
-    public GameView(Court court, Pane root, double scale) {
+
+    public GameView(Court court, Pane root, double scale) throws MalformedURLException{
         this.court = court;
 	      this.ModeBot = null;
         this.gameRoot = root;
@@ -50,7 +56,7 @@ public class GameView {
         racketA = new Rectangle();
         racketA.setHeight(court.getRacketSize() * scale);
         racketA.setWidth(racketThickness);
-        racketA.setFill(Color.BLACK);
+        racketA.setFill(Color.DARKGRAY);
 
         racketA.setX(xMargin - racketThickness);
         racketA.setY(court.getRacketA() * scale);
@@ -58,7 +64,7 @@ public class GameView {
         racketB = new Rectangle();
         racketB.setHeight(court.getRacketSize() * scale);
         racketB.setWidth(racketThickness);
-        racketB.setFill(Color.BLACK);
+        racketB.setFill(Color.DARKGRAY);
 
         racketB.setX(court.getWidth() * scale + xMargin);
         racketB.setY(court.getRacketB() * scale);
@@ -67,7 +73,15 @@ public class GameView {
 
         ball = new Circle();
         ball.setRadius(court.getBallRadius());
-        ball.setFill(Color.BLACK);
+        ball.setFill(Color.YELLOW);
+
+        // Fonctionne pour personnaliser la balle (balle de tennis) mais
+        // fait beaucoup buguer le jeu ...
+        File file = new File("balle3.jpg");
+        String localUrl = file.toURI().toURL().toString();
+        Image image = new Image(localUrl);
+        ball.setFill(new ImagePattern(image));
+
 
         ball.setCenterX(court.getBallX() * scale + xMargin);
         ball.setCenterY(court.getBallY() * scale);
@@ -86,8 +100,8 @@ public class GameView {
 
         gameRoot.getChildren().addAll(racketA, racketB, ball, textScoreP1, textScoreP2,timer);
 
-
     }
+
     public GameView(Bot bot, Pane root, double scale) {
         this.court = null;
 	      this.ModeBot = bot;
@@ -148,8 +162,8 @@ public class GameView {
         timer.setFont(new Font("Arial",40));
         timer.setMinSize(100.00, 100.00);
         timer.setMinHeight(200);
-
     }
+
     public void animate() {
         new AnimationTimer() {
             long last = 0;
@@ -170,6 +184,7 @@ public class GameView {
                 racketB.setY(court.getRacketB() * scale);
                 ball.setCenterX(court.getBallX() * scale + xMargin);
                 ball.setCenterY(court.getBallY() * scale);
+
                 textScoreP1.setText(Integer.toString(court.getScoreP1()));
                 textScoreP2.setText(Integer.toString(court.getScoreP2()));
             }

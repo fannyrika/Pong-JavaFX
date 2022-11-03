@@ -25,7 +25,7 @@ public class Chrono {
   }
 
   public void update() {
-    cpt=cpt + 1;
+    cpt=cpt + 2;
     hd=cpt % 10;
     th=(cpt / 10) % 10;
     ss=(((cpt/ 100) % 60));

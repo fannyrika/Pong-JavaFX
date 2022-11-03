@@ -24,4 +24,15 @@ javafx {
     modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.media' ]
 }
 
+sourceSets {
+  main{
+    java{
+      srcDirs= ["src/main/java"]
+    }
+    resources{
+    srcDirs= ["src/main/resources"]
+    }
+  }
+}
+
 mainClassName = 'gui.App'
