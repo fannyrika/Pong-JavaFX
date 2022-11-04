@@ -75,8 +75,7 @@ public class GameView {
         ball.setRadius(court.getBallRadius());
         ball.setFill(Color.YELLOW);
 
-        // Fonctionne pour personnaliser la balle (balle de tennis) mais
-        // fait beaucoup buguer le jeu ...
+        // Personnalisation de la balle avec une image
         File file = new File("balle3.jpg");
         String localUrl = file.toURI().toURL().toString();
         Image image = new Image(localUrl);
@@ -171,13 +170,17 @@ public class GameView {
             @Override
             public void handle(long now) {
                 if (last == 0) { // ignore the first tick, just compute the first deltaT
-                    last = now;
+                    if((now - last)%65==0) {
+                        chronometer.update();
+                        timer.textProperty().bind(Bindings.format("%02d:%02d:%d%d",  chronometer.mm, chronometer.ss, chronometer.th, chronometer.hd));;
+                    }
+                      last = now;
                     return;
                 }
-                if((now - last)%50==0) {
+                if((now - last)%65==0) {
                     chronometer.update();
                     timer.textProperty().bind(Bindings.format("%02d:%02d:%d%d",  chronometer.mm, chronometer.ss, chronometer.th, chronometer.hd));;
-                    }
+                }
                 court.update((now - last) * 1.0e-9); // convert nanoseconds to seconds
                 last = now;
                 racketA.setY(court.getRacketA() * scale);

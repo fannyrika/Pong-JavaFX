@@ -16,6 +16,12 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 
 import javafx.scene.control.Button;
+import java.awt.Dimension;
+import javafx.scene.layout.VBox;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 
 
 public class App extends Application {
@@ -96,13 +102,49 @@ public class App extends Application {
         primaryStage.setTitle("Pong");
         primaryStage.getIcons().add(image);
 
-        var menuRoot = new Pane();
-        var menuScene = new Scene(menuRoot);
-        //menuScene.setOpacity(0.5f);
-        Button jouer = new Button("Start");
-        menuRoot.getChildren().addAll(jouer);
+        // Récupérer les dimensions de l'écran
+        Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        double width = screenSize.getWidth();
+        double height = screenSize.getHeight();
+        // Créer un Pane() pour le menu
+        var menuRoot = new VBox();
+        // Créer une Scene() pour le menu, avec les dimensions de l'écran
+        var menuScene = new Scene(menuRoot, width, height);
+        // Pour la personnalisation en css
+        menuRoot.setId("menu");
+        menuScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+        Button jouer = new Button("JOUER");
+        jouer.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+              primaryStage.setScene(gameScene); }});
 
-        primaryStage.setScene(gameScene);
+        Button instructions = new Button("Instructions");
+        instructions.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+            /* -----------A AJOUTER-------------- */ }});
+
+        Button options = new Button("Options/Mode");
+        options.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+            /* ---------A AJOUTER------------- */ }});
+
+        Button quitter = new Button("Quitter");
+        quitter.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+              primaryStage.close(); }});
+
+        Label nom = new Label("nootynootnoot");
+        Label titre = new Label("PONG\n\n");
+        jouer.setId("boutons");
+        instructions.setId("boutons");
+        options.setId("boutons");
+        quitter.setId("boutons");
+        nom.setId("label1");
+        titre.setId("label2");
+        menuRoot.getChildren().addAll(nom, titre, jouer, instructions, options, quitter);
+        menuRoot.setAlignment(Pos.CENTER);
+
+        primaryStage.setScene(menuScene);
         primaryStage.show();
         gameView.animate();
         //gameView2.animateBot();//test Bot;
