@@ -43,13 +43,7 @@ public class App extends Application {
         root.setId("terrain");
         gameScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
 
-      /*  Media media = new Media(new File("pongmusic.mp3").toURI().toString());
-        MediaPlayer mP = new MediaPlayer(media);
-        mP.setCycleCount(mP.INDEFINITE);
-        mP.setAutoPlay(true);
-
-        MediaView mV = new MediaView(mP);
-        root.getChildren().add(music.mV);*/
+        root.getChildren().add(music.mV);
 
 
 
