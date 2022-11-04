@@ -116,7 +116,8 @@ public class App extends Application {
         Button jouer = new Button("JOUER");
         jouer.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-              primaryStage.setScene(gameScene); }});
+              primaryStage.setScene(gameScene);
+              gameView.animate(); }});
 
         Button instructions = new Button("Instructions");
         instructions.setOnAction(new EventHandler<ActionEvent>() {
@@ -146,7 +147,6 @@ public class App extends Application {
 
         primaryStage.setScene(menuScene);
         primaryStage.show();
-        gameView.animate();
         //gameView2.animateBot();//test Bot;
     }
 
