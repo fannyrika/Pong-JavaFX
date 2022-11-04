@@ -26,8 +26,8 @@ public class Boost {
 		this.court=court;
 		this.chronometer=chronometer;
 		Random rd=new Random();
-		x=rd.nextDouble(court.width/4, court.width*3/4);
-		y=rd.nextDouble(40,court.height-100);
+		x=rd.nextDouble(court.width*3/4)+court.width/4;
+		y=rd.nextDouble(court.height-100)+40;
 		Image img = new Image(new File("src/main/resources/gui/boost.png").toURI().toString());
 	    ImageView view = new ImageView(img);
 	    view.setFitHeight(150);
