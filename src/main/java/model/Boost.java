@@ -7,7 +7,6 @@ import javafx.scene.media.MediaPlayer;
 import javafx.scene.control.Label;
 import javafx.scene.media.*;
 import java.io.File;
-import java.util.Random;
 
 public class Boost {
 	public final double currentBallSpeedX,currentBallSpeedY;
@@ -25,9 +24,8 @@ public class Boost {
 		this.currentBallSpeedY=ballSpeedY;
 		this.court=court;
 		this.chronometer=chronometer;
-		Random rd=new Random();
-		x=rd.nextDouble(court.width*3/4)+court.width/4;
-		y=rd.nextDouble(court.height-100)+40;
+		x=(Math.random()*court.width*3/4)+court.width/4;
+		y=Math.random()*40+(court.height-200);
 		Image img = new Image(new File("src/main/resources/gui/boost.png").toURI().toString());
 	    ImageView view = new ImageView(img);
 	    view.setFitHeight(150);
