@@ -31,6 +31,7 @@ public class App extends Application {
 
       var root = new Pane();
       var gameScene = new Scene(root);
+      var music = new Music();
 
         //add an icon for the window
         File file = new File("pongicon.png");
@@ -48,7 +49,7 @@ public class App extends Application {
         mP.setAutoPlay(true);
 
         MediaView mV = new MediaView(mP);
-        root.getChildren().add(mV);*/
+        root.getChildren().add(music.mV);*/
 
 
 
