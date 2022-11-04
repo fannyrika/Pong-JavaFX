@@ -179,27 +179,33 @@ public class App extends Application {
         root.setId("terrain");
         gameScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
 
-      /*  Media media = new Media(new File("pongmusic.mp3").toURI().toString());
+       Media media = new Media(new File("pongmusic.mp3").toURI().toString());
         MediaPlayer mP = new MediaPlayer(media);
         mP.setCycleCount(mP.INDEFINITE);
         mP.setAutoPlay(true);
 
         MediaView mV = new MediaView(mP);
-        root.getChildren().add(mV);*/
+        root.getChildren().add(mV);
 
 
 
 
-        class Player implements RacketController {
+        class Player implements RacketController,BallState {
             State state = State.IDLE;
+		StateBall stateb=StateBall.IDLE;
 
             @Override
             public State getState() {
                 return state;
             }
-        }
+            public StateBall getStateb() {
+            	return stateb;
+            
+        	}
+	}
         var playerA = new Player();
         var playerB = new Player();
+
         gameScene.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
                 case Z:
@@ -214,6 +220,12 @@ public class App extends Application {
                 case DOWN:
                     playerB.state = RacketController.State.GOING_DOWN;
                     break;
+		    case E:
+                	playerA.stateb=BallState.StateBall.FAST;
+                	break;
+                case CONTROL:
+                	playerB.stateb =BallState.StateBall.FAST;
+                	break;
             }
         });
         gameScene.setOnKeyReleased(ev -> {
@@ -230,10 +242,16 @@ public class App extends Application {
                 case DOWN:
                     if (playerB.state == RacketController.State.GOING_DOWN) playerB.state = RacketController.State.IDLE;
                     break;
+		    case E:
+                    if (playerA.stateb == BallState.StateBall.FAST) playerA.stateb = BallState.StateBall.IDLE;
+                    break;
+                case CONTROL:
+                    if (playerB.stateb == BallState.StateBall.FAST) playerB.stateb = BallState.StateBall.IDLE;
+                    break;
             }
         });
         var bot = new Bot(playerA,1,1.0011);//test bot;
-        var court = new Court(playerA,playerB,1.0011);
+        var court = new Court(playerA,playerB,1.0005,playerA,playerB);
         var gameView = new GameView(court, root, 1.0);
         //var gameView2 = new GameView(bot, root, 1.0);//test Bot;
         primaryStage.setTitle("Pong");

@@ -7,6 +7,10 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import model.*;
 import javafx.scene.control.Label;
 import javafx.beans.binding.Bindings;
@@ -14,6 +18,7 @@ import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import java.io.File;
 
 public class GameView {
     // class parameters
@@ -28,6 +33,7 @@ public class GameView {
     Chrono chronometer;
     private final Rectangle racketA, racketB ,bot;
     private final Circle ball;
+    Boost boost;
     private Text textScoreP1, textScoreP2;
 
     /**
@@ -83,8 +89,28 @@ public class GameView {
         textScoreP2.setX(court.getWidth() * scale + xMargin -10) ;
         textScoreP2.setY(court.getRacketB() * scale -200);
 
-
-        gameRoot.getChildren().addAll(racketA, racketB, ball, textScoreP1, textScoreP2,timer);
+	  //Gére l'affichage des bonus des joueurs;
+	  Image img = new Image(new File("src/main/resources/gui/Bonus.png").toURI().toString());
+	  ImageView view = new ImageView(img);
+	  view.setFitHeight(200);
+	  view.setFitWidth(200);
+	  view.setPreserveRatio(true);
+	  Label caseBonusLeft=new Label();
+	  caseBonusLeft.setGraphic(view);
+	  caseBonusLeft.setTranslateX(-49);
+	  caseBonusLeft.setTranslateY(-30);
+	    
+	  ImageView viewR=new ImageView(img);
+	  viewR.setFitHeight(200);
+	  viewR.setFitWidth(200);
+	  viewR.setPreserveRatio(true);
+        Label caseBonusRight= new Label();
+        caseBonusRight.setGraphic(viewR);
+        caseBonusRight.setTranslateX(court.getWidth()-70);
+	  caseBonusRight.setTranslateY(-30);
+       
+        
+        gameRoot.getChildren().addAll(racketA, racketB, ball,timer,caseBonusLeft,caseBonusRight);
 
 
     }
@@ -164,6 +190,7 @@ public class GameView {
                     chronometer.update();
                     timer.textProperty().bind(Bindings.format("%02d:%02d:%d%d",  chronometer.mm, chronometer.ss, chronometer.th, chronometer.hd));;
                     }
+		    boost();
                 court.update((now - last) * 1.0e-9); // convert nanoseconds to seconds
                 last = now;
                 racketA.setY(court.getRacketA() * scale);
@@ -174,6 +201,61 @@ public class GameView {
                 textScoreP2.setText(Integer.toString(court.getScoreP2()));
             }
         }.start();
+    }
+   	
+   public void boost() {
+    	 //toutes les 15 secondes fait spawn un boost si il y en a pas;
+    	 if(chronometer.ss%15==0&&chronometer.th==0&&chronometer.hd==0) {
+    		 if(boost!=null){
+			gameRoot.getChildren().remove(boost.boost);
+          		boost=new Boost(court,chronometer,court.getBallSpeedX(),court.getBallSpeedY());
+          		gameRoot.getChildren().addAll(boost.boost);
+		 }
+		 else{
+			boost=new Boost(court,chronometer,court.getBallSpeedX(),court.getBallSpeedY());
+          		gameRoot.getChildren().addAll(boost.boost);
+		 }
+
+    	 }
+    	 
+    	 if(boost!=null&&boost.isBallTouchBoost()) {
+    		
+    		 MediaPlayer mp=new MediaPlayer(court.mediaBall);
+    		 mp.play();
+    		 if(court.ballSpeedX>0) {
+    			 court.p1.addBoostPlayer(true);
+    			 gameRoot.getChildren().addAll(court.p1.playerBoost);
+    		 }
+    		 if(court.ballSpeedX<0){
+    			 court.p2.addBoostPlayer(false);
+    			 gameRoot.getChildren().addAll(court.p2.playerBoost);
+    		 }
+    		 gameRoot.getChildren().remove(boost.boost);
+    		 boost=null;
+    	 }
+    	
+    	 
+
+	 if(!court.p2.active&&!court.p1.active){  	
+    	 court.p1.activeBoost();
+	 }
+	 
+    	 if(!court.p2.active&&!court.p1.active){  	
+    	 court.p2.activeBoost();
+	 }
+	 if(court.p1.deleteBoost) {
+    		 gameRoot.getChildren().remove(court.p1.playerBoost);
+    		 court.p1.deleteBoost=false;
+    	 }
+    	 if(court.p2.deleteBoost) {
+    		 gameRoot.getChildren().remove(court.p2.playerBoost);
+    		 court.p2.deleteBoost=false;
+    	 }
+
+
+       court.p1.boostPlayer(chronometer.ss,chronometer.th);
+       court.p2.boostPlayer(chronometer.ss,chronometer.th);
+       
     }
     public void animateBot() {
         new AnimationTimer() {
