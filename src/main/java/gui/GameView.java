@@ -52,6 +52,7 @@ public class GameView {
 
         timer();
         timer.setLayoutX(court.getWidth()/2-50);
+        timer.setLayoutY(-50);
 
         racketA = new Rectangle();
         racketA.setHeight(court.getRacketSize() * scale);
@@ -87,8 +88,8 @@ public class GameView {
 
         textScoreP1 = new Text("0");
         textScoreP2 = new Text("0");
-        textScoreP1.setFont(Font.font(25));
-        textScoreP2.setFont(Font.font(25));
+        textScoreP1.setFont(Font.font(50));
+        textScoreP2.setFont(Font.font(50));
 
         textScoreP1.setX(xMargin - racketThickness + 10);
         textScoreP1.setY(court.getRacketA() * scale -200);
