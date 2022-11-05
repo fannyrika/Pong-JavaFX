@@ -32,27 +32,45 @@ import javafx.scene.text.Text;
 
 
 public class App extends Application {
-	
-	
+
+
 
     @Override
     public void start(Stage primaryStage) throws MalformedURLException {
 
-      var root = new Pane();
-      var gameScene = new Scene(root);
-      var music = new Music();
+			//add an icon for the window
+			File file = new File("pongicon.png");
+			String localUrl = file.toURI().toURL().toString();
+			Image image = new Image(localUrl);
 
-        //add an icon for the window
-        File file = new File("pongicon.png");
-        String localUrl = file.toURI().toURL().toString();
-        Image image = new Image(localUrl);
+			// Fenêtre de jeu
+			var root = new Pane();
+			var gameScene = new Scene(root);
+			Button pause = new Button("pause");
+			root.getChildren().addAll(pause);
+			var rootPause = new VBox();
+
+							// Récupérer les dimensions de l'écran
+							Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+							double width = screenSize.getWidth();
+							double height = screenSize.getHeight();
+
+			// On crée la scene()
+			var pauseScene = new Scene(rootPause, width, height);
+			// On lui applique le css
+			rootPause.setId("pause");
+			pauseScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+			// On y met le bouton 'pause'
+			pause.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+					primaryStage.setScene(pauseScene); }});
 
 
         // ajout d'une image de fond
         root.setId("terrain");
         gameScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
 
-        root.getChildren().add(music.mV);
+    //    root.getChildren().add(music.mV);
 
 
 
@@ -103,13 +121,10 @@ public class App extends Application {
         var court = new Court(playerA,playerB,1.0001);
         var gameView = new GameView(court, root, 1.0);
         //var gameView2 = new GameView(bot, root, 1.0);//test Bot;
-        primaryStage.setTitle("Pong");
+        primaryStage.setTitle("nootynootnoot PONG");
         primaryStage.getIcons().add(image);
 
-        // Récupérer les dimensions de l'écran
-        Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        double width = screenSize.getWidth();
-        double height = screenSize.getHeight();
+
         // Créer un Pane() pour le menu
         var menuRoot = new VBox();
         // Créer une Scene() pour le menu, avec les dimensions de l'écran
@@ -126,42 +141,68 @@ public class App extends Application {
             public void handle(ActionEvent event) {
               primaryStage.setScene(gameScene);
               gameView.animate(); }});
-        
-        Button retour = new Button("Retour");
+
+        Button retour = new Button("Retour au menu");
         retour.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
               primaryStage.setScene(menuScene);
                }});
-        
+
         Button instructions = new Button("Instructions");
         instructions.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
             	primaryStage.setScene(rules);
-            	File bfile = new File("spacebackground.png");
-            	String localUrl2 = bfile.toURI().toString();
-            	Image img = new Image(localUrl2);
-            	BackgroundImage bImg = new BackgroundImage(img,
-            											   BackgroundRepeat.NO_REPEAT,
-            										       BackgroundRepeat.NO_REPEAT,
-            											   BackgroundPosition.DEFAULT,
-            											   BackgroundSize.DEFAULT);
-            	Background bGround = new Background(bImg);
-            	rulesroot.setBackground(bGround);
+							rulesroot.setId("regles");
+							rules.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
             	Text regles = new Text("Regles du jeu : \n");
             	regles.setFont(Font.font(50));
             	regles.setFill(Color.WHITE);
                 Text message = new Text("- Obtenir 3 points pour gagner la partie \n");
                 message.setFont(Font.font(40));
-            	message.setFill(Color.WHITE);
+               	message.setFill(Color.WHITE);
                 rulesroot.getChildren().addAll(regles,message,retour);
                 rulesroot.setAlignment(Pos.CENTER);
-                
-               
-            	}});
-        Button options = new Button("Options/Mode");
-        options.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent event) {
-            /* ---------A AJOUTER------------- */ }});
+							}});
+
+			Button options = new Button("Options/Mode");
+			var optionsRoot = new Pane();
+			var optionsScene = new Scene(optionsRoot, width, height);
+			optionsRoot.setId("options");
+			optionsScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+		  Button retourO = new Button("Retour au menu");
+			retourO.setId("boutons");
+			retourO.setOnAction(new EventHandler<ActionEvent>() {
+					public void handle(ActionEvent event) {
+			                primaryStage.setScene(menuScene); }});
+			optionsRoot.getChildren().addAll(retourO);
+			options.setOnAction(new EventHandler<ActionEvent>() {
+			    public void handle(ActionEvent event) {
+			            primaryStage.setScene(optionsScene); }});
+
+			// On crée les boutons de la page 'pause'
+			Button reprendre = new Button("Reprendre le jeu");
+			reprendre.setOnAction(new EventHandler<ActionEvent>() {
+			    public void handle(ActionEvent event) {
+						primaryStage.setScene(gameScene); }});
+
+			Button retourP = new Button("Retour au menu");
+			retourP.setOnAction(new EventHandler<ActionEvent>() {
+				  public void handle(ActionEvent event) {
+							primaryStage.setScene(menuScene); }});
+
+			Button son = new Button("Son et musiques");
+
+			Button bye = new Button("Quitter le jeu");
+			bye.setOnAction(new EventHandler<ActionEvent>() {
+					public void handle(ActionEvent event) {
+							primaryStage.close(); }});
+
+									rootPause.getChildren().addAll(reprendre, retourP, son, bye);
+									rootPause.setAlignment(Pos.CENTER);
+									reprendre.setId("boutons");
+									retourP.setId("boutons");
+									son.setId("boutons");
+									bye.setId("boutons");
 
         Button quitter = new Button("Quitter");
         quitter.setOnAction(new EventHandler<ActionEvent>() {
@@ -179,9 +220,7 @@ public class App extends Application {
         titre.setId("label2");
         menuRoot.getChildren().addAll(nom, titre, jouer, instructions, options, quitter);
         menuRoot.setAlignment(Pos.CENTER);
-        
-        root.getChildren().addAll(retour);
-        
+
 
         primaryStage.setScene(menuScene);
         primaryStage.show();

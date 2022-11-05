@@ -1,4 +1,4 @@
-package model;
+/*package model;
 
 
 import java.io.File;
@@ -22,4 +22,4 @@ public class Music {
 
     }
 
-}
+}*/
