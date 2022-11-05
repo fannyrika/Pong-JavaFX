@@ -14,7 +14,12 @@ import javafx.scene.image.Image;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
-
+import javafx.scene.paint.Color;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.control.Button;
 import java.awt.Dimension;
 import javafx.scene.layout.VBox;
@@ -22,9 +27,13 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 
 
 public class App extends Application {
+	
+	
 
     @Override
     public void start(Stage primaryStage) throws MalformedURLException {
@@ -105,6 +114,10 @@ public class App extends Application {
         var menuRoot = new VBox();
         // Créer une Scene() pour le menu, avec les dimensions de l'écran
         var menuScene = new Scene(menuRoot, width, height);
+        //Créer un Pane() pour la page d'instruction
+        var rulesroot = new VBox();
+        //Créer une Scene() pour la page d'instruction, avec les dimensions de l'écran
+        var rules = new Scene(rulesroot,width,height);
         // Pour la personnalisation en css
         menuRoot.setId("menu");
         menuScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
@@ -113,12 +126,38 @@ public class App extends Application {
             public void handle(ActionEvent event) {
               primaryStage.setScene(gameScene);
               gameView.animate(); }});
-
+        
+        Button retour = new Button("Retour");
+        retour.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+              primaryStage.setScene(menuScene);
+               }});
+        
         Button instructions = new Button("Instructions");
         instructions.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-            /* -----------A AJOUTER-------------- */ }});
-
+            	primaryStage.setScene(rules);
+            	File bfile = new File("spacebackground.png");
+            	String localUrl2 = bfile.toURI().toString();
+            	Image img = new Image(localUrl2);
+            	BackgroundImage bImg = new BackgroundImage(img,
+            											   BackgroundRepeat.NO_REPEAT,
+            										       BackgroundRepeat.NO_REPEAT,
+            											   BackgroundPosition.DEFAULT,
+            											   BackgroundSize.DEFAULT);
+            	Background bGround = new Background(bImg);
+            	rulesroot.setBackground(bGround);
+            	Text regles = new Text("Regles du jeu : \n");
+            	regles.setFont(Font.font(50));
+            	regles.setFill(Color.WHITE);
+                Text message = new Text("- Obtenir 3 points pour gagner la partie \n");
+                message.setFont(Font.font(40));
+            	message.setFill(Color.WHITE);
+                rulesroot.getChildren().addAll(regles,message,retour);
+                rulesroot.setAlignment(Pos.CENTER);
+                
+               
+            	}});
         Button options = new Button("Options/Mode");
         options.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
@@ -135,10 +174,14 @@ public class App extends Application {
         instructions.setId("boutons");
         options.setId("boutons");
         quitter.setId("boutons");
+        retour.setId("button");
         nom.setId("label1");
         titre.setId("label2");
         menuRoot.getChildren().addAll(nom, titre, jouer, instructions, options, quitter);
         menuRoot.setAlignment(Pos.CENTER);
+        
+        root.getChildren().addAll(retour);
+        
 
         primaryStage.setScene(menuScene);
         primaryStage.show();
