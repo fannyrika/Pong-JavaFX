@@ -200,10 +200,10 @@ public class App extends Application {
 
 									rootPause.getChildren().addAll(reprendre, retourP, son, bye);
 									rootPause.setAlignment(Pos.CENTER);
-									reprendre.setId("boutons");
-									retourP.setId("boutons");
-									son.setId("boutons");
-									bye.setId("boutons");
+									reprendre.setId("boutonsP");
+									retourP.setId("boutonsP");
+									son.setId("boutonsP");
+									bye.setId("boutonsP");
 
         Button quitter = new Button("Quitter");
         quitter.setOnAction(new EventHandler<ActionEvent>() {

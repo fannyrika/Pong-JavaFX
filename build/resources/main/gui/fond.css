@@ -37,12 +37,16 @@
   -fx-background-size: DEFAULT;
 }
 
-#boutons {
+#boutons, #boutonsP {
     -fx-font-color: BLACK;
     -fx-background-color: transparent;
     -fx-font-size: 35px;
     -fx-font-family: Yrsa Medium;
     -fx-font-weight: bolder;
+}
+
+#boutonsP:hover {
+  -fx-font-size: 45px;
 }
 
 #boutons:hover {
