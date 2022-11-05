@@ -144,20 +144,6 @@ public class App extends Application {
            gameView.animate();}});
         
         
-        Button opt2 = new Button("Jouer contre l'ordinateur");
-        opt2.setOnAction(new EventHandler<ActionEvent>() {
-            public void handle(ActionEvent event) {
-              Label choix = new Label("\n\nChoisissez la difficulté du bot");
-              choix.setId("ligne");
-              var tmp = new HBox();
-              tmp.getChildren().addAll(facile,moyen,difficile);
-              tmp.setAlignment(Pos.CENTER);
-              modeRoot.getChildren().addAll(choix, tmp); }});
-        
-        opt1.setId("modes");
-        opt2.setId("modes");
-        
-        
         Button facile = new Button("Facile");
         facile.setOnAction(new EventHandler<ActionEvent>() {
         public void handle(ActionEvent event) {
@@ -180,8 +166,21 @@ public class App extends Application {
         facile.setId("difficulte");
         moyen.setId("difficulte");
         difficile.setId("difficulte");
-        modeRoot.getChildren().addAll(opt1,opt2);
+        
+        Button opt2 = new Button("Jouer contre l'ordinateur");
+        opt2.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+              Label choix = new Label("\n\nChoisissez la difficulté du bot");
+              choix.setId("ligne");
+              var tmp = new HBox();
+              tmp.getChildren().addAll(facile,moyen,difficile);
+              tmp.setAlignment(Pos.CENTER);
+              modeRoot.getChildren().addAll(choix, tmp); }});
+        
+        opt1.setId("modes");
+        opt2.setId("modes");
 
+        modeRoot.getChildren().addAll(opt1,opt2);
         modeRoot.setAlignment(Pos.CENTER);
 
 
