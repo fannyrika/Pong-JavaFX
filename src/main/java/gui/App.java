@@ -43,17 +43,18 @@ public class App extends Application {
 			String localUrl = file.toURI().toURL().toString();
 			Image image = new Image(localUrl);
 
+      // Récupérer les dimensions de l'écran
+      Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+      double width = screenSize.getWidth();
+      double height = screenSize.getHeight();
+
 			// Fenêtre de jeu
 			var root = new Pane();
-			var gameScene = new Scene(root);
-			Button pause = new Button("pause");
+			var gameScene = new Scene(root, width, height);
+			Button pause = new Button(".");
+      pause.setId("btnPause");
 			root.getChildren().addAll(pause);
 			var rootPause = new VBox();
-
-							// Récupérer les dimensions de l'écran
-							Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-							double width = screenSize.getWidth();
-							double height = screenSize.getHeight();
 
 			// On crée la scene()
 			var pauseScene = new Scene(rootPause, width, height);
