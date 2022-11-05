@@ -23,6 +23,7 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.control.Button;
 import java.awt.Dimension;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.event.ActionEvent;
@@ -129,6 +130,49 @@ public class App extends Application {
         primaryStage.getIcons().add(image);
 
 
+        // Ajout d'une page 'choix de mode' (avec ou sans bot)
+        var modeRoot = new VBox();
+  			var modeScene = new Scene(modeRoot, width, height);
+        modeRoot.setId("mode");
+        modeScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+        Button opt1 = new Button("Jouer en 1v1");
+        Button opt2 = new Button("Jouer contre l'ordinateur");
+        opt1.setId("modes");
+        opt2.setId("modes");
+        Button facile = new Button("Facile");
+        facile.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+              primaryStage.setScene(gameScene);
+              gameView.animateBot(); }});
+        Button moyen = new Button("Moyenne");
+        moyen.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+              primaryStage.setScene(gameScene);
+              gameView.animateBot(); }});
+        Button difficile = new Button("Difficile");
+        difficile.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+              primaryStage.setScene(gameScene);
+              gameView.animateBot(); }});
+        facile.setId("difficulte");
+        moyen.setId("difficulte");
+        difficile.setId("difficulte");
+        modeRoot.getChildren().addAll(opt1,opt2);
+        opt1.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+              primaryStage.setScene(gameScene);
+              gameView.animate(); }});
+        opt2.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+              Label choix = new Label("\n\nChoisissez la difficulté du bot");
+              choix.setId("ligne");
+              var tmp = new HBox();
+              tmp.getChildren().addAll(facile,moyen,difficile);
+              tmp.setAlignment(Pos.CENTER);
+              modeRoot.getChildren().addAll(choix, tmp); }});
+        modeRoot.setAlignment(Pos.CENTER);
+
+
         // Créer un Pane() pour le menu
         var menuRoot = new VBox();
         // Créer une Scene() pour le menu, avec les dimensions de l'écran
@@ -143,8 +187,7 @@ public class App extends Application {
         Button jouer = new Button("JOUER");
         jouer.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-              primaryStage.setScene(gameScene);
-              gameView.animate(); }});
+              primaryStage.setScene(modeScene); }});
 
         Button retour = new Button("Retour au menu");
         retour.setOnAction(new EventHandler<ActionEvent>() {
@@ -162,14 +205,14 @@ public class App extends Application {
             	Text regles = new Text("Règles du jeu : \n");
             	regles.setFont(Font.font(40));
             	regles.setFill(Color.LIGHTGRAY);
-                Text message = new Text("- Contrôler la raquette gauche avec Z et S \n- Contrôler la raquette droite avec UP et DOWN \n- Le but du jeu est d’envoyer la balle dans le camp adverse en mettant \nson adversaire dans l’incapacité de la renvoyer. \n- Obtenir 3 points pour gagner la partie \n-- Vous pouvez ajouter des options spécifiques\ndans le menu ! \n\n\n");
+                Text message = new Text("- Contrôler la raquette gauche avec Z et S \n- Contrôler la raquette droite avec UP et DOWN \n- Le but du jeu est d’envoyer la balle dans le camp adverse en mettant \nson adversaire dans l’incapacité de la renvoyer. \n- Obtenir 3 points pour gagner la partie \n-- Vous pouvez choisir un mode de jeu spécifique\nen début de partie ! \n\n\n");
                 message.setFont(Font.font(30));
                	message.setFill(Color.DARKGRAY);
                 rulesroot.getChildren().addAll(regles,message,retour);
                 rulesroot.setAlignment(Pos.CENTER);
 							}});
 
-			Button options = new Button("Options/Mode");
+			Button options = new Button("Options");
 			var optionsRoot = new Pane();
 			var optionsScene = new Scene(optionsRoot, width, height);
 			optionsRoot.setId("options");
@@ -221,15 +264,15 @@ public class App extends Application {
         options.setId("boutons");
         quitter.setId("boutons");
         retour.setId("button");
-        nom.setId("label1");
+        nom.setFont(Font.font(30));
         titre.setId("label2");
         menuRoot.getChildren().addAll(nom, titre, jouer, instructions, options, quitter);
         menuRoot.setAlignment(Pos.CENTER);
 
 
+
         primaryStage.setScene(menuScene);
         primaryStage.show();
-        //gameView2.animateBot();//test Bot;
     }
 
 }
