@@ -156,14 +156,15 @@ public class App extends Application {
         instructions.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
             	primaryStage.setScene(rules);
+              retour.setId("retourI");
 							rulesroot.setId("regles");
 							rules.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-            	Text regles = new Text("Regles du jeu : \n");
-            	regles.setFont(Font.font(50));
-            	regles.setFill(Color.WHITE);
-                Text message = new Text("- Obtenir 3 points pour gagner la partie \n");
-                message.setFont(Font.font(40));
-               	message.setFill(Color.WHITE);
+            	Text regles = new Text("Règles du jeu : \n");
+            	regles.setFont(Font.font(40));
+            	regles.setFill(Color.LIGHTGRAY);
+                Text message = new Text("- Contrôler la raquette gauche avec Z et S \n- Contrôler la raquette droite avec UP et DOWN \n- Le but du jeu est d’envoyer la balle dans le camp adverse en mettant \nson adversaire dans l’incapacité de la renvoyer. \n- Obtenir 3 points pour gagner la partie \n-- Vous pouvez ajouter des options spécifiques\ndans le menu ! \n\n\n");
+                message.setFont(Font.font(30));
+               	message.setFill(Color.DARKGRAY);
                 rulesroot.getChildren().addAll(regles,message,retour);
                 rulesroot.setAlignment(Pos.CENTER);
 							}});

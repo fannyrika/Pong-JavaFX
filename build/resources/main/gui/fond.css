@@ -22,6 +22,18 @@
   -fx-background-color: transparent;
 }
 
+#retourI {
+  -fx-background-color: darkgray;
+  -fx-font-size: 35px;
+  -fx-font-family: Yrsa Medium;
+  -fx-font-weight: bolder;
+  -fx-border-radius: 10% / 50%;
+}
+
+#retourI:hover {
+  -fx-background-color: lightgray;
+}
+
 #menu {
   -fx-background-image: url("imgfond.jpg");
   -fx-background-color: #842e1b;
