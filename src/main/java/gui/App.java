@@ -100,6 +100,9 @@ public class App extends Application {
                 case DOWN:
                     playerB.state = RacketController.State.GOING_DOWN;
                     break;
+                case P:
+                    primaryStage.setScene(pauseScene);
+                    break;
             }
         });
         gameScene.setOnKeyReleased(ev -> {
