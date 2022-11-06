@@ -52,11 +52,13 @@ public class App extends Application {
 		// Fenêtre de jeu
 		var root = new Pane();
 		var gameScene = new Scene(root, width, height);
+		
 		Button pause = new Button(".");
 		pause.setId("btnPause");
 		root.getChildren().addAll(pause);
+		
+		//Fenêtre pause
 		var rootPause = new VBox();
-
 		// On crée la scene()
 		var pauseScene = new Scene(rootPause, width, height);
 		// On lui applique le css
@@ -72,12 +74,9 @@ public class App extends Application {
         root.setId("terrain");
         gameScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
 
-
         //music
         var music = new Music();
         root.getChildren().addAll(music.mV);
-
-
 
 
         class Player implements RacketController {
@@ -132,12 +131,15 @@ public class App extends Application {
         primaryStage.setTitle("nootynootnoot PONG");
         primaryStage.getIcons().add(image);
 
-
         // Ajout d'une page 'choix de mode' (avec ou sans bot)
         var modeRoot = new VBox();
   		var modeScene = new Scene(modeRoot, width, height);
         modeRoot.setId("mode");
         modeScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+        //Créer un Pane() pour le menu
+        var menuRoot = new VBox();
+        //Créer une Scene() pour le menu, avec les dimensions de l'écran
+        var menuScene = new Scene(menuRoot, width, height);
         
         
         Button opt1 = new Button("Jouer en 1v1");
@@ -146,6 +148,29 @@ public class App extends Application {
            primaryStage.setScene(gameScene);
            gameView.animate();}});
         
+        Button retour = new Button("Retour au menu");
+        retour.setOnAction(new EventHandler<ActionEvent>() {
+        public void handle(ActionEvent event) {
+          primaryStage.setScene(menuScene);
+         }});
+        
+        Button retourmode = new Button("Retour aux modes de jeu");
+        retourmode.setId("boutonsP");
+        retourmode.setOnAction(new EventHandler<ActionEvent>() {
+        public void handle(ActionEvent event) {
+          primaryStage.setScene(modeScene);
+         }});
+        
+        //Retour à la page pause
+        Button retourpause = new Button("Retour");
+        retourpause.setId("boutonsP");
+        retourpause.setOnAction(new EventHandler<ActionEvent>() {
+        public void handle(ActionEvent event) {
+          primaryStage.setScene(pauseScene);
+         }});
+        
+        retourpause.setId("boutonsP");
+         
         
         Button facile = new Button("Facile");
         facile.setOnAction(new EventHandler<ActionEvent>() {
@@ -183,19 +208,14 @@ public class App extends Application {
         opt1.setId("modes");
         opt2.setId("modes");
 
-        modeRoot.getChildren().addAll(opt1,opt2);
+        modeRoot.getChildren().addAll(opt1,opt2,retour);
         modeRoot.setAlignment(Pos.CENTER);
 
-
-        // Créer un Pane() pour le menu
-        var menuRoot = new VBox();
-        // Créer une Scene() pour le menu, avec les dimensions de l'écran
-        var menuScene = new Scene(menuRoot, width, height);
-        //Créer un Pane() pour la page d'instruction
+        
+        //Page d'instruction
+        
         var rulesroot = new VBox();
-        //Créer une Scene() pour la page d'instruction, avec les dimensions de l'écran
         var rules = new Scene(rulesroot,width,height);
-        // Pour la personnalisation en css
         menuRoot.setId("menu");
         menuScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
         Button jouer = new Button("JOUER");
@@ -203,11 +223,7 @@ public class App extends Application {
         public void handle(ActionEvent event) {
           primaryStage.setScene(modeScene); }});
 
-        Button retour = new Button("Retour au menu");
-        retour.setOnAction(new EventHandler<ActionEvent>() {
-        public void handle(ActionEvent event) {
-          primaryStage.setScene(menuScene);
-         }});
+        
 
         Button instructions = new Button("Instructions");
         instructions.setOnAction(new EventHandler<ActionEvent>() {
@@ -227,24 +243,24 @@ public class App extends Application {
             rulesroot.setAlignment(Pos.CENTER);
 							}});
 
+        
+        	//Page d'options
+        
 			Button options = new Button("Options");
-			var optionsRoot = new Pane();
+			var optionsRoot = new VBox();
 			var optionsScene = new Scene(optionsRoot, width, height);
-			optionsRoot.setId("options");
+			optionsRoot.setId("menu");
 			optionsScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-			Button retourO = new Button("Retour au menu");
-			retourO.setId("boutons");
-			
-			
-			retourO.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
-                primaryStage.setScene(menuScene); }});
-			optionsRoot.getChildren().addAll(retourO);
+			optionsRoot.getChildren().addAll(retour);
+			optionsRoot.setAlignment(Pos.CENTER);
 			
 			
 			options.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-			    primaryStage.setScene(optionsScene); }});
+			    primaryStage.setScene(optionsScene);
+			    options.setId("boutonsP");
+	            optionsRoot.getChildren().addAll(retour);
+	            }});
 
 			// On crée les boutons de la page 'pause'
 			Button reprendre = new Button("Reprendre le jeu");
@@ -252,30 +268,34 @@ public class App extends Application {
 			public void handle(ActionEvent event) {
 				primaryStage.setScene(gameScene); }});
 
-			Button retourP = new Button("Retour au menu");
-			retourP.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
-				primaryStage.setScene(menuScene); }});
 
+			//Page son
 			var sonRoot = new VBox();
 			var sonScene = new Scene(sonRoot,width,height);
-			Button son = new Button("Son et musiques");
+			Button son = new Button("Son");
 			son.setOnAction(new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent event) {
-					primaryStage.setScene(sonScene); }});
+					primaryStage.setScene(sonScene);
+					son.setId("boutonsP");}});
 		
+			sonRoot.setId("menu");
+			sonScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+			sonRoot.getChildren().addAll(retourpause);
+			sonRoot.setAlignment(Pos.CENTER);
 
+			//Bouton pour quitter la partie
 			Button bye = new Button("Quitter le jeu");
 			bye.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				primaryStage.close(); }});
-				rootPause.getChildren().addAll(reprendre, retourP, son, bye);
+				rootPause.getChildren().addAll(reprendre,retour,retourmode, son, bye);
 				rootPause.setAlignment(Pos.CENTER);
 				reprendre.setId("boutonsP");
-				retourP.setId("boutonsP");
 				son.setId("boutonsP");
 				bye.setId("boutonsP");
 
+				
+		//Bouton pour quitter l'appli
         Button quitter = new Button("Quitter");
         quitter.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
