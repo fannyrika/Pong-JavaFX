@@ -167,7 +167,7 @@ public class Bot extends Court{
     }
 
 
-    void reset() {
+    public void reset() {
         this.setRacketA(this.getHeight()/2);
         this.bot=this.getHeight()/2;
         this.setRacketSpeed(300.00);

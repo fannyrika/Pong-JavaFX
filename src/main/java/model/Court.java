@@ -166,7 +166,7 @@ public class Court {
     }
 
 
-    void reset() {
+    public void reset() {
         this.racketA = height / 2;
         this.racketB = height / 2;
         this.racketSpeed = 300.0;

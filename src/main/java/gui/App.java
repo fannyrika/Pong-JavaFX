@@ -104,6 +104,7 @@ public class App extends Application {
                     playerB.state = RacketController.State.GOING_DOWN;
                     break;
                 case P:
+			    GameView.pause=true;
                     primaryStage.setScene(pauseScene);
                     break;
             }
@@ -127,13 +128,13 @@ public class App extends Application {
         var bot = new Bot(playerA,1,1.0001);//test bot;
         var court = new Court(playerA,playerB,1.0001);
         var gameView = new GameView(court, root, 1.0);
-        //var gameView2 = new GameView(bot, root, 1.0);//test Bot;
+        var gameView2 = new GameView(bot, root, 1.0);//test Bot;
         primaryStage.setTitle("nootynootnoot PONG");
         primaryStage.getIcons().add(image);
 
         // Ajout d'une page 'choix de mode' (avec ou sans bot)
         var modeRoot = new VBox();
-  		var modeScene = new Scene(modeRoot, width, height);
+  	   var modeScene = new Scene(modeRoot, width, height);
         modeRoot.setId("mode");
         modeScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
         //Créer un Pane() pour le menu
@@ -145,12 +146,23 @@ public class App extends Application {
         Button opt1 = new Button("Jouer en 1v1");
         opt1.setOnAction(new EventHandler<ActionEvent>() {
         public void handle(ActionEvent event) {
-           primaryStage.setScene(gameScene);
-           gameView.animate();}});
+		gameView.start(true);
+		gameView.addRoot1V1();
+		gameView.animate();
+           primaryStage.setScene(gameScene);}});
+           
         
         Button retour = new Button("Retour au menu");
         retour.setOnAction(new EventHandler<ActionEvent>() {
         public void handle(ActionEvent event) {
+		GameView.stop=false;
+		GameView.pause=false;
+		gameView.remove1v1();
+		gameView2.removeBot();
+		gameView.reset1V1();
+		gameView2.resetBot();
+		gameView.start(false);
+		gameView2.start(false);
           primaryStage.setScene(menuScene);
          }});
         
@@ -158,6 +170,14 @@ public class App extends Application {
         retourmode.setId("boutonsP");
         retourmode.setOnAction(new EventHandler<ActionEvent>() {
         public void handle(ActionEvent event) {
+	     	GameView.stop=false;
+		GameView.pause=false;
+		gameView.remove1v1();
+		gameView2.removeBot();
+		gameView.reset1V1();
+		gameView2.resetBot();
+		gameView.start(false);
+		gameView2.start(false);
           primaryStage.setScene(modeScene);
          }});
         
@@ -175,22 +195,31 @@ public class App extends Application {
         Button facile = new Button("Facile");
         facile.setOnAction(new EventHandler<ActionEvent>() {
         public void handle(ActionEvent event) {
+		gameView2.start(true);
+		gameView2.addRoootBot();
+		gameView2.animateBot();
            primaryStage.setScene(gameScene);
-           gameView.animateBot(); }});
+            }});
         
         
         Button moyen = new Button("Moyenne");
         moyen.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
+		   gameView2.start(true);
+		   gameView2.addRoootBot();
+		   gameView2.animateBot();
               primaryStage.setScene(gameScene);
-              gameView.animateBot(); }});
+              }});
         
         
         Button difficile = new Button("Difficile");
         difficile.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
+	  	   gameView2.start(true);
+		   gameView2.addRoootBot();
+		   gameView2.animateBot();
               primaryStage.setScene(gameScene);
-              gameView.animateBot(); }});
+              }});
         facile.setId("difficulte");
         moyen.setId("difficulte");
         difficile.setId("difficulte");
@@ -266,6 +295,13 @@ public class App extends Application {
 			Button reprendre = new Button("Reprendre le jeu");
 			reprendre.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
+				GameView.pause=false;
+				if(gameView.isStart()){
+				gameView.animate();
+				}
+				else {
+					gameView2.animateBot();
+				}
 				primaryStage.setScene(gameScene); }});
 
 
@@ -288,6 +324,8 @@ public class App extends Application {
 			bye.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				primaryStage.close(); }});
+
+
 				rootPause.getChildren().addAll(reprendre,retour,retourmode, son, bye);
 				rootPause.setAlignment(Pos.CENTER);
 				reprendre.setId("boutonsP");

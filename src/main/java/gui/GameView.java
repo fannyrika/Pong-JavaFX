@@ -33,6 +33,8 @@ public class GameView {
     Chrono chronometer;
     private final Rectangle racketA, racketB ,bot;
     private final Circle ball;
+    static boolean stop=false,pause=false;
+    private boolean start;
     private Text textScoreP1, textScoreP2;
 
     /**
@@ -98,10 +100,25 @@ public class GameView {
         textScoreP2.setY(court.getRacketB() * scale -200);
 
 
-        gameRoot.getChildren().addAll(racketA, racketB, ball, textScoreP1, textScoreP2,timer);
+  
 
     }
+	public boolean isStart() {
+    	return start;
+    }
+    public void start(boolean b) {
+    	 start=b;
+    }
+    public void addRoot1V1() {
 
+    	gameRoot.getChildren().addAll(racketA, racketB, ball,timer);
+    }
+    public void remove1v1() {
+    	gameRoot.getChildren().remove(racketA);
+ 	   gameRoot.getChildren().remove(ball);
+ 	   gameRoot.getChildren().remove(racketB);
+ 	   gameRoot.getChildren().remove(timer);
+    }
     public GameView(Bot bot, Pane root, double scale) {
         this.court = null;
 	      this.ModeBot = bot;
@@ -151,10 +168,24 @@ public class GameView {
 
 
 
-        gameRoot.getChildren().addAll(racketA, this.bot, ball, textScoreP1, textScoreP2,timer);
+
 
 
     }
+
+	 public void addRoootBot() {
+    	 gameRoot.getChildren().addAll(racketA, this.bot, ball,timer);
+    	}
+
+	public void removeBot() {
+	   gameRoot.getChildren().remove(racketA);
+	   gameRoot.getChildren().remove(ball);
+	   gameRoot.getChildren().remove(this.bot);
+	   gameRoot.getChildren().remove(timer);
+	  
+    }
+
+	
     //fonction qui gère l'implementation du timer
     public void timer() {
     	 chronometer =new Chrono();
@@ -163,7 +194,15 @@ public class GameView {
         timer.setMinSize(100.00, 100.00);
         timer.setMinHeight(200);
     }
-
+    public void reset1V1() {
+    	court.reset();
+    	chronometer.reset();
+    	
+    }
+    public void resetBot() {
+    	ModeBot.reset();
+    	chronometer.reset();
+    }
     public void animate() {
         new AnimationTimer() {
             long last = 0;
@@ -178,10 +217,10 @@ public class GameView {
                       last = now;
                     return;
                 }
-                if((now - last)%65==0) {
-                    chronometer.update();
-                    timer.textProperty().bind(Bindings.format("%02d:%02d:%d%d",  chronometer.mm, chronometer.ss, chronometer.th, chronometer.hd));;
-                }
+                
+                chronometer.update();
+                timer.textProperty().bind(Bindings.format("%02d:%02d:%d%d",  chronometer.mm, chronometer.ss, chronometer.th, chronometer.hd));;
+                
                 court.update((now - last) * 1.0e-9); // convert nanoseconds to seconds
                 last = now;
                 racketA.setY(court.getRacketA() * scale);
@@ -191,6 +230,13 @@ public class GameView {
 
                 textScoreP1.setText(Integer.toString(court.getScoreP1()));
                 textScoreP2.setText(Integer.toString(court.getScoreP2()));
+			 if(pause) {
+                	stop();
+                }
+                if(stop) {
+               
+                	stop();
+                }
             }
         }.start();
     }
@@ -204,10 +250,10 @@ public class GameView {
                     last = now;
                     return;
                 }
-                if((now - last)%20==0) {
-                    chronometer.update();
-                    timer.textProperty().bind(Bindings.format("%02d:%02d:%d%d",  chronometer.mm, chronometer.ss, chronometer.th, chronometer.hd));;
-                  }
+                
+                chronometer.update();
+                timer.textProperty().bind(Bindings.format("%02d:%02d:%d%d",  chronometer.mm, chronometer.ss, chronometer.th, chronometer.hd));;
+               
                 ModeBot.updateWithBot((now - last) * 1.0e-9); // convert nanoseconds to seconds
                 last = now;
                 racketA.setY(ModeBot.getRacketA() * scale);
@@ -216,6 +262,12 @@ public class GameView {
                 ball.setCenterY(ModeBot.getBallY() * scale);
                 textScoreP1.setText(Integer.toString(ModeBot.getScoreP1()));
                 textScoreP2.setText(Integer.toString(ModeBot.getScoreP2()));
+			 if(pause) {
+                		stop();
+                }
+                if(stop) {     
+                		stop();
+                }
             }
         }.start();
     }
