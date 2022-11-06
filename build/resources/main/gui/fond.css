@@ -89,7 +89,7 @@
 }
 
 #regles {
-  -fx-background-image: url("spacebackground.png");
+  -fx-background-image: url("imgmode.png");
   -fx-background-repeat: NO-REPEAT;
   -fx-background-position: DEFAULT;
   -fx-background-size: DEFAULT;

@@ -292,10 +292,10 @@ public class App extends Application {
         var rules = new Scene(rulesroot,width,height);
       	Text regles = new Text("Règles du jeu : \n");
         regles.setFont(Font.font(40));
-        regles.setFill(Color.LIGHTGRAY);
-        Text message = new Text("- Contrôler la raquette gauche avec Z et S \n- Contrôler la raquette droite avec UP et DOWN \n- Le but du jeu est d’envoyer la balle dans le camp adverse en mettant \nson adversaire dans l’incapacité de la renvoyer. \n- Obtenir 3 points pour gagner la partie \n-- Vous pouvez choisir un mode de jeu spécifique\nen début de partie ! \n\n\n");
+        regles.setFill(Color.GREEN);
+        Text message = new Text("- Contrôler la raquette gauche avec Z et S \n\n- Contrôler la raquette droite avec UP et DOWN \n\n- Le but du jeu est d’envoyer la balle dans le camp adverse en mettant \nson adversaire dans l’incapacité de la renvoyer. \n\n- Obtenir 3 points pour gagner la partie \n\n-- Vous pouvez choisir un mode de jeu spécifique\nen début de partie ! \n");
         message.setFont(Font.font(30));
-        message.setFill(Color.DARKGRAY);
+        message.setFill(Color.DARKRED);
         rulesroot.setId("regles");
         rulesroot.getChildren().addAll(regles,message,retourI);
         rulesroot.setAlignment(Pos.CENTER);
