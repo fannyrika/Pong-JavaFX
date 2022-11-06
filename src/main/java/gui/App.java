@@ -67,6 +67,7 @@ public class App extends Application {
 		// On y met le bouton 'pause'
 		pause.setOnAction(new EventHandler<ActionEvent>() {
 		public void handle(ActionEvent event) {
+			GameView.pause=true;
 			primaryStage.setScene(pauseScene); }});
 
 
