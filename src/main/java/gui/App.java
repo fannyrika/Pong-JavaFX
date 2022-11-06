@@ -72,7 +72,10 @@ public class App extends Application {
         root.setId("terrain");
         gameScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
 
-        //root.getChildren().add(music.mV);
+
+        //music
+        var music = new Music();
+        root.getChildren().addAll(music.mV);
 
 
 
@@ -211,7 +214,7 @@ public class App extends Application {
         public void handle(ActionEvent event) {
         	primaryStage.setScene(rules);
             retour.setId("retourI");
-            rulesroot.setId("regles");
+            rulesroot.setId("menu");
 			rules.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
             
 			Text regles = new Text("Règles du jeu : \n");
@@ -254,7 +257,13 @@ public class App extends Application {
 			public void handle(ActionEvent event) {
 				primaryStage.setScene(menuScene); }});
 
+			var sonRoot = new VBox();
+			var sonScene = new Scene(sonRoot,width,height);
 			Button son = new Button("Son et musiques");
+			son.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent event) {
+					primaryStage.setScene(sonScene); }});
+		
 
 			Button bye = new Button("Quitter le jeu");
 			bye.setOnAction(new EventHandler<ActionEvent>() {
@@ -278,7 +287,7 @@ public class App extends Application {
         instructions.setId("boutons");
         options.setId("boutons");
         quitter.setId("boutons");
-        retour.setId("button");
+        retour.setId("boutons");
         nom.setFont(Font.font(30));
         titre.setId("label2");
         menuRoot.getChildren().addAll(nom, titre, jouer, instructions, options, quitter);
