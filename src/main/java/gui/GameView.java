@@ -111,13 +111,15 @@ public class GameView {
     }
     public void addRoot1V1() {
 
-    	gameRoot.getChildren().addAll(racketA, racketB, ball,timer);
+    	gameRoot.getChildren().addAll(racketA, racketB, ball,timer,textScoreP1, textScoreP2);
     }
     public void remove1v1() {
     	gameRoot.getChildren().remove(racketA);
  	   gameRoot.getChildren().remove(ball);
  	   gameRoot.getChildren().remove(racketB);
  	   gameRoot.getChildren().remove(timer);
+	   gameRoot.getChildren().remove(textScoreP1);
+	   gameRoot.getChildren().remove(textScoreP2);
     }
     public GameView(Bot bot, Pane root, double scale) {
         this.court = null;
@@ -174,7 +176,7 @@ public class GameView {
     }
 
 	 public void addRoootBot() {
-    	 gameRoot.getChildren().addAll(racketA, this.bot, ball,timer);
+    	 gameRoot.getChildren().addAll(racketA, this.bot, ball,timer,textScoreP1, textScoreP2);
     	}
 
 	public void removeBot() {
@@ -182,6 +184,8 @@ public class GameView {
 	   gameRoot.getChildren().remove(ball);
 	   gameRoot.getChildren().remove(this.bot);
 	   gameRoot.getChildren().remove(timer);
+  	   gameRoot.getChildren().remove(textScoreP1);
+	   gameRoot.getChildren().remove(textScoreP2);
 	  
     }
 
@@ -196,11 +200,13 @@ public class GameView {
     }
     public void reset1V1() {
     	court.reset();
+	court.resetScore();
     	chronometer.reset();
     	
     }
     public void resetBot() {
     	ModeBot.reset();
+	ModeBot.resetScore();
     	chronometer.reset();
     }
     public void animate() {

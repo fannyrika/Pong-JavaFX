@@ -166,7 +166,11 @@ public class Bot extends Court{
       return false;
     }
 
-
+	public void resetScore(){
+		scoreP1 = 0;
+   		scoreP2 = 0;
+	}
+		
     public void reset() {
         this.setRacketA(this.getHeight()/2);
         this.bot=this.getHeight()/2;

@@ -164,7 +164,10 @@ public class Court {
     	ballSpeedX= ballSpeedX * acceleration;
     	ballSpeedY= ballSpeedY * acceleration;
     }
-
+    public void resetScore(){
+	 scoreP1 = 0;
+   	 scoreP2 = 0;
+	}
 
     public void reset() {
         this.racketA = height / 2;
