@@ -100,7 +100,7 @@ public class GameView {
         textScoreP2.setY(court.getRacketB() * scale -200);
 
 
-  
+
 
     }
 	public boolean isStart() {
@@ -121,7 +121,7 @@ public class GameView {
 	   gameRoot.getChildren().remove(textScoreP1);
 	   gameRoot.getChildren().remove(textScoreP2);
     }
-    public GameView(Bot bot, Pane root, double scale) {
+    public GameView(Bot bot, Pane root, double scale) throws MalformedURLException{
         this.court = null;
 	      this.ModeBot = bot;
         this.gameRoot = root;
@@ -132,6 +132,7 @@ public class GameView {
 
         timer();
         timer.setLayoutX(bot.getWidth()/2-50);
+        timer.setLayoutY(-50);
 
         racketA = new Rectangle();
         racketA.setHeight(bot.getRacketSize() * scale);
@@ -152,15 +153,20 @@ public class GameView {
 
         ball = new Circle();
         ball.setRadius(bot.getBallRadius());
-        ball.setFill(Color.BLACK);
+        ball.setFill(Color.YELLOW);
+
+        File file = new File("balle3.jpg");
+        String localUrl = file.toURI().toURL().toString();
+        Image image = new Image(localUrl);
+        ball.setFill(new ImagePattern(image));
 
         ball.setCenterX(bot.getBallX() * scale + xMargin);
         ball.setCenterY(bot.getBallY() * scale);
 
         textScoreP1 = new Text("0");
         textScoreP2 = new Text("0");
-        textScoreP1.setFont(Font.font(25));
-        textScoreP2.setFont(Font.font(25));
+        textScoreP1.setFont(Font.font(50));
+        textScoreP2.setFont(Font.font(50));
 
         textScoreP1.setX(xMargin - racketThickness + 10);
         textScoreP1.setY(bot.getRacketA() * scale -200);
@@ -186,10 +192,10 @@ public class GameView {
 	   gameRoot.getChildren().remove(timer);
   	   gameRoot.getChildren().remove(textScoreP1);
 	   gameRoot.getChildren().remove(textScoreP2);
-	  
+
     }
 
-	
+
     //fonction qui gère l'implementation du timer
     public void timer() {
     	 chronometer =new Chrono();
@@ -202,7 +208,7 @@ public class GameView {
     	court.reset();
 	court.resetScore();
     	chronometer.reset();
-    	
+
     }
     public void resetBot() {
     	ModeBot.reset();
@@ -223,10 +229,10 @@ public class GameView {
                       last = now;
                     return;
                 }
-                
+
                 chronometer.update();
                 timer.textProperty().bind(Bindings.format("%02d:%02d:%d%d",  chronometer.mm, chronometer.ss, chronometer.th, chronometer.hd));;
-                
+
                 court.update((now - last) * 1.0e-9); // convert nanoseconds to seconds
                 last = now;
                 racketA.setY(court.getRacketA() * scale);
@@ -240,7 +246,7 @@ public class GameView {
                 	stop();
                 }
                 if(stop) {
-               
+
                 	stop();
                 }
             }
@@ -256,10 +262,10 @@ public class GameView {
                     last = now;
                     return;
                 }
-                
+
                 chronometer.update();
                 timer.textProperty().bind(Bindings.format("%02d:%02d:%d%d",  chronometer.mm, chronometer.ss, chronometer.th, chronometer.hd));;
-               
+
                 ModeBot.updateWithBot((now - last) * 1.0e-9); // convert nanoseconds to seconds
                 last = now;
                 racketA.setY(ModeBot.getRacketA() * scale);
@@ -271,7 +277,7 @@ public class GameView {
 			 if(pause) {
                 		stop();
                 }
-                if(stop) {     
+                if(stop) {
                 		stop();
                 }
             }

@@ -1,4 +1,6 @@
-package model;
+// dsl c melissa qui commente tjr ce fichier pcq ça compile pas chez oim
+
+/*package model;
 
 
 import java.io.File;
@@ -12,7 +14,7 @@ public class Music {
 	public Media media;
     public MediaPlayer mP;
     public MediaView mV;
-    
+
 	public Music(){
     	media = new Media(new File("fallen_leaves.mp3").toURI().toString());
     	mP = new MediaPlayer(media);
@@ -21,5 +23,5 @@ public class Music {
 
         mV = new MediaView(mP);
     }
-	
-}
+
+}*/
