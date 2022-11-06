@@ -26,7 +26,7 @@ public class GameView {
     private final Court court;
     private final Pane gameRoot; // main node of the game
     private final double scale;
-    private final double xMargin = 50.0, racketThickness = 20.0; // pixels
+    private final double xMargin = 100.0, racketThickness = 100.0; // pixels
 
     // children of the game main node
     private Label timer;
@@ -59,7 +59,12 @@ public class GameView {
         racketA = new Rectangle();
         racketA.setHeight(court.getRacketSize() * scale);
         racketA.setWidth(racketThickness);
-        racketA.setFill(Color.DARKGRAY);
+        racketA.setFill(Color.WHITE);
+
+        File fic = new File("joueuse.png");
+        String s = fic.toURI().toURL().toString();
+        Image joueuse = new Image(s);
+        racketA.setFill(new ImagePattern(joueuse));
 
         racketA.setX(xMargin - racketThickness);
         racketA.setY(court.getRacketA() * scale);
@@ -67,9 +72,14 @@ public class GameView {
         racketB = new Rectangle();
         racketB.setHeight(court.getRacketSize() * scale);
         racketB.setWidth(racketThickness);
-        racketB.setFill(Color.DARKGRAY);
+        racketB.setFill(Color.WHITE);
 
-        racketB.setX(court.getWidth() * scale + xMargin);
+        File fich = new File("joueur.png");
+        String ss = fich.toURI().toURL().toString();
+        Image joueur = new Image(ss);
+        racketB.setFill(new ImagePattern(joueur));
+
+        racketB.setX(court.getWidth() * scale + xMargin - 100);
         racketB.setY(court.getRacketB() * scale);
 		    this.bot = null;
 
@@ -94,10 +104,10 @@ public class GameView {
         textScoreP2.setFont(Font.font(50));
 
         textScoreP1.setX(xMargin - racketThickness + 10);
-        textScoreP1.setY(court.getRacketA() * scale -200);
+        textScoreP1.setY(court.getRacketA() * scale -400);
 
-        textScoreP2.setX(court.getWidth() * scale + xMargin -10) ;
-        textScoreP2.setY(court.getRacketB() * scale -200);
+        textScoreP2.setX(court.getWidth() * scale + xMargin -100) ;
+        textScoreP2.setY(court.getRacketB() * scale -400);
 
 
 
@@ -137,7 +147,12 @@ public class GameView {
         racketA = new Rectangle();
         racketA.setHeight(bot.getRacketSize() * scale);
         racketA.setWidth(racketThickness);
-        racketA.setFill(Color.GREEN);
+        racketA.setFill(Color.WHITE);
+
+        File fic = new File("joueuse.png");
+        String s = fic.toURI().toURL().toString();
+        Image joueuse = new Image(s);
+        racketA.setFill(new ImagePattern(joueuse));
 
         racketA.setX(xMargin - racketThickness);
         racketA.setY(bot.getRacketA() * scale);
@@ -146,9 +161,14 @@ public class GameView {
         this.bot = new Rectangle();
         this.bot.setHeight(bot.getRacketSize() * scale);
         this.bot.setWidth(racketThickness);
-        this.bot.setFill(Color.RED);
+        this.bot.setFill(Color.WHITE);
 
-        this.bot.setX(bot.getWidth() * scale + xMargin);
+        File fich = new File("joueur.png");
+        String ss = fich.toURI().toURL().toString();
+        Image joueur = new Image(ss);
+        this.bot.setFill(new ImagePattern(joueur));
+
+        this.bot.setX(bot.getWidth() * scale + xMargin -100);
         this.bot.setY(bot.getBot() * scale);
 
         ball = new Circle();
@@ -160,7 +180,7 @@ public class GameView {
         Image image = new Image(localUrl);
         ball.setFill(new ImagePattern(image));
 
-        ball.setCenterX(bot.getBallX() * scale + xMargin);
+        ball.setCenterX(bot.getBallX() * scale + xMargin-100);
         ball.setCenterY(bot.getBallY() * scale);
 
         textScoreP1 = new Text("0");
@@ -168,11 +188,11 @@ public class GameView {
         textScoreP1.setFont(Font.font(50));
         textScoreP2.setFont(Font.font(50));
 
-        textScoreP1.setX(xMargin - racketThickness + 10);
-        textScoreP1.setY(bot.getRacketA() * scale -200);
+        textScoreP1.setX(xMargin - racketThickness + 50);
+        textScoreP1.setY(bot.getRacketA() * scale -400);
 
-        textScoreP2.setX(bot.getWidth() * scale + xMargin -10) ;
-        textScoreP2.setY(bot.getBot() * scale -200);
+        textScoreP2.setX(bot.getWidth() * scale + xMargin -100) ;
+        textScoreP2.setY(bot.getBot() * scale -400);
 
 
 
