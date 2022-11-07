@@ -80,13 +80,19 @@ public class App extends Application {
         root.getChildren().addAll(music.mV);  */
 
 
-        class Player implements RacketController {
+        class Player implements RacketController,BallState {
             State state = State.IDLE;
-
+            StateBall stateb=StateBall.IDLE;
             @Override
             public State getState() {
                 return state;
             }
+            public StateBall getStateb() {
+            	return stateb;
+            
+        	}
+            
+
         }
         var playerA = new Player();
         var playerB = new Player();
@@ -104,10 +110,17 @@ public class App extends Application {
                 case DOWN:
                     playerB.state = RacketController.State.GOING_DOWN;
                     break;
+                case E:
+                	playerA.stateb=BallState.StateBall.FAST;
+                	break;
+                case CONTROL:
+                	playerB.stateb =BallState.StateBall.FAST;
+                	break; 
                 case P:
 			             GameView.pause=true;
                     primaryStage.setScene(pauseScene);
                     break;
+                
             }
         });
         gameScene.setOnKeyReleased(ev -> {
@@ -124,11 +137,18 @@ public class App extends Application {
                 case DOWN:
                     if (playerB.state == RacketController.State.GOING_DOWN) playerB.state = RacketController.State.IDLE;
                     break;
+                case E:
+                    if (playerA.stateb == BallState.StateBall.FAST) playerA.stateb = BallState.StateBall.IDLE;
+                    break;
+                case CONTROL:
+                    if (playerB.stateb == BallState.StateBall.FAST) playerB.stateb = BallState.StateBall.IDLE;
+                    break;
+
             }
         });
 
         var bot = new Bot(playerA,1,1.0001);//test bot;
-        var court = new Court(playerA,playerB,1.0001);
+        var court = new Court(playerA,playerB,1.0001,playerA,playerB);
         var gameView = new GameView(court, root, 1.0);
         var gameView2 = new GameView(bot, root, 1.0);//test Bot;
         primaryStage.setTitle("nootynootnoot PONG");
