@@ -145,6 +145,20 @@ public class App extends Application {
         var menuScene = new Scene(menuRoot, width, height);
 
 
+        // touche 'p' pour revenir sur le jeu depuis la page 'pause'
+        pauseScene.setOnKeyPressed(ev -> {
+            switch (ev.getCode()) {
+                case P:
+                GameView.pause=false;
+                if(gameView.isStart()){
+                gameView.animate();
+                }
+                else {
+                  gameView2.animateBot();
+                }
+                primaryStage.setScene(gameScene); }});
+
+
         Button opt1 = new Button("Jouer en 1v1");
         opt1.setOnAction(new EventHandler<ActionEvent>() {
         public void handle(ActionEvent event) {
