@@ -30,6 +30,13 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.scene.control.Slider;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.beans.*;
 
 
 public class App extends Application {
@@ -76,8 +83,8 @@ public class App extends Application {
         gameScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
 
         //music
-    /*    var music = new Music();
-        root.getChildren().addAll(music.mV);  */
+        var music = new Music();
+        root.getChildren().addAll(music.mV);  
 
 
         class Player implements RacketController,BallState {
@@ -374,7 +381,20 @@ public class App extends Application {
 
 			//Page son
 			var sonRoot = new VBox();
-			var sonScene = new Scene(sonRoot,width,height);
+			sonRoot.setPadding(new Insets(height/2, 450,0, height/2));
+	        var sonScene = new Scene(sonRoot, width, height);
+	        var volumeSlider = new Slider(0.0, 100, 0.0);
+	        volumeSlider.setId("slider");
+	        volumeSlider.lookup(".track");
+	        volumeSlider.setValue(music.mP.getVolume() * 100);
+	        volumeSlider.valueProperty().addListener(new InvalidationListener() {
+	        	
+	        	public void invalidated(Observable observable) {
+	        		music.mP.setVolume(volumeSlider.getValue() / 100);
+	        	}
+	        });
+	        var volume = new Text("Volume");
+	        volume.setFont(Font.font(30));
 			Button son = new Button("Musique et son");
 			son.setOnAction(new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent event) {
@@ -383,8 +403,8 @@ public class App extends Application {
 
 			sonRoot.setId("menu");
 			sonScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-			sonRoot.getChildren().addAll(retourpause);
-			sonRoot.setAlignment(Pos.CENTER);
+			sonRoot.getChildren().addAll(volume,volumeSlider,retourpause);
+			sonRoot.setAlignment(Pos.TOP_CENTER);
 
 			//Bouton pour quitter la partie
 			Button bye = new Button("Quitter le jeu");
