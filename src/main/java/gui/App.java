@@ -126,6 +126,7 @@ public class App extends Application {
                     break;
             }
         });
+
         var bot = new Bot(playerA,1,1.0001);//test bot;
         var court = new Court(playerA,playerB,1.0001);
         var gameView = new GameView(court, root, 1.0);
@@ -246,13 +247,13 @@ public class App extends Application {
         difficile.setId("difficulte");
 
         Button opt2 = new Button("Jouer contre l'ordinateur");
+        Label choix = new Label("\n\nChoisissez la difficulté du bot");
+        choix.setId("ligne");
+        var tmp = new HBox();
+        tmp.getChildren().addAll(facile,moyen,difficile);
+        tmp.setAlignment(Pos.CENTER);
         opt2.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-              Label choix = new Label("\n\nChoisissez la difficulté du bot");
-              choix.setId("ligne");
-              var tmp = new HBox();
-              tmp.getChildren().addAll(facile,moyen,difficile);
-              tmp.setAlignment(Pos.CENTER);
               modeRoot.getChildren().addAll(choix, tmp); }});
 
         opt1.setId("modes");

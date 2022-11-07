@@ -103,7 +103,7 @@ public class GameView {
         textScoreP1.setFont(Font.font(50));
         textScoreP2.setFont(Font.font(50));
 
-        textScoreP1.setX(xMargin - racketThickness + 10);
+        textScoreP1.setX(xMargin - racketThickness + 50);
         textScoreP1.setY(court.getRacketA() * scale -400);
 
         textScoreP2.setX(court.getWidth() * scale + xMargin -100) ;
