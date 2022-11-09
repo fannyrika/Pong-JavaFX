@@ -15,6 +15,7 @@ public class Court {
     public PlayerBoost p1,p2;
     private double racketA; // m
     private double racketB; // m
+    private double rotationA,rotationB;
     public double ballX, ballY; // m
     public double ballSpeedX, ballSpeedY, racketSpeed, acceleration; // m
     private int scoreP1 = 0;
@@ -62,10 +63,18 @@ public class Court {
 
       this.racketA=racketA;
     }
+    
+    public double getRotationA() {
+		return rotationA;
+	}
 
     public double getRacketB() {
         return racketB;
     }
+    
+    public double getRotationB() {
+		return rotationB;
+	}
 
     public double getBallX() {
         return ballX;
@@ -120,6 +129,12 @@ public class Court {
                 racketA += racketSpeed * deltaT;
                 if (racketA + racketSize > height) racketA = height - racketSize;
                 break;
+            case TURN_LEFT:
+                rotationA += racketSpeed * deltaT % 360;
+                break;
+            case TURN_RIGHT:
+                rotationA -= racketSpeed * deltaT % 360;
+                break;
         }
         switch (playerB.getState()) {
             case GOING_UP:
@@ -131,6 +146,12 @@ public class Court {
             case GOING_DOWN:
                 racketB += racketSpeed * deltaT;
                 if (racketB + racketSize > height) racketB = height - racketSize;
+                break;
+            case TURN_LEFT:
+                rotationB += racketSpeed * deltaT % 360;
+                break;
+            case TURN_RIGHT:
+                rotationB -= racketSpeed * deltaT % 360;
                 break;
         }
         if (updateBall(deltaT)) reset();
@@ -184,6 +205,8 @@ public class Court {
     public void reset() {
         this.racketA = height / 2;
         this.racketB = height / 2;
+        this.rotationA=0;
+        this.rotationB=0;
         this.racketSpeed = 300.0;
         this.ballSpeedX = 200.0;
         this.ballSpeedY = 200.0;

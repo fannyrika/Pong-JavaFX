@@ -16,6 +16,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import javafx.scene.image.Image;
+
+import java.awt.Graphics2D;
 import java.io.File;
 import java.net.MalformedURLException;
 import javafx.scene.paint.ImagePattern;
@@ -303,6 +305,12 @@ public class GameView {
       court.p2.boostPlayer(chronometer.ss,chronometer.th);
       
    }
+    
+
+
+    private void rotate(java.awt.Rectangle r,double angle) {
+    }
+
 
     public void animate() {
         new AnimationTimer() {
@@ -325,7 +333,9 @@ public class GameView {
                 court.update((now - last) * 1.0e-9); // convert nanoseconds to seconds
                 last = now;
                 racketA.setY(court.getRacketA() * scale);
+                rotate(racketA,court.getRacketA());
                 racketB.setY(court.getRacketB() * scale);
+                rotate(racketB,court.getRacketB());
                 ball.setCenterX(court.getBallX() * scale + xMargin);
                 ball.setCenterY(court.getBallY() * scale);
 

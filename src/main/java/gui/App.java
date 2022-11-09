@@ -111,11 +111,23 @@ public class App extends Application {
                 case S:
                     playerA.state = RacketController.State.GOING_DOWN;
                     break;
+                case Q:
+                    playerA.state = RacketController.State.TURN_LEFT;
+                    break;
+                case D:
+                    playerA.state = RacketController.State.TURN_RIGHT;
+                    break;
                 case UP:
                     playerB.state = RacketController.State.GOING_UP;
                     break;
                 case DOWN:
                     playerB.state = RacketController.State.GOING_DOWN;
+                    break;
+                case LEFT:
+                    playerB.state = RacketController.State.TURN_LEFT;
+                    break;
+                case RIGHT:
+                    playerB.state = RacketController.State.TURN_RIGHT;
                     break;
                 case E:
                 	playerA.stateb=BallState.StateBall.FAST;
@@ -138,11 +150,23 @@ public class App extends Application {
                 case S:
                     if (playerA.state == RacketController.State.GOING_DOWN) playerA.state = RacketController.State.IDLE;
                     break;
+                case Q:
+                    if (playerA.state == RacketController.State.TURN_LEFT) playerA.state = RacketController.State.IDLE;
+                    break;
+                case D:
+                    if (playerA.state == RacketController.State.TURN_RIGHT) playerA.state = RacketController.State.IDLE;
+                    break;
                 case UP:
                     if (playerB.state == RacketController.State.GOING_UP) playerB.state = RacketController.State.IDLE;
                     break;
                 case DOWN:
                     if (playerB.state == RacketController.State.GOING_DOWN) playerB.state = RacketController.State.IDLE;
+                    break;
+                case LEFT:
+                    if (playerB.state == RacketController.State.TURN_LEFT) playerB.state = RacketController.State.IDLE;
+                    break;
+                case RIGHT:
+                    if (playerB.state == RacketController.State.TURN_RIGHT) playerB.state = RacketController.State.IDLE;
                     break;
                 case E:
                     if (playerA.stateb == BallState.StateBall.FAST) playerA.stateb = BallState.StateBall.IDLE;
