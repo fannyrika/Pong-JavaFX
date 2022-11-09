@@ -1,28 +1,40 @@
 package model;
 
 import javafx.geometry.Rectangle2D;
+import javafx.scene.media.Media;
+import java.io.File;
+
 import javafx.stage.Screen;
 public class Court {
     // instance parameters
     private final RacketController playerA, playerB;
-    private final double width, height; // m
-    private final double racketSize = 100.0; // m
-    private final double ballRadius = 10.0; // m
+    public final double width, height; // m
+    private final double racketSize = 200.0; // m
+    private final double ballRadius = 20.0; // m
     // instance state
+    public PlayerBoost p1,p2;
     private double racketA; // m
     private double racketB; // m
-    private double ballX, ballY; // m
-    private double ballSpeedX, ballSpeedY, racketSpeed, acceleration; // m
+    public double ballX, ballY; // m
+    public double ballSpeedX, ballSpeedY, racketSpeed, acceleration; // m
     private int scoreP1 = 0;
     private int scoreP2 = 0;
-    
+    public Media mediaBall;
+    public Media activationBoost;
+
+
     Rectangle2D screen = Screen.getPrimary().getVisualBounds();
-    public Court(RacketController playerA, RacketController playerB, double acceleration) {
+    public Court(RacketController playerA, RacketController playerB, double acceleration,BallState playerABall,BallState playerBball) {
         this.playerA = playerA;
         this.playerB = playerB;
-        this.width = screen.getWidth()-racketSize;//visual bounds
-        this.height = screen.getHeight()-(racketSize/2);//visual bounds
+        this.width = screen.getWidth()-racketSize/2;//visual bounds
+        this.height = screen.getHeight()-racketSize/2;//visual bounds
         this.acceleration= acceleration;
+        mediaBall = new Media(new File("src/main/resources/gui/AudioBoost.mp3").toURI().toString());
+        activationBoost=new Media(new File("src/main/resources/gui/AudioBoostActive.mp3").toURI().toString());
+        p1=new PlayerBoost(playerABall);
+        p2=new PlayerBoost(playerBball);
+
         reset();
     }
     public double getRacketSpeed(){
@@ -157,16 +169,19 @@ public class Court {
     public double getBallRadius() {
         return ballRadius;
     }
-    
-   
+
+
     public void updateSpeed() {
     	racketSpeed= racketSpeed * acceleration;
     	ballSpeedX= ballSpeedX * acceleration;
     	ballSpeedY= ballSpeedY * acceleration;
     }
-    
+    public void resetScore(){
+	 scoreP1 = 0;
+   	 scoreP2 = 0;
+	}
 
-    void reset() {
+    public void reset() {
         this.racketA = height / 2;
         this.racketB = height / 2;
         this.racketSpeed = 300.0;
