@@ -308,8 +308,7 @@ public class GameView {
     
 
 
-    private void rotate(java.awt.Rectangle r,double angle) {
-    }
+    //private void rotate(java.awt.Rectangle r,double angle) {}
 
 
     public void animate() {
