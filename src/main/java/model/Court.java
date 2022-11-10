@@ -3,6 +3,7 @@ package model;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.media.Media;
 import java.io.File;
+import javafx.scene.media.MediaPlayer;
 
 import javafx.stage.Screen;
 public class Court {
@@ -22,6 +23,7 @@ public class Court {
     private int scoreP2 = 0;
     public Media mediaBall;
     public Media activationBoost;
+    public Media ballsound;
 
 
     Rectangle2D screen = Screen.getPrimary().getVisualBounds();
@@ -33,6 +35,7 @@ public class Court {
         this.acceleration= acceleration;
         mediaBall = new Media(new File("src/main/resources/gui/AudioBoost.mp3").toURI().toString());
         activationBoost=new Media(new File("src/main/resources/gui/AudioBoostActive.mp3").toURI().toString());
+        ballsound = new Media(new File("ballsound.m4a").toURI().toString());
         p1=new PlayerBoost(playerABall);
         p2=new PlayerBoost(playerBball);
 
@@ -130,10 +133,10 @@ public class Court {
                 if (racketA + racketSize > height) racketA = height - racketSize;
                 break;
             case TURN_LEFT:
-                rotationA += racketSpeed * deltaT % 360;
+                //rotationA += racketSpeed * deltaT % 360;
                 break;
             case TURN_RIGHT:
-                rotationA -= racketSpeed * deltaT % 360;
+                //rotationA -= racketSpeed * deltaT % 360;
                 break;
         }
         switch (playerB.getState()) {
@@ -148,10 +151,10 @@ public class Court {
                 if (racketB + racketSize > height) racketB = height - racketSize;
                 break;
             case TURN_LEFT:
-                rotationB += racketSpeed * deltaT % 360;
+                //rotationB += racketSpeed * deltaT % 360;
                 break;
             case TURN_RIGHT:
-                rotationB -= racketSpeed * deltaT % 360;
+                //rotationB -= racketSpeed * deltaT % 360;
                 break;
         }
         if (updateBall(deltaT)) reset();
@@ -165,6 +168,7 @@ public class Court {
         // first, compute possible next position if nothing stands in the way
         double nextBallX = ballX + deltaT * ballSpeedX;
         double nextBallY = ballY + deltaT * ballSpeedY;
+        MediaPlayer mp=new MediaPlayer(ballsound);
         // next, see if the ball would meet some obstacle
         if (nextBallY < 0 || nextBallY > height) {
             ballSpeedY = -ballSpeedY;
@@ -172,6 +176,7 @@ public class Court {
         }
         if ((nextBallX < 0 && nextBallY > racketA && nextBallY < racketA + racketSize)
                 || (nextBallX > width && nextBallY > racketB && nextBallY < racketB + racketSize)) {
+        	mp.play();
             ballSpeedX = -ballSpeedX;
             nextBallX = ballX + deltaT * ballSpeedX;
         } else if (nextBallX < 0) {
