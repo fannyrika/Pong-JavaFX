@@ -1,6 +1,6 @@
 // dsl c melissa qui commente tjr ce fichier pcq ça compile pas chez oim
 
-/*package model;
+package model;
 
 
 import java.io.File;
@@ -24,4 +24,4 @@ public class Music {
         mV = new MediaView(mP);
     }
 
-}*/
+}

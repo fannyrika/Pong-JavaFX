@@ -111,10 +111,10 @@ public class App extends Application {
                 case S:
                     playerA.state = RacketController.State.GOING_DOWN;
                     break;
-                case UP:
+                case O:
                     playerB.state = RacketController.State.GOING_UP;
                     break;
-                case DOWN:
+                case L:
                     playerB.state = RacketController.State.GOING_DOWN;
                     break;
                 case E:
@@ -138,10 +138,10 @@ public class App extends Application {
                 case S:
                     if (playerA.state == RacketController.State.GOING_DOWN) playerA.state = RacketController.State.IDLE;
                     break;
-                case UP:
+                case O:
                     if (playerB.state == RacketController.State.GOING_UP) playerB.state = RacketController.State.IDLE;
                     break;
-                case DOWN:
+                case L:
                     if (playerB.state == RacketController.State.GOING_DOWN) playerB.state = RacketController.State.IDLE;
                     break;
                 case E:
@@ -335,7 +335,7 @@ public class App extends Application {
       	Text regles = new Text("Règles du jeu : \n");
         regles.setFont(Font.font(40));
         regles.setFill(Color.GREEN);
-        Text message = new Text("- Contrôler la raquette gauche avec Z et S \n\n- Contrôler la raquette droite avec UP et DOWN \n\n- Le but du jeu est d’envoyer la balle dans le camp adverse en mettant \nson adversaire dans l’incapacité de la renvoyer. \n\n- Obtenir 3 points pour gagner la partie \n\n-- Vous pouvez choisir un mode de jeu spécifique\nen début de partie ! \n");
+        Text message = new Text("- Contrôler la raquette gauche avec Z et S \n\n- Contrôler la raquette droite avec O et L \n\n- Le but du jeu est d’envoyer la balle dans le camp adverse en mettant \nson adversaire dans l’incapacité de la renvoyer. \n\n- Obtenir 3 points pour gagner la partie \n\n-- Vous pouvez choisir un mode de jeu spécifique\nen début de partie ! \n");
         message.setFont(Font.font(30));
         message.setFill(Color.DARKRED);
         rulesroot.setId("regles");

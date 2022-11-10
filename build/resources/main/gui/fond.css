@@ -1,3 +1,8 @@
+#slider .track{
+   -fx-pref-height:20;
+   -fx-background-color:white;
+}
+
 #terrain {
   -fx-background-image: url("imgfond.jpg");
   -fx-background-color: #842e1b;
