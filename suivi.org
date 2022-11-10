@@ -17,9 +17,24 @@ BOULOUFA;Melissa; 31; --; 24
 TANG;Li Wa; 12, 25, 26, 27; 12, 25, 27; 26
 COTREZ;Jules; --; --; 33, 26, 23
 
-* 10/10/2022
-** TODO
-** 1) Replace items with enumerations in cachierCharge.txt
-** 2) Continue with the work, and prepare a prototype in master branch
+* 10/11/2022
 
+surname; name; opened issues; closed issues; workin on issues
+NICO;Julien; 34, 35, 36, 37; --; 36
+HOUARD;Romain; 38, 53; 47, 58, 48, 38; 53
+PINTO;Lilia; 40, 49, 50, 55 - 58; 33, 28, 56, 40, 57, 45; --  
+BOULOUFA;Melissa; 54, 52, 51, 47, 45, 44, 43, 42, 41; 41, 43, 44, 47, 24, 51, 52, 35, 37, 20, 31, 42; --
+TANG;Li Wa; 59, 61; 26, 50; 61, 39
+COTREZ;Jules; 62 - 67; --; 62, 64
+
+** DONE Replace items with enumerations in cahierCharge.txt
+** DONE Continue with the work, and prepare a prototype in master branch
+   
+* 24/11/2022
+** TODO
+*** Ajouter les touches pour chaque fonction / boutton
+*** Indiquer dans chaque ticket la fonctionalité dans le chaier de charge
+***   qui motive le ticket
+*** Remplacer les chemins des images codés en dur dans le Java avec
+*** la lecture d'un fichier de configuration qui contient les chemins necessaires.
 
