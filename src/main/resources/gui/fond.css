@@ -1,0 +1,122 @@
+#slider .track{
+   -fx-pref-height:20;
+   -fx-background-color:white;
+}
+
+#terrain {
+  -fx-background-image: url("imgfond.jpg");
+  -fx-background-color: #842e1b;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+}
+
+#mode {
+  -fx-background-image: url("imgmode.png");
+  -fx-background-color: #c0d4cd;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+}
+
+#modes {
+  -fx-background-color: darkgray;
+  -fx-font-size: 35px;
+  -fx-font-family: Yrsa Medium;
+  -fx-font-weight: bolder;
+  -fx-border-radius: 10% / 50%;
+}
+
+#modes:hover {
+  -fx-background-color: lightgray;
+}
+
+#ligne {
+  -fx-font-family: Yrsa Medium;
+  -fx-font-size: 30px;
+  -fx-font-weight: bolder;
+}
+
+   #difficulte {
+     -fx-font-family: Yrsa Medium;
+      -fx-display: inline-block;
+      -fx-background-color: #98BF64;
+      -fx-border-radius: 10px;
+      -fx-border: 4px double #cccccc;
+      -fx-color: #eeeeee;
+      -fx-text-align: center;
+      -fx-font-size: 28px;
+      -fx-padding: 20px;
+      -fx-width: 200px;
+      -fx-transition: all 0.5s;
+      -fx-cursor: pointer;
+      -fx-margin: 5px;
+    }
+
+    #difficulte:hover {
+      -fx-background-color: #607D3B;
+    }
+
+#pause {
+  -fx-background-image: url("fondpoz.png");
+  -fx-background-color: #c0d4cd;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+}
+
+#btnPause {
+  -fx-font-size: 50px;
+  -fx-background-image: url("pause.png");
+  -fx-background-repeat: no-repeat;
+  -fx-background-size: 80px;
+  -fx-background-color: transparent;
+}
+
+#retourI {
+  -fx-background-color: darkgray;
+  -fx-font-size: 35px;
+  -fx-font-family: Yrsa Medium;
+  -fx-font-weight: bolder;
+  -fx-border-radius: 10% / 50%;
+}
+
+#retourI:hover {
+  -fx-background-color: lightgray;
+}
+
+#menu {
+  -fx-background-image: url("imgfond.jpg");
+  -fx-background-color: #842e1b;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+}
+
+#regles {
+  -fx-background-image: url("imgmode.png");
+  -fx-background-repeat: NO-REPEAT;
+  -fx-background-position: DEFAULT;
+  -fx-background-size: DEFAULT;
+}
+
+#boutons, #boutonsP {
+    -fx-font-color: BLACK;
+    -fx-background-color: transparent;
+    -fx-font-size: 35px;
+    -fx-font-family: Yrsa Medium;
+    -fx-font-weight: bolder;
+}
+
+#boutonsP:hover {
+  -fx-font-size: 45px;
+}
+
+#boutons:hover {
+  -fx-background-color: DARKGRAY;
+}
+
+#label2 {
+  -fx-font-weight: bolder;
+  -fx-font-size: 70px;
+}

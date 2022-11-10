@@ -1,28 +1,44 @@
 package model;
 
 import javafx.geometry.Rectangle2D;
+import javafx.scene.media.Media;
+import java.io.File;
+import javafx.scene.media.MediaPlayer;
+
 import javafx.stage.Screen;
 public class Court {
     // instance parameters
     private final RacketController playerA, playerB;
-    private final double width, height; // m
-    private final double racketSize = 100.0; // m
-    private final double ballRadius = 10.0; // m
+    public final double width, height; // m
+    private final double racketSize = 200.0; // m
+    private final double ballRadius = 20.0; // m
     // instance state
+    public PlayerBoost p1,p2;
     private double racketA; // m
     private double racketB; // m
-    private double ballX, ballY; // m
-    private double ballSpeedX, ballSpeedY, racketSpeed, acceleration; // m
+    private double rotationA,rotationB;
+    public double ballX, ballY; // m
+    public double ballSpeedX, ballSpeedY, racketSpeed, acceleration; // m
     private int scoreP1 = 0;
     private int scoreP2 = 0;
-    
+    public Media mediaBall;
+    public Media activationBoost;
+    public Media ballsound;
+
+
     Rectangle2D screen = Screen.getPrimary().getVisualBounds();
-    public Court(RacketController playerA, RacketController playerB, double acceleration) {
+    public Court(RacketController playerA, RacketController playerB, double acceleration,BallState playerABall,BallState playerBball) {
         this.playerA = playerA;
         this.playerB = playerB;
-        this.width = screen.getWidth()-racketSize;//visual bounds
-        this.height = screen.getHeight()-(racketSize/2);//visual bounds
+        this.width = screen.getWidth()-racketSize/2;//visual bounds
+        this.height = screen.getHeight()-racketSize/2;//visual bounds
         this.acceleration= acceleration;
+        mediaBall = new Media(new File("src/main/resources/gui/AudioBoost.mp3").toURI().toString());
+        activationBoost=new Media(new File("src/main/resources/gui/AudioBoostActive.mp3").toURI().toString());
+        ballsound = new Media(new File("ballsound.m4a").toURI().toString());
+        p1=new PlayerBoost(playerABall);
+        p2=new PlayerBoost(playerBball);
+
         reset();
     }
     public double getRacketSpeed(){
@@ -50,10 +66,18 @@ public class Court {
 
       this.racketA=racketA;
     }
+    
+    public double getRotationA() {
+		return rotationA;
+	}
 
     public double getRacketB() {
         return racketB;
     }
+    
+    public double getRotationB() {
+		return rotationB;
+	}
 
     public double getBallX() {
         return ballX;
@@ -108,6 +132,12 @@ public class Court {
                 racketA += racketSpeed * deltaT;
                 if (racketA + racketSize > height) racketA = height - racketSize;
                 break;
+            case TURN_LEFT:
+                //rotationA += racketSpeed * deltaT % 360;
+                break;
+            case TURN_RIGHT:
+                //rotationA -= racketSpeed * deltaT % 360;
+                break;
         }
         switch (playerB.getState()) {
             case GOING_UP:
@@ -119,6 +149,12 @@ public class Court {
             case GOING_DOWN:
                 racketB += racketSpeed * deltaT;
                 if (racketB + racketSize > height) racketB = height - racketSize;
+                break;
+            case TURN_LEFT:
+                //rotationB += racketSpeed * deltaT % 360;
+                break;
+            case TURN_RIGHT:
+                //rotationB -= racketSpeed * deltaT % 360;
                 break;
         }
         if (updateBall(deltaT)) reset();
@@ -132,6 +168,7 @@ public class Court {
         // first, compute possible next position if nothing stands in the way
         double nextBallX = ballX + deltaT * ballSpeedX;
         double nextBallY = ballY + deltaT * ballSpeedY;
+        MediaPlayer mp=new MediaPlayer(ballsound);
         // next, see if the ball would meet some obstacle
         if (nextBallY < 0 || nextBallY > height) {
             ballSpeedY = -ballSpeedY;
@@ -139,6 +176,7 @@ public class Court {
         }
         if ((nextBallX < 0 && nextBallY > racketA && nextBallY < racketA + racketSize)
                 || (nextBallX > width && nextBallY > racketB && nextBallY < racketB + racketSize)) {
+        	mp.play();
             ballSpeedX = -ballSpeedX;
             nextBallX = ballX + deltaT * ballSpeedX;
         } else if (nextBallX < 0) {
@@ -157,18 +195,23 @@ public class Court {
     public double getBallRadius() {
         return ballRadius;
     }
-    
-   
+
+
     public void updateSpeed() {
     	racketSpeed= racketSpeed * acceleration;
     	ballSpeedX= ballSpeedX * acceleration;
     	ballSpeedY= ballSpeedY * acceleration;
     }
-    
+    public void resetScore(){
+	 scoreP1 = 0;
+   	 scoreP2 = 0;
+	}
 
-    void reset() {
+    public void reset() {
         this.racketA = height / 2;
         this.racketB = height / 2;
+        this.rotationA=0;
+        this.rotationB=0;
         this.racketSpeed = 300.0;
         this.ballSpeedX = 200.0;
         this.ballSpeedY = 200.0;
