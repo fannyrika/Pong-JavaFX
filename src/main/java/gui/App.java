@@ -117,16 +117,16 @@ public class App extends Application {
                 case D:
                     playerA.state = RacketController.State.TURN_RIGHT;
                     break;
-                case UP:
+                case O:
                     playerB.state = RacketController.State.GOING_UP;
                     break;
-                case DOWN:
+                case L:
                     playerB.state = RacketController.State.GOING_DOWN;
                     break;
-                case LEFT:
+                case K:
                     playerB.state = RacketController.State.TURN_LEFT;
                     break;
-                case RIGHT:
+                case M:
                     playerB.state = RacketController.State.TURN_RIGHT;
                     break;
                 case E:
@@ -156,16 +156,16 @@ public class App extends Application {
                 case D:
                     if (playerA.state == RacketController.State.TURN_RIGHT) playerA.state = RacketController.State.IDLE;
                     break;
-                case UP:
+                case O:
                     if (playerB.state == RacketController.State.GOING_UP) playerB.state = RacketController.State.IDLE;
                     break;
-                case DOWN:
+                case L:
                     if (playerB.state == RacketController.State.GOING_DOWN) playerB.state = RacketController.State.IDLE;
                     break;
-                case LEFT:
+                case K:
                     if (playerB.state == RacketController.State.TURN_LEFT) playerB.state = RacketController.State.IDLE;
                     break;
-                case RIGHT:
+                case M:
                     if (playerB.state == RacketController.State.TURN_RIGHT) playerB.state = RacketController.State.IDLE;
                     break;
                 case E:

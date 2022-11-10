@@ -133,10 +133,10 @@ public class Court {
                 if (racketA + racketSize > height) racketA = height - racketSize;
                 break;
             case TURN_LEFT:
-                //rotationA += racketSpeed * deltaT % 360;
+                rotationA += racketSpeed * deltaT % 360;
                 break;
             case TURN_RIGHT:
-                //rotationA -= racketSpeed * deltaT % 360;
+            	rotationA -= racketSpeed * deltaT % 360;
                 break;
         }
         switch (playerB.getState()) {
@@ -151,10 +151,10 @@ public class Court {
                 if (racketB + racketSize > height) racketB = height - racketSize;
                 break;
             case TURN_LEFT:
-                //rotationB += racketSpeed * deltaT % 360;
+                rotationB += racketSpeed * deltaT % 360;
                 break;
             case TURN_RIGHT:
-                //rotationB -= racketSpeed * deltaT % 360;
+                rotationB -= racketSpeed * deltaT % 360;
                 break;
         }
         if (updateBall(deltaT)) reset();

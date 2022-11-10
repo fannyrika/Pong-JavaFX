@@ -248,7 +248,7 @@ public class GameView {
     }
     public void resetBot() {
     	ModeBot.reset();
-	ModeBot.resetScore();
+    	ModeBot.resetScore();
     	chronometer.reset();
     }
     public void boost() {
@@ -305,10 +305,6 @@ public class GameView {
       court.p2.boostPlayer(chronometer.ss,chronometer.th);
       
    }
-    
-
-
-    //private void rotate(java.awt.Rectangle r,double angle) {}
 
 
     public void animate() {
@@ -332,9 +328,7 @@ public class GameView {
                 court.update((now - last) * 1.0e-9); // convert nanoseconds to seconds
                 last = now;
                 racketA.setY(court.getRacketA() * scale);
-                //rotate(racketA,court.getRacketA());
                 racketB.setY(court.getRacketB() * scale);
-                //rotate(racketB,court.getRacketB());
                 ball.setCenterX(court.getBallX() * scale + xMargin);
                 ball.setCenterY(court.getBallY() * scale);
 
