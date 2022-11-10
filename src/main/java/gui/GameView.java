@@ -308,8 +308,7 @@ public class GameView {
     
 
 
-    private void rotate(java.awt.Rectangle r,double angle) {
-    }
+    //private void rotate(java.awt.Rectangle r,double angle) {}
 
 
     public void animate() {
@@ -333,9 +332,9 @@ public class GameView {
                 court.update((now - last) * 1.0e-9); // convert nanoseconds to seconds
                 last = now;
                 racketA.setY(court.getRacketA() * scale);
-                rotate(racketA,court.getRacketA());
+                //rotate(racketA,court.getRacketA());
                 racketB.setY(court.getRacketB() * scale);
-                rotate(racketB,court.getRacketB());
+                //rotate(racketB,court.getRacketB());
                 ball.setCenterX(court.getBallX() * scale + xMargin);
                 ball.setCenterY(court.getBallY() * scale);
 
