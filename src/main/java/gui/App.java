@@ -60,10 +60,6 @@ public class App extends Application {
 		var root = new Pane();
 		var gameScene = new Scene(root, width, height);
 
-		Button pause = new Button(".");
-		pause.setId("btnPause");
-		root.getChildren().addAll(pause);
-
 		//Fenêtre pause
 		var rootPause = new VBox();
 		// On crée la scene()
@@ -71,11 +67,6 @@ public class App extends Application {
 		// On lui applique le css
 		rootPause.setId("pause");
 		pauseScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-		// On y met le bouton 'pause'
-		pause.setOnAction(new EventHandler<ActionEvent>() {
-		public void handle(ActionEvent event) {
-      GameView.pause = true;
-			primaryStage.setScene(pauseScene); }});
 
 
         // ajout d'une image de fond
@@ -84,7 +75,7 @@ public class App extends Application {
 
         //music
         var music = new Music();
-        root.getChildren().addAll(music.mV);  
+        root.getChildren().addAll(music.mV);
 
 
         class Player implements RacketController,BallState {
@@ -96,9 +87,9 @@ public class App extends Application {
             }
             public StateBall getStateb() {
             	return stateb;
-            
+
         	}
-            
+
 
         }
         var playerA = new Player();
@@ -134,12 +125,12 @@ public class App extends Application {
                 	break;
                 case CONTROL:
                 	playerB.stateb =BallState.StateBall.FAST;
-                	break; 
+                	break;
                 case P:
 			             GameView.pause=true;
                     primaryStage.setScene(pauseScene);
                     break;
-                
+
             }
         });
         gameScene.setOnKeyReleased(ev -> {
@@ -412,7 +403,7 @@ public class App extends Application {
 	        volumeSlider.lookup(".track");
 	        volumeSlider.setValue(music.mP.getVolume() * 100);
 	        volumeSlider.valueProperty().addListener(new InvalidationListener() {
-	        	
+
 	        	public void invalidated(Observable observable) {
 	        		music.mP.setVolume(volumeSlider.getValue() / 100);
 	        	}

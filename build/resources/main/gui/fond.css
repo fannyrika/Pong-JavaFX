@@ -65,14 +65,6 @@
   -fx-background-size: 100%;
 }
 
-#btnPause {
-  -fx-font-size: 50px;
-  -fx-background-image: url("pause.png");
-  -fx-background-repeat: no-repeat;
-  -fx-background-size: 80px;
-  -fx-background-color: transparent;
-}
-
 #retourI {
   -fx-background-color: darkgray;
   -fx-font-size: 35px;
