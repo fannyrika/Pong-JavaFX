@@ -32,7 +32,8 @@ public class PlayerBoost{
         	active=true;
         	MediaPlayer mp=new MediaPlayer(court.activationBoost);
         	mp.play();
-        	currentSS=boost.chronometer.ss;
+        
+        	currentSS=boost.chronometer.secondeTimer;
         	currentTH=boost.chronometer.th;
 		boost=null;
 			break;
@@ -62,7 +63,6 @@ public class PlayerBoost{
 	//fonction qui boost la balle pendant x seconde et x dixieme;
 	public void boostPlayer(int seconde,int dixieme) {
 		if(active) {
-       	 
        	 if(seconde*10+dixieme<(currentSS+2)*10+currentTH) {
        			court.ballSpeedX*=1.02;
        			court.ballSpeedY*=1.02;

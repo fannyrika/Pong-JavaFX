@@ -7,7 +7,7 @@ public class Chrono {
   public int th  = 0;
   public int hd  = 0;
   public int cpt = 0;
-
+  public int secondeTimer=0;
 
 
 
@@ -22,10 +22,12 @@ public class Chrono {
     th=0;
     hd=0;
     cpt=0;
+    secondeTimer=0;
   }
 
   public void update() {
     cpt=cpt + 2;
+    secondeTimer=cpt/100;
     hd=cpt % 10;
     th=(cpt / 10) % 10;
     ss=(((cpt/ 100) % 60));
@@ -33,3 +35,4 @@ public class Chrono {
   }
 
 }
+

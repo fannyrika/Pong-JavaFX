@@ -253,7 +253,7 @@ public class GameView {
     }
     public void boost() {
    	 //toutes les 15 secondes fait spawn un boost si il y en a pas;
-   	 if(chronometer.ss%15==0&&chronometer.th==0&&chronometer.hd==0) {
+   	 if(chronometer.ss%30==0&&chronometer.th==0&&chronometer.hd==0) {
    		 if(boost!=null){
 			gameRoot.getChildren().remove(boost.boost);
          		boost=new Boost(court,chronometer,court.getBallSpeedX(),court.getBallSpeedY());
@@ -301,8 +301,8 @@ public class GameView {
    	 }
 
 
-      court.p1.boostPlayer(chronometer.ss,chronometer.th);
-      court.p2.boostPlayer(chronometer.ss,chronometer.th);
+   	 court.p1.boostPlayer(chronometer.secondeTimer,chronometer.th);
+     court.p2.boostPlayer(chronometer.secondeTimer,chronometer.th);
       
    }
 
@@ -314,10 +314,6 @@ public class GameView {
             @Override
             public void handle(long now) {
                 if (last == 0) { // ignore the first tick, just compute the first deltaT
-                    if((now - last)%65==0) {
-                        chronometer.update();
-                        timer.textProperty().bind(Bindings.format("%02d:%02d:%d%d",  chronometer.mm, chronometer.ss, chronometer.th, chronometer.hd));;
-                    }
                       last = now;
                     return;
                 }
