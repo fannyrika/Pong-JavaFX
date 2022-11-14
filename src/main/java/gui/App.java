@@ -119,7 +119,6 @@ public class App extends Application {
 			        music.mP.pause();
                     primaryStage.setScene(pauseScene);
                     break;
-                
             }
         });
         gameScene.setOnKeyReleased(ev -> {
@@ -217,6 +216,7 @@ public class App extends Application {
  		gameView.start(false);
  		gameView2.start(false);
            primaryStage.setScene(menuScene);
+           music.mP.play();
           }});
 
 
@@ -235,6 +235,7 @@ public class App extends Application {
 		gameView.start(false);
 		gameView2.start(false);
           primaryStage.setScene(modeScene);
+          music.mP.play();
          }});
 
         //Retour à la page pause
@@ -369,14 +370,15 @@ public class App extends Application {
 				else {
 					gameView2.animateBot();
 				}
-				primaryStage.setScene(gameScene); }});
+				primaryStage.setScene(gameScene);
+				music.mP.play();}});
 
 
 			//Page son
 			var sonRoot = new VBox();
 			sonRoot.setPadding(new Insets(height/2, 450,0, height/2));
 	        var sonScene = new Scene(sonRoot, width, height);
-	        var volumeSlider = new Slider(0.0, 100, 0.0);
+	        /*var volumeSlider = new Slider(0.0, 100, 0.0);
 	        volumeSlider.setId("slider");
 	        volumeSlider.lookup(".track");
 	        volumeSlider.setValue(music.mP.getVolume() * 100);
@@ -387,7 +389,7 @@ public class App extends Application {
 	        	}
 	        });
 	        var volume = new Text("Volume");
-	        volume.setFont(Font.font(30));
+	        volume.setFont(Font.font(30));*/
 			Button son = new Button("Musique et son");
 			son.setOnAction(new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent event) {
@@ -396,7 +398,7 @@ public class App extends Application {
 
 			sonRoot.setId("menu");
 			sonScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-			sonRoot.getChildren().addAll(volume,volumeSlider,retourpause);
+			sonRoot.getChildren().addAll(retourpause);
 			sonRoot.setAlignment(Pos.TOP_CENTER);
 
 			//Bouton pour quitter la partie
