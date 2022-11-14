@@ -115,7 +115,8 @@ public class App extends Application {
                 	playerB.stateb =BallState.StateBall.FAST;
                 	break; 
                 case P:
-			             GameView.pause=true;
+			        GameView.pause=true;
+			        music.mP.pause();
                     primaryStage.setScene(pauseScene);
                     break;
                 
@@ -168,6 +169,7 @@ public class App extends Application {
             switch (ev.getCode()) {
                 case P:
                 GameView.pause=false;
+                music.mP.play();
                 if(gameView.isStart()){
                 gameView.animate();
                 }
