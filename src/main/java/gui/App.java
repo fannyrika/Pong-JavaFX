@@ -60,10 +60,6 @@ public class App extends Application {
 		var root = new Pane();
 		var gameScene = new Scene(root, width, height);
 
-		Button pause = new Button(".");
-		pause.setId("btnPause");
-		root.getChildren().addAll(pause);
-
 		//Fenêtre pause
 		var rootPause = new VBox();
 		// On crée la scene()
@@ -71,11 +67,6 @@ public class App extends Application {
 		// On lui applique le css
 		rootPause.setId("pause");
 		pauseScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-		// On y met le bouton 'pause'
-		pause.setOnAction(new EventHandler<ActionEvent>() {
-		public void handle(ActionEvent event) {
-      GameView.pause = true;
-			primaryStage.setScene(pauseScene); }});
 
 
         // ajout d'une image de fond
