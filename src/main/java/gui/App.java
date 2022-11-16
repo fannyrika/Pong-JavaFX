@@ -169,7 +169,7 @@ public class App extends Application {
             }
         });
 
-        var bot = new Bot(playerA,1,1.0001);//test bot;
+        var bot = new Bot(playerA,1.0001);//test bot;
         var court = new Court(playerA,playerB,1.0001,playerA,playerB);
         var gameView = new GameView(court, root, 1.0);
         var gameView2 = new GameView(bot, root, 1.0);//test Bot;
@@ -273,6 +273,7 @@ public class App extends Application {
         Button facile = new Button("Facile");
         facile.setOnAction(new EventHandler<ActionEvent>() {
         public void handle(ActionEvent event) {
+        bot.setDifficulty(0);
 		gameView2.start(true);
 		gameView2.addRoootBot();
 		gameView2.animateBot();
@@ -283,6 +284,7 @@ public class App extends Application {
         Button moyen = new Button("Moyenne");
         moyen.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
+            bot.setDifficulty(1);
 		   gameView2.start(true);
 		   gameView2.addRoootBot();
 		   gameView2.animateBot();
@@ -293,20 +295,33 @@ public class App extends Application {
         Button difficile = new Button("Difficile");
         difficile.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
+            	bot.setDifficulty(2);
 	  	   gameView2.start(true);
 		   gameView2.addRoootBot();
 		   gameView2.animateBot();
               primaryStage.setScene(gameScene);
               }});
+       
+     
+        Button expert = new Button("Expert");
+        expert.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+            	bot.setDifficulty(3);
+            	gameView2.start(true);
+            	gameView2.addRoootBot();
+            	gameView2.animateBot();
+            	primaryStage.setScene(gameScene);
+              }});
         facile.setId("difficulte");
         moyen.setId("difficulte");
         difficile.setId("difficulte");
+        expert.setId("difficulte");
 
         Button opt2 = new Button("Jouer contre l'ordinateur");
         Label choix = new Label("\n\nChoisissez la difficulté du bot");
         choix.setId("ligne");
         var tmp = new HBox();
-        tmp.getChildren().addAll(facile,moyen,difficile);
+        tmp.getChildren().addAll(facile,moyen,difficile,expert);
         tmp.setAlignment(Pos.CENTER);
         opt2.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {

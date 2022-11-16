@@ -168,7 +168,7 @@ public class Court {
         // first, compute possible next position if nothing stands in the way
         double nextBallX = ballX + deltaT * ballSpeedX;
         double nextBallY = ballY + deltaT * ballSpeedY;
-        MediaPlayer mp=new MediaPlayer(ballsound);
+       
         // next, see if the ball would meet some obstacle
         if (nextBallY < 0 || nextBallY > height) {
             ballSpeedY = -ballSpeedY;
@@ -176,6 +176,7 @@ public class Court {
         }
         if ((nextBallX < 0 && nextBallY > racketA && nextBallY < racketA + racketSize)
                 || (nextBallX > width && nextBallY > racketB && nextBallY < racketB + racketSize)) {
+        	 MediaPlayer mp=new MediaPlayer(ballsound);
         	mp.play();
             ballSpeedX = -ballSpeedX;
             nextBallX = ballX + deltaT * ballSpeedX;

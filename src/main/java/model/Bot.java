@@ -6,13 +6,15 @@ public class Bot extends Court{
     private int difficulty;
     private int scoreP1 = 0;
     private int scoreP2 = 0;
-    public Bot(RacketController playerA,int difficulty,double acceleration){
+    public Bot(RacketController playerA,double acceleration){
       super(playerA,null,acceleration,null,null);
       this.difficulty=difficulty;
     }
 
 
-
+    public void setDifficulty(int n) {
+    	difficulty=n;
+    }
     public double getBot(){
       return bot;
     }
