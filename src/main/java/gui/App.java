@@ -318,7 +318,7 @@ public class App extends Application {
         expert.setId("difficulte");
 
         Button opt2 = new Button("Jouer contre l'ordinateur");
-        Label choix = new Label("\n\nChoisissez la difficulté du bot");
+        Label choix = new Label("\n\nChoisissez la difficult\u00e9 du bot");
         choix.setId("ligne");
         var tmp = new HBox();
         tmp.getChildren().addAll(facile,moyen,difficile,expert);
