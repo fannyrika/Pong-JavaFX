@@ -344,20 +344,24 @@ public class App extends Application {
         	//Page d'options
 
 			Button options = new Button("Options");
+			Button spacebg = new Button("Space");
+			Button tennisbg = new Button("Tennis Court");
+			options.setId("boutonsP");
+			spacebg.setId("boutonsP");
+			tennisbg.setId("boutonsP");
 			var optionsRoot = new VBox();
 			var optionsScene = new Scene(optionsRoot, width, height);
 			optionsRoot.setId("menu");
 			optionsScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-			optionsRoot.getChildren().addAll(retour);
+			optionsRoot.getChildren().addAll(spacebg,tennisbg,retour);
 			optionsRoot.setAlignment(Pos.CENTER);
 
 
 			options.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 			    primaryStage.setScene(optionsScene);
-			    options.setId("boutonsP");
-	            optionsRoot.getChildren().addAll(retour);
 	            }});
+			
 
 			// On crée les boutons de la page 'pause'
 			Button reprendre = new Button("Reprendre");
@@ -400,7 +404,45 @@ public class App extends Application {
 			sonScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
 			sonRoot.getChildren().addAll(retourpause);
 			sonRoot.setAlignment(Pos.TOP_CENTER);
-
+			
+			//Space theme
+			spacebg.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent event) {
+					rootPause.setId("spacebg");
+			        root.setId("spacebg");
+			        modeRoot.setId("spacebg");
+			        menuRoot.setId("spacebg");
+			        rulesroot.setId("spacebg");
+					optionsRoot.setId("spacebg");
+					sonRoot.setId("spacebg");
+					pauseScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+			        gameScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+			        modeScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+			        menuScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+			      	rules.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+					optionsScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+				    primaryStage.setScene(optionsScene);
+		            }});
+			
+			//Tennis court theme
+			tennisbg.setOnAction(new EventHandler<ActionEvent>() {
+				public void handle(ActionEvent event) {
+					rootPause.setId("pause");
+			        root.setId("terrain");
+			        modeRoot.setId("mode");
+			        menuRoot.setId("menu");
+			        rulesroot.setId("terrain");
+					optionsRoot.setId("terrain");
+					sonRoot.setId("terrain");
+					pauseScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+			        gameScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+			        modeScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+			        menuScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+			      	rules.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+					optionsScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+				    primaryStage.setScene(optionsScene);
+		            }});
+			
 			//Bouton pour quitter la partie
 			Button bye = new Button("Quitter le jeu");
 			bye.setOnAction(new EventHandler<ActionEvent>() {
