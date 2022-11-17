@@ -301,8 +301,8 @@ public class App extends Application {
 		   gameView2.animateBot();
               primaryStage.setScene(gameScene);
               }});
-       
-     
+
+
         Button expert = new Button("Expert");
         expert.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
@@ -362,11 +362,11 @@ public class App extends Application {
         Button instructions = new Button("Instructions");
         var rulesroot = new VBox();
         var rules = new Scene(rulesroot,width,height);
-      	Text regles = new Text("Règles du jeu : \n");
+      	Text regles = new Text("R\u00e8gles du jeu : \n");
         regles.setFont(Font.font(40));
         regles.setFill(Color.GREEN);
-        Text message = new Text("- Contrôler la raquette gauche avec Z et S \n\n- Contrôler la raquette droite avec UP et DOWN \n\n- Le but du jeu est d’envoyer la balle dans le camp adverse en mettant \nson adversaire dans l’incapacité de la renvoyer. \n\n- Obtenir 3 points pour gagner la partie \n\n-- Vous pouvez choisir un mode de jeu spécifique\nen début de partie ! \n");
-        message.setFont(Font.font(30));
+        Text message = new Text("- Contr\u00f4ler la raquette gauche avec Z et S \n\n- Contr\u00f4ler la raquette droite avec O et L \n\n- Le but du jeu est d'envoyer la balle dans le camp adverse en mettant \nson adversaire dans l'incapacit\u00e9 de la renvoyer. \n\n- Obtenir 3 points pour gagner la partie \n\n-- Vous pouvez choisir un mode de jeu sp\u00e9cifique\nen d\u00e9but de partie : \nLa difficult\u00e9 de l'ordinateur repr\u00e9sente son efficacit\u00e9 \u00e0 rattraper les balles;\nplus c'est difficile, moins il y a de chance qu'il les rate !\n\n-- Un boost (repr\u00e9sent\u00e9 par un cercle rouge avec un \u00e9clair jaune) sera affich\u00e9 sur votre terrain\nen cours de partie; si vous l'attrapez, activez le avec les boutons CTRL ou E pour acc\u00e9lerer la balle\n");
+        message.setFont(Font.font(25));
         message.setFill(Color.DARKRED);
         rulesroot.setId("regles");
         rulesroot.getChildren().addAll(regles,message,retourI);
