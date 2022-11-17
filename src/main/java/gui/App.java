@@ -94,80 +94,6 @@ public class App extends Application {
         }
         var playerA = new Player();
         var playerB = new Player();
-        gameScene.setOnKeyPressed(ev -> {
-            switch (ev.getCode()) {
-                case Z:
-                    playerA.state = RacketController.State.GOING_UP;
-                    break;
-                case S:
-                    playerA.state = RacketController.State.GOING_DOWN;
-                    break;
-                case Q:
-                    playerA.state = RacketController.State.TURN_LEFT;
-                    break;
-                case D:
-                    playerA.state = RacketController.State.TURN_RIGHT;
-                    break;
-                case O:
-                    playerB.state = RacketController.State.GOING_UP;
-                    break;
-                case L:
-                    playerB.state = RacketController.State.GOING_DOWN;
-                    break;
-                case K:
-                    playerB.state = RacketController.State.TURN_LEFT;
-                    break;
-                case M:
-                    playerB.state = RacketController.State.TURN_RIGHT;
-                    break;
-                case E:
-                	playerA.stateb=BallState.StateBall.FAST;
-                	break;
-                case CONTROL:
-                	playerB.stateb =BallState.StateBall.FAST;
-                	break;
-                case P:
-			             GameView.pause=true;
-                    primaryStage.setScene(pauseScene);
-                    break;
-
-            }
-        });
-        gameScene.setOnKeyReleased(ev -> {
-            switch (ev.getCode()) {
-                case Z:
-                    if (playerA.state == RacketController.State.GOING_UP) playerA.state = RacketController.State.IDLE;
-                    break;
-                case S:
-                    if (playerA.state == RacketController.State.GOING_DOWN) playerA.state = RacketController.State.IDLE;
-                    break;
-                case Q:
-                    if (playerA.state == RacketController.State.TURN_LEFT) playerA.state = RacketController.State.IDLE;
-                    break;
-                case D:
-                    if (playerA.state == RacketController.State.TURN_RIGHT) playerA.state = RacketController.State.IDLE;
-                    break;
-                case O:
-                    if (playerB.state == RacketController.State.GOING_UP) playerB.state = RacketController.State.IDLE;
-                    break;
-                case L:
-                    if (playerB.state == RacketController.State.GOING_DOWN) playerB.state = RacketController.State.IDLE;
-                    break;
-                case K:
-                    if (playerB.state == RacketController.State.TURN_LEFT) playerB.state = RacketController.State.IDLE;
-                    break;
-                case M:
-                    if (playerB.state == RacketController.State.TURN_RIGHT) playerB.state = RacketController.State.IDLE;
-                    break;
-                case E:
-                    if (playerA.stateb == BallState.StateBall.FAST) playerA.stateb = BallState.StateBall.IDLE;
-                    break;
-                case CONTROL:
-                    if (playerB.stateb == BallState.StateBall.FAST) playerB.stateb = BallState.StateBall.IDLE;
-                    break;
-
-            }
-        });
 
         var bot = new Bot(playerA,1.0001);//test bot;
         var court = new Court(playerA,playerB,1.0001,playerA,playerB);
@@ -185,20 +111,6 @@ public class App extends Application {
         var menuRoot = new VBox();
         //Créer une Scene() pour le menu, avec les dimensions de l'écran
         var menuScene = new Scene(menuRoot, width, height);
-
-
-        // touche 'p' pour revenir sur le jeu depuis la page 'pause'
-        pauseScene.setOnKeyPressed(ev -> {
-            switch (ev.getCode()) {
-                case P:
-                GameView.pause=false;
-                if(gameView.isStart()){
-                gameView.animate();
-                }
-                else {
-                  gameView2.animateBot();
-                }
-                primaryStage.setScene(gameScene); }});
 
 
         Button opt1 = new Button("Jouer en 1v1");
@@ -399,6 +311,7 @@ public class App extends Application {
 			Button reprendre = new Button("Reprendre");
 			reprendre.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
+
 				GameView.pause=false;
 				if(gameView.isStart()){
 				gameView.animate();
@@ -475,6 +388,99 @@ public class App extends Application {
         menuRoot.getChildren().addAll(nom, titre, jouer, instructions, options, quitter);
         menuRoot.setAlignment(Pos.CENTER);
 
+
+        gameScene.setOnKeyPressed(ev -> {
+            switch (ev.getCode()) {
+                case Z:
+                    playerA.state = RacketController.State.GOING_UP;
+                    break;
+                case S:
+                    playerA.state = RacketController.State.GOING_DOWN;
+                    break;
+                case Q:
+                    playerA.state = RacketController.State.TURN_LEFT;
+                    break;
+                case D:
+                    playerA.state = RacketController.State.TURN_RIGHT;
+                    break;
+                case O:
+                    playerB.state = RacketController.State.GOING_UP;
+                    break;
+                case L:
+                    playerB.state = RacketController.State.GOING_DOWN;
+                    break;
+                case K:
+                    playerB.state = RacketController.State.TURN_LEFT;
+                    break;
+                case M:
+                    playerB.state = RacketController.State.TURN_RIGHT;
+                    break;
+                case E:
+                	playerA.stateb=BallState.StateBall.FAST;
+                	break;
+                case CONTROL:
+                	playerB.stateb =BallState.StateBall.FAST;
+                	break;
+                case P:
+			             GameView.pause=true;
+                    primaryStage.setScene(pauseScene);
+                    mute.setId("boutonMute1");
+                    volumeSlider.setValue(0);
+                    break;
+
+            }
+        });
+        gameScene.setOnKeyReleased(ev -> {
+            switch (ev.getCode()) {
+                case Z:
+                    if (playerA.state == RacketController.State.GOING_UP) playerA.state = RacketController.State.IDLE;
+                    break;
+                case S:
+                    if (playerA.state == RacketController.State.GOING_DOWN) playerA.state = RacketController.State.IDLE;
+                    break;
+                case Q:
+                    if (playerA.state == RacketController.State.TURN_LEFT) playerA.state = RacketController.State.IDLE;
+                    break;
+                case D:
+                    if (playerA.state == RacketController.State.TURN_RIGHT) playerA.state = RacketController.State.IDLE;
+                    break;
+                case O:
+                    if (playerB.state == RacketController.State.GOING_UP) playerB.state = RacketController.State.IDLE;
+                    break;
+                case L:
+                    if (playerB.state == RacketController.State.GOING_DOWN) playerB.state = RacketController.State.IDLE;
+                    break;
+                case K:
+                    if (playerB.state == RacketController.State.TURN_LEFT) playerB.state = RacketController.State.IDLE;
+                    break;
+                case M:
+                    if (playerB.state == RacketController.State.TURN_RIGHT) playerB.state = RacketController.State.IDLE;
+                    break;
+                case E:
+                    if (playerA.stateb == BallState.StateBall.FAST) playerA.stateb = BallState.StateBall.IDLE;
+                    break;
+                case CONTROL:
+                    if (playerB.stateb == BallState.StateBall.FAST) playerB.stateb = BallState.StateBall.IDLE;
+                    break;
+
+            }
+        });
+
+
+    // touche 'p' pour revenir sur le jeu depuis la page 'pause'
+      pauseScene.setOnKeyPressed(ev -> {
+      switch (ev.getCode()) {
+        case P:
+        GameView.pause=false;
+        mute.setId("boutonMute2");
+        volumeSlider.setValue(60);
+        if(gameView.isStart()){
+            gameView.animate();
+        }
+        else {
+            gameView2.animateBot();
+        }
+        primaryStage.setScene(gameScene); }});
 
 
         primaryStage.setScene(menuScene);
