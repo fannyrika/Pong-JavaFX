@@ -73,6 +73,24 @@
   -fx-border-radius: 10% / 50%;
 }
 
+#boutonMute1{
+  -fx-background-image: url("mute.png");
+  -fx-background-color: transparent;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+  -fx-font-size: 30px;
+}
+
+#boutonMute2{
+  -fx-background-image: url("pasmute.png");
+  -fx-background-color: transparent;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+  -fx-font-size: 30px;
+}
+
 #retourI:hover {
   -fx-background-color: lightgray;
 }

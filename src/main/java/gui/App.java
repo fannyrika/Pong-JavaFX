@@ -411,29 +411,36 @@ public class App extends Application {
 
 			//Page son
 			var sonRoot = new VBox();
-			sonRoot.setPadding(new Insets(height/2, 450,0, height/2));
+			sonRoot.setPadding(new Insets(height/4, 450,0, height/2));
 	        var sonScene = new Scene(sonRoot, width, height);
 	        var volumeSlider = new Slider(0.0, 100, 0.0);
 	        volumeSlider.setId("slider");
 	        volumeSlider.lookup(".track");
 	        volumeSlider.setValue(music.mP.getVolume() * 100);
+          // Arrêter la musique (mute)
+          Button mute = new Button(" ");
+          mute.setId("boutonMute2");
+          mute.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+              if(volumeSlider.getValue() == 0){ mute.setId("boutonMute2"); volumeSlider.setValue(50);}
+              else{ mute.setId("boutonMute1"); volumeSlider.setValue(0);} }});
+          // Modifier le volume de la musique
 	        volumeSlider.valueProperty().addListener(new InvalidationListener() {
-
 	        	public void invalidated(Observable observable) {
 	        		music.mP.setVolume(volumeSlider.getValue() / 100);
 	        	}
 	        });
-	        var volume = new Text("Volume");
+	        var volume = new Text("Volume de la musique");
 	        volume.setFont(Font.font(30));
 			Button son = new Button("Musique et son");
+      son.setId("boutonsP");
 			son.setOnAction(new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent event) {
-					primaryStage.setScene(sonScene);
-					son.setId("boutonsP");}});
+					primaryStage.setScene(sonScene);}});
 
 			sonRoot.setId("menu");
 			sonScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-			sonRoot.getChildren().addAll(volume,volumeSlider,retourpause);
+			sonRoot.getChildren().addAll(mute,volume,volumeSlider,retourpause);
 			sonRoot.setAlignment(Pos.TOP_CENTER);
 
 			//Bouton pour quitter la partie
