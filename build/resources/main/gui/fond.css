@@ -65,20 +65,30 @@
   -fx-background-size: 100%;
 }
 
-#btnPause {
-  -fx-font-size: 50px;
-  -fx-background-image: url("pause.png");
-  -fx-background-repeat: no-repeat;
-  -fx-background-size: 80px;
-  -fx-background-color: transparent;
-}
-
 #retourI {
   -fx-background-color: darkgray;
-  -fx-font-size: 35px;
+  -fx-font-size: 20px;
   -fx-font-family: Yrsa Medium;
   -fx-font-weight: bolder;
   -fx-border-radius: 10% / 50%;
+}
+
+#boutonMute1{
+  -fx-background-image: url("mute.png");
+  -fx-background-color: transparent;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+  -fx-font-size: 30px;
+}
+
+#boutonMute2{
+  -fx-background-image: url("pasmute.png");
+  -fx-background-color: transparent;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+  -fx-font-size: 30px;
 }
 
 #retourI:hover {
