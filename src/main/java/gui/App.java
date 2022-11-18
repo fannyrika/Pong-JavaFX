@@ -114,21 +114,6 @@ public class App extends Application {
         var menuScene = new Scene(menuRoot, width, height);
 
 
-        // touche 'p' pour revenir sur le jeu depuis la page 'pause'
-        pauseScene.setOnKeyPressed(ev -> {
-            switch (ev.getCode()) {
-                case P:
-                GameView.pause=false;
-                music.mP.play();
-                if(gameView.isStart()){
-                gameView.animate();
-                }
-                else {
-                  gameView2.animateBot();
-                }
-                primaryStage.setScene(gameScene); }});
-
-
         Button opt1 = new Button("Jouer en 1v1");
         opt1.setOnAction(new EventHandler<ActionEvent>() {
         public void handle(ActionEvent event) {
@@ -233,7 +218,7 @@ public class App extends Application {
         difficile.setId("difficulte");
 
         Button opt2 = new Button("Jouer contre l'ordinateur");
-        Label choix = new Label("\n\nChoisissez la difficulté du bot");
+        Label choix = new Label("\n\nChoisissez la difficult\u00e9 du bot");
         choix.setId("ligne");
         var tmp = new HBox();
         tmp.getChildren().addAll(facile,moyen,difficile);
@@ -258,7 +243,24 @@ public class App extends Application {
 
 
         //Page d'instructions
-
+        var rulesroot = new VBox();
+        var rules = new Scene(rulesroot,width,height);
+        
+		// On crée les boutons de la page 'pause'
+		Button reprendre = new Button("Reprendre");
+		reprendre.setOnAction(new EventHandler<ActionEvent>() {
+		public void handle(ActionEvent event) {
+			rulesroot.getChildren().remove(reprendre);
+			GameView.pause=false;
+			if(gameView.isStart()){
+			gameView.animate();
+			}
+			else {
+				gameView2.animateBot();
+			}
+			primaryStage.setScene(gameScene);
+			music.mP.play();}});
+        
                 Button retourI = new Button("Retour au menu");
                 retourI.setId("retourI");
                 retourI.setOnAction(new EventHandler<ActionEvent>() {
@@ -271,12 +273,11 @@ public class App extends Application {
         		gameView2.resetBot();
         		gameView.start(false);
         		gameView2.start(false);
-                  primaryStage.setScene(menuScene);
+        		rulesroot.getChildren().remove(reprendre);
+                primaryStage.setScene(menuScene);
                  }});
 
         Button instructions = new Button("Instructions");
-        var rulesroot = new VBox();
-        var rules = new Scene(rulesroot,width,height);
       	Text regles = new Text("R\u00e8gles du jeu : \n");
         regles.setFont(Font.font(35));
         regles.setFill(Color.GREEN);
@@ -312,21 +313,7 @@ public class App extends Application {
 			public void handle(ActionEvent event) {
 			    primaryStage.setScene(optionsScene);
 	            }});
-			
-
-			// On crée les boutons de la page 'pause'
-			Button reprendre = new Button("Reprendre");
-			reprendre.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
-				GameView.pause=false;
-				if(gameView.isStart()){
-				gameView.animate();
-				}
-				else {
-					gameView2.animateBot();
-				}
-				primaryStage.setScene(gameScene);
-				music.mP.play();}});
+		
 
 
 			//Page son
@@ -456,8 +443,17 @@ public class App extends Application {
 			        music.mP.pause();
                     primaryStage.setScene(pauseScene);
                     break;
-            }
-        });
+                case M:
+                	if(volumeSlider.getValue() == 0){ mute.setId("boutonMute2"); volumeSlider.setValue(50);}
+                    else{ mute.setId("boutonMute1"); volumeSlider.setValue(0);} 
+                	break;
+                case H: 
+                    GameView.pause=true; 
+                    rulesroot.getChildren().add(reprendre);
+                    primaryStage.setScene(rules);
+                    break;
+                }});
+       
         gameScene.setOnKeyReleased(ev -> {
             switch (ev.getCode()) {
                 case Z:
@@ -481,7 +477,62 @@ public class App extends Application {
 
             }
         });
+        
 
+        // touche 'p' pour revenir sur le jeu depuis la page 'pause'
+        pauseScene.setOnKeyPressed(ev -> {
+            switch (ev.getCode()) {
+                case P:
+                GameView.pause=false;
+                music.mP.play();
+                if(gameView.isStart()){
+                gameView.animate();
+                }
+                else {
+                  gameView2.animateBot();
+                }
+                primaryStage.setScene(gameScene);
+            	break;}});
+        
+        
+        menuScene.setOnKeyPressed(ev -> {
+            switch (ev.getCode()) {
+                case M:
+                	if(volumeSlider.getValue() == 0){ mute.setId("boutonMute2"); volumeSlider.setValue(50);}
+                    else{ mute.setId("boutonMute1"); volumeSlider.setValue(0);}
+                	break;
+                case H:
+                    primaryStage.setScene(rules);
+                    break;
+                 }});
+        
+        rules.setOnKeyPressed(ev -> {
+            switch (ev.getCode()) {
+                case M:
+                	if(volumeSlider.getValue() == 0){ mute.setId("boutonMute2"); volumeSlider.setValue(50);}
+                    else{ mute.setId("boutonMute1"); volumeSlider.setValue(0);}
+                	break;
+                case H: 
+                    if(gameView.isStart() || gameView2.isStart()){
+                    	GameView.pause=false; 
+                    	if(gameView.isStart()) gameView.animate();
+                    	else gameView2.animateBot();
+                    	primaryStage.setScene(gameScene);
+                        }
+                    else {
+                     	rulesroot.getChildren().remove(reprendre);
+                     	primaryStage.setScene(menuScene);
+                    }
+                    break; 
+                 }});
+        
+        modeScene.setOnKeyPressed(ev -> {
+            switch (ev.getCode()) {
+                case M:
+                	if(volumeSlider.getValue() == 0){ mute.setId("boutonMute2"); volumeSlider.setValue(50);}
+                    else{ mute.setId("boutonMute1"); volumeSlider.setValue(0);}
+                	break;
+                 }});
 
         primaryStage.setScene(menuScene);
         primaryStage.show();
