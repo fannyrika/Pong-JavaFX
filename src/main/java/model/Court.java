@@ -1,8 +1,10 @@
 package model;
 
 import javafx.geometry.Rectangle2D;
+
 import javafx.scene.media.Media;
 import java.io.File;
+import java.util.Random;
 
 import javafx.stage.Screen;
 public class Court {
@@ -185,9 +187,29 @@ public class Court {
         this.racketA = height / 2;
         this.racketB = height / 2;
         this.racketSpeed = 300.0;
-        this.ballSpeedX = 200.0;
-        this.ballSpeedY = 200.0;
+    	this.racketA = height / 2;
+        this.racketB = height / 2;
+        Random rd=new Random();
+        int x=rd.nextInt(4);
+        int y=rd.nextInt(200)+100;
+	   	if(x==0) {
+		        this.ballSpeedX=-200-y%200;
+		        this.ballSpeedY=-y;
+	   	}
+	   	else if(x==1) {
+	   		this.ballSpeedX=200+y%200;
+	        this.ballSpeedY=-y;
+	   	}
+		else if(x==2) {
+	   		this.ballSpeedX=-200-y%200;
+	        this.ballSpeedY=y;
+	   	}
+		else {
+	   		this.ballSpeedX=200+y%200;
+	        this.ballSpeedY=y;
+	   	}
+        
         this.ballX = width / 2;
-        this.ballY = height / 2;
+        this.ballY = Math.random()*((height-100))+50;
     }
 }
