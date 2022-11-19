@@ -116,15 +116,6 @@ public class App extends Application {
         var menuScene = new Scene(menuRoot, width, height);
 
 
-        Button opt1 = new Button("Jouer en 1v1");
-        opt1.setOnAction(new EventHandler<ActionEvent>() {
-        public void handle(ActionEvent event) {
-		gameView.start(true);
-		gameView.addRoot1V1();
-		gameView.animate();
-           primaryStage.setScene(gameScene);}});
-
-
         Button retour = new Button("Retour au menu");
         retour.setId("boutons");
         retour.setOnAction(new EventHandler<ActionEvent>() {
@@ -187,6 +178,12 @@ public class App extends Application {
         retourpause.setId("boutonsP");
 
 
+        var tmp = new HBox();
+        tmp.setSpacing(15.0);
+
+        Label choix = new Label("\n\nChoisissez la difficult\u00e9 du bot");
+        choix.setId("ligne");
+
         Button facile = new Button("Facile");
         facile.setOnAction(new EventHandler<ActionEvent>() {
         public void handle(ActionEvent event) {
@@ -194,7 +191,8 @@ public class App extends Application {
         		gameView2.start(true);
         		gameView2.addRoootBot();
         		gameView2.animateBot();
-           primaryStage.setScene(gameScene);  }});
+           primaryStage.setScene(gameScene);
+           modeRoot.getChildren().removeAll(tmp,choix);  }});
 
 
         Button moyen = new Button("Moyenne");
@@ -204,7 +202,8 @@ public class App extends Application {
         		   gameView2.start(true);
         		   gameView2.addRoootBot();
         		   gameView2.animateBot();
-              primaryStage.setScene(gameScene);   }});
+              primaryStage.setScene(gameScene);
+              modeRoot.getChildren().removeAll(tmp,choix);   }});
 
 
         Button difficile = new Button("Difficile");
@@ -214,7 +213,8 @@ public class App extends Application {
         	  	   gameView2.start(true);
         		   gameView2.addRoootBot();
         		   gameView2.animateBot();
-              primaryStage.setScene(gameScene); }});
+              primaryStage.setScene(gameScene);
+              modeRoot.getChildren().removeAll(tmp,choix); }});
 
 
           Button expert = new Button("Expert");
@@ -224,7 +224,8 @@ public class App extends Application {
                 gameView2.start(true);
                 gameView2.addRoootBot();
                 gameView2.animateBot();
-                primaryStage.setScene(gameScene);  }});
+                primaryStage.setScene(gameScene);
+                modeRoot.getChildren().removeAll(tmp,choix);  }});
 
 
         facile.setId("difficulte");
@@ -232,11 +233,16 @@ public class App extends Application {
         difficile.setId("difficulte");
         expert.setId("difficulte");
 
+        Button opt1 = new Button("Jouer en 1v1");
+        opt1.setOnAction(new EventHandler<ActionEvent>() {
+        public void handle(ActionEvent event) {
+      		gameView.start(true);
+      		gameView.addRoot1V1();
+      		gameView.animate();
+           primaryStage.setScene(gameScene);
+         modeRoot.getChildren().removeAll(tmp,choix); }});
+
         Button opt2 = new Button("Jouer contre l'ordinateur");
-        Label choix = new Label("\n\nChoisissez la difficult\u00e9 du bot");
-        choix.setId("ligne");
-        var tmp = new HBox();
-        tmp.setSpacing(15.0);
         tmp.getChildren().addAll(facile,moyen,difficile,expert);
         tmp.setAlignment(Pos.CENTER);
         opt2.setOnAction(new EventHandler<ActionEvent>() {
@@ -355,10 +361,10 @@ public class App extends Application {
 	        var volume = new Text("Volume");
 	        volume.setFont(Font.font(30));
 			Button son = new Button("Musique et son");
+      son.setId("boutonsP");
 			son.setOnAction(new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent event) {
-					primaryStage.setScene(sonScene);
-					son.setId("boutonsP");}});
+					primaryStage.setScene(sonScene); }});
 
 			sonRoot.setId("menu");
 			sonScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
@@ -499,19 +505,53 @@ public class App extends Application {
         pauseScene.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
                 case P:
-                GameView.pause=false;
-                music.mP.play();
-                if(gameView.isStart()){
-                gameView.animate();
-                }
-                else {
-                  gameView2.animateBot();
-                }
-                primaryStage.setScene(gameScene);
-            	break;}});
+                  GameView.pause=false;
+                  music.mP.play();
+                  if(gameView.isStart()){
+                  gameView.animate();
+                  }
+                  else {
+                    gameView2.animateBot();
+                  }
+                  primaryStage.setScene(gameScene);
+              	  break;
+                case N:
+                  GameView.stop=false;
+                  GameView.pause=false;
+                  gameView.remove1v1();
+                  gameView2.removeBot();
+                  gameView.reset1V1();
+                  gameView2.resetBot();
+                  gameView.start(false);
+                  gameView2.start(false);
+                  primaryStage.setScene(modeScene);
+                  music.mP.play();
+                  break;
+                case M:
+                  GameView.stop=false;
+                  GameView.pause=false;
+                  gameView.remove1v1();
+                  gameView2.removeBot();
+                  gameView.reset1V1();
+                  gameView2.resetBot();
+                  gameView.start(false);
+                  gameView2.start(false);
+                  primaryStage.setScene(menuScene);
+                  music.mP.play();
+                  break;
+                case S:
+                  primaryStage.setScene(sonScene);
+                  break;
+                case Q:
+                  primaryStage.close();
+                  break;
+                }});
 
         menuScene.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
+                case J:
+                    primaryStage.setScene(modeScene);
+                    break;
                 case M:
                 	if(volumeSlider.getValue() == 0){ mute.setId("boutonMute2"); volumeSlider.setValue(50);}
                     else{ mute.setId("boutonMute1"); volumeSlider.setValue(0);}
@@ -553,17 +593,61 @@ public class App extends Application {
                     break;
                  }});
 
+        sonScene.setOnKeyPressed(ev -> {
+          switch (ev.getCode()){
+            case S:
+              primaryStage.setScene(pauseScene);
+              break;
+          }});
+
         modeScene.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
                 case M:
                 	if(volumeSlider.getValue() == 0){ mute.setId("boutonMute2"); volumeSlider.setValue(50);}
                     else{ mute.setId("boutonMute1"); volumeSlider.setValue(0);}
                 	break;
-                case SPACE:
-                  modeRoot.getChildren().removeAll(choix, tmp);
-                  modeRoot.getChildren().addAll(choix, tmp);
+                case S:
+                  gameView.start(true);
+                  gameView.addRoot1V1();
+                  gameView.animate();
+                  primaryStage.setScene(gameScene);
+                  modeRoot.getChildren().removeAll(tmp,choix);
                   break;
-                 }});
+                case V:
+                  modeRoot.getChildren().addAll(choix,tmp);
+                  break;
+                case F:
+                  bot.setDifficulty(0);
+                  gameView2.start(true);
+                  gameView2.addRoootBot();
+                  gameView2.animateBot();
+                  primaryStage.setScene(gameScene);
+                  modeRoot.getChildren().removeAll(tmp,choix);
+                  break;
+                case R:
+                  bot.setDifficulty(1);
+                 gameView2.start(true);
+                 gameView2.addRoootBot();
+                 gameView2.animateBot();
+                 primaryStage.setScene(gameScene);
+                 modeRoot.getChildren().removeAll(tmp,choix);
+                 break;
+               case D:
+                 bot.setDifficulty(2);
+                gameView2.start(true);
+                gameView2.addRoootBot();
+                gameView2.animateBot();
+                primaryStage.setScene(gameScene);
+                modeRoot.getChildren().removeAll(tmp,choix);
+                break;
+               case E:
+                 bot.setDifficulty(3);
+                gameView2.start(true);
+                gameView2.addRoootBot();
+                gameView2.animateBot();
+                primaryStage.setScene(gameScene);
+                modeRoot.getChildren().removeAll(tmp,choix);
+                break;  }});
 
         primaryStage.setScene(menuScene);
         primaryStage.show();
