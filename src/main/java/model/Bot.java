@@ -11,7 +11,9 @@ public class Bot extends Court{
       this.difficulty=difficulty;
     }
 
-
+    public void setDifficulty(int n) {
+    	difficulty=n;
+    }
 
     public double getBot(){
       return bot;
@@ -71,7 +73,7 @@ public class Bot extends Court{
                    if (bot + this.getRacketSize() > this.getHeight()) bot = this.getHeight() - this.getRacketSize();
                }
              }
-             //deplace le bot de manière aleatoire lorsque la vitesse de la balle est negative ou bien lorque la balle depasse les 1/3 du terrain; 
+             //deplace le bot de manière aleatoire lorsque la vitesse de la balle est negative ou bien lorque la balle depasse les 1/3 du terrain;
              else{
   		       deplacementAleatoire(deltaT);
   		     }
@@ -170,7 +172,7 @@ public class Bot extends Court{
 		scoreP1 = 0;
    		scoreP2 = 0;
 	}
-		
+
     public void reset() {
         this.setRacketA(this.getHeight()/2);
         this.bot=this.getHeight()/2;
