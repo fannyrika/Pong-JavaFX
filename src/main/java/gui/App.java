@@ -176,6 +176,7 @@ public class App extends Application {
         retourpause.setId("boutonsP");
         retourpause.setOnAction(new EventHandler<ActionEvent>() {
         public void handle(ActionEvent event) {
+          music.mP.pause();
           primaryStage.setScene(pauseScene);
          }});
 
@@ -383,6 +384,7 @@ public class App extends Application {
       son.setId("boutonsP");
 			son.setOnAction(new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent event) {
+          music.mP.play();
 					primaryStage.setScene(sonScene); }});
 
 			sonRoot.setId("menu");
@@ -599,6 +601,7 @@ public class App extends Application {
                   }
                   else if(son.getId() == "boutonsSelec"){
                     primaryStage.setScene(sonScene);
+                    music.mP.play();
                   }
                   else if(bye.getId() == "boutonsSelec"){
                     primaryStage.close();
@@ -696,7 +699,12 @@ public class App extends Application {
         sonScene.setOnKeyPressed(ev -> {
           switch (ev.getCode()){
             case S:
+              music.mP.pause();
               primaryStage.setScene(pauseScene);
+              break;
+            case M:
+              if(volumeSlider.getValue() == 0){ mute.setId("boutonMute2"); volumeSlider.setValue(50);}
+              else{ mute.setId("boutonMute1"); volumeSlider.setValue(0);}
               break;
             case RIGHT:
               mute.setId("boutonMute2");
@@ -704,7 +712,7 @@ public class App extends Application {
               break;
             case LEFT:
               if(volumeSlider.getValue() > 0) volumeSlider.setValue(volumeSlider.getValue()-5);
-              if(volumeSlider.getValue() <= 0) mute.setId("boutonMute1");
+              if(volumeSlider.getValue() == 0) mute.setId("boutonMute1");
               break;
           }});
 
