@@ -28,7 +28,15 @@
 }
 
 #modes:hover {
-  -fx-background-color: lightgray;
+  -fx-background-color: #808080;
+}
+
+#modesSelec{
+  -fx-background-color: #808080;
+  -fx-font-size: 35px;
+  -fx-font-family: Yrsa Medium;
+  -fx-font-weight: bolder;
+  -fx-border-radius: 10% / 50%;
 }
 
 #ligne {
@@ -56,6 +64,22 @@
     #difficulte:hover {
       -fx-background-color: #607D3B;
     }
+
+   #diffSelec{
+     -fx-font-family: Yrsa Medium;
+      -fx-display: inline-block;
+      -fx-background-color: #607D3B;
+      -fx-border-radius: 10px;
+      -fx-border: 4px double #cccccc;
+      -fx-color: #eeeeee;
+      -fx-text-align: center;
+      -fx-font-size: 28px;
+      -fx-padding: 20px;
+      -fx-width: 200px;
+      -fx-transition: all 0.5s;
+      -fx-cursor: pointer;
+      -fx-margin: 5px;
+   }
 
 #pause {
   -fx-background-image: url("fondpoz.png");
@@ -116,6 +140,14 @@
     -fx-font-size: 35px;
     -fx-font-family: Yrsa Medium;
     -fx-font-weight: bolder;
+}
+
+#boutonsSelec{
+  -fx-font-color: BLACK;
+  -fx-background-color: transparent;
+  -fx-font-family: Yrsa Medium;
+  -fx-font-weight: bolder;
+  -fx-font-size: 45px;
 }
 
 #boutonsP:hover {

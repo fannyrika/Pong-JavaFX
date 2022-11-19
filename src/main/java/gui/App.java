@@ -185,7 +185,7 @@ public class App extends Application {
         var tmp = new HBox();
         tmp.setSpacing(15.0);
 
-        Label choix = new Label("\n\nChoisissez la difficult\u00e9 du bot");
+        Label choix = new Label("\n\nChoisissez la difficult\u00e9 du bot (s\u00e9l\u00e9ctionner avec ENTRER)");
         choix.setId("ligne");
 
         Button facile = new Button("Facile");
@@ -236,7 +236,7 @@ public class App extends Application {
                 modeRoot.getChildren().removeAll(tmp,choix);  }});
 
 
-        facile.setId("difficulte");
+        facile.setId("diffSelec");
         moyen.setId("difficulte");
         difficile.setId("difficulte");
         expert.setId("difficulte");
@@ -260,7 +260,7 @@ public class App extends Application {
               modeRoot.getChildren().removeAll(choix, tmp);
               modeRoot.getChildren().addAll(choix, tmp); }});
 
-        opt1.setId("modes");
+        opt1.setId("modesSelec");
         opt2.setId("modes");
 
         modeRoot.getChildren().addAll(opt1,opt2,retour);
@@ -438,7 +438,7 @@ public class App extends Application {
 
 				rootPause.getChildren().addAll(reprendre,retourP,retourmode, son, bye);
 				rootPause.setAlignment(Pos.CENTER);
-				reprendre.setId("boutonsP");
+				reprendre.setId("boutonsSelec");
 				son.setId("boutonsP");
 				bye.setId("boutonsP");
 
@@ -452,7 +452,7 @@ public class App extends Application {
 
         Label nom = new Label("nootynootnoot");
         Label titre = new Label("PONG");
-        jouer.setId("boutons");
+        jouer.setId("boutonsSelec");
         instructions.setId("boutons");
         options.setId("boutons");
         quitter.setId("boutons");
@@ -525,6 +525,84 @@ public class App extends Application {
         // touche 'p' pour revenir sur le jeu depuis la page 'pause'
         pauseScene.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
+                case DOWN:
+                  if(reprendre.getId() == "boutonsSelec"){
+                    reprendre.setId("boutonsP");
+                    retourP.setId("boutonsSelec");
+                  }
+                  else if(retourP.getId() == "boutonsSelec"){
+                    retourP.setId("boutonsP");
+                    retourmode.setId("boutonsSelec");
+                  }
+                  else if(retourmode.getId() == "boutonsSelec"){
+                    retourmode.setId("boutonsP");
+                    son.setId("boutonsSelec");
+                  }
+                  else if(son.getId() == "boutonsSelec"){
+                    son.setId("boutonsP");
+                    bye.setId("boutonsSelec");
+                  }
+                  break;
+                case UP:
+                  if(bye.getId() == "boutonsSelec"){
+                    bye.setId("boutonsP");
+                    son.setId("boutonsSelec");
+                  }
+                  else if(son.getId() == "boutonsSelec"){
+                    son.setId("boutonsP");
+                    retourmode.setId("boutonsSelec");
+                  }
+                  else if(retourmode.getId() == "boutonsSelec"){
+                    retourmode.setId("boutonsP");
+                    retourP.setId("boutonsSelec");
+                  }
+                  else if(retourP.getId() == "boutonsSelec"){
+                    retourP.setId("boutonsP");
+                    reprendre.setId("boutonsSelec");
+                  }
+                  break;
+                case SPACE:
+                  if(reprendre.getId() == "boutonsSelec"){
+                    GameView.pause=false;
+                    music.mP.play();
+                    if(gameView.isStart()){
+                    gameView.animate();
+                    }
+                    else {
+                      gameView2.animateBot();
+                    }
+                    primaryStage.setScene(gameScene);
+                  }
+                  if(retourP.getId() == "boutonsSelec"){
+                    GameView.stop=false;
+                    GameView.pause=false;
+                    gameView.remove1v1();
+                    gameView2.removeBot();
+                    gameView.reset1V1();
+                    gameView2.resetBot();
+                    gameView.start(false);
+                    gameView2.start(false);
+                    primaryStage.setScene(menuScene);
+                    music.mP.play();
+                  }
+                  if(retourmode.getId() == "boutonsSelec"){
+                    GameView.stop=false;
+                    GameView.pause=false;
+                    gameView.remove1v1();
+                    gameView2.removeBot();
+                    gameView.reset1V1();
+                    gameView2.resetBot();
+                    gameView.start(false);
+                    gameView2.start(false);
+                    primaryStage.setScene(modeScene);
+                    music.mP.play();
+                  }
+                  if(son.getId() == "boutonsSelec"){
+                    primaryStage.setScene(sonScene);
+                  }
+                  if(bye.getId() == "boutonsSelec"){
+                    primaryStage.close();
+                  }
                 case P:
                   GameView.pause=false;
                   music.mP.play();
@@ -536,61 +614,61 @@ public class App extends Application {
                   }
                   primaryStage.setScene(gameScene);
               	  break;
-                case N:
-                  GameView.stop=false;
-                  GameView.pause=false;
-                  gameView.remove1v1();
-                  gameView2.removeBot();
-                  gameView.reset1V1();
-                  gameView2.resetBot();
-                  gameView.start(false);
-                  gameView2.start(false);
-                  primaryStage.setScene(modeScene);
-                  music.mP.play();
-                  break;
-                case M:
-                  GameView.stop=false;
-                  GameView.pause=false;
-                  gameView.remove1v1();
-                  gameView2.removeBot();
-                  gameView.reset1V1();
-                  gameView2.resetBot();
-                  gameView.start(false);
-                  gameView2.start(false);
-                  primaryStage.setScene(menuScene);
-                  music.mP.play();
-                  break;
-                case S:
-                  primaryStage.setScene(sonScene);
-                  break;
-                case Q:
-                  primaryStage.close();
-                  break;
                 }});
 
         menuScene.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
-                case J:
-                    primaryStage.setScene(modeScene);
-                    break;
+              case DOWN:
+                  if(jouer.getId() == "boutonsSelec"){
+                    jouer.setId("boutons");
+                    instructions.setId("boutonsSelec");
+                  }
+                  else if(instructions.getId() == "boutonsSelec"){
+                    instructions.setId("boutons");
+                    options.setId("boutonsSelec");
+                  }
+                  else if(options.getId() == "boutonsSelec"){
+                    options.setId("boutons");
+                    quitter.setId("boutonsSelec");
+                  }
+                  break;
+              case UP:
+                  if(quitter.getId() == "boutonsSelec"){
+                    quitter.setId("boutons");
+                    options.setId("boutonsSelec");
+                  }
+                  else if(options.getId() == "boutonsSelec"){
+                    options.setId("boutons");
+                    instructions.setId("boutonsSelec");
+                  }
+                  else if(instructions.getId() == "boutonsSelec"){
+                    instructions.setId("boutons");
+                    jouer.setId("boutonsSelec");
+                  }
+                  break;
+                case SPACE:
+                  if(jouer.getId() == "boutonsSelec"){
+                     primaryStage.setScene(modeScene);
+                  }
+                  else if(instructions.getId() == "boutonsSelec"){
+                     primaryStage.setScene(rules);
+                  }
+                  else if(options.getId() == "boutonsSelec"){
+                     primaryStage.setScene(optionsScene);
+                  }
+                  else if(quitter.getId() == "boutonsSelec"){
+                     primaryStage.close();
+                  }
+                  break;
                 case M:
                 	if(volumeSlider.getValue() == 0){ mute.setId("boutonMute2"); volumeSlider.setValue(50);}
                     else{ mute.setId("boutonMute1"); volumeSlider.setValue(0);}
                 	break;
-                case H:
-                    primaryStage.setScene(rules);
-                    break;
-                case O:
-                    primaryStage.setScene(optionsScene);
-                    break;
-                case Q:
-                    primaryStage.close();
-                    break;
                  }});
 
        optionsScene.setOnKeyPressed(ev -> {
              switch (ev.getCode()) {
-                case O:
+                case R:
                 	primaryStage.setScene(menuScene);
                   break; }});
 
@@ -635,48 +713,92 @@ public class App extends Application {
                 	if(volumeSlider.getValue() == 0){ mute.setId("boutonMute2"); volumeSlider.setValue(50);}
                     else{ mute.setId("boutonMute1"); volumeSlider.setValue(0);}
                 	break;
-                case S:
-                  gameView.start(true);
-                  gameView.addRoot1V1();
-                  gameView.animate();
-                  primaryStage.setScene(gameScene);
-                  modeRoot.getChildren().removeAll(tmp,choix);
+                case DOWN:
+                  if(opt1.getId() == "modesSelec"){
+                    opt1.setId("modes");
+                    opt2.setId("modesSelec");
+                  }
                   break;
-                case V:
-                  modeRoot.getChildren().addAll(choix,tmp);
+                case UP:
+                  if(opt2.getId() == "modesSelec"){
+                    opt2.setId("modes");
+                    opt1.setId("modesSelec");
+                  }
                   break;
-                case F:
-                  bot.setDifficulty(0);
-                  gameView2.start(true);
-                  gameView2.addRoootBot();
-                  gameView2.animateBot();
-                  primaryStage.setScene(gameScene);
-                  modeRoot.getChildren().removeAll(tmp,choix);
+                case RIGHT:
+                  if(facile.getId() == "diffSelec"){
+                    facile.setId("difficulte");
+                    moyen.setId("diffSelec");
+                  }
+                  else if(moyen.getId() == "diffSelec"){
+                    moyen.setId("difficulte");
+                    difficile.setId("diffSelec");
+                  }
+                  else if(difficile.getId() == "diffSelec"){
+                    difficile.setId("difficulte");
+                    expert.setId("diffSelec");
+                  }
                   break;
-                case R:
-                  bot.setDifficulty(1);
-                 gameView2.start(true);
-                 gameView2.addRoootBot();
-                 gameView2.animateBot();
-                 primaryStage.setScene(gameScene);
-                 modeRoot.getChildren().removeAll(tmp,choix);
-                 break;
-               case D:
-                 bot.setDifficulty(2);
-                gameView2.start(true);
-                gameView2.addRoootBot();
-                gameView2.animateBot();
-                primaryStage.setScene(gameScene);
-                modeRoot.getChildren().removeAll(tmp,choix);
+                case LEFT:
+                  if(expert.getId() == "diffSelec"){
+                    expert.setId("difficulte");
+                    difficile.setId("diffSelec");
+                  }
+                  else if(difficile.getId() == "diffSelec"){
+                    difficile.setId("difficulte");
+                    moyen.setId("diffSelec");
+                  }
+                  else if(moyen.getId() == "diffSelec"){
+                    moyen.setId("difficulte");
+                    facile.setId("diffSelec");
+                  }
                 break;
-               case E:
-                 bot.setDifficulty(3);
-                gameView2.start(true);
-                gameView2.addRoootBot();
-                gameView2.animateBot();
-                primaryStage.setScene(gameScene);
-                modeRoot.getChildren().removeAll(tmp,choix);
-                break;  }});
+                case SPACE:
+                  if(opt1.getId() == "modesSelec"){
+                    gameView.start(true);
+                    gameView.addRoot1V1();
+                    gameView.animate();
+                    primaryStage.setScene(gameScene);
+                    modeRoot.getChildren().removeAll(tmp,choix);
+                  }
+                  else if(opt2.getId() == "modesSelec"){
+                    modeRoot.getChildren().addAll(choix,tmp);
+                    opt2.setId("modes");
+                  }
+                  break;
+                case ENTER:
+                  if(facile.getId() == "diffSelec"){
+                    bot.setDifficulty(0);
+                    gameView2.start(true);
+                    gameView2.addRoootBot();
+                    gameView2.animateBot();
+                    primaryStage.setScene(gameScene);
+                    modeRoot.getChildren().removeAll(tmp,choix);
+                  }
+                  else if(moyen.getId() == "diffSelec"){
+                    bot.setDifficulty(1);
+                   gameView2.start(true);
+                   gameView2.addRoootBot();
+                   gameView2.animateBot();
+                   primaryStage.setScene(gameScene);
+                   modeRoot.getChildren().removeAll(tmp,choix);
+                  }
+                  else if(difficile.getId() == "diffSelec"){
+                    bot.setDifficulty(2);
+                   gameView2.start(true);
+                   gameView2.addRoootBot();
+                   gameView2.animateBot();
+                   primaryStage.setScene(gameScene);
+                   modeRoot.getChildren().removeAll(tmp,choix);
+                  }
+                  else if(expert.getId() == "diffSelec"){
+                    gameView2.start(true);
+                    gameView2.addRoootBot();
+                    gameView2.animateBot();
+                    primaryStage.setScene(gameScene);
+                    modeRoot.getChildren().removeAll(tmp,choix);
+                  }
+                  break;  }});
 
         primaryStage.setScene(menuScene);
         primaryStage.show();
