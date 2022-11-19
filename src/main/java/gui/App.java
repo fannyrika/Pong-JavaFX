@@ -21,6 +21,7 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.control.Button;
+import java.awt.*;
 import java.awt.Dimension;
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
@@ -75,7 +76,7 @@ public class App extends Application {
 
         //music
         var music = new Music();
-        root.getChildren().addAll(music.mV);  
+        root.getChildren().addAll(music.mV);
 
 
         class Player implements RacketController,BallState {
@@ -87,9 +88,9 @@ public class App extends Application {
             }
             public StateBall getStateb() {
             	return stateb;
-            
+
         	}
-            
+
 
         }
         var playerA = new Player();
@@ -106,6 +107,7 @@ public class App extends Application {
         // Ajout d'une page 'choix de mode' (avec ou sans bot)
         var modeRoot = new VBox();
   	   var modeScene = new Scene(modeRoot, width, height);
+       modeRoot.setSpacing(20.0);
         modeRoot.setId("mode");
         modeScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
         //Créer un Pane() pour le menu
@@ -225,6 +227,7 @@ public class App extends Application {
         tmp.setAlignment(Pos.CENTER);
         opt2.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
+              modeRoot.getChildren().removeAll(choix, tmp);
               modeRoot.getChildren().addAll(choix, tmp); }});
 
         opt1.setId("modes");
@@ -245,7 +248,7 @@ public class App extends Application {
         //Page d'instructions
         var rulesroot = new VBox();
         var rules = new Scene(rulesroot,width,height);
-        
+
 		// On crée les boutons de la page 'pause'
 		Button reprendre = new Button("Reprendre");
 		reprendre.setOnAction(new EventHandler<ActionEvent>() {
@@ -260,7 +263,7 @@ public class App extends Application {
 			}
 			primaryStage.setScene(gameScene);
 			music.mP.play();}});
-        
+
                 Button retourI = new Button("Retour au menu");
                 retourI.setId("retourI");
                 retourI.setOnAction(new EventHandler<ActionEvent>() {
@@ -313,7 +316,7 @@ public class App extends Application {
 			public void handle(ActionEvent event) {
 			    primaryStage.setScene(optionsScene);
 	            }});
-		
+
 
 
 			//Page son
@@ -347,7 +350,7 @@ public class App extends Application {
 			sonScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
 			sonRoot.getChildren().addAll(mute,volume,volumeSlider,retourpause);
 			sonRoot.setAlignment(Pos.TOP_CENTER);
-			
+
 			//Space theme
 			spacebg.setOnAction(new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent event) {
@@ -366,7 +369,7 @@ public class App extends Application {
 					optionsScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
 				    primaryStage.setScene(optionsScene);
 		            }});
-			
+
 			//Tennis court theme
 			tennisbg.setOnAction(new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent event) {
@@ -385,7 +388,7 @@ public class App extends Application {
 					optionsScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
 				    primaryStage.setScene(optionsScene);
 		            }});
-			
+
 			//Bouton pour quitter le jeu
 			Button bye = new Button("Quitter le jeu");
 			bye.setOnAction(new EventHandler<ActionEvent>() {
@@ -407,7 +410,7 @@ public class App extends Application {
               primaryStage.close(); }});
 
         Label nom = new Label("nootynootnoot");
-        Label titre = new Label("PONG\n\n");
+        Label titre = new Label("PONG");
         jouer.setId("boutons");
         instructions.setId("boutons");
         options.setId("boutons");
@@ -437,7 +440,7 @@ public class App extends Application {
                 	break;
                 case CONTROL:
                 	playerB.stateb =BallState.StateBall.FAST;
-                	break; 
+                	break;
                 case P:
 			        GameView.pause=true;
 			        music.mP.pause();
@@ -445,15 +448,15 @@ public class App extends Application {
                     break;
                 case M:
                 	if(volumeSlider.getValue() == 0){ mute.setId("boutonMute2"); volumeSlider.setValue(50);}
-                    else{ mute.setId("boutonMute1"); volumeSlider.setValue(0);} 
+                    else{ mute.setId("boutonMute1"); volumeSlider.setValue(0);}
                 	break;
-                case H: 
-                    GameView.pause=true; 
-                    rulesroot.getChildren().add(reprendre);
+                case H:
+                    GameView.pause=true;
                     primaryStage.setScene(rules);
+                    //rulesroot.getChildren().add(reprendre);
                     break;
                 }});
-       
+
         gameScene.setOnKeyReleased(ev -> {
             switch (ev.getCode()) {
                 case Z:
@@ -474,10 +477,9 @@ public class App extends Application {
                 case CONTROL:
                     if (playerB.stateb == BallState.StateBall.FAST) playerB.stateb = BallState.StateBall.IDLE;
                     break;
-
             }
         });
-        
+
 
         // touche 'p' pour revenir sur le jeu depuis la page 'pause'
         pauseScene.setOnKeyPressed(ev -> {
@@ -493,8 +495,7 @@ public class App extends Application {
                 }
                 primaryStage.setScene(gameScene);
             	break;}});
-        
-        
+
         menuScene.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
                 case M:
@@ -504,34 +505,50 @@ public class App extends Application {
                 case H:
                     primaryStage.setScene(rules);
                     break;
+                case O:
+                    primaryStage.setScene(optionsScene);
+                    break;
+                case Q:
+                    primaryStage.close();
+                    break;
                  }});
-        
+
+       optionsScene.setOnKeyPressed(ev -> {
+             switch (ev.getCode()) {
+                case O:
+                	primaryStage.setScene(menuScene);
+                  break; }});
+
         rules.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
                 case M:
                 	if(volumeSlider.getValue() == 0){ mute.setId("boutonMute2"); volumeSlider.setValue(50);}
                     else{ mute.setId("boutonMute1"); volumeSlider.setValue(0);}
                 	break;
-                case H: 
+                case H:
                     if(gameView.isStart() || gameView2.isStart()){
-                    	GameView.pause=false; 
                     	if(gameView.isStart()) gameView.animate();
                     	else gameView2.animateBot();
                     	primaryStage.setScene(gameScene);
+                      GameView.pause=false;
                         }
                     else {
                      	rulesroot.getChildren().remove(reprendre);
                      	primaryStage.setScene(menuScene);
                     }
-                    break; 
+                    break;
                  }});
-        
+
         modeScene.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
                 case M:
                 	if(volumeSlider.getValue() == 0){ mute.setId("boutonMute2"); volumeSlider.setValue(50);}
                     else{ mute.setId("boutonMute1"); volumeSlider.setValue(0);}
                 	break;
+                case SPACE:
+                  modeRoot.getChildren().removeAll(choix, tmp);
+                  modeRoot.getChildren().addAll(choix, tmp);
+                  break;
                  }});
 
         primaryStage.setScene(menuScene);
