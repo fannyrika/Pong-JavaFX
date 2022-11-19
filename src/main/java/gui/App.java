@@ -573,7 +573,7 @@ public class App extends Application {
                     }
                     primaryStage.setScene(gameScene);
                   }
-                  if(retourP.getId() == "boutonsSelec"){
+                  else if(retourP.getId() == "boutonsSelec"){
                     GameView.stop=false;
                     GameView.pause=false;
                     gameView.remove1v1();
@@ -585,7 +585,7 @@ public class App extends Application {
                     primaryStage.setScene(menuScene);
                     music.mP.play();
                   }
-                  if(retourmode.getId() == "boutonsSelec"){
+                  else if(retourmode.getId() == "boutonsSelec"){
                     GameView.stop=false;
                     GameView.pause=false;
                     gameView.remove1v1();
@@ -597,12 +597,13 @@ public class App extends Application {
                     primaryStage.setScene(modeScene);
                     music.mP.play();
                   }
-                  if(son.getId() == "boutonsSelec"){
+                  else if(son.getId() == "boutonsSelec"){
                     primaryStage.setScene(sonScene);
                   }
-                  if(bye.getId() == "boutonsSelec"){
+                  else if(bye.getId() == "boutonsSelec"){
                     primaryStage.close();
                   }
+                break;
                 case P:
                   GameView.pause=false;
                   music.mP.play();
