@@ -117,6 +117,7 @@ public class App extends Application {
 
 
         Button retour = new Button("Retour au menu");
+        retour.setFocusTraversable(false);
         retour.setId("boutons");
         retour.setOnAction(new EventHandler<ActionEvent>() {
         public void handle(ActionEvent event) {
@@ -133,6 +134,7 @@ public class App extends Application {
 
 
          Button retourP = new Button("Aller au menu");
+         retourP.setFocusTraversable(false);
          retourP.setId("boutonsP");
          retourP.setOnAction(new EventHandler<ActionEvent>() {
          public void handle(ActionEvent event) {
@@ -152,6 +154,7 @@ public class App extends Application {
 
 
         Button retourmode = new Button("Nouvelle partie");
+        retourmode.setFocusTraversable(false);
         retourmode.setId("boutonsP");
         retourmode.setOnAction(new EventHandler<ActionEvent>() {
         public void handle(ActionEvent event) {
@@ -169,6 +172,7 @@ public class App extends Application {
 
         //Retour à la page pause
         Button retourpause = new Button("Retour");
+        retourpause.setFocusTraversable(false);
         retourpause.setId("boutonsP");
         retourpause.setOnAction(new EventHandler<ActionEvent>() {
         public void handle(ActionEvent event) {
@@ -185,6 +189,7 @@ public class App extends Application {
         choix.setId("ligne");
 
         Button facile = new Button("Facile");
+        facile.setFocusTraversable(false);
         facile.setOnAction(new EventHandler<ActionEvent>() {
         public void handle(ActionEvent event) {
             bot.setDifficulty(0);
@@ -196,6 +201,7 @@ public class App extends Application {
 
 
         Button moyen = new Button("Moyenne");
+        moyen.setFocusTraversable(false);
         moyen.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event){
               bot.setDifficulty(1);
@@ -207,6 +213,7 @@ public class App extends Application {
 
 
         Button difficile = new Button("Difficile");
+        difficile.setFocusTraversable(false);
         difficile.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 bot.setDifficulty(2);
@@ -218,6 +225,7 @@ public class App extends Application {
 
 
           Button expert = new Button("Expert");
+          expert.setFocusTraversable(false);
           expert.setOnAction(new EventHandler<ActionEvent>() {
               public void handle(ActionEvent event) {
                 bot.setDifficulty(3);
@@ -234,6 +242,7 @@ public class App extends Application {
         expert.setId("difficulte");
 
         Button opt1 = new Button("Jouer en 1v1");
+        opt1.setFocusTraversable(false);
         opt1.setOnAction(new EventHandler<ActionEvent>() {
         public void handle(ActionEvent event) {
       		gameView.start(true);
@@ -243,6 +252,7 @@ public class App extends Application {
          modeRoot.getChildren().removeAll(tmp,choix); }});
 
         Button opt2 = new Button("Jouer contre l'ordinateur");
+        opt2.setFocusTraversable(false);
         tmp.getChildren().addAll(facile,moyen,difficile,expert);
         tmp.setAlignment(Pos.CENTER);
         opt2.setOnAction(new EventHandler<ActionEvent>() {
@@ -260,6 +270,7 @@ public class App extends Application {
         menuRoot.setId("menu");
         menuScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
         Button jouer = new Button("JOUER");
+        jouer.setFocusTraversable(false);
         jouer.setOnAction(new EventHandler<ActionEvent>() {
         public void handle(ActionEvent event) {
           primaryStage.setScene(modeScene); }});
@@ -271,6 +282,7 @@ public class App extends Application {
 
 		// On crée les boutons de la page 'pause'
 		Button reprendre = new Button("Reprendre");
+    reprendre.setFocusTraversable(false);
 		reprendre.setOnAction(new EventHandler<ActionEvent>() {
 		public void handle(ActionEvent event) {
 			rulesroot.getChildren().remove(reprendre);
@@ -285,6 +297,7 @@ public class App extends Application {
 			music.mP.play();}});
 
                 Button retourI = new Button("Retour au menu");
+                retourI.setFocusTraversable(false);
                 retourI.setId("retourI");
                 retourI.setOnAction(new EventHandler<ActionEvent>() {
                 public void handle(ActionEvent event) {
@@ -301,10 +314,11 @@ public class App extends Application {
                  }});
 
         Button instructions = new Button("Instructions");
+        instructions.setFocusTraversable(false);
       	Text regles = new Text("R\u00e8gles du jeu : \n");
         regles.setFont(Font.font(35));
         regles.setFill(Color.GREEN);
-        Text message = new Text("- Contr\u00f4ler la raquette gauche avec Z et S \n\n- Contr\u00f4ler la raquette droite avec O et L \n\n- Le but du jeu est d'envoyer la balle dans le camp adverse en mettant \nson adversaire dans l'incapacit\u00e9 de la renvoyer. \n\n- Obtenir 3 points pour gagner la partie \n\n-- Vous pouvez choisir un mode de jeu sp\u00e9cifique\nen d\u00e9but de partie : \nLa difficult\u00e9 de l'ordinateur repr\u00e9sente son efficacit\u00e9 \u00e0 rattraper les balles;\nplus c'est difficile, moins il y a de chance qu'il les rate !\n\n-- Un boost (repr\u00e9sent\u00e9 par un cercle rouge avec un \u00e9clair jaune) sera affich\u00e9 sur votre terrain\nen cours de partie; si vous l'attrapez, activez le avec les boutons CTRL ou E pour acc\u00e9lerer la balle\n");
+        Text message = new Text("- Contr\u00f4ler la raquette gauche avec Z et S \n\n- Contr\u00f4ler la raquette droite avec UP et DOWN \n\n- Le but du jeu est d'envoyer la balle dans le camp adverse en mettant \nson adversaire dans l'incapacit\u00e9 de la renvoyer. \n\n- Obtenir 3 points pour gagner la partie \n\n-- Vous pouvez choisir un mode de jeu sp\u00e9cifique\nen d\u00e9but de partie : \nLa difficult\u00e9 de l'ordinateur repr\u00e9sente son efficacit\u00e9 \u00e0 rattraper les balles;\nplus c'est difficile, moins il y a de chance qu'il les rate !\n\n-- Un boost (repr\u00e9sent\u00e9 par un cercle rouge avec un \u00e9clair jaune) sera affich\u00e9 sur votre terrain\nen cours de partie; si vous l'attrapez, activez le avec les boutons CTRL ou E pour acc\u00e9lerer la balle\n");
         message.setFont(Font.font(25));
         message.setFill(Color.DARKRED);
         rulesroot.setId("regles");
@@ -319,8 +333,11 @@ public class App extends Application {
         	//Page d'options
 
 			Button options = new Button("Options");
+      options.setFocusTraversable(false);
 			Button spacebg = new Button("Space");
+      spacebg.setFocusTraversable(false);
 			Button tennisbg = new Button("Tennis Court");
+      tennisbg.setFocusTraversable(false);
 			options.setId("boutonsP");
 			spacebg.setId("boutonsP");
 			tennisbg.setId("boutonsP");
@@ -346,9 +363,10 @@ public class App extends Application {
 	        var volumeSlider = new Slider(0.0, 100, 0.0);
 	        volumeSlider.setId("slider");
 	        volumeSlider.lookup(".track");
-	        volumeSlider.setValue(music.mP.getVolume() * 100);
+	        volumeSlider.setValue(music.mP.getVolume() * 70);
 		  // Arrêter la musique (mute)
          		 Button mute = new Button(" ");
+             mute.setFocusTraversable(false);
         	      mute.setId("boutonMute2");
                  mute.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
@@ -361,6 +379,7 @@ public class App extends Application {
 	        var volume = new Text("Volume");
 	        volume.setFont(Font.font(30));
 			Button son = new Button("Musique et son");
+      son.setFocusTraversable(false);
       son.setId("boutonsP");
 			son.setOnAction(new EventHandler<ActionEvent>() {
 				public void handle(ActionEvent event) {
@@ -411,6 +430,7 @@ public class App extends Application {
 
 			//Bouton pour quitter le jeu
 			Button bye = new Button("Quitter le jeu");
+      bye.setFocusTraversable(false);
 			bye.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
 				primaryStage.close(); }});
@@ -425,6 +445,7 @@ public class App extends Application {
 
 		//Bouton pour quitter le jeu
         Button quitter = new Button("Quitter");
+        quitter.setFocusTraversable(false);
         quitter.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
               primaryStage.close(); }});
@@ -449,10 +470,10 @@ public class App extends Application {
                 case S:
                     playerA.state = RacketController.State.GOING_DOWN;
                     break;
-                case O:
+                case UP:
                     playerB.state = RacketController.State.GOING_UP;
                     break;
-                case L:
+                case DOWN:
                     playerB.state = RacketController.State.GOING_DOWN;
                     break;
                 case E:
@@ -485,10 +506,10 @@ public class App extends Application {
                 case S:
                     if (playerA.state == RacketController.State.GOING_DOWN) playerA.state = RacketController.State.IDLE;
                     break;
-                case O:
+                case UP:
                     if (playerB.state == RacketController.State.GOING_UP) playerB.state = RacketController.State.IDLE;
                     break;
-                case L:
+                case DOWN:
                     if (playerB.state == RacketController.State.GOING_DOWN) playerB.state = RacketController.State.IDLE;
                     break;
                 case E:
@@ -597,6 +618,14 @@ public class App extends Application {
           switch (ev.getCode()){
             case S:
               primaryStage.setScene(pauseScene);
+              break;
+            case RIGHT:
+              mute.setId("boutonMute2");
+              if(volumeSlider.getValue() != 100) volumeSlider.setValue(volumeSlider.getValue()+5);
+              break;
+            case LEFT:
+              if(volumeSlider.getValue() > 0) volumeSlider.setValue(volumeSlider.getValue()-5);
+              if(volumeSlider.getValue() <= 0) mute.setId("boutonMute1");
               break;
           }});
 
