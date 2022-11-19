@@ -109,11 +109,11 @@ public class GameView {
         textScoreP1.setFont(Font.font(50));
         textScoreP2.setFont(Font.font(50));
 
-        textScoreP1.setX(xMargin - racketThickness + 50);
-        textScoreP1.setY(court.getRacketA() * scale -400);
+        textScoreP1.setX(court.getWidth()/2-150);
+        textScoreP1.setY(80);
 
-        textScoreP2.setX(court.getWidth() * scale + xMargin -100) ;
-        textScoreP2.setY(court.getRacketB() * scale -400);
+        textScoreP2.setX(court.getWidth()/2+150) ;
+        textScoreP2.setY(80);
 
 
 
@@ -146,7 +146,7 @@ public class GameView {
       caseBonusRight.setTranslateX(court.getWidth()-70);
   	  caseBonusRight.setTranslateY(50);
 
-    	gameRoot.getChildren().addAll(racketA, racketB, ball,timer,textScoreP1, textScoreP2,caseBonusLeft,caseBonusRight);
+    	gameRoot.getChildren().addAll(racketA, racketB, ball,timer,caseBonusLeft,caseBonusRight,textScoreP1,textScoreP2);
     }
     public void remove1v1() {
     	gameRoot.getChildren().clear();
@@ -208,11 +208,11 @@ public class GameView {
         textScoreP1.setFont(Font.font(50));
         textScoreP2.setFont(Font.font(50));
 
-        textScoreP1.setX(xMargin - racketThickness + 50);
-        textScoreP1.setY(bot.getRacketA() * scale -400);
+        textScoreP1.setX(bot.getWidth()/2-150);
+        textScoreP1.setY(80);
 
-        textScoreP2.setX(bot.getWidth() * scale + xMargin -100) ;
-        textScoreP2.setY(bot.getBot() * scale -400);
+        textScoreP2.setX(bot.getWidth()/2+150) ;
+        textScoreP2.setY(80);
 
 
 
