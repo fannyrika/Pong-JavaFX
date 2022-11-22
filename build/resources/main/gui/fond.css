@@ -27,6 +27,14 @@
     -fx-font-weight: bolder;
 }
 
+#boutonSelecspace {
+    -fx-text-fill:white;
+    -fx-background-color: transparent;
+    -fx-font-size: 45px;
+    -fx-font-family: Yrsa Medium;
+    -fx-font-weight: bolder;
+}
+
 #boutonPspace {
     -fx-text-fill:white;
     -fx-background-color: transparent;
@@ -55,10 +63,26 @@
     -fx-font-weight: bolder;
 }
 
+#boutonSelecled {
+    -fx-text-fill:pink;
+    -fx-background-color: transparent;
+    -fx-font-size: 45px;
+    -fx-font-family: Yrsa Medium;
+    -fx-font-weight: bolder;
+}
+
 #boutonPled{
     -fx-text-fill:pink;
     -fx-background-color: transparent;
     -fx-font-size: 35px;
+    -fx-font-family: Yrsa Medium;
+    -fx-font-weight: bolder;
+}
+
+#boutonPledSelec{
+    -fx-text-fill:pink;
+    -fx-background-color: transparent;
+    -fx-font-size: 45px;
     -fx-font-family: Yrsa Medium;
     -fx-font-weight: bolder;
 }
@@ -70,7 +94,7 @@
 #modesSelecled{
   -fx-background-color:pink;
   -fx-text-fill:black;
-  -fx-font-size: 35px;
+  -fx-font-size: 45px;
   -fx-font-family: Yrsa Medium;
   -fx-font-weight: bolder;
   -fx-border-radius: 10% / 50%;

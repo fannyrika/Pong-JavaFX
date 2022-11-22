@@ -152,25 +152,6 @@ public class App extends Application {
           }});
 
 
-
-
-        Button retourmode = new Button("Nouvelle partie");
-        retourmode.setFocusTraversable(false);
-        retourmode.setId("boutonsP");
-        retourmode.setOnAction(new EventHandler<ActionEvent>() {
-        public void handle(ActionEvent event) {
-	     	GameView.stop=false;
-		GameView.pause=false;
-		gameView.remove1v1();
-		gameView2.removeBot();
-		gameView.reset1V1();
-		gameView2.resetBot();
-		gameView.start(false);
-		gameView2.start(false);
-          primaryStage.setScene(modeScene);
-          music.mP.play();
-         }});
-
         //Retour à la page pause
         Button retourpause = new Button("Retour");
         retourpause.setFocusTraversable(false);
@@ -268,6 +249,22 @@ public class App extends Application {
         modeRoot.getChildren().addAll(opt1,opt2,retour);
         modeRoot.setAlignment(Pos.CENTER);
 
+        Button retourmode = new Button("Nouvelle partie");
+        retourmode.setFocusTraversable(false);
+        retourmode.setId("boutonsP");
+        retourmode.setOnAction(new EventHandler<ActionEvent>() {
+        public void handle(ActionEvent event) {
+	     	GameView.stop=false;
+		GameView.pause=false;
+		gameView.remove1v1();
+		gameView2.removeBot();
+		gameView.reset1V1();
+		gameView2.resetBot();
+		gameView.start(false);
+		gameView2.start(false);
+          primaryStage.setScene(modeScene);
+          music.mP.play();
+         }});
 
         menuRoot.setId("menu");
         menuScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
@@ -342,7 +339,7 @@ public class App extends Application {
 			Button ledbg = new Button("N\u00e9on");
 			tennisbg.setFocusTraversable(false);
 			options.setId("boutonsP");
-			spacebg.setId("boutonsP");
+			spacebg.setId("boutonsSelec");
 			ledbg.setId("boutonsP");
 			tennisbg.setId("boutonsP");
 			var optionsRoot = new VBox();
@@ -416,8 +413,8 @@ public class App extends Application {
         quitter.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
               primaryStage.close(); }});
-        
-        
+
+
         Label nom = new Label("nootynootnoot");
         Label titre = new Label("PONG");
       //Space theme
@@ -430,7 +427,7 @@ public class App extends Application {
 		        rulesroot.setId("spacemode");
 				optionsRoot.setId("spacebg");
 				sonRoot.setId("spacebg");
-				
+
 				retour.setId("boutonPspace");
 			    retourP.setId("boutonPspace");
 			    retourmode.setId("boutonPspace");
@@ -447,13 +444,13 @@ public class App extends Application {
 				tennisbg.setId("boutonPspace");
 				ledbg.setId("boutonPspace");
 			    son.setId("boutonPspace");
-			    jouer.setId("boutonPspace");
+			    jouer.setId("boutonSelecspace");
 		        instructions.setId("boutonPspace");
 		        options.setId("boutonPspace");
 		        quitter.setId("boutonPspace");
 		        retour.setId("boutonspace");
 		        bye.setId("boutonspace");
-		        reprendre.setId("boutonPspace");
+		        reprendre.setId("boutonSelecspace");
 		        nom.setFont(Font.font(30));
 		        titre.setId("labelspacetitre");
 		        regles.setFont(Font.font(35));
@@ -463,13 +460,6 @@ public class App extends Application {
 		        gameView.textScoreP1.setFill(Color.WHITE);
 		        gameView.textScoreP2.setFill(Color.WHITE);
 		        gameView.timer.setId("labelspace");
-		        
-				pauseScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-		        gameScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-		        modeScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-		        menuScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-		      	rules.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-				optionsScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
 			    primaryStage.setScene(optionsScene);
 	            }});
 
@@ -483,7 +473,6 @@ public class App extends Application {
 		        rulesroot.setId("terrain");
 				optionsRoot.setId("terrain");
 				sonRoot.setId("terrain");
-				
 				retour.setId("boutonsP");
 			    retourP.setId("boutonsP");
 			    retourmode.setId("boutonsP");
@@ -500,13 +489,13 @@ public class App extends Application {
 				tennisbg.setId("boutonsP");
 				ledbg.setId("boutonsP");
 			    son.setId("boutonsP");
-			    jouer.setId("boutonsP");
+			    jouer.setId("boutonsSelec");
 		        instructions.setId("boutonsP");
 		        options.setId("boutonsP");
 		        quitter.setId("boutonsP");
 		        retour.setId("boutons");
 		        bye.setId("boutons");
-		        reprendre.setId("boutonsP");
+		        reprendre.setId("boutonsSelec");
 		        nom.setFont(Font.font(30));
 		        titre.setId("label2");
 		        gameView.textScoreP1.setFill(Color.BLACK);
@@ -518,15 +507,9 @@ public class App extends Application {
 		        message.setFill(Color.WHITE);
 		        gameView.textScoreP1.setFill(Color.WHITE);
 		        gameView.textScoreP2.setFill(Color.WHITE);
-				pauseScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-		        gameScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-		        modeScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-		        menuScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-		      	rules.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-				optionsScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
 			    primaryStage.setScene(optionsScene);
 	            }});
-		
+
 		//Led theme
 				ledbg.setOnAction(new EventHandler<ActionEvent>() {
 					public void handle(ActionEvent event) {
@@ -537,7 +520,6 @@ public class App extends Application {
 				        rulesroot.setId("ledmode");
 						optionsRoot.setId("ledbg");
 						sonRoot.setId("ledbg");
-						
 						retour.setId("boutonPled");
 					    retourP.setId("boutonPled");
 					    retourmode.setId("boutonPled");
@@ -547,39 +529,31 @@ public class App extends Application {
 					    difficile.setId("difficulte");
 					    expert.setId("difficulte");
 					    opt1.setId("modesSelec");
-					    opt2.setId("modes");
+					    opt2.setId("modesled");
 					    retourI.setId("retourI");
 						options.setId("boutonPled");
 						spacebg.setId("boutonPled");
 						tennisbg.setId("boutonPled");
 						ledbg.setId("boutonPled");
 					    son.setId("boutonPled");
-					    jouer.setId("boutonPled");
+					    jouer.setId("boutonSelecled");
 				        instructions.setId("boutonPled");
 				        options.setId("boutonPled");
 				        quitter.setId("boutonPled");
 				        retour.setId("boutonPled");
 				        bye.setId("boutonled");
-				        reprendre.setId("boutonPled");
+				        reprendre.setId("boutonPledSelec");
 				        nom.setFont(Font.font(30));
 				        titre.setId("labelled");
 				        gameView.textScoreP1.setFill(Color.WHITE);
 				        gameView.textScoreP2.setFill(Color.WHITE);
 				        gameView.timer.setId("labelled");
-				        opt1.setId("modesSelecled");
-				        opt2.setId("modesled");
 				        message.setFont(Font.font(25));
 				        message.setFill(Color.PINK);
 				        regles.setFont(Font.font(35));
 				        regles.setFill(Color.PINK);
 				        opt1.setId("modesSelecled");
 				        opt2.setId("modesled");
-						pauseScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-				        gameScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-				        modeScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-				        menuScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-				      	rules.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-						optionsScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
 					    primaryStage.setScene(optionsScene);
 			            }});
 
@@ -673,6 +647,38 @@ public class App extends Application {
                     son.setId("boutonsP");
                     bye.setId("boutonsSelec");
                   }
+                  else if(reprendre.getId() == "boutonPledSelec"){
+                    reprendre.setId("boutonPled");
+                    retourP.setId("boutonPledSelec");
+                  }
+                  else if(retourP.getId() == "boutonPledSelec"){
+                    retourP.setId("boutonPled");
+                    retourmode.setId("boutonPledSelec");
+                  }
+                  else if(retourmode.getId() == "boutonPledSelec"){
+                    retourmode.setId("boutonPled");
+                    son.setId("boutonPledSelec");
+                  }
+                  else if(son.getId() == "boutonPledSelec"){
+                    son.setId("boutonPled");
+                    bye.setId("boutonPledSelec");
+                  }
+                  else if(reprendre.getId() == "boutonSelecspace"){
+                    reprendre.setId("boutonspace");
+                    retourP.setId("boutonSelecspace");
+                  }
+                  else if(retourP.getId() == "boutonSelecspace"){
+                    retourP.setId("boutonspace");
+                    retourmode.setId("boutonSelecspace");
+                  }
+                  else if(retourmode.getId() == "boutonSelecspace"){
+                    retourmode.setId("boutonspace");
+                    son.setId("boutonSelecspace");
+                  }
+                  else if(son.getId() == "boutonSelecspace"){
+                    son.setId("boutonspace");
+                    bye.setId("boutonSelecspace");
+                  }
                   break;
                 case UP:
                   if(bye.getId() == "boutonsSelec"){
@@ -691,9 +697,41 @@ public class App extends Application {
                     retourP.setId("boutonsP");
                     reprendre.setId("boutonsSelec");
                   }
+                  else if(bye.getId() == "boutonPledSelec"){
+                    bye.setId("boutonPled");
+                    son.setId("boutonPledSelec");
+                  }
+                  else if(son.getId() == "boutonPledSelec"){
+                    son.setId("boutonPled");
+                    retourmode.setId("boutonPledSelec");
+                  }
+                  else if(retourmode.getId() == "boutonPledSelec"){
+                    retourmode.setId("boutonPled");
+                    retourP.setId("boutonPledSelec");
+                  }
+                  else if(retourP.getId() == "boutonPledSelec"){
+                    retourP.setId("boutonPled");
+                    reprendre.setId("boutonPledSelec");
+                  }
+                  else if(bye.getId() == "boutonSelecspace"){
+                    bye.setId("boutonPspace");
+                    son.setId("boutonSelecspace");
+                  }
+                  else if(son.getId() == "boutonSelecspace"){
+                    son.setId("boutonPspace");
+                    retourmode.setId("boutonSelecspace");
+                  }
+                  else if(retourmode.getId() == "boutonSelecspace"){
+                    retourmode.setId("boutonPspace");
+                    retourP.setId("boutonSelecspace");
+                  }
+                  else if(retourP.getId() == "boutonSelecspace"){
+                    retourP.setId("boutonPspace");
+                    reprendre.setId("boutonSelecspace");
+                  }
                   break;
                 case SPACE:
-                  if(reprendre.getId() == "boutonsSelec"){
+                  if(reprendre.getId() == "boutonsSelec" || reprendre.getId() == "boutonSelecspace" || reprendre.getId() == "boutonPledSelec"){
                     GameView.pause=false;
                     music.mP.play();
                     if(gameView.isStart()){
@@ -704,7 +742,7 @@ public class App extends Application {
                     }
                     primaryStage.setScene(gameScene);
                   }
-                  else if(retourP.getId() == "boutonsSelec"){
+                  else if(retourP.getId() == "boutonsSelec" || retourP.getId() == "boutonSelecspace" || retourP.getId() == "boutonPledSelec"){
                     GameView.stop=false;
                     GameView.pause=false;
                     gameView.remove1v1();
@@ -716,7 +754,7 @@ public class App extends Application {
                     primaryStage.setScene(menuScene);
                     music.mP.play();
                   }
-                  else if(retourmode.getId() == "boutonsSelec"){
+                  else if(retourmode.getId() == "boutonsSelec" || retourmode.getId() == "boutonSelecspace" || retourmode.getId() == "boutonPledSelec"){
                     GameView.stop=false;
                     GameView.pause=false;
                     gameView.remove1v1();
@@ -728,11 +766,11 @@ public class App extends Application {
                     primaryStage.setScene(modeScene);
                     music.mP.play();
                   }
-                  else if(son.getId() == "boutonsSelec"){
+                  else if(son.getId() == "boutonsSelec" || son.getId() == "boutonSelecspace" || son.getId() == "boutonPledSelec"){
                     primaryStage.setScene(sonScene);
                     music.mP.play();
                   }
-                  else if(bye.getId() == "boutonsSelec"){
+                  else if(bye.getId() == "boutonsSelec" || bye.getId() == "boutonSelecspace" || bye.getId() == "boutonPledSelec"){
                     primaryStage.close();
                   }
                 break;
@@ -764,6 +802,30 @@ public class App extends Application {
                     options.setId("boutons");
                     quitter.setId("boutonsSelec");
                   }
+                  else if(jouer.getId() == "boutonSelecled"){
+                    jouer.setId("boutonled");
+                    instructions.setId("boutonSelecled");
+                  }
+                  else if(instructions.getId() == "boutonSelecled"){
+                    instructions.setId("boutonled");
+                    options.setId("boutonSelecled");
+                  }
+                  else if(options.getId() == "boutonSelecled"){
+                    options.setId("boutonled");
+                    quitter.setId("boutonSelecled");
+                  }
+                  else if(jouer.getId() == "boutonSelecspace"){
+                    jouer.setId("boutonspace");
+                    instructions.setId("boutonSelecspace");
+                  }
+                  else if(instructions.getId() == "boutonSelecspace"){
+                    instructions.setId("boutonspace");
+                    options.setId("boutonSelecspace");
+                  }
+                  else if(options.getId() == "boutonSelecspace"){
+                    options.setId("boutonspace");
+                    quitter.setId("boutonSelecspace");
+                  }
                   break;
               case UP:
                   if(quitter.getId() == "boutonsSelec"){
@@ -778,18 +840,42 @@ public class App extends Application {
                     instructions.setId("boutons");
                     jouer.setId("boutonsSelec");
                   }
+                  else if(quitter.getId() == "boutonSelecled"){
+                    quitter.setId("boutonled");
+                    options.setId("boutonSelecled");
+                  }
+                  else if(options.getId() == "boutonSelecled"){
+                    options.setId("boutonled");
+                    instructions.setId("boutonSelecled");
+                  }
+                  else if(instructions.getId() == "boutonSelecled"){
+                    instructions.setId("boutonled");
+                    jouer.setId("boutonSelecled");
+                  }
+                  else if(quitter.getId() == "boutonSelecspace"){
+                    quitter.setId("boutonspace");
+                    options.setId("boutonSelecspace");
+                  }
+                  else if(options.getId() == "boutonSelecspace"){
+                    options.setId("boutonspace");
+                    instructions.setId("boutonSelecspace");
+                  }
+                  else if(instructions.getId() == "boutonSelecspace"){
+                    instructions.setId("boutonspace");
+                    jouer.setId("boutonSelecspace");
+                  }
                   break;
                 case SPACE:
-                  if(jouer.getId() == "boutonsSelec"){
+                  if(jouer.getId() == "boutonsSelec" || jouer.getId() == "boutonSelecled" || jouer.getId() == "boutonSelecspace"){
                      primaryStage.setScene(modeScene);
                   }
-                  else if(instructions.getId() == "boutonsSelec"){
+                  else if(instructions.getId() == "boutonsSelec" || instructions.getId() == "boutonSelecled" || instructions.getId() == "boutonSelecspace"){
                      primaryStage.setScene(rules);
                   }
-                  else if(options.getId() == "boutonsSelec"){
+                  else if(options.getId() == "boutonsSelec" || options.getId() == "boutonSelecled" || options.getId() == "boutonSelecspace"){
                      primaryStage.setScene(optionsScene);
                   }
-                  else if(quitter.getId() == "boutonsSelec"){
+                  else if(quitter.getId() == "boutonsSelec" || quitter.getId() == "boutonSelecled" || quitter.getId() == "boutonSelecspace"){
                      primaryStage.close();
                   }
                   break;
@@ -803,7 +889,27 @@ public class App extends Application {
              switch (ev.getCode()) {
                 case R:
                 	primaryStage.setScene(menuScene);
-                  break; }});
+                  break;
+            /*    case DOWN:
+                  if(spacebg.getId() == "boutonsSelec"){
+                    spacebg.setId("boutons");
+                    tennisbg.setId("boutonsSelec");
+                  }
+                  else if(tennisbg.getId() == "boutonsSelec"){
+                    tennisbg.setId("boutons");
+                    ledbg.setId("boutonsSelec");
+                  }
+                  break;
+                case UP:
+                  if(ledbg.getId() == "boutonsSelec"){
+                    ledbg.setId("boutons");
+                    tennisbg.setId("boutonsSelec");
+                  }
+                  else if(tennisbg.getId() == "boutonsSelec"){
+                    tennisbg.setId("boutons");
+                    spacebg.setId("boutonsSelec");
+                  }
+                break; */ }});
 
         rules.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
@@ -856,11 +962,19 @@ public class App extends Application {
                     opt1.setId("modes");
                     opt2.setId("modesSelec");
                   }
+                  else if(opt1.getId() == "modesSelecled"){
+                    opt1.setId("modesled");
+                    opt2.setId("modesSelecled");
+                  }
                   break;
                 case UP:
                   if(opt2.getId() == "modesSelec"){
                     opt2.setId("modes");
                     opt1.setId("modesSelec");
+                  }
+                  else if(opt2.getId() == "modesSelecled"){
+                    opt2.setId("modesled");
+                    opt1.setId("modesSelecled");
                   }
                   break;
                 case RIGHT:
@@ -892,7 +1006,7 @@ public class App extends Application {
                   }
                 break;
                 case SPACE:
-                  if(opt1.getId() == "modesSelec"){
+                  if(opt1.getId() == "modesSelec" || opt1.getId() == "modesSelecled"){
                     gameView.start(true);
                     gameView.addRoot1V1();
                     gameView.animate();
@@ -901,7 +1015,9 @@ public class App extends Application {
                   }
                   else if(opt2.getId() == "modesSelec"){
                     modeRoot.getChildren().addAll(choix,tmp);
-                    opt2.setId("modes");
+                  }
+                  else if(opt2.getId() == "modesSelecled"){
+                    modeRoot.getChildren().addAll(choix,tmp);
                   }
                   break;
                 case ENTER:
