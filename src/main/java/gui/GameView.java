@@ -33,13 +33,13 @@ public class GameView {
     private final double xMargin = 100.0, racketThickness = 100.0; // pixels
 
     // children of the game main node
-    private Label timer;
+    public Label timer;
     Chrono chronometer;
     private final Rectangle racketA, racketB ,bot;
-    private final Circle ball;
+    public final Circle ball;
     static boolean stop=false,pause=false;
     private boolean start;
-    private Text textScoreP1, textScoreP2;
+    public Text textScoreP1, textScoreP2;
     Boost boost;
     /**
      * @param court le "modèle" de cette vue (le terrain de jeu de raquettes et tout ce qu'il y a dessus)
