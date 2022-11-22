@@ -11,6 +11,84 @@
   -fx-background-size: 100%;
 }
 
+#spacebg {
+  -fx-background-image: url("spacebackground.png");
+  -fx-background-color: #842e1b;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+}
+
+#boutonspace {
+    -fx-text-fill:white;
+    -fx-background-color: transparent;
+    -fx-font-size: 35px;
+    -fx-font-family: Yrsa Medium;
+    -fx-font-weight: bolder;
+}
+
+#boutonPspace {
+    -fx-text-fill:white;
+    -fx-background-color: transparent;
+    -fx-font-size: 35px;
+    -fx-font-family: Yrsa Medium;
+    -fx-font-weight: bolder;
+}
+
+#boutonPspace:hover {
+  -fx-font-size: 45px;
+}
+
+#ledbg {
+  -fx-background-image: url("ledbackground.jpg");
+  -fx-background-color: #842e1b;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+}
+
+#boutonled {
+    -fx-text-fill:white;
+    -fx-background-color: transparent;
+    -fx-font-size: 35px;
+    -fx-font-family: Yrsa Medium;
+    -fx-font-weight: bolder;
+}
+
+#boutonPled{
+    -fx-text-fill:white;
+    -fx-background-color: transparent;
+    -fx-font-size: 35px;
+    -fx-font-family: Yrsa Medium;
+    -fx-font-weight: bolder;
+}
+
+#boutonPled:hover {
+  -fx-font-size: 45px;
+}
+
+#modesSelecled{
+  -fx-background-color: white;
+  -fx-text-fill:black;
+  -fx-font-size: 35px;
+  -fx-font-family: Yrsa Medium;
+  -fx-font-weight: bolder;
+  -fx-border-radius: 10% / 50%;
+}
+
+#modesled {
+  -fx-background-color: white;
+  -fx-text-fill:black;
+  -fx-font-size: 35px;
+  -fx-font-family: Yrsa Medium;
+  -fx-font-weight: bolder;
+  -fx-border-radius: 10% / 50%;
+}
+
+#modesled:hover {
+  -fx-background-color: white;
+}
+
 #mode {
   -fx-background-image: url("imgmode.png");
   -fx-background-color: #c0d4cd;
@@ -161,4 +239,22 @@
 #label2 {
   -fx-font-weight: bolder;
   -fx-font-size: 70px;
+}
+
+#labelspacetitre {
+  -fx-text-fill:white;
+  -fx-font-weight: bolder;
+  -fx-font-size: 70px;
+}
+
+#labelspace {
+  -fx-text-fill:white;
+  -fx-font-weight: bolder;
+  -fx-font-size: 30px;
+}
+
+#labeltennis {
+  -fx-text-fill:black;
+  -fx-font-weight: bolder;
+  -fx-font-size: 30px;
 }
