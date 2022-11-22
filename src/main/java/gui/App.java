@@ -339,7 +339,7 @@ public class App extends Application {
 			Button spacebg = new Button("Space");
       spacebg.setFocusTraversable(false);
 			Button tennisbg = new Button("Tennis");
-			Button ledbg = new Button("Led");
+			Button ledbg = new Button("N\u00e9on");
 			tennisbg.setFocusTraversable(false);
 			options.setId("boutonsP");
 			spacebg.setId("boutonsP");
@@ -456,7 +456,10 @@ public class App extends Application {
 		        reprendre.setId("boutonPspace");
 		        nom.setFont(Font.font(30));
 		        titre.setId("labelspacetitre");
-		        
+		        regles.setFont(Font.font(35));
+		        regles.setFill(Color.WHITE);
+		        message.setFont(Font.font(25));
+		        message.setFill(Color.WHITE);
 		        gameView.textScoreP1.setFill(Color.WHITE);
 		        gameView.textScoreP2.setFill(Color.WHITE);
 		        gameView.timer.setId("labelspace");
@@ -509,6 +512,12 @@ public class App extends Application {
 		        gameView.textScoreP1.setFill(Color.BLACK);
 		        gameView.textScoreP2.setFill(Color.BLACK);
 		        gameView.timer.setId("labeltennis");
+		        regles.setFont(Font.font(35));
+		        regles.setFill(Color.GREEN);
+		        message.setFont(Font.font(25));
+		        message.setFill(Color.WHITE);
+		        gameView.textScoreP1.setFill(Color.WHITE);
+		        gameView.textScoreP2.setFill(Color.WHITE);
 				pauseScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
 		        gameScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
 		        modeScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
@@ -525,7 +534,7 @@ public class App extends Application {
 				        root.setId("ledbg");
 				        modeRoot.setId("ledbg");
 				        menuRoot.setId("ledbg");
-				        rulesroot.setId("lebg");
+				        rulesroot.setId("ledbg");
 						optionsRoot.setId("ledbg");
 						sonRoot.setId("ledbg");
 						
@@ -549,14 +558,20 @@ public class App extends Application {
 				        instructions.setId("boutonPled");
 				        options.setId("boutonPled");
 				        quitter.setId("boutonPled");
-				        retour.setId("boutonled");
+				        retour.setId("boutonPled");
 				        bye.setId("boutonled");
 				        reprendre.setId("boutonPled");
 				        nom.setFont(Font.font(30));
-				        titre.setId("labelspacetitre");
+				        titre.setId("labelled");
 				        gameView.textScoreP1.setFill(Color.WHITE);
 				        gameView.textScoreP2.setFill(Color.WHITE);
-				        gameView.timer.setId("labelspace");
+				        gameView.timer.setId("labelled");
+				        opt1.setId("modesSelecled");
+				        opt2.setId("modesled");
+				        message.setFont(Font.font(25));
+				        message.setFill(Color.PINK);
+				        regles.setFont(Font.font(35));
+				        regles.setFill(Color.PINK);
 				        opt1.setId("modesSelecled");
 				        opt2.setId("modesled");
 						pauseScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
