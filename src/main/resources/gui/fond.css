@@ -48,7 +48,7 @@
 }
 
 #boutonled {
-    -fx-text-fill:white;
+    -fx-text-fill:pink;
     -fx-background-color: transparent;
     -fx-font-size: 35px;
     -fx-font-family: Yrsa Medium;
@@ -56,7 +56,7 @@
 }
 
 #boutonPled{
-    -fx-text-fill:white;
+    -fx-text-fill:pink;
     -fx-background-color: transparent;
     -fx-font-size: 35px;
     -fx-font-family: Yrsa Medium;
@@ -68,7 +68,7 @@
 }
 
 #modesSelecled{
-  -fx-background-color: white;
+  -fx-background-color:pink;
   -fx-text-fill:black;
   -fx-font-size: 35px;
   -fx-font-family: Yrsa Medium;
@@ -77,7 +77,7 @@
 }
 
 #modesled {
-  -fx-background-color: white;
+  -fx-background-color: pink;
   -fx-text-fill:black;
   -fx-font-size: 35px;
   -fx-font-family: Yrsa Medium;
@@ -86,7 +86,7 @@
 }
 
 #modesled:hover {
-  -fx-background-color: white;
+  -fx-background-color: pink;
 }
 
 #mode {
@@ -257,4 +257,11 @@
   -fx-text-fill:black;
   -fx-font-weight: bolder;
   -fx-font-size: 30px;
+}
+
+
+#labelled {
+  -fx-text-fill:pink;
+  -fx-font-weight: bolder;
+  -fx-font-size: 50px;
 }
