@@ -47,7 +47,7 @@ GAMEPLAY
 Esthétique:
 10.Ajouter des couleurs
 
-11.Thème (clair & sombre)
+11.Thèmes
 
 13.Ajouter une apparence au fond
     1.Permettre au joueur de choisir entre plusieurs thèmes
