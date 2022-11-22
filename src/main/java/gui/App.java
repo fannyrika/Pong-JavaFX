@@ -38,6 +38,7 @@ import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.beans.*;
+import javafx.scene.paint.ImagePattern;
 
 
 public class App extends Application {
@@ -337,16 +338,18 @@ public class App extends Application {
       options.setFocusTraversable(false);
 			Button spacebg = new Button("Space");
       spacebg.setFocusTraversable(false);
-			Button tennisbg = new Button("Tennis Court");
-      tennisbg.setFocusTraversable(false);
+			Button tennisbg = new Button("Tennis");
+			Button ledbg = new Button("Led");
+			tennisbg.setFocusTraversable(false);
 			options.setId("boutonsP");
 			spacebg.setId("boutonsP");
+			ledbg.setId("boutonsP");
 			tennisbg.setId("boutonsP");
 			var optionsRoot = new VBox();
 			var optionsScene = new Scene(optionsRoot, width, height);
 			optionsRoot.setId("menu");
 			optionsScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-			optionsRoot.getChildren().addAll(spacebg,tennisbg,retour);
+			optionsRoot.getChildren().addAll(spacebg,tennisbg,ledbg,retour);
 			optionsRoot.setAlignment(Pos.CENTER);
 
 
@@ -392,44 +395,6 @@ public class App extends Application {
 			sonRoot.getChildren().addAll(mute,volume,volumeSlider,retourpause);
 			sonRoot.setAlignment(Pos.TOP_CENTER);
 
-			//Space theme
-			spacebg.setOnAction(new EventHandler<ActionEvent>() {
-				public void handle(ActionEvent event) {
-					rootPause.setId("spacebg");
-			        root.setId("spacebg");
-			        modeRoot.setId("spacebg");
-			        menuRoot.setId("spacebg");
-			        rulesroot.setId("spacebg");
-					optionsRoot.setId("spacebg");
-					sonRoot.setId("spacebg");
-					pauseScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-			        gameScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-			        modeScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-			        menuScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-			      	rules.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-					optionsScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-				    primaryStage.setScene(optionsScene);
-		            }});
-
-			//Tennis court theme
-			tennisbg.setOnAction(new EventHandler<ActionEvent>() {
-				public void handle(ActionEvent event) {
-					rootPause.setId("pause");
-			        root.setId("terrain");
-			        modeRoot.setId("mode");
-			        menuRoot.setId("menu");
-			        rulesroot.setId("terrain");
-					optionsRoot.setId("terrain");
-					sonRoot.setId("terrain");
-					pauseScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-			        gameScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-			        modeScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-			        menuScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-			      	rules.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-					optionsScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-				    primaryStage.setScene(optionsScene);
-		            }});
-
 			//Bouton pour quitter le jeu
 			Button bye = new Button("Quitter le jeu");
       bye.setFocusTraversable(false);
@@ -451,9 +416,158 @@ public class App extends Application {
         quitter.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
               primaryStage.close(); }});
-
+        
+        
         Label nom = new Label("nootynootnoot");
         Label titre = new Label("PONG");
+      //Space theme
+		spacebg.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				rootPause.setId("spacebg");
+		        root.setId("spacebg");
+		        modeRoot.setId("spacebg");
+		        menuRoot.setId("spacebg");
+		        rulesroot.setId("spacebg");
+				optionsRoot.setId("spacebg");
+				sonRoot.setId("spacebg");
+				
+				retour.setId("boutonPspace");
+			    retourP.setId("boutonPspace");
+			    retourmode.setId("boutonPspace");
+			    retourpause.setId("boutonPspace");
+			    facile.setId("diffSelec");
+			    moyen.setId("difficulte");
+			    difficile.setId("difficulte");
+			    expert.setId("difficulte");
+			    opt1.setId("modesSelec");
+			    opt2.setId("modes");
+			    retourI.setId("retourI");
+				options.setId("boutonPspace");
+				spacebg.setId("boutonPspace");
+				tennisbg.setId("boutonPspace");
+				ledbg.setId("boutonPspace");
+			    son.setId("boutonPspace");
+			    jouer.setId("boutonPspace");
+		        instructions.setId("boutonPspace");
+		        options.setId("boutonPspace");
+		        quitter.setId("boutonPspace");
+		        retour.setId("boutonspace");
+		        bye.setId("boutonspace");
+		        reprendre.setId("boutonPspace");
+		        nom.setFont(Font.font(30));
+		        titre.setId("labelspacetitre");
+		        
+		        gameView.textScoreP1.setFill(Color.WHITE);
+		        gameView.textScoreP2.setFill(Color.WHITE);
+		        gameView.timer.setId("labelspace");
+		        
+				pauseScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+		        gameScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+		        modeScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+		        menuScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+		      	rules.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+				optionsScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+			    primaryStage.setScene(optionsScene);
+	            }});
+
+		//Tennis court theme
+		tennisbg.setOnAction(new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				rootPause.setId("pause");
+		        root.setId("terrain");
+		        modeRoot.setId("mode");
+		        menuRoot.setId("menu");
+		        rulesroot.setId("terrain");
+				optionsRoot.setId("terrain");
+				sonRoot.setId("terrain");
+				
+				retour.setId("boutonsP");
+			    retourP.setId("boutonsP");
+			    retourmode.setId("boutonsP");
+			    retourpause.setId("boutonsP");
+			    facile.setId("diffSelec");
+			    moyen.setId("difficulte");
+			    difficile.setId("difficulte");
+			    expert.setId("difficulte");
+			    opt1.setId("modesSelec");
+			    opt2.setId("modes");
+			    retourI.setId("retourI");
+				options.setId("boutonsP");
+				spacebg.setId("boutonsP");
+				tennisbg.setId("boutonsP");
+				ledbg.setId("boutonsP");
+			    son.setId("boutonsP");
+			    jouer.setId("boutonsP");
+		        instructions.setId("boutonsP");
+		        options.setId("boutonsP");
+		        quitter.setId("boutonsP");
+		        retour.setId("boutons");
+		        bye.setId("boutons");
+		        reprendre.setId("boutonsP");
+		        nom.setFont(Font.font(30));
+		        titre.setId("label2");
+		        gameView.textScoreP1.setFill(Color.BLACK);
+		        gameView.textScoreP2.setFill(Color.BLACK);
+		        gameView.timer.setId("labeltennis");
+				pauseScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+		        gameScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+		        modeScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+		        menuScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+		      	rules.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+				optionsScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+			    primaryStage.setScene(optionsScene);
+	            }});
+		
+		//Led theme
+				ledbg.setOnAction(new EventHandler<ActionEvent>() {
+					public void handle(ActionEvent event) {
+						rootPause.setId("ledbg");
+				        root.setId("ledbg");
+				        modeRoot.setId("ledbg");
+				        menuRoot.setId("ledbg");
+				        rulesroot.setId("lebg");
+						optionsRoot.setId("ledbg");
+						sonRoot.setId("ledbg");
+						
+						retour.setId("boutonPled");
+					    retourP.setId("boutonPled");
+					    retourmode.setId("boutonPled");
+					    retourpause.setId("boutonPled");
+					    facile.setId("diffSelec");
+					    moyen.setId("difficulte");
+					    difficile.setId("difficulte");
+					    expert.setId("difficulte");
+					    opt1.setId("modesSelec");
+					    opt2.setId("modes");
+					    retourI.setId("retourI");
+						options.setId("boutonPled");
+						spacebg.setId("boutonPled");
+						tennisbg.setId("boutonPled");
+						ledbg.setId("boutonPled");
+					    son.setId("boutonPled");
+					    jouer.setId("boutonPled");
+				        instructions.setId("boutonPled");
+				        options.setId("boutonPled");
+				        quitter.setId("boutonPled");
+				        retour.setId("boutonled");
+				        bye.setId("boutonled");
+				        reprendre.setId("boutonPled");
+				        nom.setFont(Font.font(30));
+				        titre.setId("labelspacetitre");
+				        gameView.textScoreP1.setFill(Color.WHITE);
+				        gameView.textScoreP2.setFill(Color.WHITE);
+				        gameView.timer.setId("labelspace");
+				        opt1.setId("modesSelecled");
+				        opt2.setId("modesled");
+						pauseScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+				        gameScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+				        modeScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+				        menuScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+				      	rules.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+						optionsScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+					    primaryStage.setScene(optionsScene);
+			            }});
+
         jouer.setId("boutonsSelec");
         instructions.setId("boutons");
         options.setId("boutons");
