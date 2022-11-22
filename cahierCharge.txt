@@ -50,3 +50,6 @@ Esthétique:
 11.Thème (clair & sombre)
 
 13.Ajouter une apparence au fond
+    1.Permettre au joueur de choisir entre plusieurs thèmes
+    2.Ajuster les couleurs des boutons et des textes en fonction de l'image de fond
+    3.Mettre des balles "thématiques"
