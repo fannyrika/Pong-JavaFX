@@ -423,11 +423,11 @@ public class App extends Application {
       //Space theme
 		spacebg.setOnAction(new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
-				rootPause.setId("spacebg");
+				rootPause.setId("spacepause");
 		        root.setId("spacebg");
-		        modeRoot.setId("spacebg");
+		        modeRoot.setId("spacemode");
 		        menuRoot.setId("spacebg");
-		        rulesroot.setId("spacebg");
+		        rulesroot.setId("spacemode");
 				optionsRoot.setId("spacebg");
 				sonRoot.setId("spacebg");
 				
@@ -530,11 +530,11 @@ public class App extends Application {
 		//Led theme
 				ledbg.setOnAction(new EventHandler<ActionEvent>() {
 					public void handle(ActionEvent event) {
-						rootPause.setId("ledbg");
+						rootPause.setId("ledpause");
 				        root.setId("ledbg");
-				        modeRoot.setId("ledbg");
+				        modeRoot.setId("ledmode");
 				        menuRoot.setId("ledbg");
-				        rulesroot.setId("ledbg");
+				        rulesroot.setId("ledmode");
 						optionsRoot.setId("ledbg");
 						sonRoot.setId("ledbg");
 						

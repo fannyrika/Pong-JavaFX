@@ -97,6 +97,22 @@
   -fx-background-size: 100%;
 }
 
+#spacemode {
+  -fx-background-image: url("spacemode.jpg");
+  -fx-background-color: #c0d4cd;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+}
+
+#ledmode {
+  -fx-background-image: url("ledmode.jpg");
+  -fx-background-color: #c0d4cd;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+}
+
 #modes {
   -fx-background-color: darkgray;
   -fx-font-size: 35px;
@@ -161,6 +177,22 @@
 
 #pause {
   -fx-background-image: url("fondpoz.png");
+  -fx-background-color: #c0d4cd;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+}
+
+#spacepause {
+  -fx-background-image: url("spacepause.png");
+  -fx-background-color: #c0d4cd;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+}
+
+#ledpause {
+  -fx-background-image: url("ledpause.png");
   -fx-background-color: #c0d4cd;
   -fx-background-repeat: no-repeat;
   -fx-background-position: 50% 50%;
