@@ -39,7 +39,7 @@ public class GameView {
     public final Circle ball;
     static boolean stop=false,pause=false;
     private boolean start;
-    public Text textScoreP1, textScoreP2;
+    public Text textScoreP1, textScoreP2, instructionHP;
     Boost boost;
     /**
      * @param court le "modèle" de cette vue (le terrain de jeu de raquettes et tout ce qu'il y a dessus)
@@ -125,8 +125,9 @@ public class GameView {
     }
     public void addRoot1V1() {
     	  //Gére l'affichage des bonus des joueurs;
-  	  Image img = new Image(new File("src/main/resources/gui/Bonus.png").toURI().toString());
-  	  ImageView view = new ImageView(img);
+  	  Image imgL = new Image(new File("src/main/resources/gui/hitboxLeft.png").toURI().toString());
+      Image imgR = new Image(new File("src/main/resources/gui/hitboxRight.png").toURI().toString());
+  	  ImageView view = new ImageView(imgL);
   	  view.setFitHeight(200);
   	  view.setFitWidth(200);
   	  view.setPreserveRatio(true);
@@ -135,7 +136,7 @@ public class GameView {
   	  caseBonusLeft.setTranslateX(-49);
   	  caseBonusLeft.setTranslateY(50);
   	    
-  	  ImageView viewR=new ImageView(img);
+  	  ImageView viewR=new ImageView(imgR);
   	  viewR.setFitHeight(200);
   	  viewR.setFitWidth(200);
   	  viewR.setPreserveRatio(true);
@@ -144,7 +145,12 @@ public class GameView {
       caseBonusRight.setTranslateX(court.getWidth()-70);
   	  caseBonusRight.setTranslateY(50);
 
-    	gameRoot.getChildren().addAll(racketA, racketB, ball,timer,textScoreP1, textScoreP2,caseBonusLeft,caseBonusRight);
+        instructionHP = new Text("Touche H -> Help --- Touche P -> Pause");
+        instructionHP.setFont(Font.font(20));
+        instructionHP.setX(court.getWidth()-700);
+        instructionHP.setY(100);
+
+    	gameRoot.getChildren().addAll(racketA, racketB, ball,timer,textScoreP1, textScoreP2,caseBonusLeft,caseBonusRight,instructionHP);
     }
     public void remove1v1() {
     	gameRoot.getChildren().clear();
