@@ -145,10 +145,12 @@ public class GameView {
       caseBonusRight.setTranslateX(court.getWidth()-70);
   	  caseBonusRight.setTranslateY(50);
 
-        instructionHP = new Text("Touche H -> Help --- Touche P -> Pause");
+        String instruction="Touche H -> Help | Touche P -> Pause | Touche M -> Mute";
+        instructionHP = new Text(instruction);
         instructionHP.setFont(Font.font(20));
-        instructionHP.setX(court.getWidth()-700);
-        instructionHP.setY(100);
+        instructionHP.setFill(Color.WHITE);
+        instructionHP.setX(court.getWidth()/2-5*instruction.length());
+        instructionHP.setY(105);
 
     	gameRoot.getChildren().addAll(racketA, racketB, ball,timer,textScoreP1, textScoreP2,caseBonusLeft,caseBonusRight,instructionHP);
     }
