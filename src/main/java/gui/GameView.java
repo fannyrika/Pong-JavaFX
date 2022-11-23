@@ -135,7 +135,7 @@ public class GameView {
   	  caseBonusLeft.setGraphic(view);
   	  caseBonusLeft.setTranslateX(-49);
   	  caseBonusLeft.setTranslateY(50);
-  	    
+
   	  ImageView viewR=new ImageView(imgR);
   	  viewR.setFitHeight(200);
   	  viewR.setFitWidth(200);
@@ -145,12 +145,12 @@ public class GameView {
       caseBonusRight.setTranslateX(court.getWidth()-70);
   	  caseBonusRight.setTranslateY(50);
 
-        String instruction="Touche H -> Help | Touche P -> Pause | Touche M -> Mute";
+        String instruction="H -> Aide\nP -> Pause\nM -> Mute";
         instructionHP = new Text(instruction);
-        instructionHP.setFont(Font.font(20));
+        instructionHP.setFont(Font.font(15));
         instructionHP.setFill(Color.WHITE);
         instructionHP.setX(court.getWidth()/2-5*instruction.length());
-        instructionHP.setY(105);
+        instructionHP.setY(30);
 
     	gameRoot.getChildren().addAll(racketA, racketB, ball,timer,textScoreP1, textScoreP2,caseBonusLeft,caseBonusRight,instructionHP);
     }
@@ -233,7 +233,7 @@ public class GameView {
 
 	public void removeBot() {
 		gameRoot.getChildren().clear();
-	  
+
 
     }
 
@@ -271,9 +271,9 @@ public class GameView {
 		 }
 
    	 }
-   	 
+
    	 if(boost!=null&&boost.isBallTouchBoost()) {
-   		
+
    		 MediaPlayer mp=new MediaPlayer(court.mediaBall);
    		 mp.play();
    		 if(court.ballSpeedX>0) {
@@ -287,14 +287,14 @@ public class GameView {
    		 gameRoot.getChildren().remove(boost.boost);
    		 boost=null;
    	 }
-   	
-   	 
 
-	 if(!court.p2.active&&!court.p1.active){  	
+
+
+	 if(!court.p2.active&&!court.p1.active){
    	 court.p1.activeBoost();
 	 }
-	 
-   	 if(!court.p2.active&&!court.p1.active){  	
+
+   	 if(!court.p2.active&&!court.p1.active){
    	 court.p2.activeBoost();
 	 }
 	 if(court.p1.deleteBoost) {
@@ -309,7 +309,7 @@ public class GameView {
 
       court.p1.boostPlayer(chronometer.ss,chronometer.th);
       court.p2.boostPlayer(chronometer.ss,chronometer.th);
-      
+
    }
 
     public void animate() {

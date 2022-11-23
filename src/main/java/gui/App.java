@@ -337,6 +337,7 @@ public class App extends Application {
       spacebg.setFocusTraversable(false);
 			Button tennisbg = new Button("Tennis");
 			Button ledbg = new Button("N\u00e9on");
+      ledbg.setFocusTraversable(false);
 			tennisbg.setFocusTraversable(false);
 			options.setId("boutonsP");
 			spacebg.setId("boutonsSelec");
@@ -440,7 +441,7 @@ public class App extends Application {
 			    opt2.setId("modes");
 			    retourI.setId("retourI");
 				options.setId("boutonPspace");
-				spacebg.setId("boutonPspace");
+				spacebg.setId("boutonSelecspace");
 				tennisbg.setId("boutonPspace");
 				ledbg.setId("boutonPspace");
 			    son.setId("boutonPspace");
@@ -486,7 +487,7 @@ public class App extends Application {
 			    retourI.setId("retourI");
 				options.setId("boutonsP");
 				spacebg.setId("boutonsP");
-				tennisbg.setId("boutonsP");
+				tennisbg.setId("boutonsSelec");
 				ledbg.setId("boutonsP");
 			    son.setId("boutonsP");
 			    jouer.setId("boutonsSelec");
@@ -534,7 +535,7 @@ public class App extends Application {
 						options.setId("boutonPled");
 						spacebg.setId("boutonPled");
 						tennisbg.setId("boutonPled");
-						ledbg.setId("boutonPled");
+						ledbg.setId("boutonSelecled");
 					    son.setId("boutonPled");
 					    jouer.setId("boutonSelecled");
 				        instructions.setId("boutonPled");
@@ -890,7 +891,7 @@ public class App extends Application {
                 case R:
                 	primaryStage.setScene(menuScene);
                   break;
-            /*    case DOWN:
+                case DOWN:
                   if(spacebg.getId() == "boutonsSelec"){
                     spacebg.setId("boutons");
                     tennisbg.setId("boutonsSelec");
@@ -898,6 +899,22 @@ public class App extends Application {
                   else if(tennisbg.getId() == "boutonsSelec"){
                     tennisbg.setId("boutons");
                     ledbg.setId("boutonsSelec");
+                  }
+                  else if(spacebg.getId() == "boutonSelecspace"){
+                    spacebg.setId("boutonPspace");
+                    tennisbg.setId("boutonSelecspace");
+                  }
+                  else if(tennisbg.getId() == "boutonSelecspace"){
+                    tennisbg.setId("boutonPspace");
+                    ledbg.setId("boutonSelecspace");
+                  }
+                  else if(spacebg.getId() == "boutonSelecled"){
+                    spacebg.setId("boutonled");
+                    tennisbg.setId("boutonSelecled");
+                  }
+                  else if(tennisbg.getId() == "boutonSelecled"){
+                    tennisbg.setId("boutonled");
+                    ledbg.setId("boutonSelecled");
                   }
                   break;
                 case UP:
@@ -909,7 +926,155 @@ public class App extends Application {
                     tennisbg.setId("boutons");
                     spacebg.setId("boutonsSelec");
                   }
-                break; */ }});
+                  else if(ledbg.getId() == "boutonSelecspace"){
+                    ledbg.setId("boutonPspace");
+                    tennisbg.setId("boutonSelecspace");
+                  }
+                  else if(tennisbg.getId() == "boutonSelecspace"){
+                    tennisbg.setId("boutonPspace");
+                    spacebg.setId("boutonSelecspace");
+                  }
+                  else if(ledbg.getId() == "boutonSelecled"){
+                    ledbg.setId("boutonled");
+                    tennisbg.setId("boutonSelecled");
+                  }
+                  else if(tennisbg.getId() == "boutonSelecled"){
+                    tennisbg.setId("boutonled");
+                    spacebg.setId("boutonSelecled");
+                  }
+                  break;
+                case SPACE:
+                  if(spacebg.getId() == "boutonSelecspace" || spacebg.getId() == "boutonSelecled" || spacebg.getId() == "boutonSelec"){
+                    rootPause.setId("spacepause");
+                        root.setId("spacebg");
+                        modeRoot.setId("spacemode");
+                        menuRoot.setId("spacebg");
+                        rulesroot.setId("spacemode");
+                    optionsRoot.setId("spacebg");
+                    sonRoot.setId("spacebg");
+                    retour.setId("boutonPspace");
+                      retourP.setId("boutonPspace");
+                      retourmode.setId("boutonPspace");
+                      retourpause.setId("boutonPspace");
+                      facile.setId("diffSelec");
+                      moyen.setId("difficulte");
+                      difficile.setId("difficulte");
+                      expert.setId("difficulte");
+                      opt1.setId("modesSelec");
+                      opt2.setId("modes");
+                      retourI.setId("retourI");
+                    options.setId("boutonPspace");
+                    spacebg.setId("boutonSelecspace");
+                    tennisbg.setId("boutonPspace");
+                    ledbg.setId("boutonPspace");
+                      son.setId("boutonPspace");
+                      jouer.setId("boutonSelecspace");
+                        instructions.setId("boutonPspace");
+                        options.setId("boutonPspace");
+                        quitter.setId("boutonPspace");
+                        retour.setId("boutonspace");
+                        bye.setId("boutonspace");
+                        reprendre.setId("boutonSelecspace");
+                        nom.setFont(Font.font(30));
+                        titre.setId("labelspacetitre");
+                        regles.setFont(Font.font(35));
+                        regles.setFill(Color.WHITE);
+                        message.setFont(Font.font(25));
+                        message.setFill(Color.WHITE);
+                        gameView.textScoreP1.setFill(Color.WHITE);
+                        gameView.textScoreP2.setFill(Color.WHITE);
+                        gameView.timer.setId("labelspace");
+                      primaryStage.setScene(optionsScene);
+                  }
+                  else if(ledbg.getId() == "boutonSelecled" || ledbg.getId() == "boutonSelecled" || ledbg.getId() == "boutonSelec"){
+                    rootPause.setId("ledpause");
+        				        root.setId("ledbg");
+        				        modeRoot.setId("ledmode");
+        				        menuRoot.setId("ledbg");
+        				        rulesroot.setId("ledmode");
+        						optionsRoot.setId("ledbg");
+        						sonRoot.setId("ledbg");
+        						retour.setId("boutonPled");
+        					    retourP.setId("boutonPled");
+        					    retourmode.setId("boutonPled");
+        					    retourpause.setId("boutonPled");
+        					    facile.setId("diffSelec");
+        					    moyen.setId("difficulte");
+        					    difficile.setId("difficulte");
+        					    expert.setId("difficulte");
+        					    opt1.setId("modesSelec");
+        					    opt2.setId("modesled");
+        					    retourI.setId("retourI");
+        						options.setId("boutonPled");
+        						spacebg.setId("boutonPled");
+        						tennisbg.setId("boutonPled");
+        						ledbg.setId("boutonSelecled");
+        					    son.setId("boutonPled");
+        					    jouer.setId("boutonSelecled");
+        				        instructions.setId("boutonPled");
+        				        options.setId("boutonPled");
+        				        quitter.setId("boutonPled");
+        				        retour.setId("boutonPled");
+        				        bye.setId("boutonled");
+        				        reprendre.setId("boutonPledSelec");
+        				        nom.setFont(Font.font(30));
+        				        titre.setId("labelled");
+        				        gameView.textScoreP1.setFill(Color.WHITE);
+        				        gameView.textScoreP2.setFill(Color.WHITE);
+        				        gameView.timer.setId("labelled");
+        				        message.setFont(Font.font(25));
+        				        message.setFill(Color.PINK);
+        				        regles.setFont(Font.font(35));
+        				        regles.setFill(Color.PINK);
+        				        opt1.setId("modesSelecled");
+        				        opt2.setId("modesled");
+        					    primaryStage.setScene(optionsScene);
+                  }
+                  else if(tennisbg.getId() == "boutonsSelec" || tennisbg.getId() == "boutonSelecled" || tennisbg.getId() == "boutonSelec"){
+                    rootPause.setId("pause");
+            		        root.setId("terrain");
+            		        modeRoot.setId("mode");
+            		        menuRoot.setId("menu");
+            		        rulesroot.setId("terrain");
+            				optionsRoot.setId("terrain");
+            				sonRoot.setId("terrain");
+            				retour.setId("boutonsP");
+            			    retourP.setId("boutonsP");
+            			    retourmode.setId("boutonsP");
+            			    retourpause.setId("boutonsP");
+            			    facile.setId("diffSelec");
+            			    moyen.setId("difficulte");
+            			    difficile.setId("difficulte");
+            			    expert.setId("difficulte");
+            			    opt1.setId("modesSelec");
+            			    opt2.setId("modes");
+            			    retourI.setId("retourI");
+            				options.setId("boutonsP");
+            				spacebg.setId("boutonsP");
+            				tennisbg.setId("boutonsSelec");
+            				ledbg.setId("boutonsP");
+            			    son.setId("boutonsP");
+            			    jouer.setId("boutonsSelec");
+            		        instructions.setId("boutonsP");
+            		        options.setId("boutonsP");
+            		        quitter.setId("boutonsP");
+            		        retour.setId("boutons");
+            		        bye.setId("boutons");
+            		        reprendre.setId("boutonsSelec");
+            		        nom.setFont(Font.font(30));
+            		        titre.setId("label2");
+            		        gameView.textScoreP1.setFill(Color.BLACK);
+            		        gameView.textScoreP2.setFill(Color.BLACK);
+            		        gameView.timer.setId("labeltennis");
+            		        regles.setFont(Font.font(35));
+            		        regles.setFill(Color.GREEN);
+            		        message.setFont(Font.font(25));
+            		        message.setFill(Color.WHITE);
+            		        gameView.textScoreP1.setFill(Color.WHITE);
+            		        gameView.textScoreP2.setFill(Color.WHITE);
+            			    primaryStage.setScene(optionsScene);
+                  }
+                  break;  }});
 
         rules.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
