@@ -11,8 +11,126 @@
   -fx-background-size: 100%;
 }
 
+#spacebg {
+  -fx-background-image: url("spacebackground.png");
+  -fx-background-color: #842e1b;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+}
+
+#boutonspace {
+    -fx-text-fill:white;
+    -fx-background-color: transparent;
+    -fx-font-size: 35px;
+    -fx-font-family: Yrsa Medium;
+    -fx-font-weight: bolder;
+}
+
+#boutonSelecspace {
+    -fx-text-fill:white;
+    -fx-background-color: transparent;
+    -fx-font-size: 45px;
+    -fx-font-family: Yrsa Medium;
+    -fx-font-weight: bolder;
+}
+
+#boutonPspace {
+    -fx-text-fill:white;
+    -fx-background-color: transparent;
+    -fx-font-size: 35px;
+    -fx-font-family: Yrsa Medium;
+    -fx-font-weight: bolder;
+}
+
+#boutonPspace:hover {
+  -fx-font-size: 45px;
+}
+
+#ledbg {
+  -fx-background-image: url("ledbackground.jpg");
+  -fx-background-color: #842e1b;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+}
+
+#boutonled {
+    -fx-text-fill:pink;
+    -fx-background-color: transparent;
+    -fx-font-size: 35px;
+    -fx-font-family: Yrsa Medium;
+    -fx-font-weight: bolder;
+}
+
+#boutonSelecled {
+    -fx-text-fill:pink;
+    -fx-background-color: transparent;
+    -fx-font-size: 45px;
+    -fx-font-family: Yrsa Medium;
+    -fx-font-weight: bolder;
+}
+
+#boutonPled{
+    -fx-text-fill:pink;
+    -fx-background-color: transparent;
+    -fx-font-size: 35px;
+    -fx-font-family: Yrsa Medium;
+    -fx-font-weight: bolder;
+}
+
+#boutonPledSelec{
+    -fx-text-fill:pink;
+    -fx-background-color: transparent;
+    -fx-font-size: 45px;
+    -fx-font-family: Yrsa Medium;
+    -fx-font-weight: bolder;
+}
+
+#boutonPled:hover {
+  -fx-font-size: 45px;
+}
+
+#modesSelecled{
+  -fx-background-color:pink;
+  -fx-text-fill:black;
+  -fx-font-size: 45px;
+  -fx-font-family: Yrsa Medium;
+  -fx-font-weight: bolder;
+  -fx-border-radius: 10% / 50%;
+}
+
+#modesled {
+  -fx-background-color: pink;
+  -fx-text-fill:black;
+  -fx-font-size: 35px;
+  -fx-font-family: Yrsa Medium;
+  -fx-font-weight: bolder;
+  -fx-border-radius: 10% / 50%;
+}
+
+#modesled:hover {
+  -fx-background-color: pink;
+}
+
 #mode {
   -fx-background-image: url("imgmode.png");
+  -fx-background-color: #c0d4cd;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+}
+
+#spacemode {
+  -fx-background-image: url("spacemode.jpg");
+  -fx-background-color: #c0d4cd;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+}
+
+#ledmode {
+  -fx-background-image: url("ledmode.jpg");
   -fx-background-color: #c0d4cd;
   -fx-background-repeat: no-repeat;
   -fx-background-position: 50% 50%;
@@ -28,7 +146,15 @@
 }
 
 #modes:hover {
-  -fx-background-color: lightgray;
+  -fx-background-color: #808080;
+}
+
+#modesSelec{
+  -fx-background-color: #808080;
+  -fx-font-size: 35px;
+  -fx-font-family: Yrsa Medium;
+  -fx-font-weight: bolder;
+  -fx-border-radius: 10% / 50%;
 }
 
 #ligne {
@@ -57,8 +183,40 @@
       -fx-background-color: #607D3B;
     }
 
+   #diffSelec{
+     -fx-font-family: Yrsa Medium;
+      -fx-display: inline-block;
+      -fx-background-color: #607D3B;
+      -fx-border-radius: 10px;
+      -fx-border: 4px double #cccccc;
+      -fx-color: #eeeeee;
+      -fx-text-align: center;
+      -fx-font-size: 28px;
+      -fx-padding: 20px;
+      -fx-width: 200px;
+      -fx-transition: all 0.5s;
+      -fx-cursor: pointer;
+      -fx-margin: 5px;
+   }
+
 #pause {
   -fx-background-image: url("fondpoz.png");
+  -fx-background-color: #c0d4cd;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+}
+
+#spacepause {
+  -fx-background-image: url("spacepause.png");
+  -fx-background-color: #c0d4cd;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+}
+
+#ledpause {
+  -fx-background-image: url("ledpause.png");
   -fx-background-color: #c0d4cd;
   -fx-background-repeat: no-repeat;
   -fx-background-position: 50% 50%;
@@ -118,6 +276,14 @@
     -fx-font-weight: bolder;
 }
 
+#boutonsSelec{
+  -fx-font-color: BLACK;
+  -fx-background-color: transparent;
+  -fx-font-family: Yrsa Medium;
+  -fx-font-weight: bolder;
+  -fx-font-size: 45px;
+}
+
 #boutonsP:hover {
   -fx-font-size: 45px;
 }
@@ -129,4 +295,29 @@
 #label2 {
   -fx-font-weight: bolder;
   -fx-font-size: 70px;
+}
+
+#labelspacetitre {
+  -fx-text-fill:white;
+  -fx-font-weight: bolder;
+  -fx-font-size: 70px;
+}
+
+#labelspace {
+  -fx-text-fill:white;
+  -fx-font-weight: bolder;
+  -fx-font-size: 30px;
+}
+
+#labeltennis {
+  -fx-text-fill:black;
+  -fx-font-weight: bolder;
+  -fx-font-size: 30px;
+}
+
+
+#labelled {
+  -fx-text-fill:pink;
+  -fx-font-weight: bolder;
+  -fx-font-size: 50px;
 }

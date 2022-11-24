@@ -6,15 +6,15 @@ public class Bot extends Court{
     private int difficulty;
     private int scoreP1 = 0;
     private int scoreP2 = 0;
-    public Bot(RacketController playerA,double acceleration){
+    public Bot(RacketController playerA,int difficulty,double acceleration){
       super(playerA,null,acceleration,null,null);
       this.difficulty=difficulty;
     }
 
-
     public void setDifficulty(int n) {
     	difficulty=n;
     }
+
     public double getBot(){
       return bot;
     }
@@ -66,14 +66,14 @@ public class Bot extends Court{
                Random x= new Random();
                int alea=x.nextInt(10);
                if(alea>=1){
-                   bot += this.getBallSpeedY() * deltaT;
+                
                    if(getBallSpeedY()<0) bot -= Math.abs(getBallSpeedY())*deltaT-getRacketSize()/2*deltaT;
           	 	   if(getBallSpeedY()>0)bot+=Math.abs(getBallSpeedY())*deltaT-getRacketSize()/2*deltaT;
                    if (bot< 0.0) bot = 0.0;
                    if (bot + this.getRacketSize() > this.getHeight()) bot = this.getHeight() - this.getRacketSize();
                }
              }
-             //deplace le bot de manière aleatoire lorsque la vitesse de la balle est negative ou bien lorque la balle depasse les 1/3 du terrain; 
+             //deplace le bot de manière aleatoire lorsque la vitesse de la balle est negative ou bien lorque la balle depasse les 1/3 du terrain;
              else{
   		       deplacementAleatoire(deltaT);
   		     }
@@ -172,7 +172,7 @@ public class Bot extends Court{
 		scoreP1 = 0;
    		scoreP2 = 0;
 	}
-		
+
     public void reset() {
         this.setRacketA(this.getHeight()/2);
         this.bot=this.getHeight()/2;

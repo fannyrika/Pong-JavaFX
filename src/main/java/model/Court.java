@@ -1,9 +1,10 @@
 package model;
 
 import javafx.geometry.Rectangle2D;
+
 import javafx.scene.media.Media;
 import java.io.File;
-import javafx.scene.media.MediaPlayer;
+import java.util.Random;
 
 import javafx.stage.Screen;
 public class Court {
@@ -16,14 +17,12 @@ public class Court {
     public PlayerBoost p1,p2;
     private double racketA; // m
     private double racketB; // m
-    private double rotationA,rotationB;
     public double ballX, ballY; // m
     public double ballSpeedX, ballSpeedY, racketSpeed, acceleration; // m
     private int scoreP1 = 0;
     private int scoreP2 = 0;
     public Media mediaBall;
     public Media activationBoost;
-    public Media ballsound;
 
 
     Rectangle2D screen = Screen.getPrimary().getVisualBounds();
@@ -35,7 +34,6 @@ public class Court {
         this.acceleration= acceleration;
         mediaBall = new Media(new File("src/main/resources/gui/AudioBoost.mp3").toURI().toString());
         activationBoost=new Media(new File("src/main/resources/gui/AudioBoostActive.mp3").toURI().toString());
-        ballsound = new Media(new File("ballsound.m4a").toURI().toString());
         p1=new PlayerBoost(playerABall);
         p2=new PlayerBoost(playerBball);
 
@@ -66,18 +64,10 @@ public class Court {
 
       this.racketA=racketA;
     }
-    
-    public double getRotationA() {
-		return rotationA;
-	}
 
     public double getRacketB() {
         return racketB;
     }
-    
-    public double getRotationB() {
-		return rotationB;
-	}
 
     public double getBallX() {
         return ballX;
@@ -132,12 +122,6 @@ public class Court {
                 racketA += racketSpeed * deltaT;
                 if (racketA + racketSize > height) racketA = height - racketSize;
                 break;
-            case TURN_LEFT:
-                rotationA += racketSpeed * deltaT % 360;
-                break;
-            case TURN_RIGHT:
-            	rotationA -= racketSpeed * deltaT % 360;
-                break;
         }
         switch (playerB.getState()) {
             case GOING_UP:
@@ -149,12 +133,6 @@ public class Court {
             case GOING_DOWN:
                 racketB += racketSpeed * deltaT;
                 if (racketB + racketSize > height) racketB = height - racketSize;
-                break;
-            case TURN_LEFT:
-                rotationB += racketSpeed * deltaT % 360;
-                break;
-            case TURN_RIGHT:
-                rotationB -= racketSpeed * deltaT % 360;
                 break;
         }
         if (updateBall(deltaT)) reset();
@@ -168,7 +146,6 @@ public class Court {
         // first, compute possible next position if nothing stands in the way
         double nextBallX = ballX + deltaT * ballSpeedX;
         double nextBallY = ballY + deltaT * ballSpeedY;
-       
         // next, see if the ball would meet some obstacle
         if (nextBallY < 0 || nextBallY > height) {
             ballSpeedY = -ballSpeedY;
@@ -176,8 +153,6 @@ public class Court {
         }
         if ((nextBallX < 0 && nextBallY > racketA && nextBallY < racketA + racketSize)
                 || (nextBallX > width && nextBallY > racketB && nextBallY < racketB + racketSize)) {
-        	 MediaPlayer mp=new MediaPlayer(ballsound);
-        	mp.play();
             ballSpeedX = -ballSpeedX;
             nextBallX = ballX + deltaT * ballSpeedX;
         } else if (nextBallX < 0) {
@@ -211,12 +186,30 @@ public class Court {
     public void reset() {
         this.racketA = height / 2;
         this.racketB = height / 2;
-        this.rotationA=0;
-        this.rotationB=0;
         this.racketSpeed = 300.0;
-        this.ballSpeedX = 200.0;
-        this.ballSpeedY = 200.0;
+    	this.racketA = height / 2;
+        this.racketB = height / 2;
+        Random rd=new Random();
+        int x=rd.nextInt(4);
+        int y=rd.nextInt(200)+100;
+	   	if(x==0) {
+		        this.ballSpeedX=-200-y%200;
+		        this.ballSpeedY=-y;
+	   	}
+	   	else if(x==1) {
+	   		this.ballSpeedX=200+y%200;
+	        this.ballSpeedY=-y;
+	   	}
+		else if(x==2) {
+	   		this.ballSpeedX=-200-y%200;
+	        this.ballSpeedY=y;
+	   	}
+		else {
+	   		this.ballSpeedX=200+y%200;
+	        this.ballSpeedY=y;
+	   	}
+        
         this.ballX = width / 2;
-        this.ballY = height / 2;
+        this.ballY = Math.random()*((height-100))+50;
     }
 }

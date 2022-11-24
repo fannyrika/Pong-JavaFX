@@ -16,8 +16,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import javafx.scene.image.Image;
-
-import java.awt.Graphics2D;
 import java.io.File;
 import java.net.MalformedURLException;
 import javafx.scene.paint.ImagePattern;
@@ -35,13 +33,13 @@ public class GameView {
     private final double xMargin = 100.0, racketThickness = 100.0; // pixels
 
     // children of the game main node
-    private Label timer;
+    public Label timer;
     Chrono chronometer;
     private final Rectangle racketA, racketB ,bot;
-    private final Circle ball;
+    public final Circle ball;
     static boolean stop=false,pause=false;
     private boolean start;
-    private Text textScoreP1, textScoreP2;
+    public Text textScoreP1, textScoreP2, instructionHP;
     Boost boost;
     /**
      * @param court le "modèle" de cette vue (le terrain de jeu de raquettes et tout ce qu'il y a dessus)
@@ -118,6 +116,7 @@ public class GameView {
 
 
 
+
     }
 	public boolean isStart() {
     	return start;
@@ -127,8 +126,9 @@ public class GameView {
     }
     public void addRoot1V1() {
     	  //Gére l'affichage des bonus des joueurs;
-  	  Image img = new Image(new File("src/main/resources/gui/Bonus.png").toURI().toString());
-  	  ImageView view = new ImageView(img);
+  	  Image imgL = new Image(new File("src/main/resources/gui/hitboxLeft.png").toURI().toString());
+      Image imgR = new Image(new File("src/main/resources/gui/hitboxRight.png").toURI().toString());
+  	  ImageView view = new ImageView(imgL);
   	  view.setFitHeight(200);
   	  view.setFitWidth(200);
   	  view.setPreserveRatio(true);
@@ -136,8 +136,8 @@ public class GameView {
   	  caseBonusLeft.setGraphic(view);
   	  caseBonusLeft.setTranslateX(-49);
   	  caseBonusLeft.setTranslateY(50);
-  	    
-  	  ImageView viewR=new ImageView(img);
+
+  	  ImageView viewR=new ImageView(imgR);
   	  viewR.setFitHeight(200);
   	  viewR.setFitWidth(200);
   	  viewR.setPreserveRatio(true);
@@ -146,7 +146,14 @@ public class GameView {
       caseBonusRight.setTranslateX(court.getWidth()-70);
   	  caseBonusRight.setTranslateY(50);
 
-    	gameRoot.getChildren().addAll(racketA, racketB, ball,timer,caseBonusLeft,caseBonusRight,textScoreP1,textScoreP2);
+        String instruction="H -> Aide\nP -> Pause\nM -> Mute";
+        instructionHP = new Text(instruction);
+        instructionHP.setFont(Font.font(15));
+        instructionHP.setFill(Color.WHITE);
+        instructionHP.setX(court.getWidth()/2-5*instruction.length());
+        instructionHP.setY(30);
+
+    	gameRoot.getChildren().addAll(racketA, racketB, ball,timer,textScoreP1, textScoreP2,caseBonusLeft,caseBonusRight,instructionHP);
     }
     public void remove1v1() {
     	gameRoot.getChildren().clear();
@@ -219,6 +226,7 @@ public class GameView {
 
 
 
+
     }
 
 	 public void addRoootBot() {
@@ -227,7 +235,7 @@ public class GameView {
 
 	public void removeBot() {
 		gameRoot.getChildren().clear();
-	  
+
 
     }
 
@@ -303,9 +311,7 @@ public class GameView {
 
    	 court.p1.boostPlayer(chronometer.secondeTimer,chronometer.th);
      court.p2.boostPlayer(chronometer.secondeTimer,chronometer.th);
-      
    }
-
 
     public void animate() {
         new AnimationTimer() {
@@ -314,7 +320,7 @@ public class GameView {
             @Override
             public void handle(long now) {
                 if (last == 0) { // ignore the first tick, just compute the first deltaT
-                      last = now;
+                    last = now;
                     return;
                 }
 
