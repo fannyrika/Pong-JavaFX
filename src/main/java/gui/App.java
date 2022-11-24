@@ -428,7 +428,6 @@ public class App extends Application {
 		        rulesroot.setId("spacemode");
 				optionsRoot.setId("spacebg");
 				sonRoot.setId("spacebg");
-
 				retour.setId("boutonPspace");
 			    retourP.setId("boutonPspace");
 			    retourmode.setId("boutonPspace");
@@ -471,7 +470,7 @@ public class App extends Application {
 		        root.setId("terrain");
 		        modeRoot.setId("mode");
 		        menuRoot.setId("menu");
-		        rulesroot.setId("terrain");
+		        rulesroot.setId("mode");
 				optionsRoot.setId("terrain");
 				sonRoot.setId("terrain");
 				retour.setId("boutonsP");
@@ -505,7 +504,7 @@ public class App extends Application {
 		        regles.setFont(Font.font(35));
 		        regles.setFill(Color.GREEN);
 		        message.setFont(Font.font(25));
-		        message.setFill(Color.WHITE);
+		        message.setFill(Color.DARKRED);
 		        gameView.textScoreP1.setFill(Color.WHITE);
 		        gameView.textScoreP2.setFill(Color.WHITE);
 			    primaryStage.setScene(optionsScene);
@@ -888,9 +887,6 @@ public class App extends Application {
 
        optionsScene.setOnKeyPressed(ev -> {
              switch (ev.getCode()) {
-                case R:
-                	primaryStage.setScene(menuScene);
-                  break;
                 case DOWN:
                   if(spacebg.getId() == "boutonsSelec"){
                     spacebg.setId("boutons");
@@ -900,6 +896,10 @@ public class App extends Application {
                     tennisbg.setId("boutons");
                     ledbg.setId("boutonsSelec");
                   }
+                  else if(ledbg.getId() == "boutonsSelec"){
+                    ledbg.setId("boutons");
+                    retour.setId("boutonsSelec");
+                  }
                   else if(spacebg.getId() == "boutonSelecspace"){
                     spacebg.setId("boutonPspace");
                     tennisbg.setId("boutonSelecspace");
@@ -907,6 +907,10 @@ public class App extends Application {
                   else if(tennisbg.getId() == "boutonSelecspace"){
                     tennisbg.setId("boutonPspace");
                     ledbg.setId("boutonSelecspace");
+                  }
+                  else if(ledbg.getId() == "boutonSelecspace"){
+                    ledbg.setId("boutonPspace");
+                    retour.setId("boutonSelecspace");
                   }
                   else if(spacebg.getId() == "boutonSelecled"){
                     spacebg.setId("boutonled");
@@ -916,15 +920,27 @@ public class App extends Application {
                     tennisbg.setId("boutonled");
                     ledbg.setId("boutonSelecled");
                   }
+                  else if(ledbg.getId() == "boutonSelecled"){
+                    ledbg.setId("boutonled");
+                    retour.setId("boutonSelecled");
+                  }
                   break;
                 case UP:
-                  if(ledbg.getId() == "boutonsSelec"){
+                  if(retour.getId() == "boutonsSelec"){
+                    retour.setId("boutons");
+                    ledbg.setId("boutonsSelec");
+                  }
+                  else if(ledbg.getId() == "boutonsSelec"){
                     ledbg.setId("boutons");
                     tennisbg.setId("boutonsSelec");
                   }
                   else if(tennisbg.getId() == "boutonsSelec"){
                     tennisbg.setId("boutons");
                     spacebg.setId("boutonsSelec");
+                  }
+                  else if(retour.getId() == "boutonSelecspace"){
+                    retour.setId("boutonPspace");
+                    ledbg.setId("boutonSelecspace");
                   }
                   else if(ledbg.getId() == "boutonSelecspace"){
                     ledbg.setId("boutonPspace");
@@ -933,6 +949,10 @@ public class App extends Application {
                   else if(tennisbg.getId() == "boutonSelecspace"){
                     tennisbg.setId("boutonPspace");
                     spacebg.setId("boutonSelecspace");
+                  }
+                  else if(retour.getId() == "boutonSelecled"){
+                    retour.setId("boutonled");
+                    ledbg.setId("boutonSelecled");
                   }
                   else if(ledbg.getId() == "boutonSelecled"){
                     ledbg.setId("boutonled");
@@ -944,7 +964,7 @@ public class App extends Application {
                   }
                   break;
                 case SPACE:
-                  if(spacebg.getId() == "boutonSelecspace" || spacebg.getId() == "boutonSelecled" || spacebg.getId() == "boutonSelec"){
+                  if(spacebg.getId() == "boutonSelecspace" || spacebg.getId() == "boutonSelecled" || spacebg.getId() == "boutonsSelec"){
                     rootPause.setId("spacepause");
                         root.setId("spacebg");
                         modeRoot.setId("spacemode");
@@ -986,7 +1006,7 @@ public class App extends Application {
                         gameView.timer.setId("labelspace");
                       primaryStage.setScene(optionsScene);
                   }
-                  else if(ledbg.getId() == "boutonSelecled" || ledbg.getId() == "boutonSelecled" || ledbg.getId() == "boutonSelec"){
+                  else if(ledbg.getId() == "boutonsSelec" || ledbg.getId() == "boutonSelecled" || ledbg.getId() == "boutonSelecspace"){
                     rootPause.setId("ledpause");
         				        root.setId("ledbg");
         				        modeRoot.setId("ledmode");
@@ -1030,7 +1050,7 @@ public class App extends Application {
         				        opt2.setId("modesled");
         					    primaryStage.setScene(optionsScene);
                   }
-                  else if(tennisbg.getId() == "boutonsSelec" || tennisbg.getId() == "boutonSelecled" || tennisbg.getId() == "boutonSelec"){
+                  else if(tennisbg.getId() == "boutonsSelec" || tennisbg.getId() == "boutonSelecled" || tennisbg.getId() == "boutonSelecspace"){
                     rootPause.setId("pause");
             		        root.setId("terrain");
             		        modeRoot.setId("mode");
@@ -1074,6 +1094,9 @@ public class App extends Application {
             		        gameView.textScoreP2.setFill(Color.WHITE);
             			    primaryStage.setScene(optionsScene);
                   }
+                  else if(retour.getId() == "boutonsSelec" || retour.getId() == "boutonSelecled" || retour.getId() == "boutonSelecspace"){
+                    primaryStage.setScene(menuScene);
+                  }
                   break;  }});
 
         rules.setOnKeyPressed(ev -> {
@@ -1082,7 +1105,7 @@ public class App extends Application {
                 	if(volumeSlider.getValue() == 0){ mute.setId("boutonMute2"); volumeSlider.setValue(50);}
                     else{ mute.setId("boutonMute1"); volumeSlider.setValue(0);}
                 	break;
-                case H:
+                case SPACE:
                     if(gameView.isStart() || gameView2.isStart()){
                     	if(gameView.isStart()) gameView.animate();
                     	else gameView2.animateBot();
@@ -1098,7 +1121,7 @@ public class App extends Application {
 
         sonScene.setOnKeyPressed(ev -> {
           switch (ev.getCode()){
-            case S:
+            case SPACE:
               music.mP.pause();
               primaryStage.setScene(pauseScene);
               break;

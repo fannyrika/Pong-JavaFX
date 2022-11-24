@@ -146,12 +146,12 @@ public class GameView {
       caseBonusRight.setTranslateX(court.getWidth()-70);
   	  caseBonusRight.setTranslateY(50);
 
-        String instruction="H -> Aide\nP -> Pause\nM -> Mute";
+        String instruction="H -> Aide | P -> Pause | M -> Mute";
         instructionHP = new Text(instruction);
         instructionHP.setFont(Font.font(15));
         instructionHP.setFill(Color.WHITE);
-        instructionHP.setX(court.getWidth()/2-5*instruction.length());
-        instructionHP.setY(30);
+        instructionHP.setX(court.getWidth()/2-instruction.length()-50);
+        instructionHP.setY(25);
 
     	gameRoot.getChildren().addAll(racketA, racketB, ball,timer,textScoreP1, textScoreP2,caseBonusLeft,caseBonusRight,instructionHP);
     }
@@ -273,9 +273,9 @@ public class GameView {
 		 }
 
    	 }
-   	 
+
    	 if(boost!=null&&boost.isBallTouchBoost()) {
-   		
+
    		 MediaPlayer mp=new MediaPlayer(court.mediaBall);
    		 mp.play();
    		 if(court.ballSpeedX>0) {
@@ -289,14 +289,14 @@ public class GameView {
    		 gameRoot.getChildren().remove(boost.boost);
    		 boost=null;
    	 }
-   	
-   	 
 
-	 if(!court.p2.active&&!court.p1.active){  	
+
+
+	 if(!court.p2.active&&!court.p1.active){
    	 court.p1.activeBoost();
 	 }
-	 
-   	 if(!court.p2.active&&!court.p1.active){  	
+
+   	 if(!court.p2.active&&!court.p1.active){
    	 court.p2.activeBoost();
 	 }
 	 if(court.p1.deleteBoost) {
