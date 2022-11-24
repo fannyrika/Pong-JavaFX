@@ -102,6 +102,7 @@ public class App extends Application {
         var court = new Court(playerA,playerB,1.0001,playerA,playerB);
         var gameView = new GameView(court, root, 1.0);
         var gameView2 = new GameView(bot, root, 1.0);//test Bot;
+        gameView.setBallepng("balle3.jpg");
         primaryStage.setTitle("nootynootnoot PONG");
         primaryStage.getIcons().add(image);
 
@@ -460,6 +461,9 @@ public class App extends Application {
 		        gameView.textScoreP1.setFill(Color.WHITE);
 		        gameView.textScoreP2.setFill(Color.WHITE);
 		        gameView.timer.setId("labelspace");
+            try{ gameView.setBallepng("marsball.png");}
+            catch (MalformedURLException e){
+            }
 			    primaryStage.setScene(optionsScene);
 	            }});
 
@@ -508,11 +512,17 @@ public class App extends Application {
 		        gameView.textScoreP1.setFill(Color.WHITE);
 		        gameView.textScoreP2.setFill(Color.WHITE);
 			    primaryStage.setScene(optionsScene);
+          try{ gameView.setBallepng("balle3.jpg");}
+          catch (MalformedURLException e){
+          }
 	            }});
 
 		//Led theme
 				ledbg.setOnAction(new EventHandler<ActionEvent>() {
 					public void handle(ActionEvent event) {
+            try{ gameView.setBallepng("balleled.png");}
+            catch (MalformedURLException e){
+            }
 						rootPause.setId("ledpause");
 				        root.setId("ledbg");
 				        modeRoot.setId("ledmode");
@@ -885,8 +895,8 @@ public class App extends Application {
                 	break;
                  }});
 
-       optionsScene.setOnKeyPressed(ev -> {
-             switch (ev.getCode()) {
+       optionsScene.setOnKeyPressed (ev -> {
+             switch (ev.getCode()){
                 case DOWN:
                   if(spacebg.getId() == "boutonsSelec"){
                     spacebg.setId("boutons");
@@ -965,6 +975,9 @@ public class App extends Application {
                   break;
                 case SPACE:
                   if(spacebg.getId() == "boutonSelecspace" || spacebg.getId() == "boutonSelecled" || spacebg.getId() == "boutonsSelec"){
+                      try{ gameView.setBallepng("marsball.png");}
+                      catch (MalformedURLException e){
+                      }
                     rootPause.setId("spacepause");
                         root.setId("spacebg");
                         modeRoot.setId("spacemode");
@@ -1007,6 +1020,9 @@ public class App extends Application {
                       primaryStage.setScene(optionsScene);
                   }
                   else if(ledbg.getId() == "boutonsSelec" || ledbg.getId() == "boutonSelecled" || ledbg.getId() == "boutonSelecspace"){
+                    try{ gameView.setBallepng("balleled.png");}
+                    catch (MalformedURLException e){
+                    }
                     rootPause.setId("ledpause");
         				        root.setId("ledbg");
         				        modeRoot.setId("ledmode");
@@ -1051,6 +1067,9 @@ public class App extends Application {
         					    primaryStage.setScene(optionsScene);
                   }
                   else if(tennisbg.getId() == "boutonsSelec" || tennisbg.getId() == "boutonSelecled" || tennisbg.getId() == "boutonSelecspace"){
+                    try{ gameView.setBallepng("balle3.jpg");}
+                    catch (MalformedURLException e){
+                    }
                     rootPause.setId("pause");
             		        root.setId("terrain");
             		        modeRoot.setId("mode");

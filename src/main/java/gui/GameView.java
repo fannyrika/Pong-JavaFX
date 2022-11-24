@@ -93,10 +93,10 @@ public class GameView {
         ball.setFill(Color.YELLOW);
 
         // Personnalisation de la balle avec une image
-        File file = new File("balle3.jpg");
+    /*    File file = new File("marsball.png");
         String localUrl = file.toURI().toURL().toString();
         Image image = new Image(localUrl);
-        ball.setFill(new ImagePattern(image));
+        ball.setFill(new ImagePattern(image));*/
 
 
         ball.setCenterX(court.getBallX() * scale + xMargin);
@@ -221,6 +221,13 @@ public class GameView {
         textScoreP2.setX(bot.getWidth()/2+150) ;
         textScoreP2.setY(80);
 
+        String instruction="H -> Aide | P -> Pause | M -> Mute";
+        instructionHP = new Text(instruction);
+        instructionHP.setFont(Font.font(15));
+        instructionHP.setFill(Color.WHITE);
+        instructionHP.setX(bot.getWidth()/2-instruction.length()-50);
+        instructionHP.setY(25);
+
 
 
 
@@ -229,8 +236,15 @@ public class GameView {
 
     }
 
+    public void setBallepng(String s) throws MalformedURLException{
+      File file = new File(s);
+      String localUrl = file.toURI().toURL().toString();
+      Image image = new Image(localUrl);
+      ball.setFill(new ImagePattern(image));
+    }
+
 	 public void addRoootBot() {
-    	 gameRoot.getChildren().addAll(racketA, this.bot, ball,timer,textScoreP1, textScoreP2);
+    	 gameRoot.getChildren().addAll(racketA, this.bot, ball,timer,textScoreP1, textScoreP2,instructionHP);
     	}
 
 	public void removeBot() {
