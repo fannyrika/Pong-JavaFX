@@ -133,7 +133,7 @@ public class GameView {
   	  view.setPreserveRatio(true);
   	  Label caseBonusLeft=new Label();
   	  caseBonusLeft.setGraphic(view);
-  	  caseBonusLeft.setTranslateX(-49);
+  	  caseBonusLeft.setTranslateX(-47);
   	  caseBonusLeft.setTranslateY(50);
 
   	  ImageView viewR=new ImageView(imgR);
@@ -145,7 +145,7 @@ public class GameView {
       caseBonusRight.setTranslateX(court.getWidth()-70);
   	  caseBonusRight.setTranslateY(50);
 
-        String instruction="H -> Aide\nP -> Pause\nM -> Mute";
+        String instruction="";
         instructionHP = new Text(instruction);
         instructionHP.setFont(Font.font(15));
         instructionHP.setFill(Color.WHITE);
