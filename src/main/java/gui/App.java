@@ -654,7 +654,7 @@ public class App extends Application {
                     break;
                 //Thème tennis
             	case T:
-            		menuRoot.setId("terrain");
+            		menuRoot.setId("tennisbg");
                     modeRoot.setId("mode");
                     instruroot.setId("mode");
                     instrurootF.setId("mode");
@@ -664,8 +664,8 @@ public class App extends Application {
             		rootPause.setId("pause");
                     root.setId("terrain");
             		sonRoot.setId("terrain");
-                    rulesroot.setId("terrain");
-            		optionsRoot.setId("terrain");
+                    rulesroot.setId("tennisbg");
+            		optionsRoot.setId("tennisbg");
             		nom.setTextFill(Color.BLACK);
                     titre.setTextFill(Color.BLACK);
                     jouer.setTextFill(Color.BLACK);
@@ -726,7 +726,7 @@ public class App extends Application {
                     instrurootD.setId("ledmode");
                     instrurootE.setId("ledmode");
             		rootPause.setId("ledpause");
-                    root.setId("ledbg");
+                    root.setId("ledbggame");
             		sonRoot.setId("ledbg");
                     rulesroot.setId("ledbg");
             		optionsRoot.setId("ledbg");
