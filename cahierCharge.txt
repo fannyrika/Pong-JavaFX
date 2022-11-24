@@ -13,6 +13,10 @@ ERGONOMIE
 
 12. Demander le choix d'une couleur en début de partie, différente pour chaque joueur. Cette couleur sera celle de leur raquette, permettant leur identification.
 
+14. Contrôler le jeu à l'aide du clavier seulement
+
+15. Créer une page d'instructions/règles du jeu 
+
 
 
 GAMEPLAY
