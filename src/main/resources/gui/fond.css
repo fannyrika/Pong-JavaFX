@@ -12,7 +12,7 @@
 }
 
 #spacebg {
-  -fx-background-image: url("spacebackground.png");
+  -fx-background-image: url("spacebackgroundmenu.png");
   -fx-background-color: #842e1b;
   -fx-background-repeat: no-repeat;
   -fx-background-position: 50% 50%;
@@ -48,7 +48,7 @@
 }
 
 #ledbg {
-  -fx-background-image: url("ledbackground.jpg");
+  -fx-background-image: url("ledbackgroundmenu.jpg");
   -fx-background-color: #842e1b;
   -fx-background-repeat: no-repeat;
   -fx-background-position: 50% 50%;
@@ -254,7 +254,7 @@
 }
 
 #menu {
-  -fx-background-image: url("imgfond.jpg");
+  -fx-background-image: url("imgfondmenu.jpg");
   -fx-background-color: #842e1b;
   -fx-background-repeat: no-repeat;
   -fx-background-position: 50% 50%;
