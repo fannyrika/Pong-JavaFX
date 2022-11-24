@@ -321,3 +321,18 @@
   -fx-font-weight: bolder;
   -fx-font-size: 50px;
 }
+
+#spacemnemonic .mnemonic-underline{
+  -fx-stroke: -fx-text-base-color;
+  -fx-text-base-color:white;
+}
+
+#tennismnemonic .mnemonic-underline{
+  -fx-stroke: -fx-text-base-color;
+  -fx-text-base-color:black;
+}
+
+#neonmnemonic .mnemonic-underline{
+  -fx-stroke: -fx-text-base-color;
+  -fx-text-base-color:pink;
+}
