@@ -152,13 +152,13 @@ public class Court {
             nextBallY = ballY + deltaT * ballSpeedY;
         }
         if ((nextBallX < 0 && nextBallY > racketA && nextBallY < racketA + racketSize)
-                || (nextBallX > width && nextBallY > racketB && nextBallY < racketB + racketSize)) {
+                || (nextBallX > width-100 && nextBallY > racketB && nextBallY < racketB + racketSize)) {
             ballSpeedX = -ballSpeedX;
             nextBallX = ballX + deltaT * ballSpeedX;
         } else if (nextBallX < 0) {
             scoreP2++;
             return true;
-        } else if (nextBallX > width) {
+        } else if (nextBallX > width-100) {
             scoreP1++;
             return true;
         }
@@ -208,7 +208,7 @@ public class Court {
 	   		this.ballSpeedX=200+y%200;
 	        this.ballSpeedY=y;
 	   	}
-        
+
         this.ballX = width / 2;
         this.ballY = Math.random()*((height-100))+50;
     }
