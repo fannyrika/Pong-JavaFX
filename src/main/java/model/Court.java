@@ -3,6 +3,8 @@ package model;
 import javafx.geometry.Rectangle2D;
 
 import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import java.io.File;
 import java.util.Random;
 
@@ -143,6 +145,12 @@ public class Court {
      * @return true if a player lost
      */
     private boolean updateBall(double deltaT) {
+        Media media = new Media(new File("bruitagerqt.mp3").toURI().toString());
+        MediaPlayer mP = new MediaPlayer(media);
+        MediaView mV = new MediaView(mP);
+        Media media2 = new Media(new File("but.mp3").toURI().toString());
+        MediaPlayer mP2 = new MediaPlayer(media2);
+        MediaView mV2 = new MediaView(mP2);
         // first, compute possible next position if nothing stands in the way
         double nextBallX = ballX + deltaT * ballSpeedX;
         double nextBallY = ballY + deltaT * ballSpeedY;
@@ -153,12 +161,15 @@ public class Court {
         }
         if ((nextBallX < 0 && nextBallY > racketA && nextBallY < racketA + racketSize)
                 || (nextBallX > width-100 && nextBallY > racketB && nextBallY < racketB + racketSize)) {
+            mP.setAutoPlay(true);
             ballSpeedX = -ballSpeedX;
             nextBallX = ballX + deltaT * ballSpeedX;
         } else if (nextBallX < 0) {
+            mP2.setAutoPlay(true);
             scoreP2++;
             return true;
         } else if (nextBallX > width-100) {
+            mP2.setAutoPlay(true);
             scoreP1++;
             return true;
         }

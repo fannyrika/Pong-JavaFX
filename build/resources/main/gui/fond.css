@@ -10,9 +10,16 @@
   -fx-background-position: 50% 50%;
   -fx-background-size: 100%;
 }
+#tennisbg{
+-fx-background-image: url("imgfondmenu.jpg");
+  -fx-background-color: #842e1b;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+}
 
 #spacebg {
-  -fx-background-image: url("spacebackground.png");
+  -fx-background-image: url("spacebackgroundmenu.png");
   -fx-background-color: #842e1b;
   -fx-background-repeat: no-repeat;
   -fx-background-position: 50% 50%;
@@ -48,6 +55,14 @@
 }
 
 #ledbg {
+  -fx-background-image: url("ledbackgroundmenu.jpg");
+  -fx-background-color: #842e1b;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+}
+
+#ledbggame {
   -fx-background-image: url("ledbackground.jpg");
   -fx-background-color: #842e1b;
   -fx-background-repeat: no-repeat;
@@ -254,7 +269,7 @@
 }
 
 #menu {
-  -fx-background-image: url("imgfond.jpg");
+  -fx-background-image: url("imgfondmenu.jpg");
   -fx-background-color: #842e1b;
   -fx-background-repeat: no-repeat;
   -fx-background-position: 50% 50%;
@@ -320,4 +335,19 @@
   -fx-text-fill:pink;
   -fx-font-weight: bolder;
   -fx-font-size: 50px;
+}
+
+#spacemnemonic .mnemonic-underline{
+  -fx-stroke: -fx-text-base-color;
+  -fx-text-base-color:white;
+}
+
+#tennismnemonic .mnemonic-underline{
+  -fx-stroke: -fx-text-base-color;
+  -fx-text-base-color:black;
+}
+
+#neonmnemonic .mnemonic-underline{
+  -fx-stroke: -fx-text-base-color;
+  -fx-text-base-color:pink;
 }
