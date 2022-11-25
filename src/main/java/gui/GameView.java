@@ -226,6 +226,14 @@ public class GameView {
 
 
     }
+    
+    public void setBallepng(String s) throws MalformedURLException{
+        File file = new File(s);
+        String localUrl = file.toURI().toURL().toString();
+        Image image = new Image(localUrl);
+        ball.setFill(new ImagePattern(image));
+      }
+
 
 	 public void addRoootBot() {
     	 gameRoot.getChildren().addAll(racketA, this.bot, ball,timer,textScoreP1, textScoreP2);
