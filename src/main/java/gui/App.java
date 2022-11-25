@@ -119,6 +119,25 @@ public class App extends Application {
         quittermenu.setFont(new Font("Arial",30));
         quittermenu.setTextFill(Color.BLACK);
         
+        
+      //Création du menu
+        var bvnRoot = new VBox();
+        var bvnScene = new Scene(bvnRoot, width, height);
+        var bvn = new Text("Bienvenu sur Pong !\n");
+        bvn.setFont(new Font("Arail",50));
+        bvn.setFill(Color.BLACK);
+        var msg = new Text("Toute l'application s'utilise au clavier.\n\nChaque premi\u00e8re lettre soulign\u00e9e "
+        		+ "repr\u00e9sente la touche \u00e0 utiliser pour valider l'action.\n\n"
+        		+ "Vous pouvez quitter l'application \u00e0 tout moment avec la touche '\u00c9chap'.\n\n"
+        		+ "(Pressez entr\u00e9e pour continuer)");
+        msg.setFont(new Font("Arial",30));
+        msg.setFill(Color.BLACK);
+        bvnRoot.setId("mode");
+        bvnScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+        bvnRoot.getChildren().addAll(bvn,msg);//ajout des labels
+        bvnRoot.setAlignment(Pos.CENTER);
+        
+        
       //Création du menu
         var menuRoot = new VBox();
         var menuScene = new Scene(menuRoot, width, height);
@@ -143,9 +162,9 @@ public class App extends Application {
         //Pour le mode 1v1
         var instruroot = new VBox();
         var instruScene = new Scene(instruroot,width,height);
-        var touche = new Text("Joueur de gauche :\n\n -D\u00e9placement haut : 'Z'\n -D\u00e9placement bas : 'S'\n\n Joueur de droite :\n\n"
+        var touche = new Text("Joueur de gauche :\n -D\u00e9placement haut : 'Z'\n -D\u00e9placement bas : 'S'\n\nJoueur de droite :\n"
         		+ "-D\u00e9placement haut : fl\u00e8che du haut\n-D\u00e9placement bas : fl\u00e8che du bas"
-        		+"\n\n (Presser entrer pour continuer)");
+        		+"\n\n (Presser entr\u00e9e pour continuer)");
         touche.setFont(new Font("Arial", 50));
         touche.setFill(Color.BLACK);
         instruroot.setId("mode");
@@ -157,6 +176,9 @@ public class App extends Application {
               		gameView.animate();
               		primaryStage.setScene(gameScene);
                     break;
+                case ESCAPE:
+                	primaryStage.close();
+                	break;
                 }});
         
         instruScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
@@ -166,9 +188,8 @@ public class App extends Application {
     	//Pour le mode facile 
     	var instrurootF = new VBox();
         var instruSceneF = new Scene(instrurootF,width,height);
-        var toucheF = new Text("Joueur de gauche :\n\n -D\u00e9placement haut : 'Z'\n -D\u00e9placement bas : 'S'\n\n Joueur de droite :\n\n"
-        		+ "-D\u00e9placement haut : fl\u00e8che du haut\n-D\u00e9placement bas : fl\u00e8che du bas"
-        		+"\n\n (Presser entrer pour continuer)");
+        var toucheF = new Text("Vous \u00eates le joueur de gauche :\n\n -D\u00e9placement haut : 'Z'\n -D\u00e9placement bas : 'S'\n\n"
+        		+ "(Presser entr\u00e9e pour continuer)");
         toucheF.setFont(new Font("Arial", 50));
         toucheF.setFill(Color.BLACK);
         instrurootF.setId("mode");
@@ -182,6 +203,9 @@ public class App extends Application {
          	  	   	primaryStage.setScene(gameScene);
          	  	   	modeRoot.getChildren().removeAll(tmp,choix);
                     break;
+                case ESCAPE:
+                	primaryStage.close();
+                	break;
                 }});
         
         instruSceneF.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
@@ -191,9 +215,8 @@ public class App extends Application {
     	//Pour le mode moyen
     	var instrurootM = new VBox();
         var instruSceneM = new Scene(instrurootM,width,height);
-        var toucheM = new Text("Joueur de gauche :\n\n -D\u00e9placement haut : 'Z'\n -D\u00e9placement bas : 'S'\n\n Joueur de droite :\n\n"
-        		+ "-D\u00e9placement haut : fl\u00e8che du haut\n-D\u00e9placement bas : fl\u00e8che du bas"
-        		+"\n\n (Presser entrer pour continuer)");
+        var toucheM = new Text("Vous \u00eates le joueur de gauche :\n\n -D\u00e9placement haut : 'Z'\n -D\u00e9placement bas : 'S'\n\n"
+        		+ "(Presser entr\u00e9e pour continuer)");
         toucheM.setFont(new Font("Arial", 50));
         toucheM.setFill(Color.BLACK);
         instrurootM.setId("mode");
@@ -207,6 +230,9 @@ public class App extends Application {
          	  	   	primaryStage.setScene(gameScene);
          	  	   	modeRoot.getChildren().removeAll(tmp,choix);
                     break;
+                case ESCAPE:
+                	primaryStage.close();
+                	break;
                 }});
         
         instruSceneM.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
@@ -216,9 +242,8 @@ public class App extends Application {
     	//Pour le mode difficile
     	var instrurootD = new VBox();
         var instruSceneD = new Scene(instrurootD,width,height);
-        var toucheD = new Text("Joueur de gauche :\n\n -D\u00e9placement haut : 'Z'\n -D\u00e9placement bas : 'S'\n\n Joueur de droite :\n\n"
-        		+ "-D\u00e9placement haut : fl\u00e8che du haut\n-D\u00e9placement bas : fl\u00e8che du bas"
-        		+"\n\n (Presser entrer pour continuer)");
+        var toucheD = new Text("Vous \u00eates le joueur de gauche :\n\n -D\u00e9placement haut : 'Z'\n -D\u00e9placement bas : 'S'\n\n"
+        		+ "(Presser entr\u00e9e pour continuer)");
         toucheD.setFont(new Font("Arial", 50));
         toucheD.setFill(Color.BLACK);
         instrurootD.setId("mode");
@@ -232,6 +257,9 @@ public class App extends Application {
          	  	   	primaryStage.setScene(gameScene);
          	  	   	modeRoot.getChildren().removeAll(tmp,choix);
                     break;
+                case ESCAPE:
+                	primaryStage.close();
+                	break;
                 }});
         
         instruSceneD.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
@@ -241,9 +269,8 @@ public class App extends Application {
     	//Pour le mode expert
     	var instrurootE = new VBox();
         var instruSceneE = new Scene(instrurootE,width,height);
-        var toucheE = new Text("Joueur de gauche :\n\n -D\u00e9placement haut : 'Z'\n -D\u00e9placement bas : 'S'\n\n Joueur de droite :\n\n"
-        		+ "-D\u00e9placement haut : fl\u00e8che du haut\n-D\u00e9placement bas : fl\u00e8che du bas"
-        		+"\n\n (Presser entrer pour continuer)");
+        var toucheE = new Text("Vous \u00eates le joueur de gauche :\n\n -D\u00e9placement haut : 'Z'\n -D\u00e9placement bas : 'S'\n\n"
+        		+ "(Presser entr\u00e9e pour continuer)");
         toucheE.setFont(new Font("Arial", 50));
         toucheE.setFill(Color.BLACK);
         instrurootE.setId("mode");
@@ -257,6 +284,9 @@ public class App extends Application {
          	  	   	primaryStage.setScene(gameScene);
          	  	   	modeRoot.getChildren().removeAll(tmp,choix);
                     break;
+                case ESCAPE:
+                	primaryStage.close();
+                	break;
                 }});
         
         instruSceneE.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
@@ -326,6 +356,10 @@ public class App extends Application {
                     break;
                 case R:
                 	primaryStage.setScene(menuScene);
+                	break;
+                case ESCAPE:
+                	primaryStage.close();
+                	break;
                 }});
 
         
@@ -435,22 +469,45 @@ public class App extends Application {
                     primaryStage.setScene(pauseScene);
                     music.mP.pause();
                     break;
+                case ESCAPE:
+                	primaryStage.close();
+                	break;
                 }});     
 
 
-        //Page d'instructions
+        //Page d'instructions dans le menu
         var rulesroot = new VBox();
         var rules = new Scene(rulesroot,width,height);
       	Text regles = new Text("R\u00e8gles du jeu : \n");
         regles.setFont(Font.font(35));
         regles.setFill(Color.GREEN);
+        var r = new Text("(Pressez 'R' pour revenir au menu)");
+        r.setFont(new Font("Arail",20));
+        r.setFill(Color.BLACK);
         Text message = new Text("- Contr\u00f4ler la raquette gauche avec Z et S \n\n- Contr\u00f4ler la raquette droite avec UP et DOWN \n\n- Le but du jeu est d'envoyer la balle dans le camp adverse en mettant \nson adversaire dans l'incapacit\u00e9 de la renvoyer. \n\n- Obtenir 3 points pour gagner la partie \n\n-- Vous pouvez choisir un mode de jeu sp\u00e9cifique\nen d\u00e9but de partie : \nLa difficult\u00e9 de l'ordinateur repr\u00e9sente son efficacit\u00e9 \u00e0 rattraper les balles;\nplus c'est difficile, moins il y a de chance qu'il les rate !\n\n-- Un boost (repr\u00e9sent\u00e9 par un cercle rouge avec un \u00e9clair jaune) sera affich\u00e9 sur votre terrain\nen cours de partie; si vous l'attrapez, activez le avec les boutons CTRL ou E pour acc\u00e9lerer la balle\n");
         message.setFont(Font.font(25));
         message.setFill(Color.DARKRED);
         rulesroot.setId("regles");
-        rulesroot.getChildren().addAll(regles,message,retour);
+        rulesroot.getChildren().addAll(regles,message,r,retour);
         rulesroot.setAlignment(Pos.CENTER);
       	rules.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+      	
+      //Page d'instructions dans la partie
+        var rulesroot2 = new VBox();
+        var rules2 = new Scene(rulesroot2,width,height);
+      	Text regles2 = new Text("R\u00e8gles du jeu : \n");
+        regles2.setFont(Font.font(35));
+        regles2.setFill(Color.GREEN);
+        var h = new Text("(Pressez 'H' pour revenir au menu)");
+        h.setFont(new Font("Arail",20));
+        h.setFill(Color.BLACK);
+        Text message2 = new Text("- Contr\u00f4ler la raquette gauche avec Z et S \n\n- Contr\u00f4ler la raquette droite avec UP et DOWN \n\n- Le but du jeu est d'envoyer la balle dans le camp adverse en mettant \nson adversaire dans l'incapacit\u00e9 de la renvoyer. \n\n- Obtenir 3 points pour gagner la partie \n\n-- Vous pouvez choisir un mode de jeu sp\u00e9cifique\nen d\u00e9but de partie : \nLa difficult\u00e9 de l'ordinateur repr\u00e9sente son efficacit\u00e9 \u00e0 rattraper les balles;\nplus c'est difficile, moins il y a de chance qu'il les rate !\n\n-- Un boost (repr\u00e9sent\u00e9 par un cercle rouge avec un \u00e9clair jaune) sera affich\u00e9 sur votre terrain\nen cours de partie; si vous l'attrapez, activez le avec les boutons CTRL ou E pour acc\u00e9lerer la balle\n");
+        message2.setFont(Font.font(25));
+        message2.setFill(Color.DARKRED);
+        rulesroot2.setId("regles");
+        rulesroot2.getChildren().addAll(regles2,message2,h,retour);
+        rulesroot2.setAlignment(Pos.CENTER);
+      	rules2.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
 
 		var optionsRoot = new VBox();
 		var optionsScene = new Scene(optionsRoot, width, height);
@@ -475,6 +532,15 @@ public class App extends Application {
 		optionsRoot.setAlignment(Pos.CENTER);
 
 
+		bvnScene.setOnKeyPressed(ev -> {
+            switch (ev.getCode()) {
+                case ENTER:
+                	primaryStage.setScene(menuScene);
+                	break;
+                case ESCAPE:
+                	primaryStage.close();
+                	break;
+                }});
 
        gameScene.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
@@ -507,9 +573,12 @@ public class App extends Application {
                 	break;
                 case H:
                     GameView.pause=true;
-                    primaryStage.setScene(rules);
+                    primaryStage.setScene(rules2);
                     //rulesroot.getChildren().add(reprendre);
                     break;
+                case ESCAPE:
+                	primaryStage.close();
+                	break;
                 }});
 
         gameScene.setOnKeyReleased(ev -> {
@@ -532,6 +601,9 @@ public class App extends Application {
                 case CONTROL:
                     if (playerB.stateb == BallState.StateBall.FAST) playerB.stateb = BallState.StateBall.IDLE;
                     break;
+                case ESCAPE:
+                	primaryStage.close();
+                	break;
             }
         });
 
@@ -553,6 +625,9 @@ public class App extends Application {
                 case M:
                 	if(volumeSlider.getValue() == 0){ mute.setId("boutonMute2"); volumeSlider.setValue(50);}
                     else{ mute.setId("boutonMute1"); volumeSlider.setValue(0);}
+                	break;
+                case ESCAPE:
+                	primaryStage.close();
                 	break;
                  }});
         
@@ -612,13 +687,40 @@ public class App extends Application {
                 	break;
                 case Q:
                 	primaryStage.close();
+                	break;
+                case ESCAPE:
+                	primaryStage.close();
+                	break;
                 }});
         
-        //une touche R dans la page instructions et options pour revenir en arrière
+        //une touche R dans la page instructions du menu pour revenir en arrière
         rules.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
             	case R:
             		primaryStage.setScene(menuScene);
+            		break;
+            	case ESCAPE:
+                	primaryStage.close();
+                	break;
+                }});
+        
+        //une touche H dans la page d'instruction de la partie pour revenir en arrière
+        rules2.setOnKeyPressed(ev -> {
+            switch (ev.getCode()) {
+            	case H:
+            		GameView.pause=false;
+                    music.mP.play();
+                    if(gameView.isStart()){
+                    gameView.animate();
+                    }
+                    else {
+                      gameView2.animateBot();
+                    }
+                    primaryStage.setScene(gameScene);
+                	  break;
+            	case ESCAPE:
+                	primaryStage.close();
+                	break;
                 }});
         
         optionsScene.setOnKeyPressed(ev -> {
@@ -663,6 +765,8 @@ public class App extends Application {
                     tennis.setTextFill(Color.WHITE);
                     neon.setTextFill(Color.WHITE);
                     volume.setFill(Color.WHITE);
+                    h.setFill(Color.WHITE);
+                    r.setFill(Color.WHITE);
                     
                   //couleur du soulignement de la première lettre
                     jouer.setId("spacemnemonic");
@@ -729,6 +833,8 @@ public class App extends Application {
                     tennis.setTextFill(Color.BLACK);
                     neon.setTextFill(Color.BLACK);
                     volume.setFill(Color.BLACK);
+                    h.setFill(Color.BLACK);
+                    r.setFill(Color.BLACK);
                     
                   //couleur du soulignement de la première lettre
                     jouer.setId("tennismnemonic");
@@ -797,6 +903,8 @@ public class App extends Application {
                     tennis.setTextFill(Color.PINK);
                     neon.setTextFill(Color.PINK);
                     volume.setFill(Color.PINK);
+                    h.setFill(Color.PINK);
+                    r.setFill(Color.PINK);
                     
                     //couleur du soulignement de la première lettre
                     jouer.setId("neonmnemonic");
@@ -826,10 +934,13 @@ public class App extends Application {
             	case R:
             		primaryStage.setScene(menuScene);
             		break;
+            	case ESCAPE:
+                	primaryStage.close();
+                	break;
                 }});
 
       
-        primaryStage.setScene(menuScene);
+        primaryStage.setScene(bvnScene);
         primaryStage.show();
     }
 
