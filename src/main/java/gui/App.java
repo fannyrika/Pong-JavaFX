@@ -504,14 +504,11 @@ public class App extends Application {
       	Text regles = new Text("R\u00e8gles du jeu : \n");
         regles.setFont(Font.font(35));
         regles.setFill(Color.GREEN);
-        var r = new Text("(Presser 'R' pour revenir au menu)");
-        r.setFont(new Font("Arail",20));
-        r.setFill(Color.BLACK);
-        Text message = new Text("- Contr\u00f4ler la raquette gauche avec Z et S \n\n- Contr\u00f4ler la raquette droite avec UP et DOWN \n\n- Le but du jeu est d'envoyer la balle dans le camp adverse en mettant \nson adversaire dans l'incapacit\u00e9 de la renvoyer. \n\n- Obtenir 3 points pour gagner la partie \n\n-- Vous pouvez choisir un mode de jeu sp\u00e9cifique\nen d\u00e9but de partie : \nLa difficult\u00e9 de l'ordinateur repr\u00e9sente son efficacit\u00e9 \u00e0 rattraper les balles;\nplus c'est difficile, moins il y a de chance qu'il les rate !\n\n-- Un boost (repr\u00e9sent\u00e9 par un cercle rouge avec un \u00e9clair jaune) sera affich\u00e9 sur votre terrain\nen cours de partie; si vous l'attrapez, activez le avec les boutons CTRL ou E pour acc\u00e9lerer la balle\n");
+        Text message = new Text("- Contr\u00f4ler la raquette gauche avec Z et S \n\n- Contr\u00f4ler la raquette droite avec UP et DOWN \n\n- Le but du jeu est d'envoyer la balle dans le camp adverse en mettant \nson adversaire dans l'incapacit\u00e9 de la renvoyer. \n\n- Obtenir 3 points pour gagner la partie \n\n-- Vous pouvez choisir un mode de jeu sp\u00e9cifique\nen d\u00e9but de partie : \nLa difficult\u00e9 de l'ordinateur repr\u00e9sente son efficacit\u00e9 \u00e0 rattraper les balles;\nplus c'est difficile, moins il y a de chance qu'il les rate !\n\n-- Un boost (repr\u00e9sent\u00e9 par un cercle rouge avec un \u00e9clair jaune) sera affich\u00e9 sur votre terrain\nen cours de partie; si vous l'attrapez, activez le avec les boutons CTRL ou E pour acc\u00e9lerer la balle\n\n(Presser 'R' pour revenir en arri\u00e8re)");
         message.setFont(Font.font(25));
         message.setFill(Color.DARKRED);
         rulesroot.setId("regles");
-        rulesroot.getChildren().addAll(regles,message,r,retour);
+        rulesroot.getChildren().addAll(regles,message);
         rulesroot.setAlignment(Pos.CENTER);
       	rules.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
 
@@ -521,14 +518,14 @@ public class App extends Application {
       	Text regles2 = new Text("R\u00e8gles du jeu : \n");
         regles2.setFont(Font.font(35));
         regles2.setFill(Color.GREEN);
-        var h = new Text("(Presser 'H' pour revenir au menu)");
+        var h = new Text("(Presser 'H' pour revenir en arri\u00e8re)");
         h.setFont(new Font("Arail",20));
         h.setFill(Color.BLACK);
         Text message2 = new Text("- Contr\u00f4ler la raquette gauche avec Z et S \n\n- Contr\u00f4ler la raquette droite avec UP et DOWN \n\n- Le but du jeu est d'envoyer la balle dans le camp adverse en mettant \nson adversaire dans l'incapacit\u00e9 de la renvoyer. \n\n- Obtenir 3 points pour gagner la partie \n\n-- Vous pouvez choisir un mode de jeu sp\u00e9cifique\nen d\u00e9but de partie : \nLa difficult\u00e9 de l'ordinateur repr\u00e9sente son efficacit\u00e9 \u00e0 rattraper les balles;\nplus c'est difficile, moins il y a de chance qu'il les rate !\n\n-- Un boost (repr\u00e9sent\u00e9 par un cercle rouge avec un \u00e9clair jaune) sera affich\u00e9 sur votre terrain\nen cours de partie; si vous l'attrapez, activez le avec les boutons CTRL ou E pour acc\u00e9lerer la balle\n");
         message2.setFont(Font.font(25));
         message2.setFill(Color.DARKRED);
         rulesroot2.setId("regles");
-        rulesroot2.getChildren().addAll(regles2,message2,h,retour);
+        rulesroot2.getChildren().addAll(regles2,message2,h);
         rulesroot2.setAlignment(Pos.CENTER);
       	rules2.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
 
@@ -538,7 +535,7 @@ public class App extends Application {
     public void handle(ActionEvent event) {
       if(volumeSliderO.getValue() == 0){ mutebis.setId("boutonMute2"); volumeSliderO.setValue(50); mute.setId("boutonMute2"); volumeSlider.setValue(50);}
       else{ mutebis.setId("boutonMute1"); volumeSliderO.setValue(0); mute.setId("boutonMute1"); volumeSlider.setValue(0);} }});
-      var volumeO = new Text("Volume");
+      var volumeO = new Text("Volume :");
       volumeO.setFont(Font.font(30));
       var flecheO = new Label("(Pour r\u00e9gler le son utiliser les fl\u00e8ches droite et gauche)\n");
       flecheO.setFont(new Font("Arial", 20));
@@ -548,31 +545,43 @@ public class App extends Application {
 		var space = new Label("_Space");
         space.setMnemonicParsing(true);
         space.setId("tennismnemonic");
-        space.setFont(new Font("Arial",50));
+        space.setFont(new Font("Arial",40));
         space.setTextFill(Color.BLACK);
         var tennis = new Label("_Tennis");
         tennis.setMnemonicParsing(true);
         tennis.setId("tennismnemonic");
-        tennis.setFont(new Font("Arial",50));
+        tennis.setFont(new Font("Arial",40));
         tennis.setTextFill(Color.BLACK);
         var neon = new Label("_N\u00e9on");
         neon.setMnemonicParsing(true);
         neon.setId("tennismnemonic");
-        neon.setFont(new Font("Arial",50));
+        neon.setFont(new Font("Arial",40));
         neon.setTextFill(Color.BLACK);
 		optionsRoot.setId("menu");
 		optionsScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
     var optionson = new VBox();
     optionson.setPadding(new Insets(150, 450,50, height/2));
     var optiontheme = new VBox(10);
+    var theme = new Label("Th\u00e8mes :\n");
+    theme.setFont(new Font("Arial",50));
+    theme.setTextFill(Color.BLACK);
+    var msq = new Label("Musique :\n");
+    msq.setFont(new Font("Arial",50));
+    msq.setTextFill(Color.BLACK);
+    var mutetext = new Label("Mute :");
+    mutetext.setFont(new Font("Arial",30));
+    mutetext.setTextFill(Color.BLACK);
     optiontheme.setAlignment(Pos.CENTER);
-    optiontheme.getChildren().addAll(space,tennis,neon,retour);
-    optionson.getChildren().addAll(mutebis,volumeO,volumeSliderO,flecheO);
-  //  optionsRoot.setAlignment(Pos.TOP);
+    var presserR = new Label("(Presser 'R' pour revenir en arri\u00e8re)");
+    presserR.setFont(new Font("Arail",20));
+    presserR.setTextFill(Color.BLACK);
+    optiontheme.getChildren().addAll(theme,space,tennis,neon,presserR);
+    optionson.getChildren().addAll(msq,mutetext,mutebis,volumeO,volumeSliderO,flecheO);
+    optionson.setAlignment(Pos.TOP_CENTER);
     optionsRoot.getChildren().addAll(optionson,optiontheme);
 
 		//ajout des variables à la page mode
-		modeRoot.getChildren().addAll(r,vs,contreordi);
+		modeRoot.getChildren().addAll(vs,contreordi);
         modeRoot.setAlignment(Pos.CENTER);
 
 
@@ -782,6 +791,7 @@ public class App extends Application {
                     root.setId("spacebg");
             		sonRoot.setId("spacebg");
                     rulesroot.setId("spacebg");
+                    rulesroot2.setId("spacebg");
             		optionsRoot.setId("spacebg");
             		nom.setTextFill(Color.WHITE);
                     titre.setTextFill(Color.WHITE);
@@ -802,17 +812,16 @@ public class App extends Application {
                     nouvellepartie.setTextFill(Color.WHITE);
                     musique.setTextFill(Color.WHITE);
             		fleche.setTextFill(Color.WHITE);
-                flecheO.setTextFill(Color.WHITE);
+            		flecheO.setTextFill(Color.WHITE);
             		retourpause.setTextFill(Color.WHITE);
                     regles.setFill(Color.WHITE);
-                    message.setFill(Color.WHITE);
+                    message.setFill(Color.GOLD);
                     space.setTextFill(Color.WHITE);
                     tennis.setTextFill(Color.WHITE);
                     neon.setTextFill(Color.WHITE);
                     volume.setFill(Color.WHITE);
                     volumeO.setFill(Color.WHITE);
                     h.setFill(Color.WHITE);
-                    r.setFill(Color.WHITE);
                     rappel.setFill(Color.WHITE);
                     message.setFill(Color.WHITE);
                     message2.setFill(Color.WHITE);
@@ -822,6 +831,10 @@ public class App extends Application {
                     toucheF.setFill(Color.WHITE);
                     touche.setFill(Color.WHITE);
                     choix.setTextFill(Color.WHITE);
+                    theme.setTextFill(Color.WHITE);
+                    msq.setTextFill(Color.WHITE);
+                    mutetext.setTextFill(Color.WHITE);
+                    presserR.setTextFill(Color.WHITE);
 
                   //couleur du soulignement de la première lettre
                     jouer.setId("spacemnemonic");
@@ -862,6 +875,7 @@ public class App extends Application {
                     root.setId("terrain");
             		sonRoot.setId("terrain");
                     rulesroot.setId("tennisbg");
+                    rulesroot2.setId("tennisbg");
             		optionsRoot.setId("tennisbg");
             		nom.setTextFill(Color.BLACK);
                     titre.setTextFill(Color.BLACK);
@@ -882,7 +896,7 @@ public class App extends Application {
                     nouvellepartie.setTextFill(Color.BLACK);
                     musique.setTextFill(Color.BLACK);
             		fleche.setTextFill(Color.BLACK);
-                fleche.setTextFill(Color.BLACK);
+            		fleche.setTextFill(Color.BLACK);
             		retourpause.setTextFill(Color.BLACK);
                     regles.setFill(Color.GREEN);
                     message.setFill(Color.DARKRED);
@@ -892,7 +906,6 @@ public class App extends Application {
                     volume.setFill(Color.BLACK);
                     flecheO.setTextFill(Color.BLACK);
                     h.setFill(Color.BLACK);
-                    r.setFill(Color.BLACK);
                     rappel.setFill(Color.BLACK);
                     message.setFill(Color.BLACK);
                     message2.setFill(Color.BLACK);
@@ -902,6 +915,10 @@ public class App extends Application {
                     toucheF.setFill(Color.BLACK);
                     touche.setFill(Color.BLACK);
                     choix.setTextFill(Color.BLACK);
+                    theme.setTextFill(Color.BLACK);
+                    msq.setTextFill(Color.BLACK);
+                    mutetext.setTextFill(Color.BLACK);
+                    presserR.setTextFill(Color.BLACK);
 
                   //couleur du soulignement de la première lettre
                     jouer.setId("tennismnemonic");
@@ -921,7 +938,7 @@ public class App extends Application {
                     nouvellepartie.setId("tennismnemonic");
                     musique.setId("tennismnemonic");
             		fleche.setId("tennismnemonic");
-                flecheO.setId("tennismnemonic");
+            		flecheO.setId("tennismnemonic");
             		retourpause.setId("tennismnemonic");
                     regles.setId("tennismnemonic");
                     message.setId("tennismnemonic");
@@ -942,6 +959,7 @@ public class App extends Application {
                     root.setId("ledbggame");
             		sonRoot.setId("ledbg");
                     rulesroot.setId("ledbg");
+                    rulesroot2.setId("ledbg");
             		optionsRoot.setId("ledbg");
 
             		//couleur des labels
@@ -964,7 +982,7 @@ public class App extends Application {
                     nouvellepartie.setTextFill(Color.PINK);
                     musique.setTextFill(Color.PINK);
             		fleche.setTextFill(Color.PINK);
-                flecheO.setTextFill(Color.PINK);
+            		flecheO.setTextFill(Color.PINK);
             		retourpause.setTextFill(Color.PINK);
                     regles.setFill(Color.PINK);
                     message.setFill(Color.PINK);
@@ -974,7 +992,6 @@ public class App extends Application {
                     volume.setFill(Color.PINK);
                     volumeO.setFill(Color.PINK);
                     h.setFill(Color.PINK);
-                    r.setFill(Color.PINK);
                     rappel.setFill(Color.PINK);
                     message.setFill(Color.PINK);
                     message2.setFill(Color.PINK);
@@ -984,6 +1001,10 @@ public class App extends Application {
                     toucheF.setFill(Color.PINK);
                     touche.setFill(Color.PINK);
                     choix.setTextFill(Color.PINK);
+                    theme.setTextFill(Color.PINK);
+                    msq.setTextFill(Color.PINK);
+                    mutetext.setTextFill(Color.PINK);
+                    presserR.setTextFill(Color.PINK);
 
                     //couleur du soulignement de la première lettre
                     jouer.setId("neonmnemonic");
