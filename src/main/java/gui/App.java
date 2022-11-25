@@ -63,7 +63,7 @@ public class App extends Application {
 		//Fenêtre de jeu
 		var root = new Pane();
 		var gameScene = new Scene(root, width, height);
-
+		
 		class Player implements RacketController,BallState {
             State state = State.IDLE;
             StateBall stateb=StateBall.IDLE;
@@ -87,65 +87,69 @@ public class App extends Application {
         primaryStage.setTitle("nootynootnoot PONG");
         primaryStage.getIcons().add(image);
 
-
+        
         //variables nécessaire dans le reste de la classe
         //Il y a deux boutons quitter en tout "quitterpause" et "quittermenu"
         var nom = new Label("nootynootnoot");
         nom.setFont(new Font("Arial",20));
         nom.setTextFill(Color.BLACK);
-        var titre = new Label("PONG");
-        titre.setFont(new Font("Arial",60));
+        var titre = new Label("PONG\n");
+        titre.setFont(new Font("Arial",80));
         titre.setTextFill(Color.BLACK);
-        var jouer = new Label("_Jouer");
+        var jouer = new Label("_Jouer\n");
         jouer.setMnemonicParsing(true);
         jouer.setId("tennismnemonic");
-        jouer.setFont(new Font("Arial",30));
+        jouer.setFont(new Font("Arial",40));
         jouer.setTextFill(Color.BLACK);
-        var instructions = new Label("_Instructions");
+        var instructions = new Label("_Instructions\n");
         instructions.setMnemonicParsing(true);
         instructions.setId("tennismnemonic");
-        instructions.setFont(new Font("Arial",30));
+        instructions.setFont(new Font("Arial",40));
         instructions.setTextFill(Color.BLACK);
-        var options = new Label("_Options");
+        var options = new Label("_Options\n");
         options.setMnemonicParsing(true);
         options.setId("tennismnemonic");
-        options.setFont(new Font("Arial",30));
+        options.setFont(new Font("Arial",40));
         options.setTextFill(Color.BLACK);
-
+        
       //ce bouton quitter est celui que se trouve dans la page menu
         var quittermenu = new Label("_Quitter");
         quittermenu.setMnemonicParsing(true);
         quittermenu.setId("tennismnemonic");
         quittermenu.setFont(new Font("Arial",30));
         quittermenu.setTextFill(Color.BLACK);
-
-
+        
+        var rappel = new Text("\n\n(N'oubliez pas que seule les touches du clavier sont utilisables.)");
+        rappel.setFont(new Font("Arial",20));
+        rappel.setFill(Color.BLACK);
+        
+        
       //Création du menu
         var bvnRoot = new VBox();
         var bvnScene = new Scene(bvnRoot, width, height);
         var bvn = new Text("Bienvenu sur Pong !\n");
         bvn.setFont(new Font("Arail",50));
         bvn.setFill(Color.BLACK);
-        var msg = new Text("Toute l'application s'utilise au clavier.\n\nChaque premi\u00e8re lettre soulign\u00e9e "
+        var msg = new Text("L'application s'utilise exclusivement au clavier.\n\nChaque premi\u00e8re lettre soulign\u00e9e "
         		+ "repr\u00e9sente la touche \u00e0 utiliser pour valider l'action.\n\n"
         		+ "Vous pouvez quitter l'application \u00e0 tout moment avec la touche '\u00c9chap'.\n\n"
-        		+ "(Pressez entr\u00e9e pour continuer)");
+        		+ "(Presser entr\u00e9e pour continuer)");
         msg.setFont(new Font("Arial",30));
         msg.setFill(Color.BLACK);
         bvnRoot.setId("mode");
         bvnScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
         bvnRoot.getChildren().addAll(bvn,msg);//ajout des labels
         bvnRoot.setAlignment(Pos.CENTER);
-
-
+        
+        
       //Création du menu
         var menuRoot = new VBox();
         var menuScene = new Scene(menuRoot, width, height);
         menuRoot.setId("menu");
         menuScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-        menuRoot.getChildren().addAll(nom,titre,jouer,instructions,options,quittermenu);//ajout des labels
+        menuRoot.getChildren().addAll(nom,titre,jouer,instructions,options,quittermenu,rappel);//ajout des labels
         menuRoot.setAlignment(Pos.CENTER);
-
+        
       //Page des modes
         var modeRoot = new VBox();
    	   	var modeScene = new Scene(modeRoot, width, height);
@@ -154,9 +158,11 @@ public class App extends Application {
         modeScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
         var tmp = new HBox();
         tmp.setSpacing(15.0);
-        Label choix = new Label("\n\nChoisissez la difficult\u00e9 du bot (s\u00e9l\u00e9ctionner avec ENTRER)");
-        choix.setId("ligne");
-
+        Label choix = new Label("\n\nChoisissez la difficult\u00e9 du bot :");
+        choix.setFont(new Font("Arial",30));
+        choix.setTextFill(Color.BLACK);
+        choix.setId("choix");
+        
         //Page qui explique au(x) joueur(s) comment déplacer les raquettes avant la partie
         //Il y a 5 fonctions. Une pour chaque niveau de jeu.
         //Pour le mode 1v1
@@ -180,12 +186,12 @@ public class App extends Application {
                 	primaryStage.close();
                 	break;
                 }});
-
+        
         instruScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
     	instruroot.getChildren().addAll(touche);
     	instruroot.setAlignment(Pos.CENTER);
-
-    	//Pour le mode facile
+    	
+    	//Pour le mode facile 
     	var instrurootF = new VBox();
         var instruSceneF = new Scene(instrurootF,width,height);
         var toucheF = new Text("Vous \u00eates le joueur de gauche :\n\n -D\u00e9placement haut : 'Z'\n -D\u00e9placement bas : 'S'\n\n"
@@ -207,11 +213,11 @@ public class App extends Application {
                 	primaryStage.close();
                 	break;
                 }});
-
+        
         instruSceneF.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
     	instrurootF.getChildren().addAll(toucheF);
     	instrurootF.setAlignment(Pos.CENTER);
-
+    	
     	//Pour le mode moyen
     	var instrurootM = new VBox();
         var instruSceneM = new Scene(instrurootM,width,height);
@@ -234,11 +240,11 @@ public class App extends Application {
                 	primaryStage.close();
                 	break;
                 }});
-
+        
         instruSceneM.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
     	instrurootM.getChildren().addAll(toucheM);
     	instrurootM.setAlignment(Pos.CENTER);
-
+    	
     	//Pour le mode difficile
     	var instrurootD = new VBox();
         var instruSceneD = new Scene(instrurootD,width,height);
@@ -261,11 +267,11 @@ public class App extends Application {
                 	primaryStage.close();
                 	break;
                 }});
-
+        
         instruSceneD.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
     	instrurootD.getChildren().addAll(toucheD);
     	instrurootD.setAlignment(Pos.CENTER);
-
+    	
     	//Pour le mode expert
     	var instrurootE = new VBox();
         var instruSceneE = new Scene(instrurootE,width,height);
@@ -288,11 +294,11 @@ public class App extends Application {
                 	primaryStage.close();
                 	break;
                 }});
-
+        
         instruSceneE.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
     	instrurootE.getChildren().addAll(toucheE);
     	instrurootE.setAlignment(Pos.CENTER);
-
+        
         //les variables de choix de jeu
         var vs = new Label("_Jouer en 1 vs 1");
         vs.setMnemonicParsing(true);
@@ -324,7 +330,7 @@ public class App extends Application {
         expert.setId("tennismnemonic");
 		expert.setFont(new Font("Arial",30));
 		expert.setTextFill(Color.BLACK);
-
+		
 		//Une touche pour chaque action dans la page des modes
 		modeScene.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
@@ -362,13 +368,13 @@ public class App extends Application {
                 	break;
                 }});
 
-
-
+        
+        
 		//Fenêtre pause
 		var rootPause = new VBox();
 		var pauseScene = new Scene(rootPause, width, height);
 		rootPause.setId("pause");
-
+		
 		//d'autres variables utiles
 		var reprendre = new Label("_Reprendre");
         reprendre.setMnemonicParsing(true);
@@ -395,22 +401,18 @@ public class App extends Application {
         musique.setId("tennismnemonic");
         musique.setFont(new Font("Arial",30));
         musique.setTextFill(Color.BLACK);
-
+        
        //ce bouton quitter est celui que se trouve dans la page pause
         var quitterpause = new Label("_Quitter");
         quitterpause.setMnemonicParsing(true);
         quitterpause.setId("tennismnemonic");
         quitterpause.setFont(new Font("Arial",30));
         quitterpause.setTextFill(Color.BLACK);
-
+        
 		pauseScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
 		//ajout des variables à la page pause
 		rootPause.getChildren().addAll(reprendre,retourmenu,nouvellepartie,musique,quitterpause);
 		rootPause.setAlignment(Pos.CENTER);
-
-		//ajout des variables à la page mode
-		modeRoot.getChildren().addAll(vs,contreordi,retour);
-        modeRoot.setAlignment(Pos.CENTER);
 
 
         // ajout d'une image de fond
@@ -429,7 +431,7 @@ public class App extends Application {
         volumeSlider.setId("slider");
         volumeSlider.lookup(".track");
         volumeSlider.setValue(music.mP.getVolume() * 70);
-
+        
      	Button mute = new Button(" ");
         mute.setFocusTraversable(false);
         mute.setId("boutonMute2");
@@ -437,8 +439,8 @@ public class App extends Application {
         public void handle(ActionEvent event) {
           if(volumeSlider.getValue() == 0){ mute.setId("boutonMute2"); volumeSlider.setValue(50);}
           else{ mute.setId("boutonMute1"); volumeSlider.setValue(0);} }});
-
-
+        
+        
         //Modifier le volume de la musique
         volumeSlider.valueProperty().addListener(new InvalidationListener() {
         public void invalidated(Observable observable) {
@@ -461,7 +463,7 @@ public class App extends Application {
 		sonScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
 		sonRoot.getChildren().addAll(mute,volume,volumeSlider,fleche,retourpause);
 		sonRoot.setAlignment(Pos.TOP_CENTER);
-
+		
 		//la touche R sert à revenir en arrière lorsqu'on est dans la page musique
 		sonScene.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
@@ -472,7 +474,7 @@ public class App extends Application {
                 case ESCAPE:
                 	primaryStage.close();
                 	break;
-                }});
+                }});     
 
 
         //Page d'instructions dans le menu
@@ -481,7 +483,7 @@ public class App extends Application {
       	Text regles = new Text("R\u00e8gles du jeu : \n");
         regles.setFont(Font.font(35));
         regles.setFill(Color.GREEN);
-        var r = new Text("(Pressez 'R' pour revenir au menu)");
+        var r = new Text("(Presser 'R' pour revenir au menu)");
         r.setFont(new Font("Arail",20));
         r.setFill(Color.BLACK);
         Text message = new Text("- Contr\u00f4ler la raquette gauche avec Z et S \n\n- Contr\u00f4ler la raquette droite avec UP et DOWN \n\n- Le but du jeu est d'envoyer la balle dans le camp adverse en mettant \nson adversaire dans l'incapacit\u00e9 de la renvoyer. \n\n- Obtenir 3 points pour gagner la partie \n\n-- Vous pouvez choisir un mode de jeu sp\u00e9cifique\nen d\u00e9but de partie : \nLa difficult\u00e9 de l'ordinateur repr\u00e9sente son efficacit\u00e9 \u00e0 rattraper les balles;\nplus c'est difficile, moins il y a de chance qu'il les rate !\n\n-- Un boost (repr\u00e9sent\u00e9 par un cercle rouge avec un \u00e9clair jaune) sera affich\u00e9 sur votre terrain\nen cours de partie; si vous l'attrapez, activez le avec les boutons CTRL ou E pour acc\u00e9lerer la balle\n");
@@ -491,14 +493,14 @@ public class App extends Application {
         rulesroot.getChildren().addAll(regles,message,r,retour);
         rulesroot.setAlignment(Pos.CENTER);
       	rules.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-
+      	
       //Page d'instructions dans la partie
         var rulesroot2 = new VBox();
         var rules2 = new Scene(rulesroot2,width,height);
       	Text regles2 = new Text("R\u00e8gles du jeu : \n");
         regles2.setFont(Font.font(35));
         regles2.setFill(Color.GREEN);
-        var h = new Text("(Pressez 'H' pour revenir au menu)");
+        var h = new Text("(Presser 'H' pour revenir au menu)");
         h.setFont(new Font("Arail",20));
         h.setFill(Color.BLACK);
         Text message2 = new Text("- Contr\u00f4ler la raquette gauche avec Z et S \n\n- Contr\u00f4ler la raquette droite avec UP et DOWN \n\n- Le but du jeu est d'envoyer la balle dans le camp adverse en mettant \nson adversaire dans l'incapacit\u00e9 de la renvoyer. \n\n- Obtenir 3 points pour gagner la partie \n\n-- Vous pouvez choisir un mode de jeu sp\u00e9cifique\nen d\u00e9but de partie : \nLa difficult\u00e9 de l'ordinateur repr\u00e9sente son efficacit\u00e9 \u00e0 rattraper les balles;\nplus c'est difficile, moins il y a de chance qu'il les rate !\n\n-- Un boost (repr\u00e9sent\u00e9 par un cercle rouge avec un \u00e9clair jaune) sera affich\u00e9 sur votre terrain\nen cours de partie; si vous l'attrapez, activez le avec les boutons CTRL ou E pour acc\u00e9lerer la balle\n");
@@ -514,22 +516,26 @@ public class App extends Application {
 		var space = new Label("_Space");
         space.setMnemonicParsing(true);
         space.setId("tennismnemonic");
-        space.setFont(new Font("Arial",30));
+        space.setFont(new Font("Arial",50));
         space.setTextFill(Color.BLACK);
-        var tennis = new Label("_Tennis");
+        var tennis = new Label("\n_Tennis\n");
         tennis.setMnemonicParsing(true);
         tennis.setId("tennismnemonic");
-        tennis.setFont(new Font("Arial",30));
+        tennis.setFont(new Font("Arial",50));
         tennis.setTextFill(Color.BLACK);
-        var neon = new Label("_N\u00e9on");
+        var neon = new Label("_N\u00e9on\n\n\n\n");
         neon.setMnemonicParsing(true);
         neon.setId("tennismnemonic");
-        neon.setFont(new Font("Arial",30));
+        neon.setFont(new Font("Arial",50));
         neon.setTextFill(Color.BLACK);
 		optionsRoot.setId("menu");
 		optionsScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
 		optionsRoot.getChildren().addAll(space,tennis,neon,retour);
 		optionsRoot.setAlignment(Pos.CENTER);
+		
+		//ajout des variables à la page mode
+		modeRoot.getChildren().addAll(r,vs,contreordi);
+        modeRoot.setAlignment(Pos.CENTER);
 
 
 		bvnScene.setOnKeyPressed(ev -> {
@@ -630,12 +636,12 @@ public class App extends Application {
                 	primaryStage.close();
                 	break;
                  }});
-
+        
         //une touche pour chaque action dans la page pause
         pauseScene.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
             	case R:
-
+            		
         			GameView.pause=false;
         			if(gameView.isStart()){
         			gameView.animate();
@@ -692,7 +698,7 @@ public class App extends Application {
                 	primaryStage.close();
                 	break;
                 }});
-
+        
         //une touche R dans la page instructions du menu pour revenir en arrière
         rules.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
@@ -703,7 +709,7 @@ public class App extends Application {
                 	primaryStage.close();
                 	break;
                 }});
-
+        
         //une touche H dans la page d'instruction de la partie pour revenir en arrière
         rules2.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
@@ -722,7 +728,7 @@ public class App extends Application {
                 	primaryStage.close();
                 	break;
                 }});
-
+        
         optionsScene.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
                 //Thème espace
@@ -767,7 +773,16 @@ public class App extends Application {
                     volume.setFill(Color.WHITE);
                     h.setFill(Color.WHITE);
                     r.setFill(Color.WHITE);
-
+                    rappel.setFill(Color.WHITE);
+                    message.setFill(Color.WHITE);
+                    message2.setFill(Color.WHITE);
+                    toucheM.setFill(Color.WHITE);
+                    toucheE.setFill(Color.WHITE);
+                    toucheD.setFill(Color.WHITE);
+                    toucheF.setFill(Color.WHITE);
+                    touche.setFill(Color.WHITE);
+                    choix.setTextFill(Color.WHITE);
+                    
                   //couleur du soulignement de la première lettre
                     jouer.setId("spacemnemonic");
                     instructions.setId("spacemnemonic");
@@ -835,7 +850,16 @@ public class App extends Application {
                     volume.setFill(Color.BLACK);
                     h.setFill(Color.BLACK);
                     r.setFill(Color.BLACK);
-
+                    rappel.setFill(Color.BLACK);
+                    message.setFill(Color.BLACK);
+                    message2.setFill(Color.BLACK);
+                    toucheM.setFill(Color.BLACK);
+                    toucheE.setFill(Color.BLACK);
+                    toucheD.setFill(Color.BLACK);
+                    toucheF.setFill(Color.BLACK);
+                    touche.setFill(Color.BLACK);
+                    choix.setTextFill(Color.BLACK);
+                    
                   //couleur du soulignement de la première lettre
                     jouer.setId("tennismnemonic");
                     instructions.setId("tennismnemonic");
@@ -875,7 +899,7 @@ public class App extends Application {
             		sonRoot.setId("ledbg");
                     rulesroot.setId("ledbg");
             		optionsRoot.setId("ledbg");
-
+            		
             		//couleur des labels
             		nom.setTextFill(Color.PINK);
                     titre.setTextFill(Color.PINK);
@@ -905,7 +929,16 @@ public class App extends Application {
                     volume.setFill(Color.PINK);
                     h.setFill(Color.PINK);
                     r.setFill(Color.PINK);
-
+                    rappel.setFill(Color.PINK);
+                    message.setFill(Color.PINK);
+                    message2.setFill(Color.PINK);
+                    toucheM.setFill(Color.PINK);
+                    toucheE.setFill(Color.PINK);
+                    toucheD.setFill(Color.PINK);
+                    toucheF.setFill(Color.PINK);
+                    touche.setFill(Color.PINK);
+                    choix.setTextFill(Color.PINK);
+                    
                     //couleur du soulignement de la première lettre
                     jouer.setId("neonmnemonic");
                     instructions.setId("neonmnemonic");
@@ -939,7 +972,7 @@ public class App extends Application {
                 	break;
                 }});
 
-
+      
         primaryStage.setScene(bvnScene);
         primaryStage.show();
     }
