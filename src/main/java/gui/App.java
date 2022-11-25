@@ -814,8 +814,10 @@ public class App extends Application {
             		fleche.setTextFill(Color.WHITE);
             		flecheO.setTextFill(Color.WHITE);
             		retourpause.setTextFill(Color.WHITE);
-                    regles.setFill(Color.WHITE);
-                    message.setFill(Color.GOLD);
+            		regles.setFill(Color.WHITE);
+                    regles2.setFill(Color.WHITE);
+                    message.setFill(Color.WHITE);
+                    message2.setFill(Color.WHITE);
                     space.setTextFill(Color.WHITE);
                     tennis.setTextFill(Color.WHITE);
                     neon.setTextFill(Color.WHITE);
@@ -874,8 +876,8 @@ public class App extends Application {
             		rootPause.setId("pause");
                     root.setId("terrain");
             		sonRoot.setId("terrain");
-                    rulesroot.setId("tennisbg");
-                    rulesroot2.setId("tennisbg");
+                    rulesroot.setId("regles");
+                    rulesroot2.setId("regles");
             		optionsRoot.setId("tennisbg");
             		nom.setTextFill(Color.BLACK);
                     titre.setTextFill(Color.BLACK);
@@ -898,8 +900,10 @@ public class App extends Application {
             		fleche.setTextFill(Color.BLACK);
             		fleche.setTextFill(Color.BLACK);
             		retourpause.setTextFill(Color.BLACK);
-                    regles.setFill(Color.GREEN);
+            		regles.setFill(Color.GREEN);
+                    regles2.setFill(Color.GREEN);
                     message.setFill(Color.DARKRED);
+                    message2.setFill(Color.DARKRED);
                     space.setTextFill(Color.BLACK);
                     tennis.setTextFill(Color.BLACK);
                     neon.setTextFill(Color.BLACK);
@@ -907,8 +911,6 @@ public class App extends Application {
                     flecheO.setTextFill(Color.BLACK);
                     h.setFill(Color.BLACK);
                     rappel.setFill(Color.BLACK);
-                    message.setFill(Color.BLACK);
-                    message2.setFill(Color.BLACK);
                     toucheM.setFill(Color.BLACK);
                     toucheE.setFill(Color.BLACK);
                     toucheD.setFill(Color.BLACK);
@@ -984,8 +986,10 @@ public class App extends Application {
             		fleche.setTextFill(Color.PINK);
             		flecheO.setTextFill(Color.PINK);
             		retourpause.setTextFill(Color.PINK);
-                    regles.setFill(Color.PINK);
+            		regles.setFill(Color.PINK);
+                    regles2.setFill(Color.PINK);
                     message.setFill(Color.PINK);
+                    message2.setFill(Color.PINK);
                     space.setTextFill(Color.PINK);
                     tennis.setTextFill(Color.PINK);
                     neon.setTextFill(Color.PINK);
@@ -993,8 +997,6 @@ public class App extends Application {
                     volumeO.setFill(Color.PINK);
                     h.setFill(Color.PINK);
                     rappel.setFill(Color.PINK);
-                    message.setFill(Color.PINK);
-                    message2.setFill(Color.PINK);
                     toucheM.setFill(Color.PINK);
                     toucheE.setFill(Color.PINK);
                     toucheD.setFill(Color.PINK);
