@@ -89,6 +89,7 @@ public class App extends Application {
 
         
         //variables nécessaire dans le reste de la classe
+        //Il y a deux boutons quitter en tout "quitterpause" et "quittermenu"
         var nom = new Label("nootynootnoot");
         nom.setFont(new Font("Arial",20));
         nom.setTextFill(Color.BLACK);
@@ -110,18 +111,20 @@ public class App extends Application {
         options.setId("tennismnemonic");
         options.setFont(new Font("Arial",30));
         options.setTextFill(Color.BLACK);
-        var quitter = new Label("_Quitter");
-        quitter.setMnemonicParsing(true);
-        quitter.setId("tennismnemonic");
-        quitter.setFont(new Font("Arial",30));
-        quitter.setTextFill(Color.BLACK);
+        
+      //ce bouton quitter est celui que se trouve dans la page menu
+        var quittermenu = new Label("_Quitter");
+        quittermenu.setMnemonicParsing(true);
+        quittermenu.setId("tennismnemonic");
+        quittermenu.setFont(new Font("Arial",30));
+        quittermenu.setTextFill(Color.BLACK);
         
       //Création du menu
         var menuRoot = new VBox();
         var menuScene = new Scene(menuRoot, width, height);
         menuRoot.setId("menu");
         menuScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-        menuRoot.getChildren().addAll(nom,titre,jouer,instructions,options,quitter);//ajout des labels
+        menuRoot.getChildren().addAll(nom,titre,jouer,instructions,options,quittermenu);//ajout des labels
         menuRoot.setAlignment(Pos.CENTER);
         
       //Page des modes
@@ -140,11 +143,11 @@ public class App extends Application {
         //Pour le mode 1v1
         var instruroot = new VBox();
         var instruScene = new Scene(instruroot,width,height);
-        Label touche = new Label("Joueur de gauche :\n\n -D\u00e9placement haut : 'Z'\n -D\u00e9placement bas : 'S'\n\n Joueur de droite :\n\n"
+        var touche = new Text("Joueur de gauche :\n\n -D\u00e9placement haut : 'Z'\n -D\u00e9placement bas : 'S'\n\n Joueur de droite :\n\n"
         		+ "-D\u00e9placement haut : fl\u00e8che du haut\n-D\u00e9placement bas : fl\u00e8che du bas"
         		+"\n\n (Presser entrer pour continuer)");
         touche.setFont(new Font("Arial", 50));
-        touche.setAlignment(Pos.CENTER);
+        touche.setFill(Color.BLACK);
         instruroot.setId("mode");
         instruScene.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
@@ -158,10 +161,16 @@ public class App extends Application {
         
         instruScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
     	instruroot.getChildren().addAll(touche);
+    	instruroot.setAlignment(Pos.CENTER);
     	
     	//Pour le mode facile 
     	var instrurootF = new VBox();
         var instruSceneF = new Scene(instrurootF,width,height);
+        var toucheF = new Text("Joueur de gauche :\n\n -D\u00e9placement haut : 'Z'\n -D\u00e9placement bas : 'S'\n\n Joueur de droite :\n\n"
+        		+ "-D\u00e9placement haut : fl\u00e8che du haut\n-D\u00e9placement bas : fl\u00e8che du bas"
+        		+"\n\n (Presser entrer pour continuer)");
+        toucheF.setFont(new Font("Arial", 50));
+        toucheF.setFill(Color.BLACK);
         instrurootF.setId("mode");
         instruSceneF.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
@@ -176,11 +185,17 @@ public class App extends Application {
                 }});
         
         instruSceneF.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-    	instrurootF.getChildren().addAll(touche);
+    	instrurootF.getChildren().addAll(toucheF);
+    	instrurootF.setAlignment(Pos.CENTER);
     	
     	//Pour le mode moyen
     	var instrurootM = new VBox();
         var instruSceneM = new Scene(instrurootM,width,height);
+        var toucheM = new Text("Joueur de gauche :\n\n -D\u00e9placement haut : 'Z'\n -D\u00e9placement bas : 'S'\n\n Joueur de droite :\n\n"
+        		+ "-D\u00e9placement haut : fl\u00e8che du haut\n-D\u00e9placement bas : fl\u00e8che du bas"
+        		+"\n\n (Presser entrer pour continuer)");
+        toucheM.setFont(new Font("Arial", 50));
+        toucheM.setFill(Color.BLACK);
         instrurootM.setId("mode");
         instruSceneM.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
@@ -195,11 +210,17 @@ public class App extends Application {
                 }});
         
         instruSceneM.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-    	instrurootM.getChildren().addAll(touche);
+    	instrurootM.getChildren().addAll(toucheM);
+    	instrurootM.setAlignment(Pos.CENTER);
     	
     	//Pour le mode difficile
     	var instrurootD = new VBox();
         var instruSceneD = new Scene(instrurootD,width,height);
+        var toucheD = new Text("Joueur de gauche :\n\n -D\u00e9placement haut : 'Z'\n -D\u00e9placement bas : 'S'\n\n Joueur de droite :\n\n"
+        		+ "-D\u00e9placement haut : fl\u00e8che du haut\n-D\u00e9placement bas : fl\u00e8che du bas"
+        		+"\n\n (Presser entrer pour continuer)");
+        toucheD.setFont(new Font("Arial", 50));
+        toucheD.setFill(Color.BLACK);
         instrurootD.setId("mode");
         instruSceneD.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
@@ -214,11 +235,17 @@ public class App extends Application {
                 }});
         
         instruSceneD.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-    	instrurootD.getChildren().addAll(touche);
+    	instrurootD.getChildren().addAll(toucheD);
+    	instrurootD.setAlignment(Pos.CENTER);
     	
     	//Pour le mode expert
     	var instrurootE = new VBox();
         var instruSceneE = new Scene(instrurootE,width,height);
+        var toucheE = new Text("Joueur de gauche :\n\n -D\u00e9placement haut : 'Z'\n -D\u00e9placement bas : 'S'\n\n Joueur de droite :\n\n"
+        		+ "-D\u00e9placement haut : fl\u00e8che du haut\n-D\u00e9placement bas : fl\u00e8che du bas"
+        		+"\n\n (Presser entrer pour continuer)");
+        toucheE.setFont(new Font("Arial", 50));
+        toucheE.setFill(Color.BLACK);
         instrurootE.setId("mode");
         instruSceneE.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
@@ -233,7 +260,8 @@ public class App extends Application {
                 }});
         
         instruSceneE.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
-    	instrurootE.getChildren().addAll(touche);
+    	instrurootE.getChildren().addAll(toucheE);
+    	instrurootE.setAlignment(Pos.CENTER);
         
         //les variables de choix de jeu
         var vs = new Label("_Jouer en 1 vs 1");
@@ -334,9 +362,16 @@ public class App extends Application {
         musique.setFont(new Font("Arial",30));
         musique.setTextFill(Color.BLACK);
         
+       //ce bouton quitter est celui que se trouve dans la page pause
+        var quitterpause = new Label("_Quitter");
+        quitterpause.setMnemonicParsing(true);
+        quitterpause.setId("tennismnemonic");
+        quitterpause.setFont(new Font("Arial",30));
+        quitterpause.setTextFill(Color.BLACK);
+        
 		pauseScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
 		//ajout des variables à la page pause
-		rootPause.getChildren().addAll(reprendre,retourmenu,nouvellepartie,musique,quitter);
+		rootPause.getChildren().addAll(reprendre,retourmenu,nouvellepartie,musique,quitterpause);
 		rootPause.setAlignment(Pos.CENTER);
 		
 		//ajout des variables à la page mode
@@ -607,7 +642,8 @@ public class App extends Application {
                     jouer.setTextFill(Color.WHITE);
                     instructions.setTextFill(Color.WHITE);
                     options.setTextFill(Color.WHITE);
-                    quitter.setTextFill(Color.WHITE);
+                    quittermenu.setTextFill(Color.WHITE);
+                    quitterpause.setTextFill(Color.WHITE);
             		vs.setTextFill(Color.WHITE);
             		contreordi.setTextFill(Color.WHITE);
             		facile.setTextFill(Color.WHITE);
@@ -632,7 +668,8 @@ public class App extends Application {
                     jouer.setId("spacemnemonic");
                     instructions.setId("spacemnemonic");
                     options.setId("spacemnemonic");
-                    quitter.setId("spacemnemonic");
+                    quittermenu.setId("spacemnemonic");
+                    quitterpause.setId("spacemnemonic");
             		vs.setId("spacemnemonic");
             		contreordi.setId("spacemnemonic");
             		facile.setId("spacemnemonic");
@@ -671,7 +708,8 @@ public class App extends Application {
                     jouer.setTextFill(Color.BLACK);
                     instructions.setTextFill(Color.BLACK);
                     options.setTextFill(Color.BLACK);
-                    quitter.setTextFill(Color.BLACK);
+                    quitterpause.setTextFill(Color.BLACK);
+                    quittermenu.setTextFill(Color.BLACK);
             		vs.setTextFill(Color.BLACK);
             		contreordi.setTextFill(Color.BLACK);
             		facile.setTextFill(Color.BLACK);
@@ -696,7 +734,8 @@ public class App extends Application {
                     jouer.setId("tennismnemonic");
                     instructions.setId("tennismnemonic");
                     options.setId("tennismnemonic");
-                    quitter.setId("tennismnemonic");
+                    quitterpause.setId("tennismnemonic");
+                    quittermenu.setId("tennismnemonic");
             		vs.setId("tennismnemonic");
             		contreordi.setId("tennismnemonic");
             		facile.setId("tennismnemonic");
@@ -737,7 +776,8 @@ public class App extends Application {
                     jouer.setTextFill(Color.PINK);
                     instructions.setTextFill(Color.PINK);
                     options.setTextFill(Color.PINK);
-                    quitter.setTextFill(Color.PINK);
+                    quitterpause.setTextFill(Color.PINK);
+                    quittermenu.setTextFill(Color.PINK);
             		vs.setTextFill(Color.PINK);
             		contreordi.setTextFill(Color.PINK);
             		facile.setTextFill(Color.PINK);
@@ -762,7 +802,8 @@ public class App extends Application {
                     jouer.setId("neonmnemonic");
                     instructions.setId("neonmnemonic");
                     options.setId("neonmnemonic");
-                    quitter.setId("neonmnemonic");
+                    quitterpause.setId("neonmnemonic");
+                    quittermenu.setId("neonmnemonic");
             		vs.setId("neonmnemonic");
             		contreordi.setId("neonmnemonic");
             		facile.setId("neonmnemonic");
