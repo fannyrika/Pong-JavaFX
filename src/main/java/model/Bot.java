@@ -153,13 +153,13 @@ public class Bot extends Court{
           nextBallY = this.getBallY() + deltaT * this.getBallSpeedY();
       }
       if ((nextBallX < 0 && nextBallY > this.getRacketA() && nextBallY < this.getRacketA() + this.getRacketSize())
-              || (nextBallX > this.getWidth() && nextBallY > bot && nextBallY < bot + this.getRacketSize())) {
+              || (nextBallX > this.getWidth()-100 && nextBallY > bot && nextBallY < bot + this.getRacketSize())) {
           this.setBallSpeedX(this.getBallSpeedX()-2*this.getBallSpeedX());
           nextBallX = this.getBallX() + deltaT * this.getBallSpeedX();
       } else if (nextBallX < 0) {
       	  this.scoreP2++;
           return true;
-      } else if (nextBallX > this.getWidth()) {
+      } else if (nextBallX > this.getWidth()-100) {
       	  this.scoreP1++;
           return true;
       }

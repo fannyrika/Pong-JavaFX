@@ -151,11 +151,11 @@ public class Court {
             ballSpeedY = -ballSpeedY;
             nextBallY = ballY + deltaT * ballSpeedY;
         }
-        if ((nextBallX < 20 && nextBallY > racketA && nextBallY < racketA + racketSize)
+        if ((nextBallX < 0 && nextBallY > racketA && nextBallY < racketA + racketSize)
                 || (nextBallX > width-100 && nextBallY > racketB && nextBallY < racketB + racketSize)) {
             ballSpeedX = -ballSpeedX;
             nextBallX = ballX + deltaT * ballSpeedX;
-        } else if (nextBallX < 20) {
+        } else if (nextBallX < 0) {
             scoreP2++;
             return true;
         } else if (nextBallX > width-100) {
