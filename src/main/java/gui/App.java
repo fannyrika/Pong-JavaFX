@@ -93,7 +93,7 @@ public class App extends Application {
         var nom = new Label("nootynootnoot");
         nom.setFont(new Font("Arial",20));
         nom.setTextFill(Color.BLACK);
-        var titre = new Label("PONG\n");
+        var titre = new Label("PONG\n\n");
         titre.setFont(new Font("Arial",80));
         titre.setTextFill(Color.BLACK);
         var jouer = new Label("_Jouer\n");
@@ -581,7 +581,7 @@ public class App extends Application {
     optionsRoot.getChildren().addAll(optionson,optiontheme);
 
 		//ajout des variables à la page mode
-		modeRoot.getChildren().addAll(vs,contreordi);
+		modeRoot.getChildren().addAll(presserR,vs,contreordi);
         modeRoot.setAlignment(Pos.CENTER);
 
 
