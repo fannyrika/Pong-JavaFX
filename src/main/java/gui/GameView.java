@@ -39,7 +39,7 @@ public class GameView {
     public final Circle ball;
     static boolean stop=false,pause=false;
     private boolean start;
-    public Text textScoreP1, textScoreP2, instructionHP;
+    public Text textScoreP1, textScoreP2, instructionL,instructionR;
     Boost boost;
     /**
      * @param court le "modèle" de cette vue (le terrain de jeu de raquettes et tout ce qu'il y a dessus)
@@ -145,14 +145,21 @@ public class GameView {
       caseBonusRight.setTranslateX(court.getWidth()-70);
   	  caseBonusRight.setTranslateY(50);
 
-        String instruction="";
-        instructionHP = new Text(instruction);
-        instructionHP.setFont(Font.font(15));
-        instructionHP.setFill(Color.WHITE);
-        instructionHP.setX(court.getWidth()/2-5*instruction.length());
-        instructionHP.setY(30);
+        String instructionLStr="up->Z down->S";
+        instructionL = new Text(instructionLStr);
+        instructionL.setFont(Font.font(15));
+        instructionL.setFill(Color.WHITE);
+        instructionL.setX(10);
+        instructionL.setY(30);
 
-    	gameRoot.getChildren().addAll(racketA, racketB, ball,timer,textScoreP1, textScoreP2,caseBonusLeft,caseBonusRight,instructionHP);
+        String instructionRStr="up->UP down->DOWN";
+        instructionR = new Text(instructionRStr);
+        instructionR.setFont(Font.font(15));
+        instructionR.setFill(Color.WHITE);
+        instructionR.setX(court.getWidth()-70);
+        instructionR.setY(30);
+
+    	gameRoot.getChildren().addAll(racketA, racketB, ball,timer,textScoreP1, textScoreP2,caseBonusLeft,caseBonusRight,instructionL,instructionR);
     }
     public void remove1v1() {
     	gameRoot.getChildren().clear();
@@ -236,7 +243,13 @@ public class GameView {
 
 
 	 public void addRoootBot() {
-    	 gameRoot.getChildren().addAll(racketA, this.bot, ball,timer,textScoreP1, textScoreP2);
+        String instructionLStr="up->Z down->S";
+        instructionL = new Text(instructionLStr);
+        instructionL.setFont(Font.font(15));
+        instructionL.setFill(Color.WHITE);
+        instructionL.setX(10);
+        instructionL.setY(30);
+    	 gameRoot.getChildren().addAll(racketA, this.bot, ball,timer,textScoreP1, textScoreP2,instructionL);
     	}
 
 	public void removeBot() {
