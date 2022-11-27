@@ -11,7 +11,7 @@ public class PlayerBoost{
 	
 	public boolean active;//active nous permet de savoir si l'utilisateur a cliqué sur la touche boost
 	public boolean deleteBoost;
-	public int currentSS,currentTH;
+	public int currentTime;
 	public double currentballSpeedX,currentballSpeedY;
 	public Label playerBoost;
 	
@@ -32,8 +32,7 @@ public class PlayerBoost{
         	active=true;
         	MediaPlayer mp=new MediaPlayer(court.activationBoost);
         	mp.play();
-        	currentSS=boost.chronometer.ss;
-        	currentTH=boost.chronometer.th;
+        	currentTime=boost.chronometer.cpt;
 		boost=null;
 			break;
         case IDLE:
@@ -60,16 +59,27 @@ public class PlayerBoost{
   		 }        
 	}
 	//fonction qui boost la balle pendant x seconde et x dixieme;
-	public void boostPlayer(int seconde,int dixieme) {
+	public void boostPlayer(int time) {
 		if(active) {
-       	 
-       	 if(seconde*10+dixieme<(currentSS+2)*10+currentTH) {
-       			court.ballSpeedX*=1.02;
-       			court.ballSpeedY*=1.02;
+       	 if(court.isTimeLimit()){
+	       		if(time>currentTime-200) {	       		
+	       			court.ballSpeedX*=1.02;
+	       			court.ballSpeedY*=1.02;
+	       	 }
+	       	 else { 	
+	       		 active=false;
+	       		 resetSpeedBall();
+	       	 }
        	 }
        	 else {
-       		 active=false;
-       		 resetSpeedBall();
+	       	 if(time<currentTime+200) {
+	       			court.ballSpeedX*=1.02;
+	       			court.ballSpeedY*=1.02;
+	       	 }
+	       	 else {
+	       		 active=false;
+	       		 resetSpeedBall();
+	       	 }
        	 }
         }
 	}

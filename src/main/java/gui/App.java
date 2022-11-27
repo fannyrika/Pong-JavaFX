@@ -11,6 +11,7 @@ import javafx.stage.StageStyle;
 import java.io.File;
 import java.net.MalformedURLException;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -21,19 +22,24 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundSize;
 import javafx.scene.control.Button;
+
+import javafx.scene.control.TextFormatter;
+import javafx.util.converter.IntegerStringConverter;
+import java.util.regex.Pattern;
+import java.awt.Dimension;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 import java.awt.*;
 import java.awt.Dimension;
-import java.awt.event.KeyEvent;
-
 import javafx.scene.layout.VBox;
 import javafx.scene.layout.HBox;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.scene.control.Slider;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.geometry.HPos;
@@ -41,6 +47,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.beans.*;
 import javafx.scene.paint.ImagePattern;
+import java.awt.event.KeyEvent;
+import javafx.scene.control.Slider;
 
 
 public class App extends Application {
@@ -162,7 +170,14 @@ public class App extends Application {
         choix.setFont(new Font("Arial",30));
         choix.setTextFill(Color.BLACK);
         choix.setId("choix");
-
+        var settingRoot=new VBox();
+        var settingScene=new Scene(settingRoot,width, height);
+        settingRoot.setId("mode");
+        settingScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+        Button setting = new Button("Param\u00e8tres");
+        setting.setId("modes");
+        setting.setFocusTraversable(false);
+        modeRoot.getChildren().add(setting);
         //Page qui explique au(x) joueur(s) comment déplacer les raquettes avant la partie
         //Il y a 5 fonctions. Une pour chaque niveau de jeu.
         //Pour le mode 1v1
@@ -178,7 +193,7 @@ public class App extends Application {
             switch (ev.getCode()) {
                 case ENTER:
                 	gameView.start(true);
-              		gameView.addRoot1V1();
+              		gameView.addRoot();
               		gameView.animate();
               		primaryStage.setScene(gameScene);
                     break;
@@ -204,7 +219,7 @@ public class App extends Application {
                 case ENTER:
                 	bot.setDifficulty(0);
          	  	   	gameView2.start(true);
-         	  	   	gameView2.addRoootBot();
+         	  	   	gameView2.addRootBot();
          	  	   	gameView2.animateBot();
          	  	   	primaryStage.setScene(gameScene);
          	  	   	modeRoot.getChildren().removeAll(tmp,choix);
@@ -231,7 +246,7 @@ public class App extends Application {
                 case ENTER:
                 	bot.setDifficulty(1);
          	  	   	gameView2.start(true);
-         	  	   	gameView2.addRoootBot();
+         	  	   	gameView2.addRootBot();
          	  	   	gameView2.animateBot();
          	  	   	primaryStage.setScene(gameScene);
          	  	   	modeRoot.getChildren().removeAll(tmp,choix);
@@ -258,7 +273,7 @@ public class App extends Application {
                 case ENTER:
                 	bot.setDifficulty(2);
          	  	   	gameView2.start(true);
-         	  	   	gameView2.addRoootBot();
+         	  	   	gameView2.addRootBot();
          	  	   	gameView2.animateBot();
          	  	   	primaryStage.setScene(gameScene);
          	  	   	modeRoot.getChildren().removeAll(tmp,choix);
@@ -285,7 +300,7 @@ public class App extends Application {
                 case ENTER:
                 	bot.setDifficulty(3);
          	  	   	gameView2.start(true);
-         	  	   	gameView2.addRoootBot();
+         	  	   	gameView2.addRootBot();
          	  	   	gameView2.animateBot();
          	  	   	primaryStage.setScene(gameScene);
          	  	   	modeRoot.getChildren().removeAll(tmp,choix);
@@ -334,6 +349,10 @@ public class App extends Application {
 		//Une touche pour chaque action dans la page des modes
 		modeScene.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
+            	case P: 
+            		
+            		primaryStage.setScene(settingScene);
+            		break;
                 case J:
               		modeRoot.getChildren().removeAll(tmp,choix);
               		primaryStage.setScene(instruScene);
@@ -341,7 +360,9 @@ public class App extends Application {
                 case C:
                 	modeRoot.getChildren().removeAll(choix, tmp);
                     modeRoot.getChildren().addAll(choix, tmp);
+                    if(tmp.getChildren().indexOf(facile)==-1) {
                     tmp.getChildren().addAll(facile,moyen,difficile,expert);
+                    }
                     tmp.setAlignment(Pos.CENTER);
                     break;
                 case F:
@@ -620,6 +641,18 @@ public class App extends Application {
 			        music.mP.pause();
                     primaryStage.setScene(pauseScene);
                     break;
+                case F :
+                	if(!gameView.isStart()||!gameView2.isStart()) {
+                		gameView.remove();
+                		gameView2.remove();
+                		primaryStage.setScene(menuScene);
+                		
+                	}
+                case R:
+                	
+	      			break;
+	        		
+	            
                 case M:
                 	if(volumeSlider.getValue() == 0){ mute.setId("boutonMute2"); volumeSlider.setValue(50);}
                     else{ mute.setId("boutonMute1"); volumeSlider.setValue(0);}
@@ -651,6 +684,7 @@ public class App extends Application {
                 case E:
                     if (playerA.stateb == BallState.StateBall.FAST) playerA.stateb = BallState.StateBall.IDLE;
                     break;
+              
                 case CONTROL:
                     if (playerB.stateb == BallState.StateBall.FAST) playerB.stateb = BallState.StateBall.IDLE;
                     break;
@@ -702,8 +736,8 @@ public class App extends Application {
             	case A:
             		GameView.stop=false;
             		GameView.pause=false;
-            		gameView.remove1v1();
-            		gameView2.removeBot();
+            		gameView.remove();
+            		gameView2.remove();
             		gameView.reset1V1();
             		gameView2.resetBot();
             		gameView.start(false);
@@ -714,8 +748,8 @@ public class App extends Application {
             	case N:
             		GameView.stop=false;
             		GameView.pause=false;
-            		gameView.remove1v1();
-            		gameView2.removeBot();
+            		gameView.remove();
+            		gameView2.remove();
             		gameView.reset1V1();
             		gameView2.resetBot();
             		gameView.start(false);
@@ -775,11 +809,198 @@ public class App extends Application {
                 	primaryStage.close();
                 	break;
                 }});
+        //Setting scene;
+        Label instructionSet=new Label("Utiliser la touche ENTRE pour valider une option ou bien passer \u00e0 la suivante");
+        instructionSet.setTranslateY(-200);
+        instructionSet.setFont(new Font("Arial",20));
+        RadioButton boost=new RadioButton("Activer le boost (PRESS-ESPACE)");
+        RadioButton timer=new RadioButton("Afficher le timer (PRESS-ESPACE)");
+        GridPane gScore=new GridPane();
+        gScore.setTranslateX(width/2-300);
+        Label scoreInst=new Label("Entr\u00e9 un score au clavier (limit :9999)  ");
+        TextField score = new TextField("");
+        gScore.addColumn(0,scoreInst);
+        gScore.addColumn(1,score);
+        
+        score.setPromptText("score");
+        
+        Pattern validText = Pattern.compile("[1-9][0-9]{0,3}|[1-9]?");
 
+        TextFormatter<Integer> textFormatter = new TextFormatter<Integer>(new IntegerStringConverter(),null, 
+            change -> {
+                String newText = change.getControlNewText() ;
+                if (validText.matcher(newText).matches()) {
+                    return change ;
+                } else return null ;
+            });
+
+        score.setTextFormatter(textFormatter);
+        score.setMaxWidth(50);
+        ComboBox<Integer> timeLimitM=new ComboBox<Integer>();
+		ComboBox<Integer> timeLimitS=new ComboBox<Integer>();
+		Label indication=new Label("Parametrer la dur\u00e9e de la partie (mm:ss) en utilisant UP et DOWN: ");
+		GridPane gTime=new GridPane();
+		gTime.addColumn(0,indication);
+        gTime.addColumn(1, timeLimitM);
+        gTime.addColumn(2, timeLimitS);
+        gTime.setTranslateX(width/2-450);
+		timeLimitS.setPromptText("ss");
+        timeLimitM.setPromptText("mm");
+		timeLimitM.setId("time-select");
+		timeLimitS.setId("time-select");
+		
+		Button valider=new Button("valider (PRESS-V)");
+		timer.setOnKeyPressed(event -> {
+            if(event.getCode().equals(KeyCode.ENTER)){
+                boost.requestFocus();
+            }
+        });
+		Button reset=new Button("reset (PRESS-R)");
+        GridPane g2=new GridPane();
+        g2.addColumn(0, valider);
+        g2.addColumn(1, reset);
+        g2.setAlignment(Pos.CENTER);
+		boost.setOnKeyPressed(event -> {
+            if(event.getCode().equals(KeyCode.ENTER)){
+               score.requestFocus();
+            }
+        });
+		for(int i=0;i<60;i++) {
+			timeLimitM.getItems().add(i);
+			timeLimitS.getItems().add(i);
+		}
+	
+		timeLimitM.setOnAction(event->{
+			int x=timeLimitM.getSelectionModel().getSelectedItem().intValue();
+		});
+		
+		Label ss=new Label();
+		timeLimitS.setOnAction(event->{
+			int x=timeLimitS.getSelectionModel().getSelectedItem().intValue();
+			//mm.setText(x+"mm");
+		});     
+        Label erreurTime =new Label("Veuillez entrer les deux param\u00e9tre de temps");
+  
+        settingRoot.getChildren().addAll(instructionSet,timer,boost,gScore,gTime,g2);
+        settingRoot.setAlignment(Pos.CENTER);
+		score.setOnKeyPressed(event -> {
+            if(event.getCode().equals(KeyCode.ENTER)){
+                timeLimitM.requestFocus();
+            }
+            if(event.getCode().equals(KeyCode.V)){
+            	if(timer.isSelected()) {
+            		GameView.afficheTimer=true;
+            	}
+            	else {
+            		GameView.afficheTimer=false;
+            	}
+            	if(boost.isSelected()) {
+            		GameView.activeBoost=true;
+            	}
+            	else {
+            		GameView.activeBoost=false;
+            	}
+            	if(score.toString()!=null) {
+            		if(score.getText().matches("[0-9]+")) {
+	                		court.setScoreLimit(Integer.parseInt(score.getText()));
+	                		court.scoreLimit(true);
+	                		bot.setScoreLimit(Integer.parseInt(score.getText()));
+	                		bot.scoreLimit(true);
+	                		
+	            		}
+	            	}
+            	if(timeLimitM.getValue()!=null&&timeLimitS.getValue()!=null&&timeLimitM.getValue()+timeLimitS.getValue()!=0) {
+	            		court.setTimeLimit(timeLimitM.getValue(),timeLimitS.getValue());
+	            		court.limitTime(true);
+	            		bot.setTimeLimit(timeLimitM.getValue(),timeLimitS.getValue());
+	            		bot.limitTime(true);
+	            		gameView.chronometer.setStart(timeLimitM.getValue()*6000+timeLimitS.getValue()*100);
+	            		gameView2.chronometer.setStart(timeLimitM.getValue()*6000+timeLimitS.getValue()*100);
+	            		Chrono.timeLimit=timeLimitM.getValue()*6000+timeLimitS.getValue()*100;
+	            		settingRoot.getChildren().remove(erreurTime);
+	          			primaryStage.setScene(modeScene);	
+	            	}
+	            	else if(timeLimitM.getValue()!=null&&timeLimitS.getValue()==null ||timeLimitM.getValue()==null&&timeLimitS.getValue()!=null) {
+	            		settingRoot.getChildren().add(erreurTime);
+	            		}
+	            	else {
+	            		primaryStage.setScene(modeScene);	
+	            	}
+            }
+            
+        });
+		timeLimitM.setOnKeyPressed(event -> {
+            if(event.getCode().equals(KeyCode.ENTER)){
+                timeLimitS.requestFocus();
+            }
+        });
+		timeLimitS.setOnKeyPressed(event -> {
+            if(event.getCode().equals(KeyCode.ENTER)){
+            	timer.requestFocus();
+            }
+        });
+		
+        settingScene.setOnKeyPressed(ev -> {
+            switch (ev.getCode()) {
+                case V:
+                	if(timer.isSelected()) {
+                		GameView.afficheTimer=true;
+                	}
+                	else {
+                		GameView.afficheTimer=false;
+                	}
+                	if(boost.isSelected()) {
+                		GameView.activeBoost=true;
+                	}
+                	else {
+                		GameView.activeBoost=false;
+                	}
+                	if(score.toString()!=null) {
+                		if(score.getText().matches("[0-9]+")) {
+                    		court.setScoreLimit(Integer.parseInt(score.getText()));
+                    		court.scoreLimit(true);
+                    		bot.setScoreLimit(Integer.parseInt(score.getText()));
+                    		bot.scoreLimit(true);
+                		}
+                		
+                	}
+                	if(timeLimitM.getValue()!=null&&timeLimitS.getValue()!=null&&timeLimitM.getValue()+timeLimitS.getValue()!=0) {
+                		court.setTimeLimit(timeLimitM.getValue(),timeLimitS.getValue());
+                		court.limitTime(true);
+                		bot.setTimeLimit(timeLimitM.getValue(),timeLimitS.getValue());
+                		bot.limitTime(true);
+                		gameView.chronometer.setStart(timeLimitM.getValue()*6000+timeLimitS.getValue()*100);
+                		gameView2.chronometer.setStart(timeLimitM.getValue()*6000+timeLimitS.getValue()*100);
+                		Chrono.timeLimit=timeLimitM.getValue()*6000+timeLimitS.getValue()*100;
+                		settingRoot.getChildren().remove(erreurTime);
+            		
+              			primaryStage.setScene(modeScene);	
+                	}
+                	else if(timeLimitM.getValue()!=null&&timeLimitS.getValue()==null ||timeLimitM.getValue()==null&&timeLimitS.getValue()!=null) {
+                		settingRoot.getChildren().add(erreurTime);
+                		}
+                	else {
+	            		primaryStage.setScene(modeScene);	
+	            	}	
+                    break;
+                case R:
+                	score.clear();
+                	timer.setSelected(false);
+                	boost.setSelected(false);
+                	timeLimitM.setValue(0);
+                	timeLimitS.setValue(0);
+                    break;
+             
+                case ESCAPE:
+                	primaryStage.close();
+                	break;
+                }});
         optionsScene.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
                 //Thème espace
             	case S:
+            		GameView.style="spacebg";
+            		GameView.styleBM="spaceMB";
             		menuRoot.setId("spacebg");
                     modeRoot.setId("spacemode");
                     instruroot.setId("spacemode");
@@ -787,12 +1008,20 @@ public class App extends Application {
                     instrurootM.setId("spacemode");
                     instrurootD.setId("spacemode");
                     instrurootE.setId("spacemode");
+                    settingRoot.setId("spacemode");
             		rootPause.setId("spacepause");
                     root.setId("spacebg");
             		sonRoot.setId("spacebg");
                     rulesroot.setId("spacebg");
                     rulesroot2.setId("spacebg");
             		optionsRoot.setId("spacebg");
+            		
+            		scoreInst.setTextFill(Color.WHITE);
+            	    erreurTime.setTextFill(Color.WHITE);
+            	    boost.setTextFill(Color.WHITE);
+            	    timer.setTextFill(Color.WHITE);
+            	    indication.setTextFill(Color.WHITE);
+            	    
             		nom.setTextFill(Color.WHITE);
                     titre.setTextFill(Color.WHITE);
                     jouer.setTextFill(Color.WHITE);
@@ -856,7 +1085,7 @@ public class App extends Application {
                     nouvellepartie.setId("spacemnemonic");
                     musique.setId("spacemnemonic");
             		fleche.setId("spacemnemonic");
-                flecheO.setId("spacemnemonic");
+            		flecheO.setId("spacemnemonic");
             		retourpause.setId("spacemnemonic");
                     regles.setId("spacemnemonic");
                     message.setId("spacemnemonic");
@@ -866,6 +1095,8 @@ public class App extends Application {
                     break;
                 //Thème tennis
             	case T:
+            		GameView.style="terrain";
+            		GameView.styleBM="terrainBM";
             		menuRoot.setId("tennisbg");
                     modeRoot.setId("mode");
                     instruroot.setId("mode");
@@ -879,6 +1110,14 @@ public class App extends Application {
                     rulesroot.setId("regles");
                     rulesroot2.setId("regles");
             		optionsRoot.setId("tennisbg");
+            		settingRoot.setId("mode");
+            		
+            		scoreInst.setTextFill(Color.BLACK);
+            	    erreurTime.setTextFill(Color.BLACK);
+            	    valider.setTextFill(Color.BLACK);
+            	    boost.setTextFill(Color.BLACK);
+            	    timer.setTextFill(Color.BLACK);
+            	    indication.setTextFill(Color.BLACK);
             		nom.setTextFill(Color.BLACK);
                     titre.setTextFill(Color.BLACK);
                     jouer.setTextFill(Color.BLACK);
@@ -950,6 +1189,8 @@ public class App extends Application {
                     break;
                 //Thème néon
             	case N:
+            		GameView.style="ledbggame";
+            		GameView.styleBM="ledBM";
             		menuRoot.setId("ledbg");
                     modeRoot.setId("ledmode");
                     instruroot.setId("ledmode");
@@ -957,6 +1198,7 @@ public class App extends Application {
                     instrurootM.setId("ledmode");
                     instrurootD.setId("ledmode");
                     instrurootE.setId("ledmode");
+                    settingRoot.setId("ledmode");
             		rootPause.setId("ledpause");
                     root.setId("ledbggame");
             		sonRoot.setId("ledbg");
@@ -965,6 +1207,11 @@ public class App extends Application {
             		optionsRoot.setId("ledbg");
 
             		//couleur des labels
+            		scoreInst.setTextFill(Color.PINK);
+            	    erreurTime.setTextFill(Color.PINK);
+            	    boost.setTextFill(Color.PINK);
+            	    timer.setTextFill(Color.PINK);
+            	    indication.setTextFill(Color.PINK);
             		nom.setTextFill(Color.PINK);
                     titre.setTextFill(Color.PINK);
                     jouer.setTextFill(Color.PINK);
@@ -1026,7 +1273,7 @@ public class App extends Application {
                     nouvellepartie.setId("neonmnemonic");
                     musique.setId("neonmnemonic");
             		fleche.setId("neonmnemonic");
-                flecheO.setId("spacemnemonic");
+            		flecheO.setId("spacemnemonic");
             		retourpause.setId("neonmnemonic");
                     regles.setId("neonmnemonic");
                     message.setId("neonmnemonic");

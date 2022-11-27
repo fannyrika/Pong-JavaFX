@@ -25,6 +25,8 @@ public class Court {
     private int scoreP2 = 0;
     public Media mediaBall;
     public Media activationBoost;
+    boolean limitTime, scoreLimit;
+    public int timeMM,timeSS,score;
 
 
     Rectangle2D screen = Screen.getPrimary().getVisualBounds();
@@ -188,6 +190,41 @@ public class Court {
     	racketSpeed= racketSpeed * acceleration;
     	ballSpeedX= ballSpeedX * acceleration;
     	ballSpeedY= ballSpeedY * acceleration;
+    }
+    public void setTimeLimit(int mm,int ss) {
+    	this.timeMM=mm;
+    	this.timeSS=ss;
+    }
+    public boolean isTimeLimit() {
+    	return limitTime;
+    }
+    public void limitTime(boolean b) {
+    	limitTime=b;
+    }
+    public boolean timeEnd(int mm,int ss) {
+    	return mm==timeMM && ss==timeSS;
+    }
+    
+    public boolean isScoreLimit() {
+    	return scoreLimit;
+    }
+    public void scoreLimit(boolean b) {
+    	scoreLimit=b;
+    }
+    public void setScoreLimit(int score) {
+    	this.score=score;
+    }
+    public boolean scoreLimitReach() {
+    	return scoreP1==score||scoreP2==score;
+    }
+    public boolean scoreEgalite() {
+    	return scoreP1==scoreP2;
+    }
+    public boolean player1Win() {
+    	return scoreP1>scoreP2;
+    }
+    public boolean player2Win() {
+    	return scoreP1<scoreP2;
     }
     public void resetScore(){
 	 scoreP1 = 0;

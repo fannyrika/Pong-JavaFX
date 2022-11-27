@@ -66,7 +66,7 @@ public class Bot extends Court{
                Random x= new Random();
                int alea=x.nextInt(10);
                if(alea>=1){
-                   bot += this.getBallSpeedY() * deltaT;
+                   
                    if(getBallSpeedY()<0) bot -= Math.abs(getBallSpeedY())*deltaT-getRacketSize()/2*deltaT;
           	 	   if(getBallSpeedY()>0)bot+=Math.abs(getBallSpeedY())*deltaT-getRacketSize()/2*deltaT;
                    if (bot< 0.0) bot = 0.0;
@@ -172,7 +172,15 @@ public class Bot extends Court{
 		scoreP1 = 0;
    		scoreP2 = 0;
 	}
-
+	public boolean player1Win() {
+	    	return scoreP1>scoreP2;
+	    }
+	public boolean player2Win() {
+	    	return scoreP1<scoreP2;
+	    }
+	public boolean scoreEgalite() {
+	    	return scoreP1==scoreP2;
+	    }
     public void reset() {
         this.setRacketA(this.getHeight()/2);
         this.bot=this.getHeight()/2;

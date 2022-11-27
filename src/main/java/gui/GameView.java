@@ -1,5 +1,4 @@
 package gui;
-
 import javafx.animation.AnimationTimer;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -8,13 +7,16 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import model.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.beans.binding.Bindings;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import java.io.File;
 import java.net.MalformedURLException;
@@ -37,10 +39,15 @@ public class GameView {
     Chrono chronometer;
     private final Rectangle racketA, racketB ,bot;
     public final Circle ball;
-    static boolean stop=false,pause=false;
     private boolean start;
-    public Text textScoreP1, textScoreP2, instructionL,instructionR;
+    static boolean stop=false,pause=false,timerStop=false;
+    static boolean afficheTimer=false,activeBoost=false;
+    public static String style="terrain",styleBM="terrainBM";
+    
+    public Text textScoreP1, textScoreP2, instructionL,instructionR,optionPartie;
+    public Text lastPoint=new Text("Balle de match");
     Boost boost;
+    Button menu;
     /**
      * @param court le "modèle" de cette vue (le terrain de jeu de raquettes et tout ce qu'il y a dessus)
      * @param root  le nœud racine dans la scène JavaFX dans lequel le jeu sera affiché
@@ -52,14 +59,14 @@ public class GameView {
 	    this.ModeBot = null;
         this.gameRoot = root;
         this.scale = scale;
-
+        
         root.setMinWidth(court.getWidth() * scale + 2 * xMargin);
         root.setMinHeight(court.getHeight() * scale);
 
         timer();
         timer.setLayoutX(court.getWidth()/2-50);
         timer.setLayoutY(-50);
-
+        menu = new Button("Retour au menu");  
         racketA = new Rectangle();
         racketA.setHeight(court.getRacketSize() * scale);
         racketA.setWidth(racketThickness);
@@ -104,14 +111,17 @@ public class GameView {
 
         textScoreP1 = new Text("0");
         textScoreP2 = new Text("0");
+        
+        textScoreP1.setStyle("-fx-text-fill: WHITE");
         textScoreP1.setFont(Font.font(50));
         textScoreP2.setFont(Font.font(50));
 
-        textScoreP1.setX(xMargin - racketThickness + 50);
-        textScoreP1.setY(court.getRacketA() * scale -400);
+        textScoreP1.setX(court.getWidth()/2-150);
+        textScoreP1.setY(80);
 
-        textScoreP2.setX(court.getWidth() * scale + xMargin -100) ;
-        textScoreP2.setY(court.getRacketB() * scale -400);
+        textScoreP2.setX(court.getWidth()/2+150) ;
+        textScoreP2.setY(80);
+
 
 
 
@@ -123,7 +133,8 @@ public class GameView {
     public void start(boolean b) {
     	 start=b;
     }
-    public void addRoot1V1() {
+    public void addRoot() {
+    	
     	  //Gére l'affichage des bonus des joueurs;
   	  Image imgL = new Image(new File("src/main/resources/gui/hitboxLeft.png").toURI().toString());
       Image imgR = new Image(new File("src/main/resources/gui/hitboxRight.png").toURI().toString());
@@ -133,8 +144,10 @@ public class GameView {
   	  view.setPreserveRatio(true);
   	  Label caseBonusLeft=new Label();
   	  caseBonusLeft.setGraphic(view);
-  	  caseBonusLeft.setTranslateX(-47);
+  	  caseBonusLeft.setTranslateX(-49);
   	  caseBonusLeft.setTranslateY(50);
+  	  
+  	 
 
   	  ImageView viewR=new ImageView(imgR);
   	  viewR.setFitHeight(200);
@@ -144,26 +157,41 @@ public class GameView {
       caseBonusRight.setGraphic(viewR);
       caseBonusRight.setTranslateX(court.getWidth()-70);
   	  caseBonusRight.setTranslateY(50);
+  	  String instructionLStr="up->Z down->S";
+	  instructionL = new Text(instructionLStr);
+	  instructionL.setFont(Font.font(15));
+	  instructionL.setFill(Color.WHITE);
+	  instructionL.setX(10);
+	  instructionL.setY(30);
 
-        String instructionLStr="up->Z down->S";
-        instructionL = new Text(instructionLStr);
-        instructionL.setFont(Font.font(15));
-        instructionL.setFill(Color.WHITE);
-        instructionL.setX(10);
-        instructionL.setY(30);
+     String instructionRStr="up->UP down->DOWN";
+     instructionR = new Text(instructionRStr);
+     instructionR.setFont(Font.font(15));
+     instructionR.setFill(Color.WHITE);
+     instructionR.setX(court.getWidth()-70);
+     instructionR.setY(30);
 
-        String instructionRStr="up->UP down->DOWN";
-        instructionR = new Text(instructionRStr);
-        instructionR.setFont(Font.font(15));
-        instructionR.setFill(Color.WHITE);
-        instructionR.setX(court.getWidth()-70);
-        instructionR.setY(30);
+  	  optionPartie=new Text();
+	  optionPartie.setFont(Font.font(20));
 
-    	gameRoot.getChildren().addAll(racketA, racketB, ball,timer,textScoreP1, textScoreP2,caseBonusLeft,caseBonusRight,instructionL,instructionR);
+      optionPartie.setX(court.getWidth()/2-400);
+      optionPartie.setY(60);
+
+	  if(court.isScoreLimit()) {
+		  optionPartie.setText("Score Limit : "+court.score);
+		  gameRoot.getChildren().add(optionPartie);
+	  }
+        if(afficheTimer) {
+        
+        	gameRoot.getChildren().add(timer);
+        }
+        if(activeBoost) {
+        	gameRoot.getChildren().addAll(caseBonusLeft,caseBonusRight);
+        }
+        gameRoot.getChildren().addAll(instructionL,instructionR,racketA, racketB, ball,textScoreP1, textScoreP2);
+    	
     }
-    public void remove1v1() {
-    	gameRoot.getChildren().clear();
-    }
+   
     public GameView(Bot bot, Pane root, double scale) throws MalformedURLException{
         this.court = null;
 	      this.ModeBot = bot;
@@ -221,11 +249,12 @@ public class GameView {
         textScoreP1.setFont(Font.font(50));
         textScoreP2.setFont(Font.font(50));
 
-        textScoreP1.setX(xMargin - racketThickness + 50);
-        textScoreP1.setY(bot.getRacketA() * scale -400);
+        textScoreP1.setX(bot.getWidth()/2-150);
+        textScoreP1.setY(80);
 
-        textScoreP2.setX(bot.getWidth() * scale + xMargin -100) ;
-        textScoreP2.setY(bot.getBot() * scale -400);
+        textScoreP2.setX(bot.getWidth()/2+150) ;
+        textScoreP2.setY(80);
+
 
 
 
@@ -233,26 +262,29 @@ public class GameView {
 
 
     }
-    
     public void setBallepng(String s) throws MalformedURLException{
         File file = new File(s);
         String localUrl = file.toURI().toURL().toString();
         Image image = new Image(localUrl);
         ball.setFill(new ImagePattern(image));
       }
+	 public void addRootBot() {
+	      
+	        instructionL = new Text();
+	        instructionL.setText("up->Z down->S");
+	        instructionL.setFont(Font.font(15));
+	        instructionL.setFill(Color.WHITE);
+	        instructionL.setX(10);
+	        instructionL.setY(30);
 
-
-	 public void addRoootBot() {
-        String instructionLStr="up->Z down->S";
-        instructionL = new Text(instructionLStr);
-        instructionL.setFont(Font.font(15));
-        instructionL.setFill(Color.WHITE);
-        instructionL.setX(10);
-        instructionL.setY(30);
-    	 gameRoot.getChildren().addAll(racketA, this.bot, ball,timer,textScoreP1, textScoreP2,instructionL);
+		 if(afficheTimer) {
+	        	gameRoot.getChildren().add(timer);
+	        }
+		
+		 gameRoot.getChildren().addAll(racketA, this.bot, ball,textScoreP1, textScoreP2,instructionL);
     	}
 
-	public void removeBot() {
+	public void remove() {
 		gameRoot.getChildren().clear();
 
 
@@ -266,73 +298,178 @@ public class GameView {
         timer.setFont(new Font("Arial",40));
         timer.setMinSize(100.00, 100.00);
         timer.setMinHeight(200);
+    } 
+    public void timerEnd(){
+    	timerStop=true;
+    	chronometer.cpt=Chrono.timeLimit;
     }
+    
+    public void endView1V1() {
+    	timerStop=true;
+    	chronometer.cpt=Chrono.timeLimit;
+    	remove();
+    	Text l=new Text();
+    	l.setStyle("-fx-font: 36 arial;");
+    	l.setTranslateX(court.getWidth()/2-100);
+    	l.setTranslateY(court.height/2);
+    	if(court.player1Win()) {
+    		l.setText("Le joueur 1 a gagn\u00e9\n-Appuyer sur R pour rejouer\n-Appuyer sur F pour retourner au menu");
+    	}
+    	else if(court.player2Win()) {
+    		l.setText("Le joueur 2 a gagn\u00e9\n-Appuyer sur R pour rejouer\n-Appuyer sur F pour retourner au menu");
+    	}
+    	else {
+    		l.setText("egalite");
+    	}
+    	reset1V1();	  	 	
+    	gameRoot.getChildren().addAll(l);
+    	Button rejouer=new Button();
+    	rejouer.setOnKeyPressed(ev -> {
+            switch (ev.getCode()) {
+            //Thème espace
+	        	case R:
+	        		remove();
+	        		addRoot();
+	             	gameRoot.setId(style);            
+	             	start(true);
+	      			animate();
+	      			break;
+	        		
+	            }
+  
+   	 	
+    	});
+    	rejouer.setStyle("-fx-border-color: transparent;\r\n"
+    			+ "    -fx-border-width: 0;\r\n"
+    			+ "    -fx-background-radius: 0;\r\n"
+    			+ "    -fx-background-color: transparent;\r\n"
+    			+ "    -fx-font-family:\"Segoe UI\", Helvetica, Arial, sans-serif;\r\n"
+    			+ "    -fx-font-size: 1em; /* 12 */\r\n"
+    			+ "    -fx-text-fill: #828282;");
+   	 	gameRoot.getChildren().add(rejouer);
+    }
+    public void endViewBot() {
+    	timerStop=true;
+    	chronometer.cpt=Chrono.timeLimit;
+    	remove();
+    	Text l=new Text();
+    	l.setStyle("-fx-font: 36 arial;");
+    	l.setTranslateX(ModeBot.getWidth()/2-100);
+    	l.setTranslateY(ModeBot.height/2);
+    	if(ModeBot.player1Win()) {
+    		l.setText("Le joueur 1 a gagn\u00e9\n-Appuyer sur R pour rejouer\n-Appuyer sur M pour retourner au menu");
+    	}
+    	else if(ModeBot.player2Win()) {
+    		l.setText("L'ordinateur a gagn\u00e9\n-Appuyer sur R pour rejouer\n-Appuyer sur M pour retourner au menu");
+    	}
+    	else {
+    		l.setText("egalit\u00e9");
+    	}
+    	resetBot();	  	 	
+    	gameRoot.getChildren().addAll(l);
+    	Button rejouer=new Button();
+    	rejouer.setOnKeyPressed(ev -> {
+            switch (ev.getCode()) {
+            //Thème espace
+	        	case R:
+	        		remove();
+	        		addRootBot();
+	             	gameRoot.setId(style);            
+	             	start(true);
+	      			animateBot();
+	      			break;
+	        		
+	            }
+  
+   	 	
+    	});
+    	rejouer.setStyle("-fx-border-color: transparent;\r\n"
+    			+ "    -fx-border-width: 0;\r\n"
+    			+ "    -fx-background-radius: 0;\r\n"
+    			+ "    -fx-background-color: transparent;\r\n"
+    			+ "    -fx-font-family:\"Segoe UI\", Helvetica, Arial, sans-serif;\r\n"
+    			+ "    -fx-font-size: 1em; /* 12 */\r\n"
+    			+ "    -fx-text-fill: #828282;");
+   	 	gameRoot.getChildren().add(rejouer);
+    	}
     public void reset1V1() {
+    	gameRoot.setId(style);
     	court.reset();
     	court.resetScore();
     	chronometer.reset();
 
     }
     public void resetBot() {
+    	gameRoot.setId(style);
     	ModeBot.reset();
-	ModeBot.resetScore();
+    	ModeBot.resetScore();
     	chronometer.reset();
     }
     public void boost() {
    	 //toutes les 15 secondes fait spawn un boost si il y en a pas;
-   	 if(chronometer.ss%15==0&&chronometer.th==0&&chronometer.hd==0) {
-   		 if(boost!=null){
-			gameRoot.getChildren().remove(boost.boost);
-         		boost=new Boost(court,chronometer,court.getBallSpeedX(),court.getBallSpeedY());
-         		gameRoot.getChildren().addAll(boost.boost);
+    	if(activeBoost) {
+	   	 if(chronometer.ss%30==0&&chronometer.th==0&&chronometer.hd==0) {
+	   		 if(boost!=null){
+				gameRoot.getChildren().remove(boost.boost);
+	         		boost=new Boost(court,chronometer,court.getBallSpeedX(),court.getBallSpeedY());
+	         		gameRoot.getChildren().addAll(boost.boost);
+			 }
+			 else{
+				boost=new Boost(court,chronometer,court.getBallSpeedX(),court.getBallSpeedY());
+	         		gameRoot.getChildren().addAll(boost.boost);
+			 }
+	
+	   	 }
+	   	 
+	   	 if(boost!=null&&boost.isBallTouchBoost()) {
+	   		
+	   		 MediaPlayer mp=new MediaPlayer(court.mediaBall);
+	   		 mp.play();
+	   		 if(court.ballSpeedX>0) {
+	   			 court.p1.addBoostPlayer(true);
+	   			 gameRoot.getChildren().addAll(court.p1.playerBoost);
+	   		 }
+	   		 if(court.ballSpeedX<0){
+	   			 court.p2.addBoostPlayer(false);
+	   			 gameRoot.getChildren().addAll(court.p2.playerBoost);
+	   		 }
+	   		 gameRoot.getChildren().remove(boost.boost);
+	   		 boost=null;
+	   	 }
+	   	
+	   	 
+	
+		 if(!court.p2.active&&!court.p1.active){  	
+	   	 court.p1.activeBoost();
 		 }
-		 else{
-			boost=new Boost(court,chronometer,court.getBallSpeedX(),court.getBallSpeedY());
-         		gameRoot.getChildren().addAll(boost.boost);
+		 
+	   	 if(!court.p2.active&&!court.p1.active){  	
+	   	 court.p2.activeBoost();
 		 }
-
-   	 }
-
-   	 if(boost!=null&&boost.isBallTouchBoost()) {
-
-   		 MediaPlayer mp=new MediaPlayer(court.mediaBall);
-   		 mp.play();
-   		 if(court.ballSpeedX>0) {
-   			 court.p1.addBoostPlayer(true);
-   			 gameRoot.getChildren().addAll(court.p1.playerBoost);
-   		 }
-   		 if(court.ballSpeedX<0){
-   			 court.p2.addBoostPlayer(false);
-   			 gameRoot.getChildren().addAll(court.p2.playerBoost);
-   		 }
-   		 gameRoot.getChildren().remove(boost.boost);
-   		 boost=null;
-   	 }
-
-
-
-	 if(!court.p2.active&&!court.p1.active){
-   	 court.p1.activeBoost();
-	 }
-
-   	 if(!court.p2.active&&!court.p1.active){
-   	 court.p2.activeBoost();
-	 }
-	 if(court.p1.deleteBoost) {
-   		 gameRoot.getChildren().remove(court.p1.playerBoost);
-   		 court.p1.deleteBoost=false;
-   	 }
-   	 if(court.p2.deleteBoost) {
-   		 gameRoot.getChildren().remove(court.p2.playerBoost);
-   		 court.p2.deleteBoost=false;
-   	 }
-
-
-      court.p1.boostPlayer(chronometer.ss,chronometer.th);
-      court.p2.boostPlayer(chronometer.ss,chronometer.th);
-
+		 if(court.p1.deleteBoost) {
+	   		 gameRoot.getChildren().remove(court.p1.playerBoost);
+	   		 court.p1.deleteBoost=false;
+	   	 }
+	   	 if(court.p2.deleteBoost) {
+	   		 gameRoot.getChildren().remove(court.p2.playerBoost);
+	   		 court.p2.deleteBoost=false;
+	   	 }
+	
+	
+	   	 court.p1.boostPlayer(chronometer.cpt);
+	     court.p2.boostPlayer(chronometer.cpt);
+    	}
    }
-
+    public void lastPoint() {
+    		gameRoot.setId(styleBM);
+    		lastPoint.setStyle("-fx-font: 30 arial");
+    		if(court!=null)lastPoint.setTranslateX(court.getWidth()/2-100);
+    		else lastPoint.setTranslateX(ModeBot.getWidth()/2-100);
+    		lastPoint.setTranslateY(50);
+    		gameRoot.getChildren().add(lastPoint);
+    		gameRoot.getChildren().remove(timer);
+    	
+    }
     public void animate() {
         new AnimationTimer() {
             long last = 0;
@@ -340,15 +477,37 @@ public class GameView {
             @Override
             public void handle(long now) {
                 if (last == 0) { // ignore the first tick, just compute the first deltaT
-                    if((now - last)%65==0) {
-                        chronometer.update();
-                        timer.textProperty().bind(Bindings.format("%02d:%02d:%d%d",  chronometer.mm, chronometer.ss, chronometer.th, chronometer.hd));;
-                    }
-                      last = now;
+                    last = now;
                     return;
                 }
-
-                chronometer.update();
+                
+                if(court.isScoreLimit()) {
+                	
+                	if(court.scoreLimitReach()) {
+                		endView1V1();
+                		stop();
+                	}
+                }
+                if(court.isTimeLimit()) {
+                	if(chronometer.cpt>0) {
+                	chronometer.downTimer();
+                	}
+                	else if(court.scoreEgalite()) {
+                			chronometer.downTimer();
+                			if(!gameRoot.getChildren().contains(lastPoint)) {
+                				lastPoint();
+                			}
+                			
+                	}
+                	else {
+                		endView1V1();
+                		stop();
+                	}
+               	}	
+               
+                else {
+                	chronometer.update();
+                }
                 timer.textProperty().bind(Bindings.format("%02d:%02d:%d%d",  chronometer.mm, chronometer.ss, chronometer.th, chronometer.hd));;
                 boost();
                 court.update((now - last) * 1.0e-9); // convert nanoseconds to seconds
@@ -380,8 +539,34 @@ public class GameView {
                     last = now;
                     return;
                 }
-
-                chronometer.update();
+                if(ModeBot.isScoreLimit()) {
+                	
+                	if(ModeBot.scoreLimitReach()) {
+                		endViewBot();
+                		stop();
+                	}
+                }
+                if(ModeBot.isTimeLimit()) {
+                	if(chronometer.cpt>0) {
+                	chronometer.downTimer();
+                	}
+                	else if(ModeBot.scoreEgalite()) {
+                			chronometer.downTimer();
+                			if(!gameRoot.getChildren().contains(lastPoint)) {
+                				lastPoint();
+                			}
+                			
+                	}
+                	else {
+                		endViewBot();
+               			stop();
+                	}
+               	}	
+               
+                else {
+                	chronometer.update();
+                }
+            
                 timer.textProperty().bind(Bindings.format("%02d:%02d:%d%d",  chronometer.mm, chronometer.ss, chronometer.th, chronometer.hd));;
 
                 ModeBot.updateWithBot((now - last) * 1.0e-9); // convert nanoseconds to seconds
