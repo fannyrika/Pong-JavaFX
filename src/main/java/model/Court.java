@@ -30,7 +30,7 @@ public class Court {
         this.playerA = playerA;
         this.playerB = playerB;
         this.width = screen.getWidth()-racketSize/2;//visual bounds
-        this.height = screen.getHeight()-racketSize/2;//visual bounds
+        this.height = screen.getHeight();//visual bounds
         this.acceleration= acceleration;
         mediaBall = new Media(new File("src/main/resources/gui/AudioBoost.mp3").toURI().toString());
         activationBoost=new Media(new File("src/main/resources/gui/AudioBoostActive.mp3").toURI().toString());
