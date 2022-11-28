@@ -62,6 +62,8 @@ public class GameView {
         
         root.setMinWidth(court.getWidth() * scale + 2 * xMargin);
         root.setMinHeight(court.getHeight() * scale);
+		root.setMaxWidth(court.getWidth() * scale + 2 * xMargin);
+		root.setMaxHeight(court.getHeight() * scale);
 
         timer();
         timer.setLayoutX(court.getWidth()/2-50);
