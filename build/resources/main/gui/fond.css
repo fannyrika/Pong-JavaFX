@@ -10,6 +10,14 @@
   -fx-background-position: 50% 50%;
   -fx-background-size: 100%;
 }
+#terrainBM{
+	-fx-background-image: url("imgfondBM.jpg");
+  -fx-background-color: #842e1b;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+   -fx-text-fill: black;
+}
 #tennisbg{
 -fx-background-image: url("imgfondmenu.jpg");
   -fx-background-color: #842e1b;
@@ -25,6 +33,14 @@
   -fx-background-position: 50% 50%;
   -fx-background-size: 100%;
 }
+#spaceMB {
+  -fx-background-image: url("spacebackgroundBM.png");
+  -fx-background-color: #c0d4cd;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+ 
+}
 
 #ledbg {
   -fx-background-image: url("ledbackgroundmenu.jpg");
@@ -32,6 +48,14 @@
   -fx-background-repeat: no-repeat;
   -fx-background-position: 50% 50%;
   -fx-background-size: 100%;
+}
+#ledBM {
+  -fx-background-image: url("ledbackgroundBM.jpg");
+  -fx-background-color: #842e1b;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+  
 }
 
 #ledbggame {
