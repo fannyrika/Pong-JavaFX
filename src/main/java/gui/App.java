@@ -52,6 +52,7 @@ import javafx.scene.control.Slider;
 
 
 public class App extends Application {
+    double volume;
     double volumeMem=0.0;
 
 
@@ -454,27 +455,56 @@ public class App extends Application {
       volumeSlider.lookup(".track");
       volumeSlider.setValue(music.mP.getVolume() * 70);
 
+      var volumeSliderO = new Slider(0.0, 100, 0.0);
+      volumeSliderO.setId("slider");
+      volumeSliderO.lookup(".track");
+      volumeSliderO.setValue(music.mP.getVolume() * 70);
+
 
       Button mute = new Button(" ");
-        mute.setFocusTraversable(false);
-        mute.setId("boutonMute2");
+      mute.setFocusTraversable(false);
+      mute.setId("boutonMute2");
+
+      Button muteO = new Button(" ");
+      muteO.setFocusTraversable(false);
+      muteO.setId("boutonMute2");
 
       mute.setOnAction(new EventHandler<ActionEvent>() {
       public void handle(ActionEvent event) {
-        if(volumeSlider.getValue() == 0){ mute.setId("boutonMute2"); volumeSlider.setValue(volumeMem);}
-        else{ mute.setId("boutonMute1"); volumeMem=volumeSlider.getValue(); volumeSlider.setValue(0);}}});
+        if(volumeSlider.getValue() == 0){ mute.setId("boutonMute2"); volumeSlider.setValue(volumeMem); muteO.setId("boutonMute2"); volumeSliderO.setValue(volumeMem);}
+        else{ mute.setId("boutonMute1"); volumeMem=volumeSlider.getValue(); volumeSlider.setValue(0); muteO.setId("boutonMute1"); volumeSliderO.setValue(0);}}});
 
+      muteO.setOnAction(new EventHandler<ActionEvent>() {
+          public void handle(ActionEvent event) {
+              if(volumeSlider.getValue() == 0){ mute.setId("boutonMute2"); volumeSlider.setValue(volumeMem); muteO.setId("boutonMute2"); volumeSliderO.setValue(volumeMem);}
+              else{ mute.setId("boutonMute1"); volumeSlider.setValue(0); muteO.setId("boutonMute1"); volumeMem=volumeSliderO.getValue(); volumeSliderO.setValue(0);}}});
 
 
 
         //Modifier le volume de la musique
         volumeSlider.valueProperty().addListener(new InvalidationListener() {
             public void invalidated(Observable observable) {
-                music.mP.setVolume(volumeSlider.getValue() / 100);
+                volume=volumeSlider.getValue() / 100;
+                music.mP.setVolume(volume);
                 if (volumeSlider.getValue() == 0) {
                     mute.setId("boutonMute1");
+                    muteO.setId("boutonMute1");
                 } else {
                     mute.setId("boutonMute2");
+                    muteO.setId("boutonMute2");
+                }
+            }
+        });
+        volumeSliderO.valueProperty().addListener(new InvalidationListener() {
+            public void invalidated(Observable observable) {
+                volume=volumeSliderO.getValue() / 100;
+                music.mP.setVolume(volume);
+                if (volumeSliderO.getValue() == 0) {
+                    mute.setId("boutonMute1");
+                    muteO.setId("boutonMute1");
+                } else {
+                    mute.setId("boutonMute2");
+                    muteO.setId("boutonMute2");
                 }
             }
         });
@@ -584,7 +614,7 @@ public class App extends Application {
         presserR.setFont(new Font("Arail", 20));
         presserR.setTextFill(Color.BLACK);
         optiontheme.getChildren().addAll(theme, space, tennis, neon, presserR);
-        optionson.getChildren().addAll(msq, mutetext, mute, volumeO, volumeSlider, flecheO);
+        optionson.getChildren().addAll(msq, mutetext, muteO, volumeO, volumeSliderO, flecheO);
         optionson.setAlignment(Pos.TOP_CENTER);
         optionsRoot.getChildren().addAll(optionson, optiontheme);
 
@@ -644,11 +674,15 @@ public class App extends Application {
                         case M:
                             if (volumeSlider.getValue() == 0) {
                                 mute.setId("boutonMute2");
+                                muteO.setId("boutonMute2");
                                 volumeSlider.setValue(volumeMem);
+                                volumeSliderO.setValue(volumeMem);
                             } else {
                                 mute.setId("boutonMute1");
+                                muteO.setId("boutonMute1");
                                 volumeMem=volumeSlider.getValue();
                                 volumeSlider.setValue(0);
+                                volumeSliderO.setValue(0);
                             }
                             break;
                         case H:
@@ -709,12 +743,16 @@ public class App extends Application {
                             primaryStage.close();
                             break;
                         case M:
-                            if (volumeSlider.getValue() == 0) {
+                            if (volumeSliderO.getValue() == 0) {
+                                muteO.setId("boutonMute2");
                                 mute.setId("boutonMute2");
+                                volumeSliderO.setValue(volumeMem);
                                 volumeSlider.setValue(volumeMem);
                             } else {
+                                muteO.setId("boutonMute1");
                                 mute.setId("boutonMute1");
-                                volumeMem=volumeSlider.getValue();
+                                volumeMem=volumeSliderO.getValue();
+                                volumeSliderO.setValue(0);
                                 volumeSlider.setValue(0);
                             }
                             break;
