@@ -179,7 +179,7 @@ public class GameView {
       optionPartie.setX(court.getWidth()/2-400);
       optionPartie.setY(60);
 	  if(court.isScoreLimit()) {
-		  optionPartie.setText("Score Limit : "+court.score);
+		  optionPartie.setText("Limite de score : "+court.score);
 		  gameRoot.getChildren().add(optionPartie);
 	  }
         if(afficheTimer) {
