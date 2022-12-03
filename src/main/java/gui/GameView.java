@@ -43,8 +43,10 @@ public class GameView {
     static boolean stop=false,pause=false,timerStop=false;
     static boolean afficheTimer=false,activeBoost=false;
     public static String style="terrain",styleBM="terrainBM";
+    public Text l=new Text();
+    public Text optionPartie = new Text();
     
-    public Text textScoreP1, textScoreP2, instructionL,instructionR,optionPartie;
+    public Text textScoreP1, textScoreP2, instructionL,instructionR;
     public Text lastPoint=new Text("Balle de match");
     Boost boost;
     Button menu;
@@ -173,12 +175,9 @@ public class GameView {
      instructionR.setX(court.getWidth()-70);
      instructionR.setY(30);
 
-  	  optionPartie=new Text();
-	  optionPartie.setFont(Font.font(20));
-
+	  optionPartie.setFont(new Font("Arial",20));
       optionPartie.setX(court.getWidth()/2-400);
       optionPartie.setY(60);
-
 	  if(court.isScoreLimit()) {
 		  optionPartie.setText("Score Limit : "+court.score);
 		  gameRoot.getChildren().add(optionPartie);
@@ -310,15 +309,14 @@ public class GameView {
     	timerStop=true;
     	chronometer.cpt=Chrono.timeLimit;
     	remove();
-    	Text l=new Text();
     	l.setStyle("-fx-font: 36 arial;");
     	l.setTranslateX(court.getWidth()/2-100);
     	l.setTranslateY(court.height/2);
     	if(court.player1Win()) {
-    		l.setText("Le joueur 1 a gagn\u00e9\n-Appuyer sur R pour rejouer\n-Appuyer sur F pour retourner au menu");
+    		l.setText("Le joueur de gauche a gagn\u00e9\nAppuyer sur R pour rejouer\nAppuyer sur F pour retourner au menu");
     	}
     	else if(court.player2Win()) {
-    		l.setText("Le joueur 2 a gagn\u00e9\n-Appuyer sur R pour rejouer\n-Appuyer sur F pour retourner au menu");
+    		l.setText("Le joueur de droite a gagn\u00e9\nAppuyer sur R pour rejouer\nAppuyer sur F pour retourner au menu");
     	}
     	else {
     		l.setText("egalite");

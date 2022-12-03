@@ -1116,6 +1116,14 @@ public class App extends Application {
             		valider.setTextFill(Color.WHITE);
                     effacer.setTextFill(Color.WHITE);
                     retourmode.setTextFill(Color.WHITE);
+                    gameView.l.setFill(Color.WHITE);
+                    gameView2.l.setFill(Color.WHITE);
+                    gameView.textScoreP1.setFill(Color.WHITE);
+                    gameView2.textScoreP1.setFill(Color.WHITE);
+                    gameView.textScoreP2.setFill(Color.WHITE);
+                    gameView2.textScoreP2.setFill(Color.WHITE);
+                    gameView.optionPartie.setFill(Color.WHITE);
+                    gameView2.optionPartie.setFill(Color.WHITE);
 
                   //couleur du soulignement de la première lettre
                     jouer.setId("spacemnemonic");
@@ -1223,6 +1231,12 @@ public class App extends Application {
             		valider.setTextFill(Color.BLACK);
                     effacer.setTextFill(Color.BLACK);
                     retourmode.setTextFill(Color.BLACK);
+                    gameView.l.setFill(Color.BLACK);
+                    gameView2.l.setFill(Color.BLACK);
+                    gameView.textScoreP1.setFill(Color.BLACK);
+                    gameView2.textScoreP1.setFill(Color.BLACK);
+                    gameView.textScoreP2.setFill(Color.BLACK);
+                    gameView2.textScoreP2.setFill(Color.BLACK);
 
                   //couleur du soulignement de la première lettre
                     jouer.setId("tennismnemonic");
@@ -1330,6 +1344,12 @@ public class App extends Application {
             		valider.setTextFill(Color.PINK);
                     effacer.setTextFill(Color.PINK);
                     retourmode.setTextFill(Color.PINK);
+                    gameView.l.setFill(Color.PINK);
+                    gameView2.l.setFill(Color.PINK);
+                    gameView.textScoreP1.setFill(Color.PINK);
+                    gameView2.textScoreP1.setFill(Color.PINK);
+                    gameView.textScoreP2.setFill(Color.PINK);
+                    gameView2.textScoreP2.setFill(Color.PINK);
 
                     //couleur du soulignement de la première lettre
                     jouer.setId("neonmnemonic");
