@@ -167,10 +167,12 @@ public class Court {
             ballSpeedX = -ballSpeedX;
             nextBallX = ballX + deltaT * ballSpeedX;
         } else if (nextBallX < 0) {
+        	mP2.setVolume(0.1);
             mP2.setAutoPlay(true);
             scoreP2++;
             return true;
         } else if (nextBallX > width-100) {
+        	mP2.setVolume(0.1);
             mP2.setAutoPlay(true);
             scoreP1++;
             return true;
