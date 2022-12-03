@@ -319,7 +319,7 @@ public class GameView {
     		l.setText("Le joueur de droite a gagn\u00e9\nAppuyer sur R pour rejouer\nAppuyer sur F pour retourner au menu");
     	}
     	else {
-    		l.setText("egalite");
+    		l.setText("Match Nul");
     	}
     	reset1V1();	  	 	
     	gameRoot.getChildren().addAll(l);
@@ -352,7 +352,6 @@ public class GameView {
     	timerStop=true;
     	chronometer.cpt=Chrono.timeLimit;
     	remove();
-    	Text l=new Text();
     	l.setStyle("-fx-font: 36 arial;");
     	l.setTranslateX(ModeBot.getWidth()/2-100);
     	l.setTranslateY(ModeBot.height/2);
@@ -363,7 +362,7 @@ public class GameView {
     		l.setText("L'ordinateur a gagn\u00e9\n-Appuyer sur R pour rejouer\n-Appuyer sur M pour retourner au menu");
     	}
     	else {
-    		l.setText("egalit\u00e9");
+    		l.setText("Match Nul");
     	}
     	resetBot();	  	 	
     	gameRoot.getChildren().addAll(l);
