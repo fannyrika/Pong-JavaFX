@@ -356,10 +356,10 @@ public class GameView {
     	l.setTranslateX(ModeBot.getWidth()/2-100);
     	l.setTranslateY(ModeBot.height/2);
     	if(ModeBot.player1Win()) {
-    		l.setText("Le joueur 1 a gagn\u00e9\n-Appuyer sur R pour rejouer\n-Appuyer sur M pour retourner au menu");
+    		l.setText("Le joueur 1 a gagn\u00e9\n-Appuyer sur R pour rejouer\n-Appuyer sur F pour retourner au menu");
     	}
     	else if(ModeBot.player2Win()) {
-    		l.setText("L'ordinateur a gagn\u00e9\n-Appuyer sur R pour rejouer\n-Appuyer sur M pour retourner au menu");
+    		l.setText("L'ordinateur a gagn\u00e9\n-Appuyer sur R pour rejouer\n-Appuyer sur F pour retourner au menu");
     	}
     	else {
     		l.setText("Match Nul");

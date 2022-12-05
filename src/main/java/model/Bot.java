@@ -113,7 +113,7 @@ public class Bot extends Court{
          }
          //le bot ne rate aucune balle;
          if(this.difficulty==3){
- 	 	if(this.getBallSpeedX()>0&&this.getBallX()>getWidth()/3) {
+ 	 	if(this.getBallSpeedX()>0) {
  	 		if(getBallSpeedY()<0) bot -= Math.abs(getBallSpeedY())*deltaT-getRacketSize()/2*deltaT;
  	 		if(getBallSpeedY()>0)bot+=Math.abs(getBallSpeedY())*deltaT-getRacketSize()/2*deltaT;
           if (bot< 0.0) bot = 0.0;
@@ -180,6 +180,9 @@ public class Bot extends Court{
 	    }
 	public boolean scoreEgalite() {
 	    	return scoreP1==scoreP2;
+	    }
+	  public boolean scoreLimitReach() {
+	    	return scoreP1==score||scoreP2==score;
 	    }
     public void reset() {
         this.setRacketA(this.getHeight()/2);
