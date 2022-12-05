@@ -75,7 +75,7 @@
 }
 
 #spacemode {
-  -fx-background-image: url("spacemode.jpg");
+  -fx-background-image: url("spacemode.png");
   -fx-background-color: #c0d4cd;
   -fx-background-repeat: no-repeat;
   -fx-background-position: 50% 50%;
@@ -83,7 +83,7 @@
 }
 
 #ledmode {
-  -fx-background-image: url("ledmode.jpg");
+  -fx-background-image: url("ledmode.png");
   -fx-background-color: #c0d4cd;
   -fx-background-repeat: no-repeat;
   -fx-background-position: 50% 50%;
