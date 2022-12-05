@@ -828,9 +828,9 @@ public class App extends Application {
                 	break;
                 }});
         //Setting scene;
-        Label instructionSet=new Label("Utiliser la touche 'espace' pour valider une option et la touche 'entr\u00e9' pour passer \u00e0 la suivante :");
+        Label instructionSet=new Label("Utiliser la touche 'espace' pour valider une option et la touche 'entr\u00e9e' pour passer \u00e0 la suivante (le boost et les scores fonctionnent seulement en partie '1 vs 1') :");
         instructionSet.setTranslateY(-100);
-        instructionSet.setFont(new Font("Arial",20));
+        instructionSet.setFont(new Font("Arial",18));
         instructionSet.setTextFill(Color.BLACK);
         RadioButton boost=new RadioButton("Activer le boost (PRESS-ESPACE)");
         boost.setFont(new Font("Arial",20));
@@ -839,7 +839,7 @@ public class App extends Application {
         timer.setFont(new Font("Arial",20));
         timer.setTextFill(Color.BLACK);
         GridPane gScore=new GridPane();
-        Label scoreInst=new Label("Entrer un score au clavier (limite : 9999) : ");
+        Label scoreInst=new Label("Entrer un score \u00e0 atteindre au clavier (limite : 9999) : ");
         scoreInst.setFont(new Font("Arial",20));
         scoreInst.setTextFill(Color.BLACK);
         TextField score = new TextField("");
@@ -863,7 +863,7 @@ public class App extends Application {
         score.setMaxWidth(50);
         ComboBox<Integer> timeLimitM=new ComboBox<Integer>();
 		ComboBox<Integer> timeLimitS=new ComboBox<Integer>();
-		Label indication=new Label("Parametrer la dur\u00e9e de la partie (mm:ss) en utilisant UP et DOWN: ");
+		Label indication=new Label("Param\u00e9trer la dur\u00e9e de la partie (mm:ss) en utilisant UP et DOWN: ");
 		indication.setFont(new Font("Arial",20));
 		indication.setTextFill(Color.BLACK);
 		GridPane gTime=new GridPane();
