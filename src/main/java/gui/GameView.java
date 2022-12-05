@@ -32,12 +32,12 @@ public class GameView {
     private final Court court;
     private final Pane gameRoot; // main node of the game
     private final double scale;
-    private final double xMargin = 100.0, racketThickness = 100.0; // pixels
+    private final double xMargin = 100.0, racketThickness = 25.0; // pixels
 
     // children of the game main node
     public Label timer;
     Chrono chronometer;
-    private final Rectangle racketA, racketB ,bot;
+    public final Rectangle racketA, racketB ,bot;
     public final Circle ball;
     private boolean start;
     static boolean stop=false,pause=false,timerStop=false;
@@ -76,10 +76,10 @@ public class GameView {
         racketA.setWidth(racketThickness);
         racketA.setFill(Color.WHITE);
 
-        File fic = new File("joueuse.png");
+        /*File fic = new File("joueuse.png");
         String s = fic.toURI().toURL().toString();
         Image joueuse = new Image(s);
-        racketA.setFill(new ImagePattern(joueuse));
+        racketA.setFill(new ImagePattern(joueuse));*/
 
         racketA.setX(xMargin - racketThickness);
         racketA.setY(court.getRacketA() * scale);
@@ -89,10 +89,10 @@ public class GameView {
         racketB.setWidth(racketThickness);
         racketB.setFill(Color.WHITE);
 
-        File fich = new File("joueur.png");
+        /*File fich = new File("joueur.png");
         String ss = fich.toURI().toURL().toString();
         Image joueur = new Image(ss);
-        racketB.setFill(new ImagePattern(joueur));
+        racketB.setFill(new ImagePattern(joueur));*/
 
         racketB.setX(court.getWidth() * scale + xMargin - 100);
         racketB.setY(court.getRacketB() * scale);
@@ -211,10 +211,10 @@ public class GameView {
         racketA.setWidth(racketThickness);
         racketA.setFill(Color.WHITE);
 
-        File fic = new File("joueuse.png");
+        /*File fic = new File("joueuse.png");
         String s = fic.toURI().toURL().toString();
         Image joueuse = new Image(s);
-        racketA.setFill(new ImagePattern(joueuse));
+        racketA.setFill(new ImagePattern(joueuse));*/
 
         racketA.setX(xMargin - racketThickness);
         racketA.setY(bot.getRacketA() * scale);
@@ -225,10 +225,10 @@ public class GameView {
         this.bot.setWidth(racketThickness);
         this.bot.setFill(Color.WHITE);
 
-        File fich = new File("joueur.png");
+        /*File fich = new File("joueur.png");
         String ss = fich.toURI().toURL().toString();
         Image joueur = new Image(ss);
-        this.bot.setFill(new ImagePattern(joueur));
+        this.bot.setFill(new ImagePattern(joueur));*/
 
         this.bot.setX(bot.getWidth() * scale + xMargin -100);
         this.bot.setY(bot.getBot() * scale);

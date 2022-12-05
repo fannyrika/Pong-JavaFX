@@ -179,6 +179,438 @@ public class App extends Application {
         setting.setId("tennismnemonic");
         setting.setFont(new Font("Arial",30));
         setting.setTextFill(Color.BLACK);
+       
+
+    	
+    	//Page pour choisir la couleur de la raquette B en 1 vs 1(raquette droite)
+        var bleuA = new Label("_Bleu");
+        bleuA.setMnemonicParsing(true);
+        bleuA.setId("tennismnemonic");
+        bleuA.setFont(new Font("Arial",40));
+        bleuA.setTextFill(Color.BLACK);
+        
+        var rougeA = new Label("_Rouge");
+        rougeA.setMnemonicParsing(true);
+        rougeA.setId("tennismnemonic");
+        rougeA.setFont(new Font("Arial",40));
+        rougeA.setTextFill(Color.BLACK);
+        
+        var vertA = new Label("_Vert");
+        vertA.setMnemonicParsing(true);
+        vertA.setId("tennismnemonic");
+        vertA.setFont(new Font("Arial",40));
+        vertA.setTextFill(Color.BLACK);
+        
+        var jauneA = new Label("_Jaune");
+        jauneA.setMnemonicParsing(true);
+        jauneA.setId("tennismnemonic");
+        jauneA.setFont(new Font("Arial",40));
+        jauneA.setTextFill(Color.BLACK);
+        
+        var bleuB = new Label("_Bleu");
+        bleuB.setMnemonicParsing(true);
+        bleuB.setId("tennismnemonic");
+        bleuB.setFont(new Font("Arial",40));
+        bleuB.setTextFill(Color.BLACK);
+        
+        var rougeB = new Label("_Rouge");
+        rougeB.setMnemonicParsing(true);
+        rougeB.setId("tennismnemonic");
+        rougeB.setFont(new Font("Arial",40));
+        rougeB.setTextFill(Color.BLACK);
+        
+        var vertB = new Label("_Vert");
+        vertB.setMnemonicParsing(true);
+        vertB.setId("tennismnemonic");
+        vertB.setFont(new Font("Arial",40));
+        vertB.setTextFill(Color.BLACK);
+        
+        var jauneB = new Label("_Jaune");
+        jauneB.setMnemonicParsing(true);
+        jauneB.setId("tennismnemonic");
+        jauneB.setFont(new Font("Arial",40));
+        jauneB.setTextFill(Color.BLACK);
+        
+    	var colorBRoot = new VBox();
+        var colorBScene = new Scene(colorBRoot, width, height);
+        var colorracketB = new Text("Quelle couleur de raquette choisissez-vous joueur de droite ?");
+        colorracketB.setFont(new Font("Arial", 50));
+        colorracketB.setFill(Color.BLACK);
+        colorBRoot.setId("mode");
+        
+        colorBScene.setOnKeyPressed(ev -> {
+            switch (ev.getCode()) {
+                case B:
+                	gameView.start(true);
+              		gameView.addRoot();
+              		gameView.animate();
+              		gameView.racketB.setFill(Color.BLUE);
+              		primaryStage.setScene(gameScene);
+                    break;
+                case V:
+                	gameView.start(true);
+              		gameView.addRoot();
+              		gameView.animate();
+              		gameView.racketB.setFill(Color.GREEN);
+              		primaryStage.setScene(gameScene);
+                	break;
+                case R:
+                	gameView.start(true);
+              		gameView.addRoot();
+              		gameView.animate();
+              		gameView.racketB.setFill(Color.RED);
+              		primaryStage.setScene(gameScene);
+                	break;
+                case J:
+                	gameView.start(true);
+              		gameView.addRoot();
+              		gameView.animate();
+              		gameView.racketB.setFill(Color.YELLOW);
+              		primaryStage.setScene(gameScene);
+                	break;
+                case ESCAPE:
+                	primaryStage.close();
+                	break;
+                }});
+
+        colorBScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+    	colorBRoot.getChildren().addAll(colorracketB,bleuB,rougeB,vertB,jauneB);
+    	colorBRoot.setAlignment(Pos.CENTER);
+    	
+    	//Page pour choisir la couleur de la raquette A (raquette de gauche) en partie facile contre l'ordi
+        var bleuF = new Label("_Bleu");
+        bleuF.setMnemonicParsing(true);
+        bleuF.setId("tennismnemonic");
+        bleuF.setFont(new Font("Arial",40));
+        bleuF.setTextFill(Color.BLACK);
+        
+        var rougeF = new Label("_Rouge");
+        rougeF.setMnemonicParsing(true);
+        rougeF.setId("tennismnemonic");
+        rougeF.setFont(new Font("Arial",40));
+        rougeF.setTextFill(Color.BLACK);
+        
+        var vertF = new Label("_Vert");
+        vertF.setMnemonicParsing(true);
+        vertF.setId("tennismnemonic");
+        vertF.setFont(new Font("Arial",40));
+        vertF.setTextFill(Color.BLACK);
+        
+        var jauneF = new Label("_Jaune");
+        jauneF.setMnemonicParsing(true);
+        jauneF.setId("tennismnemonic");
+        jauneF.setFont(new Font("Arial",40));
+        jauneF.setTextFill(Color.BLACK);
+        
+    	var colorFRoot = new VBox();
+        var colorFScene = new Scene(colorFRoot, width, height);
+        var colorracketF = new Text("Quelle couleur de raquette choisissez-vous ?");
+        colorracketF.setFont(new Font("Arial", 50));
+        colorracketF.setFill(Color.BLACK);
+        colorFRoot.setId("mode");
+        
+        colorFScene.setOnKeyPressed(ev -> {
+            switch (ev.getCode()) {
+                case B:
+                	gameView2.racketA.setFill(Color.BLUE);
+                	bot.setDifficulty(0);
+         	  	   	gameView2.start(true);
+         	  	   	gameView2.addRootBot();
+         	  	   	gameView2.animateBot();
+              		primaryStage.setScene(gameScene);
+                    break;
+                case V:
+              		gameView2.racketA.setFill(Color.GREEN);
+              		bot.setDifficulty(0);
+         	  	   	gameView2.start(true);
+         	  	   	gameView2.addRootBot();
+         	  	   	gameView2.animateBot();
+              		primaryStage.setScene(gameScene);
+                	break;
+                case R:
+              		gameView2.racketA.setFill(Color.RED);
+              		bot.setDifficulty(0);
+         	  	   	gameView2.start(true);
+         	  	   	gameView2.addRootBot();
+         	  	   	gameView2.animateBot();
+              		primaryStage.setScene(gameScene);
+                	break;
+                case J:
+              		gameView2.racketA.setFill(Color.YELLOW);
+              		bot.setDifficulty(0);
+         	  	   	gameView2.start(true);
+         	  	   	gameView2.addRootBot();
+         	  	   	gameView2.animateBot();
+              		primaryStage.setScene(gameScene);
+                	break;
+                case ESCAPE:
+                	primaryStage.close();
+                	break;
+                }});
+
+        colorFScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+    	colorFRoot.getChildren().addAll(colorracketF,bleuF,rougeF,vertF,jauneF);
+    	colorFRoot.setAlignment(Pos.CENTER);
+    	
+    	//Page pour choisir la couleur de la raquette A (raquette de gauche) en partie moyen contre l'ordi
+    	var bleuM = new Label("_Bleu");
+        bleuM.setMnemonicParsing(true);
+        bleuM.setId("tennismnemonic");
+        bleuM.setFont(new Font("Arial",40));
+        bleuM.setTextFill(Color.BLACK);
+        
+        var rougeM = new Label("_Rouge");
+        rougeM.setMnemonicParsing(true);
+        rougeM.setId("tennismnemonic");
+        rougeM.setFont(new Font("Arial",40));
+        rougeM.setTextFill(Color.BLACK);
+        
+        var vertM = new Label("_Vert");
+        vertM.setMnemonicParsing(true);
+        vertM.setId("tennismnemonic");
+        vertM.setFont(new Font("Arial",40));
+        vertM.setTextFill(Color.BLACK);
+        
+        var jauneM = new Label("_Jaune");
+        jauneM.setMnemonicParsing(true);
+        jauneM.setId("tennismnemonic");
+        jauneM.setFont(new Font("Arial",40));
+        jauneM.setTextFill(Color.BLACK);
+        
+    	var colorMRoot = new VBox();
+        var colorMScene = new Scene(colorMRoot, width, height);
+        var colorracketM = new Text("Quelle couleur de raquette choisissez-vous ?");
+        colorracketM.setFont(new Font("Arial", 50));
+        colorracketM.setFill(Color.BLACK);
+        colorMRoot.setId("mode");
+        
+        colorMScene.setOnKeyPressed(ev -> {
+            switch (ev.getCode()) {
+                case B:
+                	gameView2.racketA.setFill(Color.BLUE);
+                	bot.setDifficulty(1);
+         	  	   	gameView2.start(true);
+         	  	   	gameView2.addRootBot();
+         	  	   	gameView2.animateBot();
+              		primaryStage.setScene(gameScene);
+                    break;
+                case V:
+              		gameView2.racketA.setFill(Color.GREEN);
+              		bot.setDifficulty(1);
+         	  	   	gameView2.start(true);
+         	  	   	gameView2.addRootBot();
+         	  	   	gameView2.animateBot();
+              		primaryStage.setScene(gameScene);
+                	break;
+                case R:
+              		gameView2.racketA.setFill(Color.RED);
+              		bot.setDifficulty(1);
+         	  	   	gameView2.start(true);
+         	  	   	gameView2.addRootBot();
+         	  	   	gameView2.animateBot();
+              		primaryStage.setScene(gameScene);
+                	break;
+                case J:
+              		gameView2.racketA.setFill(Color.YELLOW);
+              		bot.setDifficulty(1);
+         	  	   	gameView2.start(true);
+         	  	   	gameView2.addRootBot();
+         	  	   	gameView2.animateBot();
+              		primaryStage.setScene(gameScene);
+                	break;
+                case ESCAPE:
+                	primaryStage.close();
+                	break;
+                }});
+
+        colorMScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+    	colorMRoot.getChildren().addAll(colorracketM,bleuM,rougeM,vertM,jauneM);
+    	colorMRoot.setAlignment(Pos.CENTER);
+    	
+    	//Page pour choisir la couleur de la raquette A (raquette de gauche) en partie difficile contre l'ordi
+    	var bleuD = new Label("_Bleu");
+        bleuD.setMnemonicParsing(true);
+        bleuD.setId("tennismnemonic");
+        bleuD.setFont(new Font("Arial",40));
+        bleuD.setTextFill(Color.BLACK);
+        
+        var rougeD = new Label("_Rouge");
+        rougeD.setMnemonicParsing(true);
+        rougeD.setId("tennismnemonic");
+        rougeD.setFont(new Font("Arial",40));
+        rougeD.setTextFill(Color.BLACK);
+        
+        var vertD = new Label("_Vert");
+        vertD.setMnemonicParsing(true);
+        vertD.setId("tennismnemonic");
+        vertD.setFont(new Font("Arial",40));
+        vertD.setTextFill(Color.BLACK);
+        
+        var jauneD = new Label("_Jaune");
+        jauneD.setMnemonicParsing(true);
+        jauneD.setId("tennismnemonic");
+        jauneD.setFont(new Font("Arial",40));
+        jauneD.setTextFill(Color.BLACK);
+        
+    	var colorDRoot = new VBox();
+        var colorDScene = new Scene(colorDRoot, width, height);
+        var colorracketD = new Text("Quelle couleur de raquette choisissez-vous ?");
+        colorracketD.setFont(new Font("Arial", 50));
+        colorracketD.setFill(Color.BLACK);
+        colorDRoot.setId("mode");
+        
+        colorDScene.setOnKeyPressed(ev -> {
+            switch (ev.getCode()) {
+                case B:
+                	gameView2.racketA.setFill(Color.BLUE);
+                	bot.setDifficulty(2);
+         	  	   	gameView2.start(true);
+         	  	   	gameView2.addRootBot();
+         	  	   	gameView2.animateBot();
+              		primaryStage.setScene(gameScene);
+                    break;
+                case V:
+              		gameView2.racketA.setFill(Color.GREEN);
+              		bot.setDifficulty(2);
+         	  	   	gameView2.start(true);
+         	  	   	gameView2.addRootBot();
+         	  	   	gameView2.animateBot();
+              		primaryStage.setScene(gameScene);
+                	break;
+                case R:
+              		gameView2.racketA.setFill(Color.RED);
+              		bot.setDifficulty(2);
+         	  	   	gameView2.start(true);
+         	  	   	gameView2.addRootBot();
+         	  	   	gameView2.animateBot();
+              		primaryStage.setScene(gameScene);
+                	break;
+                case J:
+              		gameView2.racketA.setFill(Color.YELLOW);
+              		bot.setDifficulty(2);
+         	  	   	gameView2.start(true);
+         	  	   	gameView2.addRootBot();
+         	  	   	gameView2.animateBot();
+              		primaryStage.setScene(gameScene);
+                	break;
+                case ESCAPE:
+                	primaryStage.close();
+                	break;
+                }});
+
+        colorDScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+    	colorDRoot.getChildren().addAll(colorracketD,bleuD,rougeD,vertD,jauneD);
+    	colorDRoot.setAlignment(Pos.CENTER);
+    	
+    	//Page pour choisir la couleur de la raquette A (raquette de gauche) en partie expert contre l'ordi
+    	var bleuE = new Label("_Bleu");
+        bleuE.setMnemonicParsing(true);
+        bleuE.setId("tennismnemonic");
+        bleuE.setFont(new Font("Arial",40));
+        bleuE.setTextFill(Color.BLACK);
+        
+        var rougeE = new Label("_Rouge");
+        rougeE.setMnemonicParsing(true);
+        rougeE.setId("tennismnemonic");
+        rougeE.setFont(new Font("Arial",40));
+        rougeE.setTextFill(Color.BLACK);
+        
+        var vertE = new Label("_Vert");
+        vertE.setMnemonicParsing(true);
+        vertE.setId("tennismnemonic");
+        vertE.setFont(new Font("Arial",40));
+        vertE.setTextFill(Color.BLACK);
+        
+        var jauneE = new Label("_Jaune");
+        jauneE.setMnemonicParsing(true);
+        jauneE.setId("tennismnemonic");
+        jauneE.setFont(new Font("Arial",40));
+        jauneE.setTextFill(Color.BLACK);
+        
+    	var colorERoot = new VBox();
+        var colorEScene = new Scene(colorERoot, width, height);
+        var colorracketE = new Text("Quelle couleur de raquette choisissez-vous ?");
+        colorracketE.setFont(new Font("Arial", 50));
+        colorracketE.setFill(Color.BLACK);
+        colorERoot.setId("mode");
+        
+        colorEScene.setOnKeyPressed(ev -> {
+            switch (ev.getCode()) {
+                case B:
+                	gameView2.racketA.setFill(Color.BLUE);
+                	bot.setDifficulty(3);
+         	  	   	gameView2.start(true);
+         	  	   	gameView2.addRootBot();
+         	  	   	gameView2.animateBot();
+              		primaryStage.setScene(gameScene);
+                    break;
+                case V:
+              		gameView2.racketA.setFill(Color.GREEN);
+              		bot.setDifficulty(3);
+         	  	   	gameView2.start(true);
+         	  	   	gameView2.addRootBot();
+         	  	   	gameView2.animateBot();
+              		primaryStage.setScene(gameScene);
+                	break;
+                case R:
+              		gameView2.racketA.setFill(Color.RED);
+              		bot.setDifficulty(3);
+         	  	   	gameView2.start(true);
+         	  	   	gameView2.addRootBot();
+         	  	   	gameView2.animateBot();
+              		primaryStage.setScene(gameScene);
+                	break;
+                case J:
+              		gameView2.racketA.setFill(Color.YELLOW);
+              		bot.setDifficulty(3);
+         	  	   	gameView2.start(true);
+         	  	   	gameView2.addRootBot();
+         	  	   	gameView2.animateBot();
+              		primaryStage.setScene(gameScene);
+                	break;
+                case ESCAPE:
+                	primaryStage.close();
+                	break;
+                }});
+
+        colorEScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+    	colorERoot.getChildren().addAll(colorracketE,bleuE,rougeE,vertE,jauneE);
+    	colorERoot.setAlignment(Pos.CENTER);
+    	
+    	//Page pour choisir la couleur de la raquette A en 1 vs 1(raquette gauche)
+        var colorARoot = new VBox();
+        var colorAScene = new Scene(colorARoot, width, height);
+        var colorracketA = new Text("Quelle couleur de raquette choisissez-vous joueur de gauche ?");
+        colorracketA.setFont(new Font("Arial", 50));
+        colorracketA.setFill(Color.BLACK);
+        colorARoot.setId("mode");
+    	colorAScene.setOnKeyPressed(ev -> {
+            switch (ev.getCode()) {
+                case B:
+              		gameView.racketA.setFill(Color.BLUE);
+              		primaryStage.setScene(colorBScene);
+                    break;
+                case V:
+              		gameView.racketA.setFill(Color.GREEN);
+              		primaryStage.setScene(colorBScene);
+                	break;
+                case R:
+              		gameView.racketA.setFill(Color.RED);
+              		primaryStage.setScene(colorBScene);
+                	break;
+                case J:
+              		gameView.racketA.setFill(Color.YELLOW);
+              		primaryStage.setScene(colorBScene);
+                	break;
+                case ESCAPE:
+                	primaryStage.close();
+                	break;
+                }});
+
+        colorAScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
+    	colorARoot.getChildren().addAll(colorracketA,bleuA,rougeA,vertA,jauneA);
+    	colorARoot.setAlignment(Pos.CENTER);
+        
         //Page qui explique au(x) joueur(s) comment déplacer les raquettes avant la partie
         //Il y a 5 fonctions. Une pour chaque niveau de jeu.
         //Pour le mode 1v1
@@ -193,10 +625,7 @@ public class App extends Application {
         instruScene.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
                 case ENTER:
-                	gameView.start(true);
-              		gameView.addRoot();
-              		gameView.animate();
-              		primaryStage.setScene(gameScene);
+              		primaryStage.setScene(colorAScene);
                     break;
                 case R:
                 	primaryStage.setScene(modeScene);
@@ -221,12 +650,7 @@ public class App extends Application {
         instruSceneF.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
                 case ENTER:
-                	bot.setDifficulty(0);
-         	  	   	gameView2.start(true);
-         	  	   	gameView2.addRootBot();
-         	  	   	gameView2.animateBot();
-         	  	   	primaryStage.setScene(gameScene);
-         	  	   	modeRoot.getChildren().removeAll(tmp,choix);
+         	  	   	primaryStage.setScene(colorFScene);
                     break;
                 case R:
                 	primaryStage.setScene(modeScene);
@@ -251,12 +675,7 @@ public class App extends Application {
         instruSceneM.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
                 case ENTER:
-                	bot.setDifficulty(1);
-         	  	   	gameView2.start(true);
-         	  	   	gameView2.addRootBot();
-         	  	   	gameView2.animateBot();
-         	  	   	primaryStage.setScene(gameScene);
-         	  	   	modeRoot.getChildren().removeAll(tmp,choix);
+         	  	   	primaryStage.setScene(colorMScene);
                     break;
                 case R:
                 	primaryStage.setScene(modeScene);
@@ -281,12 +700,7 @@ public class App extends Application {
         instruSceneD.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
                 case ENTER:
-                	bot.setDifficulty(2);
-         	  	   	gameView2.start(true);
-         	  	   	gameView2.addRootBot();
-         	  	   	gameView2.animateBot();
-         	  	   	primaryStage.setScene(gameScene);
-         	  	   	modeRoot.getChildren().removeAll(tmp,choix);
+         	  	   	primaryStage.setScene(colorDScene);
                     break;
                 case R:
                 	primaryStage.setScene(modeScene);
@@ -311,12 +725,7 @@ public class App extends Application {
         instruSceneE.setOnKeyPressed(ev -> {
             switch (ev.getCode()) {
                 case ENTER:
-                	bot.setDifficulty(3);
-         	  	   	gameView2.start(true);
-         	  	   	gameView2.addRootBot();
-         	  	   	gameView2.animateBot();
-         	  	   	primaryStage.setScene(gameScene);
-         	  	   	modeRoot.getChildren().removeAll(tmp,choix);
+         	  	   	primaryStage.setScene(colorEScene);
                     break;
                 case R:
                 	primaryStage.setScene(modeScene);
@@ -1059,6 +1468,12 @@ public class App extends Application {
                     rulesroot.setId("spacebg");
                     rulesroot2.setId("spacebg");
             		optionsRoot.setId("spacebg");
+            		colorARoot.setId("spacebg");
+                    colorERoot.setId("spacebg");
+                    colorDRoot.setId("spacebg");
+                    colorMRoot.setId("spacebg");
+                    colorFRoot.setId("spacebg");
+                    colorBRoot.setId("spacebg");
             		
             		scoreInst.setTextFill(Color.WHITE);
             	    erreurTime.setTextFill(Color.WHITE);
@@ -1128,6 +1543,36 @@ public class App extends Application {
                     gameView.optionPartie.setFill(Color.WHITE);
                     gameView2.optionPartie.setFill(Color.WHITE);
                     presserR2.setTextFill(Color.WHITE);
+                    jauneE.setTextFill(Color.WHITE);
+                    vertE.setTextFill(Color.WHITE);
+                    rougeE.setTextFill(Color.WHITE);
+                    bleuE.setTextFill(Color.WHITE);
+                    jauneD.setTextFill(Color.WHITE);
+                    vertD.setTextFill(Color.WHITE);
+                    rougeD.setTextFill(Color.WHITE);
+                    bleuD.setTextFill(Color.WHITE);
+                    jauneM.setTextFill(Color.WHITE);
+                    vertM.setTextFill(Color.WHITE);
+                    rougeM.setTextFill(Color.WHITE);
+                    bleuM.setTextFill(Color.WHITE);
+                    jauneF.setTextFill(Color.WHITE);
+                    vertF.setTextFill(Color.WHITE);
+                    rougeF.setTextFill(Color.WHITE);
+                    bleuF.setTextFill(Color.WHITE);
+                    jauneB.setTextFill(Color.WHITE);
+                    vertB.setTextFill(Color.WHITE);
+                    rougeB.setTextFill(Color.WHITE);
+                    bleuB.setTextFill(Color.WHITE);
+                    bleuA.setTextFill(Color.WHITE);
+                    rougeA.setTextFill(Color.WHITE);
+                    vertA.setTextFill(Color.WHITE);
+                    jauneA.setTextFill(Color.WHITE);
+                    colorracketA.setFill(Color.WHITE);
+                    colorracketE.setFill(Color.WHITE);
+                    colorracketD.setFill(Color.WHITE);
+                    colorracketM.setFill(Color.WHITE);
+                    colorracketF.setFill(Color.WHITE);
+                    colorracketB.setFill(Color.WHITE);
 
                   //couleur du soulignement de la première lettre
                     jouer.setId("spacemnemonic");
@@ -1158,6 +1603,30 @@ public class App extends Application {
                     effacer.setId("spacemnemonic");
                     retourmode.setId("spacemnemonic");
                     setting.setId("spacemnemonic");
+                    jauneE.setId("spacemnemonic");
+                    vertE.setId("spacemnemonic");
+                    rougeE.setId("spacemnemonic");
+                    bleuE.setId("spacemnemonic");
+                    jauneD.setId("spacemnemonic");
+                    vertD.setId("spacemnemonic");
+                    rougeD.setId("spacemnemonic");
+                    bleuD.setId("spacemnemonic");
+                    jauneM.setId("spacemnemonic");
+                    vertM.setId("spacemnemonic");
+                    rougeM.setId("spacemnemonic");
+                    bleuM.setId("spacemnemonic");
+                    jauneF.setId("spacemnemonic");
+                    vertF.setId("spacemnemonic");
+                    rougeF.setId("spacemnemonic");
+                    bleuF.setId("spacemnemonic");
+                    jauneB.setId("spacemnemonic");
+                    vertB.setId("spacemnemonic");
+                    rougeB.setId("spacemnemonic");
+                    bleuB.setId("spacemnemonic");
+                    bleuA.setId("spacemnemonic");
+                    rougeA.setId("spacemnemonic");
+                    vertA.setId("spacemnemonic");
+                    jauneA.setId("spacemnemonic");
                     break;
                 //Thème tennis
             	case T:
@@ -1177,6 +1646,12 @@ public class App extends Application {
                     rulesroot2.setId("regles");
             		optionsRoot.setId("tennisbg");
             		settingRoot.setId("mode");
+            		colorARoot.setId("mode");
+                    colorERoot.setId("mode");
+                    colorDRoot.setId("mode");
+                    colorMRoot.setId("mode");
+                    colorFRoot.setId("mode");
+                    colorBRoot.setId("mode");
             		
             		scoreInst.setTextFill(Color.BLACK);
             	    erreurTime.setTextFill(Color.BLACK);
@@ -1242,6 +1717,36 @@ public class App extends Application {
                     gameView.textScoreP2.setFill(Color.BLACK);
                     gameView2.textScoreP2.setFill(Color.BLACK);
                     presserR2.setTextFill(Color.BLACK);
+                    jauneE.setTextFill(Color.BLACK);
+                    vertE.setTextFill(Color.BLACK);
+                    rougeE.setTextFill(Color.BLACK);
+                    bleuE.setTextFill(Color.BLACK);
+                    jauneD.setTextFill(Color.BLACK);
+                    vertD.setTextFill(Color.BLACK);
+                    rougeD.setTextFill(Color.BLACK);
+                    bleuD.setTextFill(Color.BLACK);
+                    jauneM.setTextFill(Color.BLACK);
+                    vertM.setTextFill(Color.BLACK);
+                    rougeM.setTextFill(Color.BLACK);
+                    bleuM.setTextFill(Color.BLACK);
+                    jauneF.setTextFill(Color.BLACK);
+                    vertF.setTextFill(Color.BLACK);
+                    rougeF.setTextFill(Color.BLACK);
+                    bleuF.setTextFill(Color.BLACK);
+                    jauneB.setTextFill(Color.BLACK);
+                    vertB.setTextFill(Color.BLACK);
+                    rougeB.setTextFill(Color.BLACK);
+                    bleuB.setTextFill(Color.BLACK);
+                    bleuA.setTextFill(Color.BLACK);
+                    rougeA.setTextFill(Color.BLACK);
+                    vertA.setTextFill(Color.BLACK);
+                    jauneA.setTextFill(Color.BLACK);
+                    colorracketA.setFill(Color.BLACK);
+                    colorracketE.setFill(Color.BLACK);
+                    colorracketD.setFill(Color.BLACK);
+                    colorracketM.setFill(Color.BLACK);
+                    colorracketF.setFill(Color.BLACK);
+                    colorracketB.setFill(Color.BLACK);
 
                   //couleur du soulignement de la première lettre
                     jouer.setId("tennismnemonic");
@@ -1272,6 +1777,30 @@ public class App extends Application {
                     effacer.setId("tennismnemonic");
                     retourmode.setId("tennismnemonic");
                     setting.setId("tennismnemonic");
+                    jauneE.setId("tennismnemonic");
+                    vertE.setId("tennismnemonic");
+                    rougeE.setId("tennismnemonic");
+                    bleuE.setId("tennismnemonic");
+                    jauneD.setId("tennismnemonic");
+                    vertD.setId("tennismnemonic");
+                    rougeD.setId("tennismnemonic");
+                    bleuD.setId("tennismnemonic");
+                    jauneM.setId("tennismnemonic");
+                    vertM.setId("tennismnemonic");
+                    rougeM.setId("tennismnemonic");
+                    bleuM.setId("tennismnemonic");
+                    jauneF.setId("tennismnemonic");
+                    vertF.setId("tennismnemonic");
+                    rougeF.setId("tennismnemonic");
+                    bleuF.setId("tennismnemonic");
+                    jauneB.setId("tennismnemonic");
+                    vertB.setId("tennismnemonic");
+                    rougeB.setId("tennismnemonic");
+                    bleuB.setId("tennismnemonic");
+                    bleuA.setId("tennismnemonic");
+                    rougeA.setId("tennismnemonic");
+                    vertA.setId("tennismnemonic");
+                    jauneA.setId("tennismnemonic");
                     break;
                 //Thème néon
             	case N:
@@ -1291,6 +1820,12 @@ public class App extends Application {
                     rulesroot.setId("ledbg");
                     rulesroot2.setId("ledbg");
             		optionsRoot.setId("ledbg");
+            		colorARoot.setId("ledbg");
+                    colorERoot.setId("ledbg");
+                    colorDRoot.setId("ledbg");
+                    colorMRoot.setId("ledbg");
+                    colorFRoot.setId("ledbg");
+                    colorBRoot.setId("ledbg");
 
             		//couleur des labels
             		scoreInst.setTextFill(Color.PINK);
@@ -1356,6 +1891,36 @@ public class App extends Application {
                     gameView.textScoreP2.setFill(Color.PINK);
                     gameView2.textScoreP2.setFill(Color.PINK);
                     presserR2.setTextFill(Color.PINK);
+                    jauneE.setTextFill(Color.PINK);
+                    vertE.setTextFill(Color.PINK);
+                    rougeE.setTextFill(Color.PINK);
+                    bleuE.setTextFill(Color.PINK);
+                    jauneD.setTextFill(Color.PINK);
+                    vertD.setTextFill(Color.PINK);
+                    rougeD.setTextFill(Color.PINK);
+                    bleuD.setTextFill(Color.PINK);
+                    jauneM.setTextFill(Color.PINK);
+                    vertM.setTextFill(Color.PINK);
+                    rougeM.setTextFill(Color.PINK);
+                    bleuM.setTextFill(Color.PINK);
+                    jauneF.setTextFill(Color.PINK);
+                    vertF.setTextFill(Color.PINK);
+                    rougeF.setTextFill(Color.PINK);
+                    bleuF.setTextFill(Color.PINK);
+                    jauneB.setTextFill(Color.PINK);
+                    vertB.setTextFill(Color.PINK);
+                    rougeB.setTextFill(Color.PINK);
+                    bleuB.setTextFill(Color.PINK);
+                    bleuA.setTextFill(Color.PINK);
+                    rougeA.setTextFill(Color.PINK);
+                    vertA.setTextFill(Color.PINK);
+                    jauneA.setTextFill(Color.PINK);
+                    colorracketA.setFill(Color.PINK);
+                    colorracketE.setFill(Color.PINK);
+                    colorracketD.setFill(Color.PINK);
+                    colorracketM.setFill(Color.PINK);
+                    colorracketF.setFill(Color.PINK);
+                    colorracketB.setFill(Color.PINK);
 
                     //couleur du soulignement de la première lettre
                     jouer.setId("neonmnemonic");
@@ -1386,6 +1951,30 @@ public class App extends Application {
                     effacer.setId("neonmnemonic");
                     retourmode.setId("neonmnemonic");
                     setting.setId("neonmnemonic");
+                    jauneE.setId("neonmnemonic");
+                    vertE.setId("neonmnemonic");
+                    rougeE.setId("neonmnemonic");
+                    bleuE.setId("neonmnemonic");
+                    jauneD.setId("neonmnemonic");
+                    vertD.setId("neonmnemonic");
+                    rougeD.setId("neonmnemonic");
+                    bleuD.setId("neonmnemonic");
+                    jauneM.setId("neonmnemonic");
+                    vertM.setId("neonmnemonic");
+                    rougeM.setId("neonmnemonic");
+                    bleuM.setId("neonmnemonic");
+                    jauneF.setId("neonmnemonic");
+                    vertF.setId("neonmnemonic");
+                    rougeF.setId("neonmnemonic");
+                    bleuF.setId("neonmnemonic");
+                    jauneB.setId("neonmnemonic");
+                    vertB.setId("neonmnemonic");
+                    rougeB.setId("neonmnemonic");
+                    bleuB.setId("neonmnemonic");
+                    bleuA.setId("neonmnemonic");
+                    rougeA.setId("neonmnemonic");
+                    vertA.setId("neonmnemonic");
+                    jauneA.setId("neonmnemonic");
                     break;
             	case R:
             		primaryStage.setScene(menuScene);
