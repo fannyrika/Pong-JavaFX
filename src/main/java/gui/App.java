@@ -1998,6 +1998,7 @@ public class App extends Application {
 
 
         primaryStage.setScene(bvnScene);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
