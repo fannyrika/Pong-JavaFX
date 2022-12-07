@@ -1453,7 +1453,7 @@ public class App extends Application {
                 //Thème espace
             	case S:
             		GameView.style="spacebg";
-                try{ gameView.setBallepng("marsball.png");}
+                try{ gameView.setBallepng("marsball.png"); gameView2.setBallepng("marsball.png");}
                 catch (MalformedURLException e){
                 }
             		GameView.styleBM="spaceMB";
@@ -1635,7 +1635,7 @@ public class App extends Application {
                 //Thème tennis
             	case T:
             		GameView.style="terrain";
-                try{ gameView.setBallepng("balle3.jpg");}
+                try{ gameView.setBallepng("balle3.jpg"); gameView2.setBallepng("balle3.jpg");}
                 catch (MalformedURLException e){
                 }
             		GameView.styleBM="terrainBM";
@@ -1812,7 +1812,7 @@ public class App extends Application {
                     break;
                 //Thème néon
             	case N:
-              try{ gameView.setBallepng("ledball.png");}
+              try{ gameView.setBallepng("balleled.png"); gameView2.setBallepng("balleled.png");}
               catch (MalformedURLException e){
               }
             		GameView.style="ledbggame";
