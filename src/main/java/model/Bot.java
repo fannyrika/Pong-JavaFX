@@ -1,5 +1,9 @@
 package model;
 import java.util.Random;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
+
 public class Bot extends Court{
 
     double bot;
@@ -66,7 +70,7 @@ public class Bot extends Court{
                Random x= new Random();
                int alea=x.nextInt(10);
                if(alea>=1){
-                   
+
                    if(getBallSpeedY()<0) bot -= Math.abs(getBallSpeedY())*deltaT-getRacketSize()/2*deltaT;
           	 	   if(getBallSpeedY()>0)bot+=Math.abs(getBallSpeedY())*deltaT-getRacketSize()/2*deltaT;
                    if (bot< 0.0) bot = 0.0;
@@ -154,12 +158,24 @@ public class Bot extends Court{
       }
       if ((nextBallX < 0 && nextBallY > this.getRacketA() && nextBallY < this.getRacketA() + this.getRacketSize())
               || (nextBallX > this.getWidth()-100 && nextBallY > bot && nextBallY < bot + this.getRacketSize())) {
+                MediaPlayer mP = new MediaPlayer(media);
+                MediaView mV = new MediaView(mP);
+                mP.setAutoPlay(true);
+                mP.setVolume(10);
           this.setBallSpeedX(this.getBallSpeedX()-2*this.getBallSpeedX());
           nextBallX = this.getBallX() + deltaT * this.getBallSpeedX();
       } else if (nextBallX < 0) {
+        MediaPlayer mP2 = new MediaPlayer(media2);
+        MediaView mV2 = new MediaView(mP2);
+        mP2.setVolume(0.1);
+          mP2.setAutoPlay(true);
       	  this.scoreP2++;
           return true;
       } else if (nextBallX > this.getWidth()-100) {
+        MediaPlayer mP2 = new MediaPlayer(media2);
+        MediaView mV2 = new MediaView(mP2);
+        mP2.setVolume(0.1);
+          mP2.setAutoPlay(true);
       	  this.scoreP1++;
           return true;
       }

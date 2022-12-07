@@ -165,6 +165,7 @@ public class Court {
             MediaPlayer mP = new MediaPlayer(media);
             MediaView mV = new MediaView(mP);
             mP.setAutoPlay(true);
+            mP.setVolume(10);
             ballSpeedX = -ballSpeedX;
             nextBallX = ballX + deltaT * ballSpeedX;
         } else if (nextBallX < 0) {
