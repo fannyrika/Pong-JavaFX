@@ -24,7 +24,8 @@ public class Court {
     private int scoreP1 = 0;
     private int scoreP2 = 0;
     public Media mediaBall;
-    public Media activationBoost;
+    public Media activationBoost, media, media2;
+
     boolean limitTime, scoreLimit;
     public int timeMM,timeSS,score;
 
@@ -40,6 +41,10 @@ public class Court {
         activationBoost=new Media(new File("src/main/resources/gui/AudioBoostActive.mp3").toURI().toString());
         p1=new PlayerBoost(playerABall);
         p2=new PlayerBoost(playerBball);
+        media = new Media(new File("bruitagerqt.mp3").toURI().toString());
+
+        media2 = new Media(new File("but.mp3").toURI().toString());
+
 
         reset();
     }
@@ -147,12 +152,6 @@ public class Court {
      * @return true if a player lost
      */
     private boolean updateBall(double deltaT) {
-        Media media = new Media(new File("bruitagerqt.mp3").toURI().toString());
-        MediaPlayer mP = new MediaPlayer(media);
-        MediaView mV = new MediaView(mP);
-        Media media2 = new Media(new File("but.mp3").toURI().toString());
-        MediaPlayer mP2 = new MediaPlayer(media2);
-        MediaView mV2 = new MediaView(mP2);
         // first, compute possible next position if nothing stands in the way
         double nextBallX = ballX + deltaT * ballSpeedX;
         double nextBallY = ballY + deltaT * ballSpeedY;
@@ -163,15 +162,20 @@ public class Court {
         }
         if ((nextBallX < 0 && nextBallY > racketA && nextBallY < racketA + racketSize)
                 || (nextBallX > width-100 && nextBallY > racketB && nextBallY < racketB + racketSize)) {
+            MediaPlayer mP = new MediaPlayer(media);
+            MediaView mV = new MediaView(mP);
             mP.setAutoPlay(true);
             ballSpeedX = -ballSpeedX;
             nextBallX = ballX + deltaT * ballSpeedX;
         } else if (nextBallX < 0) {
+          MediaPlayer mP2 = new MediaPlayer(media2);
+          MediaView mV2 = new MediaView(mP2);
         	mP2.setVolume(0.1);
             mP2.setAutoPlay(true);
             scoreP2++;
             return true;
         } else if (nextBallX > width-100) {
+          MediaPlayer mP2 = new MediaPlayer(media2);
         	mP2.setVolume(0.1);
             mP2.setAutoPlay(true);
             scoreP1++;
@@ -206,7 +210,7 @@ public class Court {
     public boolean timeEnd(int mm,int ss) {
     	return mm==timeMM && ss==timeSS;
     }
-    
+
     public boolean isScoreLimit() {
     	return scoreLimit;
     }
