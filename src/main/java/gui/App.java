@@ -836,7 +836,7 @@ public class App extends Application {
         retourmenu.setId("tennismnemonic");
         retourmenu.setFont(new Font("Arial",30));
         retourmenu.setTextFill(Color.BLACK);
-        var nouvellepartie = new Label("_Nouvelle Partie");
+        var nouvellepartie = new Label("Re_commencer");
         nouvellepartie.setMnemonicParsing(true);
         nouvellepartie.setId("tennismnemonic");
         nouvellepartie.setFont(new Font("Arial",30));
@@ -856,7 +856,7 @@ public class App extends Application {
 
 		pauseScene.getStylesheets().addAll(this.getClass().getResource("fond.css").toExternalForm());
 		//ajout des variables à la page pause
-		rootPause.getChildren().addAll(reprendre,retourmenu,nouvellepartie,musique,quitterpause);
+		rootPause.getChildren().addAll(reprendre,nouvellepartie,retourmenu,musique,quitterpause);
 		rootPause.setAlignment(Pos.CENTER);
 
 
@@ -895,6 +895,9 @@ public class App extends Application {
       if(volumeSliderO.getValue() == 0){ mute.setId("boutonMute1"); mutebis.setId("boutonMute1");}
       else{mute.setId("boutonMute2"); mutebis.setId("boutonMute2");}
       volumeSlider.setValue(volumeSliderO.getValue()); } });
+
+      volumeSlider.setValue(50);
+      volumeSliderO.setValue(50);
 
       mute.setOnAction(new EventHandler<ActionEvent>() {
       public void handle(ActionEvent event) {
@@ -1172,7 +1175,7 @@ public class App extends Application {
                     primaryStage.setScene(menuScene);
                     music.mP.play();
                     break;
-            	case N:
+            	case C:
             		GameView.stop=false;
             		GameView.pause=false;
             	//	gameView.remove();
