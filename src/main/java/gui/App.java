@@ -1175,15 +1175,21 @@ public class App extends Application {
             	case N:
             		GameView.stop=false;
             		GameView.pause=false;
-            		gameView.remove();
-            		gameView2.remove();
+            	//	gameView.remove();
+            	//	gameView2.remove();
             		gameView.reset1V1();
             		gameView2.resetBot();
-            		gameView.start(false);
-            		gameView2.start(false);
-                    primaryStage.setScene(modeScene);
-                    music.mP.play();
-                    break;
+                if(gameView.isStart()){
+                gameView.animate();
+              	gameView.start(true);
+                }
+                else {
+                  gameView2.animateBot();
+                	gameView2.start(true);
+                }
+                  primaryStage.setScene(gameScene);
+                  music.mP.play();
+                  break;
                 case P:
                   GameView.pause=false;
                   music.mP.play();
