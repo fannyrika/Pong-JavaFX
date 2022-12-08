@@ -1493,7 +1493,8 @@ public class App extends Application {
             		scoreInst.setTextFill(Color.WHITE);
             	    erreurTime.setTextFill(Color.WHITE);
             	    boost.setTextFill(Color.WHITE);
-            	    timer.setTextFill(Color.WHITE);
+            	    gameView.timer.setTextFill(Color.WHITE);
+            	    gameView2.timer.setTextFill(Color.WHITE);
             	    indication.setTextFill(Color.WHITE);
 
             		nom.setTextFill(Color.WHITE);
@@ -1678,6 +1679,7 @@ public class App extends Application {
             	    valider.setTextFill(Color.BLACK);
             	    boost.setTextFill(Color.BLACK);
             	    gameView.timer.setTextFill(Color.BLACK);
+            	    gameView2.timer.setTextFill(Color.BLACK);
             	    indication.setTextFill(Color.BLACK);
             		nom.setTextFill(Color.BLACK);
                     titre.setTextFill(Color.BLACK);
@@ -1856,6 +1858,7 @@ public class App extends Application {
             	    erreurTime.setTextFill(Color.LIGHTPINK);
             	    boost.setTextFill(Color.LIGHTPINK);
             	    gameView.timer.setTextFill(Color.LIGHTPINK);
+            	    gameView2.timer.setTextFill(Color.LIGHTPINK);
             	    indication.setTextFill(Color.LIGHTPINK);
             		nom.setTextFill(Color.LIGHTPINK);
                     titre.setTextFill(Color.LIGHTPINK);

@@ -147,8 +147,8 @@
 #regles {
   -fx-background-image: url("imgmode.png");
   -fx-background-repeat: NO-REPEAT;
-  -fx-background-position: DEFAULT;
-  -fx-background-size: DEFAULT;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
 }
 
 
