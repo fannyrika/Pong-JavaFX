@@ -3,6 +3,8 @@ package model;
 import javafx.geometry.Rectangle2D;
 
 import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import java.io.File;
 import java.util.Random;
 
@@ -22,7 +24,10 @@ public class Court {
     private int scoreP1 = 0;
     private int scoreP2 = 0;
     public Media mediaBall;
-    public Media activationBoost;
+    public Media activationBoost, media, media2;
+
+    boolean limitTime, scoreLimit;
+    public int timeMM,timeSS,score;
 
 
     Rectangle2D screen = Screen.getPrimary().getVisualBounds();
@@ -36,6 +41,10 @@ public class Court {
         activationBoost=new Media(new File("src/main/resources/gui/AudioBoostActive.mp3").toURI().toString());
         p1=new PlayerBoost(playerABall);
         p2=new PlayerBoost(playerBball);
+        media = new Media(new File("bruitagerqt.mp3").toURI().toString());
+
+        media2 = new Media(new File("but.mp3").toURI().toString());
+
 
         reset();
     }
@@ -153,12 +162,23 @@ public class Court {
         }
         if ((nextBallX < 0 && nextBallY > racketA && nextBallY < racketA + racketSize)
                 || (nextBallX > width-100 && nextBallY > racketB && nextBallY < racketB + racketSize)) {
+            MediaPlayer mP = new MediaPlayer(media);
+            MediaView mV = new MediaView(mP);
+            mP.setAutoPlay(true);
+            mP.setVolume(10);
             ballSpeedX = -ballSpeedX;
             nextBallX = ballX + deltaT * ballSpeedX;
         } else if (nextBallX < 0) {
+          MediaPlayer mP2 = new MediaPlayer(media2);
+          MediaView mV2 = new MediaView(mP2);
+        	mP2.setVolume(0.1);
+            mP2.setAutoPlay(true);
             scoreP2++;
             return true;
         } else if (nextBallX > width-100) {
+          MediaPlayer mP2 = new MediaPlayer(media2);
+        	mP2.setVolume(0.1);
+            mP2.setAutoPlay(true);
             scoreP1++;
             return true;
         }
@@ -177,6 +197,41 @@ public class Court {
     	racketSpeed= racketSpeed * acceleration;
     	ballSpeedX= ballSpeedX * acceleration;
     	ballSpeedY= ballSpeedY * acceleration;
+    }
+    public void setTimeLimit(int mm,int ss) {
+    	this.timeMM=mm;
+    	this.timeSS=ss;
+    }
+    public boolean isTimeLimit() {
+    	return limitTime;
+    }
+    public void limitTime(boolean b) {
+    	limitTime=b;
+    }
+    public boolean timeEnd(int mm,int ss) {
+    	return mm==timeMM && ss==timeSS;
+    }
+
+    public boolean isScoreLimit() {
+    	return scoreLimit;
+    }
+    public void scoreLimit(boolean b) {
+    	scoreLimit=b;
+    }
+    public void setScoreLimit(int score) {
+    	this.score=score;
+    }
+    public boolean scoreLimitReach() {
+    	return scoreP1==score||scoreP2==score;
+    }
+    public boolean scoreEgalite() {
+    	return scoreP1==scoreP2;
+    }
+    public boolean player1Win() {
+    	return scoreP1>scoreP2;
+    }
+    public boolean player2Win() {
+    	return scoreP1<scoreP2;
     }
     public void resetScore(){
 	 scoreP1 = 0;

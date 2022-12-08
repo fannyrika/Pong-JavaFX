@@ -10,107 +10,60 @@
   -fx-background-position: 50% 50%;
   -fx-background-size: 100%;
 }
-
-#spacebg {
-  -fx-background-image: url("spacebackground.png");
+#terrainBM{
+	-fx-background-image: url("imgfondBM.jpg");
+  -fx-background-color: #842e1b;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+   -fx-text-fill: black;
+}
+#tennisbg{
+-fx-background-image: url("imgfondmenu.jpg");
   -fx-background-color: #842e1b;
   -fx-background-repeat: no-repeat;
   -fx-background-position: 50% 50%;
   -fx-background-size: 100%;
 }
 
-#boutonspace {
-    -fx-text-fill:white;
-    -fx-background-color: transparent;
-    -fx-font-size: 35px;
-    -fx-font-family: Yrsa Medium;
-    -fx-font-weight: bolder;
+#spacebg {
+  -fx-background-image: url("spacebackgroundmenu.png");
+  -fx-background-color: #842e1b;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
 }
-
-#boutonSelecspace {
-    -fx-text-fill:white;
-    -fx-background-color: transparent;
-    -fx-font-size: 45px;
-    -fx-font-family: Yrsa Medium;
-    -fx-font-weight: bolder;
-}
-
-#boutonPspace {
-    -fx-text-fill:white;
-    -fx-background-color: transparent;
-    -fx-font-size: 35px;
-    -fx-font-family: Yrsa Medium;
-    -fx-font-weight: bolder;
-}
-
-#boutonPspace:hover {
-  -fx-font-size: 45px;
+#spaceMB {
+  -fx-background-image: url("spacebackgroundBM.png");
+  -fx-background-color: #c0d4cd;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+ 
 }
 
 #ledbg {
+  -fx-background-image: url("ledbackgroundmenu.jpg");
+  -fx-background-color: #842e1b;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+}
+#ledBM {
+  -fx-background-image: url("ledbackgroundBM.jpg");
+  -fx-background-color: #842e1b;
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: 50% 50%;
+  -fx-background-size: 100%;
+  
+}
+
+#ledbggame {
   -fx-background-image: url("ledbackground.jpg");
   -fx-background-color: #842e1b;
   -fx-background-repeat: no-repeat;
   -fx-background-position: 50% 50%;
   -fx-background-size: 100%;
-}
-
-#boutonled {
-    -fx-text-fill:pink;
-    -fx-background-color: transparent;
-    -fx-font-size: 35px;
-    -fx-font-family: Yrsa Medium;
-    -fx-font-weight: bolder;
-}
-
-#boutonSelecled {
-    -fx-text-fill:pink;
-    -fx-background-color: transparent;
-    -fx-font-size: 45px;
-    -fx-font-family: Yrsa Medium;
-    -fx-font-weight: bolder;
-}
-
-#boutonPled{
-    -fx-text-fill:pink;
-    -fx-background-color: transparent;
-    -fx-font-size: 35px;
-    -fx-font-family: Yrsa Medium;
-    -fx-font-weight: bolder;
-}
-
-#boutonPledSelec{
-    -fx-text-fill:pink;
-    -fx-background-color: transparent;
-    -fx-font-size: 45px;
-    -fx-font-family: Yrsa Medium;
-    -fx-font-weight: bolder;
-}
-
-#boutonPled:hover {
-  -fx-font-size: 45px;
-}
-
-#modesSelecled{
-  -fx-background-color:pink;
-  -fx-text-fill:black;
-  -fx-font-size: 45px;
-  -fx-font-family: Yrsa Medium;
-  -fx-font-weight: bolder;
-  -fx-border-radius: 10% / 50%;
-}
-
-#modesled {
-  -fx-background-color: pink;
-  -fx-text-fill:black;
-  -fx-font-size: 35px;
-  -fx-font-family: Yrsa Medium;
-  -fx-font-weight: bolder;
-  -fx-border-radius: 10% / 50%;
-}
-
-#modesled:hover {
-  -fx-background-color: pink;
 }
 
 #mode {
@@ -122,7 +75,7 @@
 }
 
 #spacemode {
-  -fx-background-image: url("spacemode.jpg");
+  -fx-background-image: url("spacemode.png");
   -fx-background-color: #c0d4cd;
   -fx-background-repeat: no-repeat;
   -fx-background-position: 50% 50%;
@@ -130,74 +83,16 @@
 }
 
 #ledmode {
-  -fx-background-image: url("ledmode.jpg");
+  -fx-background-image: url("ledmode.png");
   -fx-background-color: #c0d4cd;
   -fx-background-repeat: no-repeat;
   -fx-background-position: 50% 50%;
   -fx-background-size: 100%;
 }
 
-#modes {
-  -fx-background-color: darkgray;
-  -fx-font-size: 35px;
-  -fx-font-family: Yrsa Medium;
-  -fx-font-weight: bolder;
-  -fx-border-radius: 10% / 50%;
+#choix {
+  -fx-font-weight: bold;
 }
-
-#modes:hover {
-  -fx-background-color: #808080;
-}
-
-#modesSelec{
-  -fx-background-color: #808080;
-  -fx-font-size: 35px;
-  -fx-font-family: Yrsa Medium;
-  -fx-font-weight: bolder;
-  -fx-border-radius: 10% / 50%;
-}
-
-#ligne {
-  -fx-font-family: Yrsa Medium;
-  -fx-font-size: 30px;
-  -fx-font-weight: bolder;
-}
-
-   #difficulte {
-     -fx-font-family: Yrsa Medium;
-      -fx-display: inline-block;
-      -fx-background-color: #98BF64;
-      -fx-border-radius: 10px;
-      -fx-border: 4px double #cccccc;
-      -fx-color: #eeeeee;
-      -fx-text-align: center;
-      -fx-font-size: 28px;
-      -fx-padding: 20px;
-      -fx-width: 200px;
-      -fx-transition: all 0.5s;
-      -fx-cursor: pointer;
-      -fx-margin: 5px;
-    }
-
-    #difficulte:hover {
-      -fx-background-color: #607D3B;
-    }
-
-   #diffSelec{
-     -fx-font-family: Yrsa Medium;
-      -fx-display: inline-block;
-      -fx-background-color: #607D3B;
-      -fx-border-radius: 10px;
-      -fx-border: 4px double #cccccc;
-      -fx-color: #eeeeee;
-      -fx-text-align: center;
-      -fx-font-size: 28px;
-      -fx-padding: 20px;
-      -fx-width: 200px;
-      -fx-transition: all 0.5s;
-      -fx-cursor: pointer;
-      -fx-margin: 5px;
-   }
 
 #pause {
   -fx-background-image: url("fondpoz.png");
@@ -223,14 +118,6 @@
   -fx-background-size: 100%;
 }
 
-#retourI {
-  -fx-background-color: darkgray;
-  -fx-font-size: 20px;
-  -fx-font-family: Yrsa Medium;
-  -fx-font-weight: bolder;
-  -fx-border-radius: 10% / 50%;
-}
-
 #boutonMute1{
   -fx-background-image: url("mute.png");
   -fx-background-color: transparent;
@@ -249,12 +136,8 @@
   -fx-font-size: 30px;
 }
 
-#retourI:hover {
-  -fx-background-color: lightgray;
-}
-
 #menu {
-  -fx-background-image: url("imgfond.jpg");
+  -fx-background-image: url("imgfondmenu.jpg");
   -fx-background-color: #842e1b;
   -fx-background-repeat: no-repeat;
   -fx-background-position: 50% 50%;
@@ -268,56 +151,20 @@
   -fx-background-size: DEFAULT;
 }
 
-#boutons, #boutonsP {
-    -fx-font-color: BLACK;
-    -fx-background-color: transparent;
-    -fx-font-size: 35px;
-    -fx-font-family: Yrsa Medium;
-    -fx-font-weight: bolder;
+
+
+
+#spacemnemonic .mnemonic-underline{
+  -fx-stroke: -fx-text-base-color;
+  -fx-text-base-color:white;
 }
 
-#boutonsSelec{
-  -fx-font-color: BLACK;
-  -fx-background-color: transparent;
-  -fx-font-family: Yrsa Medium;
-  -fx-font-weight: bolder;
-  -fx-font-size: 45px;
+#tennismnemonic .mnemonic-underline{
+  -fx-stroke: -fx-text-base-color;
+  -fx-text-base-color:black;
 }
 
-#boutonsP:hover {
-  -fx-font-size: 45px;
-}
-
-#boutons:hover {
-  -fx-background-color: DARKGRAY;
-}
-
-#label2 {
-  -fx-font-weight: bolder;
-  -fx-font-size: 70px;
-}
-
-#labelspacetitre {
-  -fx-text-fill:white;
-  -fx-font-weight: bolder;
-  -fx-font-size: 70px;
-}
-
-#labelspace {
-  -fx-text-fill:white;
-  -fx-font-weight: bolder;
-  -fx-font-size: 30px;
-}
-
-#labeltennis {
-  -fx-text-fill:black;
-  -fx-font-weight: bolder;
-  -fx-font-size: 30px;
-}
-
-
-#labelled {
-  -fx-text-fill:pink;
-  -fx-font-weight: bolder;
-  -fx-font-size: 50px;
+#neonmnemonic .mnemonic-underline{
+  -fx-stroke: -fx-text-base-color;
+  -fx-text-base-color:pink;
 }
