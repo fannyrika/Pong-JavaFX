@@ -31,10 +31,30 @@ COTREZ;Jules; 62 - 67; --; 62, 64
 ** DONE Continue with the work, and prepare a prototype in master branch
    
 * 24/11/2022
+
+
+surname; name; opened issues; closed issues; workin on issues
+NICO;Julien;Connection qui ne marche pas
+HOUARD;Romain;78,79,81,82,69,89,93;78,82,79,53,89,95;97
+PINTO;Lilia;49,73,92,66;69,85,73;66
+BOULOUFA;Melissa;68,69,70,77,80,83,84,86,88,90,94,95;77,65,70,81,59,54,68,86,88,60,80,84,55,67,92;94
+TANG;Li Wa;76,85,87,91;62,72,76;91,97,102
+COTREZ;Jules;97-101;--;97,98,63
+
 ** TODO
 *** Ajouter les touches pour chaque fonction / boutton
 *** Indiquer dans chaque ticket la fonctionalité dans le chaier de charge
 ***   qui motive le ticket
 *** Remplacer les chemins des images codés en dur dans le Java avec
 *** la lecture d'un fichier de configuration qui contient les chemins necessaires.
+
+* 08/12/2022
+
+surname; name; opened issues; closed issues; working on issues
+NICO;Julien; 71,72,74,112,113; 112, 113;  --
+HOUARD;Romain; 93; 87,95,93,116;--
+PINTO;Lilia; 109,11,115-117,120;65,69,73,85,92,103,104,107,112,115,108,114,117;--
+BOULOUFA;Melissa; 110,118,119,121; 49,66,83,94,96,109,110,118-121;--
+TANG;Li Wa; 102-106,114;102,105,106;--
+COTREZ;Jules;--;100;71,75;39,74
 
