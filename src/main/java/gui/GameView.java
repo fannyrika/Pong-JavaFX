@@ -68,6 +68,7 @@ public class GameView {
 		root.setMaxHeight(court.getHeight() * scale);
 
         timer();
+        timer.setTextFill(Color.BLACK);
         timer.setLayoutX(court.getWidth()/2-50);
         timer.setLayoutY(-50);
         menu = new Button("Retour au menu");  
@@ -203,6 +204,7 @@ public class GameView {
         root.setMinHeight(bot.getHeight() * scale);
 
         timer();
+        timer.setTextFill(Color.BLACK);
         timer.setLayoutX(bot.getWidth()/2-50);
         timer.setLayoutY(-50);
 
