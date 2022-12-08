@@ -1,3 +1,4 @@
+
 package gui;
 
 
@@ -39,6 +40,7 @@ import javafx.scene.control.RadioButton;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
@@ -102,33 +104,33 @@ public class App extends Application {
         nom.setFont(new Font("Arial",20));
         nom.setTextFill(Color.BLACK);
         var titre = new Label("PONG\n\n");
-        titre.setFont(new Font("Arial",80));
+        titre.setFont(Font.font("Arial", FontWeight.BOLD, 80));
         titre.setTextFill(Color.BLACK);
         var jouer = new Label("_Jouer\n");
         jouer.setMnemonicParsing(true);
         jouer.setId("tennismnemonic");
-        jouer.setFont(new Font("Arial",40));
+        jouer.setFont(Font.font("Arial", FontWeight.BOLD, 40));
         jouer.setTextFill(Color.BLACK);
         var instructions = new Label("_Instructions\n");
         instructions.setMnemonicParsing(true);
         instructions.setId("tennismnemonic");
-        instructions.setFont(new Font("Arial",40));
+        instructions.setFont(Font.font("Arial", FontWeight.BOLD, 40));
         instructions.setTextFill(Color.BLACK);
         var options = new Label("_Options\n");
         options.setMnemonicParsing(true);
         options.setId("tennismnemonic");
-        options.setFont(new Font("Arial",40));
+        options.setFont(Font.font("Arial", FontWeight.BOLD, 40));
         options.setTextFill(Color.BLACK);
 
       //ce bouton quitter est celui que se trouve dans la page menu
         var quittermenu = new Label("_Quitter");
         quittermenu.setMnemonicParsing(true);
         quittermenu.setId("tennismnemonic");
-        quittermenu.setFont(new Font("Arial",40));
+        quittermenu.setFont(Font.font("Arial", FontWeight.BOLD, 40));
         quittermenu.setTextFill(Color.BLACK);
 
-        var rappel = new Text("\n\n(N'oubliez pas que seule les touches du clavier sont utilisables.)");
-        rappel.setFont(new Font("Arial",20));
+        var rappel = new Text("\n(N'oubliez pas que seule les touches du clavier sont utilisables.)");
+        rappel.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         rappel.setFill(Color.BLACK);
 
 
@@ -1090,7 +1092,6 @@ public class App extends Application {
                 case H:
                     GameView.pause=true;
                     primaryStage.setScene(rules2);
-                    //rulesroot.getChildren().add(reprendre);
                     break;
                 case ESCAPE:
                 	primaryStage.close();
@@ -1123,6 +1124,8 @@ public class App extends Application {
                 	break;
             }
         });
+        
+      
 
 
         menuScene.setOnKeyPressed(ev -> {
@@ -1648,6 +1651,7 @@ public class App extends Application {
                 catch (MalformedURLException e){
                 }
             		GameView.styleBM="terrainBM";
+            		 volumeO.setFill(Color.BLACK);
             		menuRoot.setId("tennisbg");
                     modeRoot.setId("mode");
                     instruroot.setId("mode");
@@ -1673,7 +1677,7 @@ public class App extends Application {
             	    erreurTime.setTextFill(Color.BLACK);
             	    valider.setTextFill(Color.BLACK);
             	    boost.setTextFill(Color.BLACK);
-            	    timer.setTextFill(Color.BLACK);
+            	    gameView.timer.setTextFill(Color.BLACK);
             	    indication.setTextFill(Color.BLACK);
             		nom.setTextFill(Color.BLACK);
                     titre.setTextFill(Color.BLACK);
@@ -1720,7 +1724,7 @@ public class App extends Application {
                     setting.setTextFill(Color.BLACK);
                     instructionSet.setTextFill(Color.BLACK);
                     boost.setTextFill(Color.BLACK);
-                    timer.setTextFill(Color.BLACK);
+                    gameView.timer.setTextFill(Color.BLACK);
                     scoreInst.setTextFill(Color.BLACK);
             		indication.setTextFill(Color.BLACK);
             		valider.setTextFill(Color.BLACK);
@@ -1851,7 +1855,7 @@ public class App extends Application {
             		scoreInst.setTextFill(Color.LIGHTPINK);
             	    erreurTime.setTextFill(Color.LIGHTPINK);
             	    boost.setTextFill(Color.LIGHTPINK);
-            	    timer.setTextFill(Color.LIGHTPINK);
+            	    gameView.timer.setTextFill(Color.LIGHTPINK);
             	    indication.setTextFill(Color.LIGHTPINK);
             		nom.setTextFill(Color.LIGHTPINK);
                     titre.setTextFill(Color.LIGHTPINK);
