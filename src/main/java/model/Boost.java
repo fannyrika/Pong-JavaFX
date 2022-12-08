@@ -39,9 +39,12 @@ public class Boost {
 	    boost.setGraphic(view);
 	    boost.setTranslateX(x);
 	    boost.setTranslateY(y);
+	    
 	}	
+	
+	
 	public boolean isBallTouchBoost() {
-		if(court.ballX>=x&&court.ballX<=(x+90)&&court.ballY>=y&&court.ballY<=(y+90)) {
+		if(court.ballX<=x&&court.ballX>=x-150&&court.ballY>=y+20&&court.ballY<=y+130) {
 		        
 			if(court.ballSpeedX>0) {
 				if(court.p1.boost!=null)return false;
