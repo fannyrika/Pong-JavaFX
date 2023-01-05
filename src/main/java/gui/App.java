@@ -1124,8 +1124,8 @@ public class App extends Application {
                 	break;
             }
         });
-        
-      
+
+
 
 
         menuScene.setOnKeyPressed(ev -> {
@@ -1249,7 +1249,7 @@ public class App extends Application {
                 	break;
                 }});
         //Setting scene;
-        Label instructionSet=new Label("Utiliser la touche 'espace' pour valider une option et la touche 'entr\u00e9e' pour passer \u00e0 la suivante (le boost et les scores fonctionnent seulement en partie '1 vs 1') :");
+        Label instructionSet=new Label("Utiliser la touche 'espace' pour valider une option et la touche 'entr\u00e9e' pour passer \u00e0 la suivante (le boost fonctionne seulement en partie '1 vs 1') :");
         instructionSet.setTranslateY(-100);
         instructionSet.setFont(new Font("Arial",18));
         instructionSet.setTextFill(Color.BLACK);
