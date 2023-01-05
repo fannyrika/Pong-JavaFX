@@ -1,5 +1,9 @@
 # Jeu de Pong
 
+## Vidéo de la Présentation
+
+https://drive.google.com/file/d/1p5Qs-QrRm2_VNsiCT6WysSBU8emi0gNm/view?usp=share_link
+
 ## Présentation
 
 Ce Pong est un jeu de raquettes programmé en Java 17 avec JavaFX. Le projet est configuré avec Gradle utilisant le plugin JavaFX. Ce jeu est largement inspiré du jeu [Pong](https://fr.wikipedia.org/wiki/Pong), un classique des salles d'arcades dans les années 1970.
